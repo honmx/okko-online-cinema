@@ -1,0 +1,137 @@
+@import "../../styles/variables.scss";
+
+.footer {
+  // background-color: #5a5a5a;
+  padding: 45px 0;
+  border-top: 1px solid rgba($color: $primaryGreyColor, $alpha: 0.2);
+}
+
+.contacts {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 45px;
+}
+
+.socialNetworksContainer {
+  display: flex;
+  align-items: center;
+
+  &>*:not(:last-child) {
+    margin-right: 35px;
+  }
+}
+
+.navbar {
+  position: sticky;
+  display: flex;
+  margin-bottom: 50px;
+  z-index: 10;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+
+  &:not(:last-child) {
+    margin-right: 20vw;
+  }
+  
+  &>*:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+.rightsContainer {
+  display: flex;
+  align-items: center;
+  color: $primaryFontColor;
+  font-size: 14px;
+
+  :not(:last-child) {
+    margin-bottom: 5px;
+  }
+}
+
+.logoWrapper {
+  margin-right: 40px;
+  position: relative;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    transform: translate(-33%, -40%);
+    background: radial-gradient(closest-side, rgba($color: $accentWhiteColor, $alpha: 0.18), transparent);
+    animation-name: flash;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    z-index: 0;
+  }
+  
+  & img {
+    filter: invert(0%) sepia(0%) saturate(150%) hue-rotate(346deg) brightness(84%) contrast(146%);
+    animation-name: flash-text;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes flash-text {
+  5%, 9%, 11%, 13% {
+    filter: invert(0%) sepia(0%) saturate(150%) hue-rotate(346deg) brightness(84%) contrast(146%);
+  }
+  7%, 10%, 12% {
+    filter: invert(50%) sepia(0%) saturate(150%) hue-rotate(346deg) brightness(84%) contrast(146%);
+  }
+}
+
+@keyframes flash {
+  5%, 9%, 11%, 13% {
+    background: radial-gradient(closest-side, rgba($color: $accentWhiteColor, $alpha: 0.18), transparent);
+  }
+  7%, 10%, 12% {
+    background: none;
+  }
+}
+
+.links {
+  display: flex;
+
+  :not(:last-child) {
+    margin-right: 15px;
+  }
+}
+
+
+@media screen and (max-width: 767px) {
+  .contacts {
+    flex-direction: column;
+  }
+
+  .socialNetworksContainer {
+    margin-bottom: 10px;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  .block {
+    &:not(:last-child) {
+      margin-right: 0px;
+    }
+  }
+
+  .links {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .rightsContainer {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,17 @@
+@import "../../../styles/variables.scss";
+
+.linkContainer {
+
+  & a {
+    white-space: nowrap;
+    text-decoration: none;
+    color: $primaryFontColor;
+    font-weight: 700;
+    transition: all 0.15s ease;
+
+    &:hover {
+      color: $accentWhiteFontColor;
+      text-shadow: 0 0 25px rgba($color: $accentWhiteColor, $alpha: 0.7);
+    }
+  }
+}

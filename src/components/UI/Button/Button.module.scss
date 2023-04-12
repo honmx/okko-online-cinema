@@ -1,0 +1,76 @@
+@import "@/styles/variables.scss";
+
+.buttonWrapper {
+  // display: inline-block;
+}
+
+.buttonOuterContainer,
+.buttonInnerContainer {
+  display: inline-block;
+  position: sticky;
+  padding: 3px;
+  border-radius: 12px;
+  background-color: $primaryBlackColor;
+  z-index: 10;
+}
+
+.buttonOuterContainer {
+  padding: 2px;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: rgb(251, 251, 251);
+      background: radial-gradient(circle, rgba(251, 251, 251, 1) 0%, rgba(161, 37, 155, 1) 49%, rgba(9, 12, 123, 1) 100%, rgba(0, 212, 255, 1) 100%);
+      animation-name: move;
+      animation-duration: 1s;
+    }
+  }
+}
+
+@keyframes move {
+
+  50% {
+    left: -49%;
+  }
+
+  100% {
+    left: 50%;
+  }
+}
+
+.button {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $accentWhiteFontColor;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1000; 
+
+  & img {
+    margin-right: 5px;
+  }
+}
+
+.accentBgColor {
+  background: linear-gradient(65deg, rgba($color: $accentPurpleColor, $alpha: 0.9), rgba($color: $accentPurpleColor, $alpha: 0.6));
+}
+
+.primaryBgColor {
+  background-color: $primaryGreyColor;
+}

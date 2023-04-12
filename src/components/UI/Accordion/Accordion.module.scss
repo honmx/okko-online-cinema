@@ -1,0 +1,27 @@
+@import "../../../styles/variables.scss";
+
+.accordion {
+  width: 100%;
+  padding: 20px 0;
+  // margin-bottom: 20px;
+  border-bottom: 1px solid rgba($color: $primaryGreyColor, $alpha: 0.2);
+  cursor: pointer;
+
+  &:first-child {
+    border-top: 1px solid rgba($color: $primaryGreyColor, $alpha: 0.2);
+  }
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordionItems {
+  margin-top: 20px;
+
+  &>*:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
