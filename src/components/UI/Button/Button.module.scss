@@ -27,25 +27,24 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
+      translate: -50% -50%;
+      width: 110%;
+      aspect-ratio: 1;
+      // height: 100%;
       background: rgb(251, 251, 251);
-      background: radial-gradient(circle, rgba(251, 251, 251, 1) 0%, rgba(161, 37, 155, 1) 49%, rgba(9, 12, 123, 1) 100%, rgba(0, 212, 255, 1) 100%);
-      animation-name: move;
-      animation-duration: 1s;
+      background: radial-gradient(circle at 40px 40px, rgba(251, 251, 251, 1) 0%, rgba(161, 37, 155, 1) 49%, rgba(9, 12, 123, 1) 100%, rgba(0, 212, 255, 1) 100%);
+      animation-name: spin;
+      animation-duration: 1.5s;
     }
   }
 }
 
-@keyframes move {
-
-  50% {
-    left: -49%;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-
   100% {
-    left: 50%;
+    transform: rotate(360deg);
   }
 }
 
@@ -55,6 +54,8 @@
   justify-content: center;
   align-items: center;
   color: $accentWhiteFontColor;
+  font-size: 16px;
+  font-weight: 700;
   padding: 10px 20px;
   outline: none;
   border: none;
