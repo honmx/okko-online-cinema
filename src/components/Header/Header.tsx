@@ -5,8 +5,13 @@ import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import IconButton from "@/components/UI/IconButton/IconButton";
 import { useRouter } from 'next/router';
 import { headerLinks } from '@/helpers/data/headerLinks';
-import s from "../../styles/Header.module.scss";
 import Link from 'next/link';
+import burger from "@/assets/burger_menu.svg";
+import gift from "@/assets/gift-box.svg";
+import login from "@/assets/login_icon.svg";
+import main_logo from "@/assets/main_logo.png";
+import search from "@/assets/search_icon.svg";
+import s from "../../styles/Header.module.scss";
 
 const Header = () => {
 
@@ -16,7 +21,7 @@ const Header = () => {
     <div className={s.header}>
       <nav className={s.header_nav}>
         <Link className={s.logo} href="/">
-          <Image src="/main_logo.png" width={85} height={34} alt="okko" />
+          <Image src={main_logo} width={85} height={34} alt="okko" />
         </Link>
         <ul className={s.links}>
           {
@@ -30,7 +35,7 @@ const Header = () => {
         <div className={s.right_part}>
           {/*  /!*todo Добавить компонент поиска*!/*/}
           <IconButton className={s.search}>
-            <Image width={30} height={30} src="/search_icon.svg" alt="search" />
+            <Image width={30} height={30} src={search} alt="search" />
           </IconButton>
           <div className={s.search__after}></div>
           <div className={s.subscription}>
@@ -38,16 +43,16 @@ const Header = () => {
           </div>
           <div className={s.subscription__after}></div>
           <IconButton className={s.promo}>
-            <Image width={30} height={30} src="/gift-box.svg" alt="gift" />
+            <Image width={30} height={30} src={gift} alt="promocode" />
             <span>Ввести промокод</span>
           </IconButton>
           <IconButton className={s.login}>
-            <Image width={30} height={30} src="/login_icon.svg" alt="gift" />
+            <Image width={30} height={30} src={login} alt="gift" />
             <span>Войти</span>
           </IconButton>
           {/*todo добавить компонент бургера*/}
           <IconButton className={s.burger}>
-            <Image width={30} height={30} src="/burger_menu.svg" alt="burger" />
+            <Image width={30} height={30} src={burger} alt="burger" />
           </IconButton>
         </div>
       </nav>
