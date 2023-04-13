@@ -1,39 +1,42 @@
 import React from 'react';
-import styles from "../styles/Header.module.scss";
+import styles from "../../styles/Header.module.scss";
 import Image from "next/image";
+import Button from "@/components/UI/Button/Button";
+import CustomLink from "@/components/UI/CustomLink/CustomLink";
 
 const Header = () => {
   return (
+      <>
     <div className={styles.header}>
       <nav className={styles.header_nav}>
-        <a className={styles.logo} href="#">
+        <a className={styles.logo} href="@/components/Header/Header#">
           <Image src="/main_logo.png" width={85} height={34} alt="okko" />
         </a>
         <ul className={styles.links}>
           <li className={styles.active}>
-            <a href="#">
+            <CustomLink href={"#"}>
               Главная
-            </a>
+            </CustomLink>
           </li>
           <li>
-            <a href="#">
+            <CustomLink href={"/catalog"}>
               Каталог
-            </a>
+            </CustomLink>
           </li>
           <li>
-            <a href="#">
+            <CustomLink href={"/store"}>
               Магазин
-            </a>
+            </CustomLink>
           </li>
           <li>
-            <a href="#">
+            <CustomLink href={"/sport?_ga=2.195337577.471721308.1681214140-1369534196.1681214140"}>
               Спорт
-            </a>
+            </CustomLink>
           </li>
           <li>
-            <a href="#">
-              ТВ каналы
-            </a>
+            <CustomLink href={"/tv_channels/tvchannels_all/31266743"}>
+              Спорт
+            </CustomLink>
           </li>
         </ul>
         <div className={styles.right_part}>
@@ -43,11 +46,7 @@ const Header = () => {
           </div>
           <div className={styles.search__after}></div>
           <div className={styles.subscription}>
-            {/*todo добавить компонент кнопки*/}
-            <button>
-              <div className={styles.subscription__animation}></div>
-              <span className={styles.subscription__text}>Месяц за 1 ₽</span>
-            </button>
+            <Button value={"Месяц за 1 ₽"}/>
           </div>
           <div className={styles.subscription__after}></div>
           <div className={styles.promo}>
@@ -65,6 +64,7 @@ const Header = () => {
         </div>
       </nav>
     </div>
+      </>
   );
 };
 export default Header;
