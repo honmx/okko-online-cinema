@@ -2,11 +2,6 @@ import React, { FC } from "react";
 import Container from "../Container/Container";
 import { maxWidth } from "@/helpers/constants";
 import Image from "next/image";
-import vk from "@/assets/vk.svg";
-import viber from "@/assets/viber.svg";
-import odnoklassniki from "@/assets/odnoklassniki.svg";
-import telegram from "@/assets/telegram.svg";
-import youtube from "@/assets/youtube.svg";
 import chat from "@/assets/chat.svg";
 import logo from "@/assets/logo.svg";
 import Button from "../UI/Button/Button";
@@ -17,6 +12,8 @@ import CustomLink from "../UI/CustomLink/CustomLink";
 import s from "./Footer.module.scss";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import Accordion from "../UI/Accordion/Accordion";
+import { footerSocialNetworks } from "@/helpers/data/footerSocialNetworks";
+import IconButton from "../UI/IconButton/IconButton";
 
 interface Props {
 
@@ -31,21 +28,13 @@ const Footer: FC<Props> = ({ }) => {
       <footer className={s.footer}>
         <div className={s.contacts}>
           <div className={s.socialNetworksContainer}>
-            <Link href="/">
-              <Image src={vk} alt="vk" />
-            </Link>
-            <Link href="/">
-              <Image src={viber} alt="viber" />
-            </Link>
-            <Link href="/">
-              <Image src={odnoklassniki} alt="odnoklassniki" />
-            </Link>
-            <Link href="/">
-              <Image src={telegram} alt="telegram" />
-            </Link>
-            <Link href="/">
-              <Image src={youtube} alt="youtube" />
-            </Link>
+            {
+              footerSocialNetworks.map(socialNetwork => (
+                <CustomLink href="/">
+                  <Image src={socialNetwork.src} alt={socialNetwork.alt} />
+                </CustomLink>
+              ))
+            }
           </div>
           <Button value="Нужна помощь?" bgColor="accent" img={chat} />
         </div>

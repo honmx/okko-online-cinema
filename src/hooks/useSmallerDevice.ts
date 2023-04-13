@@ -14,6 +14,7 @@ export const useSmallerDevice = (maxWidth: number) => {
     }
 
     window.addEventListener("resize", update);
+    update();
 
     return () => window.removeEventListener("resize", update);
   }, []);

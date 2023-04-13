@@ -3,15 +3,27 @@
 .linkContainer {
 
   & a {
+    display: flex;
+    align-items: center;
     white-space: nowrap;
     text-decoration: none;
     color: $primaryFontColor;
     font-weight: 700;
     transition: all 0.15s ease;
 
+    img {
+      filter: invert(0%) sepia(0%) saturate(7492%) hue-rotate(346deg) brightness(50%) contrast(146%);
+      transition: all 0.15s ease;
+      margin-right: 5px;
+    }
+
     &:hover {
       color: $accentWhiteFontColor;
       text-shadow: 0 0 25px rgba($color: $accentWhiteColor, $alpha: 0.7);
+      
+      img {
+        filter: invert(0%) sepia(0%) saturate(7492%) hue-rotate(346deg) brightness(100%) contrast(146%);
+      }
     }
   }
 }
