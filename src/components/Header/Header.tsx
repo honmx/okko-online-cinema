@@ -1,65 +1,52 @@
 import React from 'react';
-import styles from "../../styles/Header.module.scss";
 import Image from "next/image";
 import Button from "@/components/UI/Button/Button";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import IconButton from "@/components/UI/IconButton/IconButton";
-import Container from '../Container/Container';
+import { useRouter } from 'next/router';
+import { headerLinks } from '@/helpers/data/headerLinks';
+import s from "../../styles/Header.module.scss";
+import Link from 'next/link';
 
 const Header = () => {
+
+  const router = useRouter();
+
   return (
-    <div className={styles.header}>
-      <nav className={styles.header_nav}>
-        <a className={styles.logo} href="@/components/Header/Header#">
+    <div className={s.header}>
+      <nav className={s.header_nav}>
+        <Link className={s.logo} href="/">
           <Image src="/main_logo.png" width={85} height={34} alt="okko" />
-        </a>
-        <ul className={styles.links}>
-          <li className={styles.active}>
-            <CustomLink href={"#"}>
-              Главная
-            </CustomLink>
-          </li>
-          <li>
-            <CustomLink href={"/catalog"}>
-              Каталог
-            </CustomLink>
-          </li>
-          <li>
-            <CustomLink href={"/store"}>
-              Магазин
-            </CustomLink>
-          </li>
-          <li>
-            <CustomLink href={"/sport?_ga=2.195337577.471721308.1681214140-1369534196.1681214140"}>
-              Спорт
-            </CustomLink>
-          </li>
-          <li>
-            <CustomLink href={"/tv_channels/tvchannels_all/31266743"}>
-              Спорт
-            </CustomLink>
-          </li>
+        </Link>
+        <ul className={s.links}>
+          {
+            headerLinks.map(link => (
+              <li key={link.href} className={link.href === router.pathname || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : ""}>
+                <CustomLink href={link.href}>{link.text}</CustomLink>
+              </li>
+            ))
+          }
         </ul>
-        <div className={styles.right_part}>
+        <div className={s.right_part}>
           {/*  /!*todo Добавить компонент поиска*!/*/}
-          <IconButton className={styles.search}>
+          <IconButton className={s.search}>
             <Image width={30} height={30} src="/search_icon.svg" alt="search" />
           </IconButton>
-          <div className={styles.search__after}></div>
-          <div className={styles.subscription}>
+          <div className={s.search__after}></div>
+          <div className={s.subscription}>
             <Button value={"Месяц за 1 ₽"} />
           </div>
-          <div className={styles.subscription__after}></div>
-          <IconButton className={styles.promo}>
+          <div className={s.subscription__after}></div>
+          <IconButton className={s.promo}>
             <Image width={30} height={30} src="/gift-box.svg" alt="gift" />
             <span>Ввести промокод</span>
           </IconButton>
-          <IconButton className={styles.login}>
+          <IconButton className={s.login}>
             <Image width={30} height={30} src="/login_icon.svg" alt="gift" />
             <span>Войти</span>
           </IconButton>
           {/*todo добавить компонент бургера*/}
-          <IconButton className={styles.burger}>
+          <IconButton className={s.burger}>
             <Image width={30} height={30} src="/burger_menu.svg" alt="burger" />
           </IconButton>
         </div>

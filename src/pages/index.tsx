@@ -8,9 +8,14 @@ export default function Home() {
   return (
     <>
       <Head>
-        
+        <title>Главная</title>
+        <meta
+          name="description"
+          content="Смотреть фильмы онлайн в хорошем качестве"
+        />
       </Head>
-      <Header />
+      {/* optimum subscription */}
+      {/* ... */}
     </>
   )
 }

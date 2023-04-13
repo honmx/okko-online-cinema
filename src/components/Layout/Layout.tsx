@@ -4,6 +4,7 @@ import Footer from "../Footer/Footer";
 import Container from "../Container/Container";
 import { maxWidth } from "@/helpers/constants";
 import { Roboto } from "next/font/google";
+import Header from "../Header/Header";
 
 interface Props {
   children: ReactNode;
@@ -18,7 +19,9 @@ const roboto = Roboto({
 const Layout: FC<Props> = ({ children }) => {
   return (
     <div className={`${s.container} ${roboto.className}`}>
-      {/* header */}
+      <Container maxWidth={maxWidth}>
+        <Header />
+      </Container>
       <main className={s.main}>
         <Container maxWidth={maxWidth}>
           {children}
