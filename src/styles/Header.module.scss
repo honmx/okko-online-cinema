@@ -65,6 +65,7 @@
   list-style: none;
   height: 50px;
   width: calc(480px + 20 * ((100vw - 1320px) / 640));
+
   li {
     margin: 0;
     padding: 0 0.72em;
@@ -151,6 +152,7 @@
     @media (max-width: 959px) {
       filter: invert(96%) sepia(0);
     }
+
     :hover {
       filter: invert(96%) sepia(0);
     }
@@ -175,6 +177,7 @@
   }
 
 }
+
 .subscription {
   button {
     width: 125px;
@@ -185,6 +188,7 @@
   }
 
   span {
+    color: white;
     font-size: 18px;
     line-height: 22px;
   }
@@ -238,6 +242,7 @@
     @media (max-width: 959px) {
       filter: invert(96%) sepia(0);
     }
+
     :hover {
       filter: invert(96%) sepia(0);
     }
@@ -246,6 +251,7 @@
 
   span {
     display: inline-block;
+    color: rgba(255, 255, 255, 0.56);
   }
 
   @media (max-width: 1720px) {
@@ -271,7 +277,9 @@
   display: flex;
   align-items: center;
   font-weight: 600;
-
+  span {
+    color: rgba(255, 255, 255, 0.56);
+  }
   img {
     filter: invert(56%) sepia(0);
     position: relative;
@@ -285,10 +293,12 @@
       width: 30px;
       height: 30px;
     }
+
     :hover {
       filter: invert(96%) sepia(0);
     }
   }
+
 
   :hover {
     color: rgba(255, 255, 255, 96%);
@@ -305,17 +315,19 @@
   @media (max-width: 959px) {
     display: block;
   }
+
   span {
     @media (max-width: 959px) {
       display: none;
     }
   }
 }
+
 .burger {
   @media (min-width: 960px) {
     display: none;
   }
-    filter: invert(96%) sepia(0);
+  filter: invert(96%) sepia(0);
   position: relative;
   height: 40px;
   align-items: center;

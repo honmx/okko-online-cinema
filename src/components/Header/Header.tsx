@@ -3,6 +3,7 @@ import styles from "../../styles/Header.module.scss";
 import Image from "next/image";
 import Button from "@/components/UI/Button/Button";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
+import IconButton from "@/components/UI/IconButton/IconButton";
 
 const Header = () => {
   return (
@@ -40,23 +41,34 @@ const Header = () => {
           </li>
         </ul>
         <div className={styles.right_part}>
-          <div className={styles.search}>
-            {/*todo Добавить компонент поиска*/}
+          <IconButton className={styles.search}>
             <Image width={30} height={30} src="/search_icon.svg" alt="search" />
-          </div>
+          </IconButton>
+          {/*<div className={styles.search}>*/}
+          {/*  /!*todo Добавить компонент поиска*!/*/}
+          {/*  <Image width={30} height={30} src="/search_icon.svg" alt="search" />*/}
+          {/*</div>*/}
           <div className={styles.search__after}></div>
           <div className={styles.subscription}>
             <Button value={"Месяц за 1 ₽"}/>
           </div>
           <div className={styles.subscription__after}></div>
-          <div className={styles.promo}>
+          <IconButton className={styles.promo}>
             <Image width={30} height={30} src="/gift-box.svg" alt="gift" />
             <span>Ввести промокод</span>
-          </div>
-          <div className={styles.login}>
+          </IconButton>
+          {/*<div className={styles.promo}>*/}
+          {/*  <Image width={30} height={30} src="/gift-box.svg" alt="gift" />*/}
+          {/*  <span>Ввести промокод</span>*/}
+          {/*</div>*/}
+          <IconButton className={styles.login}>
             <Image width={30} height={30} src="/login_icon.svg" alt="gift" />
             <span>Войти</span>
-          </div>
+          </IconButton>
+          {/*<div className={styles.login}>*/}
+          {/*  <Image width={30} height={30} src="/login_icon.svg" alt="gift" />*/}
+          {/*  <span>Войти</span>*/}
+          {/*</div>*/}
           <div className={styles.burger}>
             {/*todo добавить компонент бургера*/}
             <Image width={30} height={30} src="/burger_menu.svg" alt="burger" />
