@@ -73,6 +73,12 @@
   }
 }
 
+@font-face {
+  font-family: "OKKO Sans Medium";
+  /*todo разобраться со шрифтами*/
+  src:  url('../fonts/font2.woff2') format('woff2');
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -83,16 +89,12 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  font-family: "OKKO Sans Medium", sans-serif;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: black;
 }
 
 a {
