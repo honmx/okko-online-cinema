@@ -1,0 +1,25 @@
+.card {
+  height: 100%;
+  width: min(25vw, 350px);
+  overflow: hidden;
+  border-radius: 25px;
+}
+
+@media screen and (max-width: 960px) {
+  .card {
+    width: min(35vw, 300px);
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .card {
+    width: min(40vw, 290px);
+  }
+}
+
+.img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

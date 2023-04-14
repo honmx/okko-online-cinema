@@ -1,0 +1,46 @@
+.carouselContainer {
+
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    .arrow {
+      opacity: 1;
+      display: inline-block;
+      margin-left: 10px;
+    }
+  }
+}
+
+.arrow {
+  opacity: 0;
+  margin-left: 5px;
+  margin-top: 2px;
+  rotate: 90deg;
+  width: 10px;
+  height: 10px;
+  transition: all 0.15s ease;
+}
+
+.title {}
+
+.childrenContainer {
+  display: flex;
+  margin-top: 15px;
+  overflow-x: scroll;
+  margin-inline: -15px;
+  padding-inline: 15px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  :not(:last-child) {
+    margin-right: 15px;
+  }
+}

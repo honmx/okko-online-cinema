@@ -1,10 +1,18 @@
-import { Inter } from 'next/font/google'
-import Header from "@/components/Header/Header";
+import { FC } from "react";
+import { Inter } from 'next/font/google';
 import Head from 'next/head';
+import Carousel from '@/components/UI/Carousel/Carousel';
+import { GetStaticProps } from 'next';
+import { IMovie } from "@/types/IMovie";
+import MovieCard from "@/components/MovieCard/MovieCard";
+import s from "@/styles/Home.module.scss";
 
-const inter = Inter({ subsets: ['latin'] })
+interface Props {
+  movies: IMovie[];
+}
 
-export default function Home() {
+const Home: FC<Props> = ({ movies }) => {
+
   return (
     <>
       <Head>
@@ -15,7 +23,29 @@ export default function Home() {
         />
       </Head>
       {/* optimum subscription */}
-      {/* ... */}
+      <Carousel title="Фильмы" linkHref="/movies" className={s.carousel}>
+        {movies.map(movie => <MovieCard movie={movie} />)}
+      </Carousel>
+      <Carousel title="Фильмы 2" linkHref="/movies" className={s.carousel}>
+        {movies.map(movie => <MovieCard movie={movie} ar={1} />)}
+      </Carousel>
+      <Carousel title="Фильмы 3" linkHref="/movies" className={s.carousel}>
+        {movies.map(movie => <MovieCard movie={movie} ar={0.66} />)}
+      </Carousel>
     </>
   )
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+
+  const response = await fetch("http://localhost:8080/movie");
+  const result = await response.json();
+
+  return {
+    props: {
+      movies: result
+    }
+  }
+}
+
+export default Home;
