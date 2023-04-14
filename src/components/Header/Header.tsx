@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
 import Button from "@/components/UI/Button/Button";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
@@ -31,32 +31,35 @@ const Header = () => {
         <Link className={s.logo} href="/">
           <Image src={main_logo} width={85} height={34} alt="okko" />
         </Link>
-        {searchShowing ?
-            <div className={s.search_desktop}>
-              <Search/>
-            </div>
-            :
-            <ul className={s.links}>
-              {
-                headerLinks.map(link => (
-                    <li key={link.href} className={link.href === router.pathname || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : ""}>
-                      <CustomLink href={link.href}>{link.text}</CustomLink>
-                    </li>
-                ))
-              }
-            </ul>
+        {
+          !searchShowing &&
+          <ul className={s.links}>
+            {
+              headerLinks.map(link => (
+                <li key={link.href} className={link.href === router.pathname || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : ""}>
+                  <CustomLink href={link.href}>{link.text}</CustomLink>
+                </li>
+              ))
+            }
+          </ul>
         }
 
         <div className={s.right_part}>
+          {
+            searchShowing &&
+            <div className={s.search_desktop}>
+              <Search />
+            </div>
+          }
           <div onClick={handleSearchIconClick}>
             {searchShowing ?
-                <IconButton>
-                  <Image width={25} height={25} src={close} alt="search"/>
-                </IconButton>
-                :
-                <IconButton>
-                  <Image width={30} height={30} src={search} alt="search"/>
-                </IconButton>
+              <IconButton>
+                <Image width={20} height={20} src={close} alt="search" />
+              </IconButton>
+              :
+              <IconButton>
+                <Image width={30} height={30} src={search} alt="search" />
+              </IconButton>
             }
           </div>
           <div className={s.search__after}></div>
@@ -79,14 +82,12 @@ const Header = () => {
         </div>
       </nav>
       <div className={s.search_mobile}>
-        {searchShowing ?
-            <div>
-              <Search/>
-            </div>
-            :
-            null
+        {
+          searchShowing &&
+          <div>
+            <Search />
+          </div>
         }
-
       </div>
     </div>
   );
