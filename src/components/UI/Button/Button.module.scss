@@ -2,6 +2,7 @@
 
 .buttonOuterContainer,
 .buttonInnerContainer {
+  width: inherit;
   display: inline-block;
   position: sticky;
   padding: 3px;
@@ -66,6 +67,7 @@
   border-radius: 10px;
   cursor: pointer;
   z-index: 1000;
+  width: 100%;
   // single
   
   & img {

@@ -18,7 +18,7 @@ const Subscription = () => {
         </div>
         <div className={style.buttons}>
           <div className={style.button}>
-            <Button value={'Оформить подписку'} bgColor={'accent'} />
+            <Button value={'Оформить подписку'} bgColor={'accent'} className={style.subscribeButton} />
           </div>
           <div className={style.button}>
             <Button value={'Подробнее'} />
