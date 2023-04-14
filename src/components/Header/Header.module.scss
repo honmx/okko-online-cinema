@@ -116,9 +116,7 @@
   @media (max-width: 959px) {
     display: none;
   }
-
 }
-
 .subscription {
   button {
     min-width: 138px;
@@ -156,7 +154,6 @@
 }
 
 .promo {
-
   img {
     filter: invert(56%) sepia(0);
     @media (max-width: 1320px) {
@@ -208,6 +205,17 @@
 }
 
 .burger {
+  @media (min-width: 960px) {
+    display: none;
+  }
+}
+
+.search_desktop {
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+.search_mobile {
   @media (min-width: 960px) {
     display: none;
   }
