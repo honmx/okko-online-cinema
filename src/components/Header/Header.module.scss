@@ -119,6 +119,7 @@
     display: none;
   }
 }
+
 .subscription {
   button {
     min-width: 138px;
@@ -217,8 +218,19 @@
     display: none;
   }
 }
+
 .search_mobile {
   @media (min-width: 960px) {
     display: none;
   }
+}
+
+.burger_container {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.burger_container.hidden {
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
