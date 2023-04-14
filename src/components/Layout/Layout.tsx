@@ -20,13 +20,11 @@ const Layout: FC<Props> = ({ children }) => {
     <div className={`${s.container} ${roboto.className}`}>
       {/* header */}
       <main className={s.main}>
-        <Container maxWidth={maxWidth}>
-          {children}
-        </Container>
+        <Container maxWidth={maxWidth}>{children}</Container>
       </main>
       <Footer />
     </div>
-  )
+  );
 };
 
 export default Layout;
