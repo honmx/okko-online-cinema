@@ -30,7 +30,7 @@ const Footer: FC<Props> = ({ }) => {
           <div className={s.socialNetworksContainer}>
             {
               footerSocialNetworks.map(socialNetwork => (
-                <CustomLink href="/">
+                <CustomLink key={socialNetwork.alt} href="/">
                   <Image src={socialNetwork.src} alt={socialNetwork.alt} />
                 </CustomLink>
               ))
