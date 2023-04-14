@@ -3,7 +3,7 @@ import s from "./Container.module.scss";
 
 interface Props {
   maxWidth: string;
-  children: ReactNode; 
+  children: ReactNode;
 }
 
 const Container: FC<Props> = ({ maxWidth, children }) => {
