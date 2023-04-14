@@ -6,7 +6,7 @@
   position: sticky;
   padding: 3px;
   border-radius: 12px;
-  background-color: $primaryBlackColor;
+  background-color: transparent;
   z-index: 10;
 }
 
@@ -17,6 +17,12 @@
   overflow: hidden;
 
   &:hover {
+
+    background-color: $primaryBlackColor;
+    
+    .buttonInnerContainer {
+      background-color: $primaryBlackColor;
+    }
 
     &::before {
       content: "";
