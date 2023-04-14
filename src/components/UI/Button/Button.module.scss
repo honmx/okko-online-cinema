@@ -31,6 +31,8 @@
       background: radial-gradient(circle at 40px 40px, rgba(251, 251, 251, 1) 0%, rgba(161, 37, 155, 1) 49%, rgba(9, 12, 123, 1) 100%, rgba(0, 212, 255, 1) 100%);
       animation-name: spin;
       animation-duration: 1.5s;
+      --color-hover-gradient-primary-light: radial-gradient( circle at var(--coord-x) var(--coord-y), #5d0ef5 40.62%, #7e3eff 100% );
+      --color-hover-gradient-primary-dark: radial-gradient( circle var(--diameter-highlight) at var(--coord-x) var(--coord-y), #5d0ef5, #321069 40.62%, #321069 100% );
     }
   }
 }
