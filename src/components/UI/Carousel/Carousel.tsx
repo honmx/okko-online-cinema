@@ -25,11 +25,11 @@ const Carousel: FC<Props> = ({ title, linkHref, className, children }) => {
 
       if (!ref.current) return;
 
-      ref.current.scrollLeft > 0
+      ref.current.scrollLeft > 5
         ? setIsAbleToScrollLeft(true)
         : setIsAbleToScrollLeft(false);
 
-      ref.current.scrollWidth <= ref.current.clientWidth + ref.current.scrollLeft
+      ref.current.scrollWidth <= ref.current.clientWidth + ref.current.scrollLeft + 5
         ? setIsAbleToScrollRight(false)
         : setIsAbleToScrollRight(true);
     }
