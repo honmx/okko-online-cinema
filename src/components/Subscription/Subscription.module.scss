@@ -1,6 +1,7 @@
 @import '@/styles/variables.scss';
 
 .container {
+  position: relative;
   display: grid;
   grid-template-areas: "text pic";
   grid-template-columns: 500px auto;

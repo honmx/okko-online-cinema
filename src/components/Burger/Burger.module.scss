@@ -1,0 +1,25 @@
+.burger {
+  position: absolute;
+  z-index: 3;
+  top: 4.4em;
+  left: 0;
+  right: 0;
+  background-color: #000000;
+  height: calc(100vh - 4.4em);
+  overflow-y: auto;
+  transition: all 0.15s ease;
+
+  & li {
+    padding-left: 7px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+
+    & a {
+      color: rgba(255, 255, 255, .96);
+    }
+  }
+
+  & .active {
+    border-left: 2px white solid;
+  }
+}
