@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
 import Button from "@/components/UI/Button/Button";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import IconButton from "@/components/UI/IconButton/IconButton";
-import {useRouter} from 'next/router';
-import {headerLinks} from '@/helpers/data/headerLinks';
+import { useRouter } from 'next/router';
+import { headerLinks } from '@/helpers/data/headerLinks';
 import Link from 'next/link';
 import burger from "@/assets/burger_menu.svg";
 import gift from "@/assets/gift-box.svg";
@@ -41,11 +41,11 @@ const Header = () => {
     <div className={s.header}>
       <nav className={s.header_nav}>
         <Link className={s.logo} href="/">
-          <Image src={main_logo} width={85} height={34} alt="okko"/>
+          <Image src={main_logo} width={85} height={34} alt="okko" />
         </Link>
         {searchShowing &&
           <div className={s.search_desktop}>
-            <Search/>
+            <Search />
           </div>
         }
         {!searchShowing &&
@@ -53,7 +53,7 @@ const Header = () => {
             {
               headerLinks.map(link => (
                 <li key={link.href}
-                    className={link.href === router.pathname || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : ""}>
+                  className={link.href === router.pathname || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : ""}>
                   <CustomLink href={link.href}>{link.text}</CustomLink>
                 </li>
               ))
@@ -64,28 +64,28 @@ const Header = () => {
           <div onClick={handleSearchIconClick}>
             {searchShowing &&
               <IconButton>
-                <Image width={25} height={25} src={close} alt="search"/>
+                <Image width={25} height={25} src={close} alt="search" />
               </IconButton>
             }
             {!searchShowing &&
               <IconButton>
-                <Image width={30} height={30} src={search} alt="search"/>
+                <Image width={30} height={30} src={search} alt="search" />
               </IconButton>
             }
           </div>
           <div className={s.search__after}></div>
           <div className={s.subscription}>
-            <Button value={"Месяц за 1 ₽"}/>
+            <Button value={"Месяц за 1 ₽"} />
           </div>
           <div className={s.subscription__after}></div>
           {/*todo при открытие бургера убирать логин и поиск, добовлять кнопку подписка */}
           <IconButton className={s.promo}>
-            <Image width={30} height={30} src={gift} alt="promocode"/>
+            <Image width={30} height={30} src={gift} alt="promocode" />
             <span>Ввести промокод</span>
           </IconButton>
           <div onClick={handleLoginClick}>
             <IconButton className={s.login}>
-              <Image width={30} height={30} src={login} alt="gift"/>
+              <Image width={30} height={30} src={login} alt="gift" />
               <span>Войти</span>
             </IconButton>
           </div>
@@ -93,32 +93,33 @@ const Header = () => {
             <IconButton className={s.burger}>
               {
                 burgerShowing ?
-                  <Image width={25} height={25} src={close} alt="close"/>
+                  <Image width={25} height={25} src={close} alt="close" />
                   :
-                  <Image width={30} height={30} src={burger} alt="burger"/>
+                  <Image width={30} height={30} src={burger} alt="burger" />
               }
             </IconButton>
           </div>
         </div>
       </nav>
       {
+        searchShowing &&
         <div className={s.search_mobile}>
-          searchShowing &&
           <div>
-            <Search/>
+            <Search />
           </div>
         </div>
       }
       {
+        burgerShowing &&
         <div className={s.burger_container + (burgerShowing ? '' : ' ' + s.hidden)}>
-          burgerShowing && <Burger/>
+          <Burger />
         </div>
       }
       {
         loginShowing &&
         <div className={s.login_container}>
           <div className={s.login_container_inner}>
-            <Login onClose={handleLoginClick}/>
+            <Login onClose={handleLoginClick} />
           </div>
         </div>
       }

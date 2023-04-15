@@ -1,7 +1,7 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import close from '@/assets/close.svg';
-import {loginLinks} from '@/helpers/data/loginLinks.ts';
+import { loginLinks } from '@/helpers/data/loginLinks.ts';
 import s from "./Login.module.scss";
 import Image from "next/image";
 import sberbank from '@/assets/sberbank.svg';
@@ -16,9 +16,9 @@ type LoginProps = {
   onClose: () => void;
 }
 
-const Login: FC<LoginProps> = ({onClose}: LoginProps) => {
+const Login: FC<LoginProps> = ({ onClose }: LoginProps) => {
 
-  const getImageSrc = (icon:string) => {
+  const getImageSrc = (icon: string) => {
     switch (icon) {
       case 'sberbank':
         return sberbank;
@@ -45,7 +45,7 @@ const Login: FC<LoginProps> = ({onClose}: LoginProps) => {
     <div className={s.login}>
       <div className={s.login__close} onClick={handleCloseClick}>
         <IconButton>
-          <Image width={18} height={18} alt={close} src={close}/>
+          <Image width={18} height={18} alt={close} src={close} />
         </IconButton>
       </div>
       <div className={s.login__block}>
@@ -59,20 +59,20 @@ const Login: FC<LoginProps> = ({onClose}: LoginProps) => {
               Чтобы начать пользоваться сервисом Okko
             </p>
             <form>
-              <input type={'text'} placeholder={'Электронная почти или телефон'}/>
+              <input type={'text'} placeholder={'Электронная почти или телефон'} />
               <button>
-                                <span>
-                                    Продолжить
-                                </span>
+                <span>
+                  Продолжить
+                </span>
               </button>
             </form>
             <ul className={s.login__block_input_area_links}>
               {
                 loginLinks.map(link => (
                   <li key={link.href}
-                      >
+                  >
                     <CustomLink href={link.href} className={s.link}>
-                      <Image width={20} height={20} src={getImageSrc(link.icon)} alt={link.icon}/>
+                      <Image width={20} height={20} src={getImageSrc(link.icon)} alt={link.icon} />
                       <span>{link.text}</span>
                     </CustomLink>
                   </li>
@@ -86,15 +86,15 @@ const Login: FC<LoginProps> = ({onClose}: LoginProps) => {
                   <span>Продолжая, я соглашаюсь c</span>
                   <CustomLink href='/terms'>
                     Пользовательским соглашением
-                 </CustomLink>
-                  ⠀ <span>и</span>
+                  </CustomLink>
+                  <span>и</span>
                   <CustomLink href='/privacy'>
                     Политикой конфиденциальности
                   </CustomLink>
                 </p>
               </div>
               <div className={s.login__block_input_area_newsletter}>
-                <input type="checkbox" name="news" id="news"/>
+                <input type="checkbox" name="news" id="news" />
                 <label for="news"><span>Хочу узнавать о новинках и актуальных предложениях в соответствии с</span>
                   <CustomLink href={'/notifications'}>
                     Правилами рассылок

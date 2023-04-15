@@ -13,7 +13,6 @@ import s from "./Footer.module.scss";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import Accordion from "../UI/Accordion/Accordion";
 import { footerSocialNetworks } from "@/helpers/data/footerSocialNetworks";
-import IconButton from "../UI/IconButton/IconButton";
 
 interface Props {
 
