@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import Carousel from '@/components/UI/Carousel/Carousel';
-import { GetStaticProps } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import { IMovie } from "@/types/IMovie";
 import MovieCard from "@/components/MovieCard/MovieCard";
 import s from "@/styles/Home.module.scss";
@@ -12,7 +12,7 @@ interface Props {
   movies: IMovie[];
 }
 
-const Home: FC<Props> = ({ movies }) => {
+const Home: NextPage<Props> = ({ movies }) => {
 
   return (
     <>
