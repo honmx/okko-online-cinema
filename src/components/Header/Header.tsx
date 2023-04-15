@@ -15,11 +15,13 @@ import close from "@/assets/close.svg";
 import s from "./Header.module.scss";
 import Search from "@/components/Search/Search";
 import Burger from "@/components/Burger/Burger";
+import Login from "@/components/Login/Login";
 
 const Header = () => {
 
     const [searchShowing, setSearchShowing] = useState<boolean>(false);
     const [burgerShowing, setBurgerShowing] = useState<boolean>(false);
+    const [loginShowing, setLoginShowing] = useState<boolean>(false);
 
     const handleSearchIconClick = () => {
         setSearchShowing(prevState => !prevState);
@@ -28,6 +30,10 @@ const Header = () => {
     const handleBurgerClick = () => {
         setBurgerShowing(prevState => !prevState);
     };
+
+    const handleLoginClick = () => {
+        setLoginShowing(prevState => !prevState);
+    }
 
     const router = useRouter();
 
@@ -75,18 +81,20 @@ const Header = () => {
                         <Image width={30} height={30} src={gift} alt="promocode"/>
                         <span>Ввести промокод</span>
                     </IconButton>
-                    <IconButton className={s.login}>
-                        <Image width={30} height={30} src={login} alt="gift"/>
-                        <span>Войти</span>
-                    </IconButton>
+                    <div onClick={handleLoginClick}>
+                        <IconButton className={s.login}>
+                            <Image width={30} height={30} src={login} alt="gift"/>
+                            <span>Войти</span>
+                        </IconButton>
+                    </div>
                     <div onClick={handleBurgerClick}>
                         <IconButton className={s.burger}>
                             {
-                            burgerShowing ?
-                            <Image width={25} height={25} src={close} alt="close"/>
-                            :
-                            <Image width={30} height={30} src={burger} alt="burger"/>
-                             }
+                                burgerShowing ?
+                                    <Image width={25} height={25} src={close} alt="close"/>
+                                    :
+                                    <Image width={30} height={30} src={burger} alt="burger"/>
+                            }
                         </IconButton>
                     </div>
                 </div>
@@ -95,13 +103,21 @@ const Header = () => {
                 {
                     searchShowing &&
                     <div>
-                        <Search />
+                        <Search/>
                     </div>
                 }
             </div>
             <div className={s.burger_container + (burgerShowing ? '' : ' ' + s.hidden)}>
-                {burgerShowing ? <Burger /> : null}
+                {burgerShowing ? <Burger/> : null}
             </div>
+            {
+                loginShowing &&
+                <div className={s.login_container}>
+                    <div className={s.login_container_inner}>
+                        <Login onClose={handleLoginClick}/>
+                    </div>
+                </div>
+            }
 
         </div>
     );
