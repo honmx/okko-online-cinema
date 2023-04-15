@@ -16,8 +16,10 @@
       transition: all 0.15s ease;
       margin-right: 5px;
     }
+  }
 
-    &:hover {
+  &:hover {
+    a {
       color: $accentWhiteFontColor;
       text-shadow: 0 0 25px rgba($color: $accentWhiteColor, $alpha: 0.7);
       
