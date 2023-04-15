@@ -26,17 +26,17 @@ const Home: NextPage<Props> = ({ movies }) => {
       <Subscription />
       <Carousel title="Фильмы" linkHref="/movies" className={s.carousel}>
         {movies.map((movie) => (
-          <MovieCard movie={movie} />
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </Carousel>
       <Carousel title="Фильмы 2" linkHref="/movies" className={s.carousel}>
         {movies.map((movie) => (
-          <MovieCard movie={movie} ar={1} />
+          <MovieCard key={movie.id} movie={movie} ar={1} />
         ))}
       </Carousel>
       <Carousel title="Фильмы 3" linkHref="/movies" className={s.carousel}>
         {movies.map((movie) => (
-          <MovieCard movie={movie} ar={0.66} />
+          <MovieCard key={movie.id} movie={movie} ar={0.66} />
         ))}
       </Carousel>
     </>

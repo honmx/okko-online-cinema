@@ -14,7 +14,7 @@ const MovieCard: FC<Props> = ({ movie, ar = 1.77 }) => {
   return (
     <Link href={movie.title}>
       <div className={s.card} style={{aspectRatio: ar}}>
-        <Image src={movie.image} alt={movie.title} width={1920} height={1080} className={s.img} />
+        <Image src={movie.image} alt={movie.title} priority width={1920} height={1080} className={s.img} />
       </div>
     </Link>
   )
