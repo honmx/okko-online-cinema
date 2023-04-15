@@ -1,6 +1,7 @@
 @import "../../../styles/variables.scss";
 
 .linkContainer {
+  cursor: pointer;
 
   & a {
     display: flex;
