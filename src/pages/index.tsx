@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Carousel from '@/components/UI/Carousel/Carousel';
 import { GetStaticProps, NextPage } from 'next';
 import { IMovie } from "@/types/IMovie";
-import MovieCard from "@/components/MovieCard/MovieCard";
+import Card from "@/components/MovieCard/MovieCard";
 import s from "@/styles/Home.module.scss";
 import Subscription from "@/components/Subscription/Subscription";
 
@@ -26,17 +26,17 @@ const Home: NextPage<Props> = ({ movies }) => {
       <Subscription />
       <Carousel title="Фильмы" linkHref="/movies" className={s.carousel}>
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <Card key={movie.id} card={movie} />
         ))}
       </Carousel>
       <Carousel title="Фильмы 2" linkHref="/movies" className={s.carousel}>
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} ar={1} />
+          <Card key={movie.id} card={movie} ar={1} />
         ))}
       </Carousel>
       <Carousel title="Фильмы 3" linkHref="/movies" className={s.carousel}>
         {movies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} ar={0.66} />
+          <Card key={movie.id} card={movie} ar={0.66} />
         ))}
       </Carousel>
     </>
