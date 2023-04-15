@@ -108,7 +108,7 @@ const Header = () => {
                 }
             </div>
             <div className={s.burger_container + (burgerShowing ? '' : ' ' + s.hidden)}>
-                {burgerShowing ? <Burger/> : null}
+                {burgerShowing && <Burger/>}
             </div>
             {
                 loginShowing &&
