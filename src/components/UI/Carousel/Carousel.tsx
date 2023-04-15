@@ -4,40 +4,19 @@ import Link from "next/link";
 import Image from "next/image";
 import arrow from "../../../assets/arrow.svg";
 import s from "./Carousel.module.scss";
+import { useCarouselScroll } from "@/hooks/useCarouselScroll";
 
 interface Props {
-  title: string;
-  linkHref: string;
+  title?: string;
+  linkHref?: string;
+  image?: string;
   className?: string;
   children: ReactNode;
 }
 
-const Carousel: FC<Props> = ({ title, linkHref, className, children }) => {
+const Carousel: FC<Props> = ({ title, linkHref, image, className, children }) => {
 
-  const ref = useRef<HTMLDivElement | null>(null);
-  
-  const [isAbleToScrollLeft, setIsAbleToScrollLeft] = useState<boolean>(false);
-  const [isAbleToScrollRight, setIsAbleToScrollRight] = useState<boolean>(true);
-  
-  useEffect(() => {
-    
-    const onScroll = () => {
-
-      if (!ref.current) return;
-
-      ref.current.scrollLeft > 5
-        ? setIsAbleToScrollLeft(true)
-        : setIsAbleToScrollLeft(false);
-
-      ref.current.scrollWidth <= ref.current.clientWidth + ref.current.scrollLeft + 5
-        ? setIsAbleToScrollRight(false)
-        : setIsAbleToScrollRight(true);
-    }
-
-    ref.current?.addEventListener("scroll", onScroll);
-
-    return () => ref.current?.removeEventListener("scroll", onScroll);
-  }, []);
+  const { ref, isAbleToScrollLeft, isAbleToScrollRight } = useCarouselScroll();
 
   const handleLeftButtonClick = () => {
     if (!ref.current) return;
@@ -61,10 +40,20 @@ const Carousel: FC<Props> = ({ title, linkHref, className, children }) => {
 
   return (
     <div className={`${s.carouselContainer} ${className}`}>
-      <Link href={linkHref} className={s.link}>
-        <Text className={s.title}>{title}</Text>
-        <Image src={arrow} alt="arrow" className={s.arrow} />
-      </Link>
+      {
+        title && !linkHref && image &&
+        <div className={s.titleContainer}>
+          <Image src={image} alt="" className={s.image} />
+          <Text variant="h2" className={s.title}>{title}</Text>
+        </div>
+      }
+      {
+        title && linkHref && !image &&
+        <Link href={linkHref} className={s.link}>
+          <Text variant="h2" className={s.title}>{title}</Text>
+          <Image src={arrow} alt="arrow" className={s.arrow} />
+        </Link>
+      }
       <div className={s.listContainer}>
         {
           isAbleToScrollLeft &&

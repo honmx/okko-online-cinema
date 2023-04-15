@@ -79,11 +79,10 @@
 
 .childrenContainer {
   display: flex;
-  margin-top: 15px;
   overflow-x: scroll;
   overflow-y: hidden;
   margin-inline: -15px;
-  padding: 3% 15px;
+  padding: 2% 15px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -92,4 +91,15 @@
   :not(:last-child) {
     margin-right: 15px;
   }
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  max-height: 20px;
+  width: auto;
+  margin-right: 5px;
 }
