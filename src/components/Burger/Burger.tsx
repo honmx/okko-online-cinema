@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import s from "./Burger.module.scss";
 import {headerLinks} from "@/helpers/data/headerLinks";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
@@ -9,6 +9,14 @@ type BurgerProps = {};
 const Burger: React.FC<BurgerProps> = ({isOpen}) => {
 
     const router = useRouter();
+
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, []);
 
     return (
         <div className={s.burger}>
