@@ -1,7 +1,7 @@
 import React, { FC, ReactNode, useState } from "react";
 import arrow from "@/assets/arrow.svg";
 import s from "./Accordion.module.scss";
-import Title from "../Title/Title";
+import Text from "../Text/Text";
 import Image from "next/image";
 
 interface Props {
@@ -17,7 +17,7 @@ const Accordion: FC<Props> = ({ title, className, children }) => {
   return (
     <div className={`${s.accordion} ${className}`} onClick={() => setActive(prev => !prev)}>
       <div className={s.titleContainer}>
-        <Title>{title}</Title>
+        <Text>{title}</Text>
         <Image src={arrow} alt="arrow" style={{
           rotate: active ? "0deg" : "180deg",
         }} />

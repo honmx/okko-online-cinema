@@ -1,4 +1,4 @@
-import React, { Children, FC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import s from "./CustomLink.module.scss";
 import Link from "next/link";
 

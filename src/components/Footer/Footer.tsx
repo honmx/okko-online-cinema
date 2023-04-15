@@ -5,7 +5,7 @@ import Image from "next/image";
 import chat from "@/assets/chat.svg";
 import logo from "@/assets/logo.svg";
 import Button from "../UI/Button/Button";
-import Title from "../UI/Title/Title";
+import Text from "../UI/Text/Text";
 import Link from "next/link";
 import { footerNavbar } from "@/helpers/data/footerNavbar";
 import CustomLink from "../UI/CustomLink/CustomLink";
@@ -44,7 +44,7 @@ const Footer: FC<Props> = ({ }) => {
                 {
                   !isSmaller &&
                   <>
-                    <Title>{block.title}</Title>
+                    <Text>{block.title}</Text>
                     {
                       block.links.map(link => <CustomLink key={link.name} href={link.to}>{link.name}</CustomLink>)
                     }

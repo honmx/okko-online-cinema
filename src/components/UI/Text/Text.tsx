@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, createElement } from "react";
-import s from "./Title.module.scss";
+import s from "./Text.module.scss";
 
 interface Props {
   variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
@@ -10,12 +10,12 @@ interface Props {
   children: ReactNode;
 }
 
-const Title: FC<Props> = ({ variant = "p", fs, fw, color, className, children }) => {
+const Text: FC<Props> = ({ variant = "p", fs, fw, color, className, children }) => {
 
   const textNode = createElement(
     variant,
     {
-      className: `${s.title} ${className}`,
+      className: `${s.text} ${className}`,
       style: {
         fontSize: fs && fs,
         fontWeight: fw && fw,
@@ -28,4 +28,4 @@ const Title: FC<Props> = ({ variant = "p", fs, fw, color, className, children })
   return textNode;
 };
 
-export default Title;
+export default Text;

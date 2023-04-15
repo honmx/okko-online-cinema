@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
-import Title from "../Title/Title";
+import Text from "../Text/Text";
 import Link from "next/link";
 import Image from "next/image";
 import arrow from "../../../assets/arrow.svg";
@@ -62,7 +62,7 @@ const Carousel: FC<Props> = ({ title, linkHref, className, children }) => {
   return (
     <div className={`${s.carouselContainer} ${className}`}>
       <Link href={linkHref} className={s.link}>
-        <Title className={s.title}>{title}</Title>
+        <Text className={s.title}>{title}</Text>
         <Image src={arrow} alt="arrow" className={s.arrow} />
       </Link>
       <div className={s.listContainer}>
