@@ -24,29 +24,34 @@ const Home: FC<Props> = ({ movies }) => {
         />
       </Head>
       <Subscription />
-      {/* <Carousel title="Фильмы" linkHref="/movies" className={s.carousel}>
-        {movies.map(movie => <MovieCard movie={movie} />)}
+      <Carousel title="Фильмы" linkHref="/movies" className={s.carousel}>
+        {movies.map((movie) => (
+          <MovieCard movie={movie} />
+        ))}
       </Carousel>
       <Carousel title="Фильмы 2" linkHref="/movies" className={s.carousel}>
-        {movies.map(movie => <MovieCard movie={movie} ar={1} />)}
+        {movies.map((movie) => (
+          <MovieCard movie={movie} ar={1} />
+        ))}
       </Carousel>
       <Carousel title="Фильмы 3" linkHref="/movies" className={s.carousel}>
-        {movies.map(movie => <MovieCard movie={movie} ar={0.66} />)}
-      </Carousel> */}
+        {movies.map((movie) => (
+          <MovieCard movie={movie} ar={0.66} />
+        ))}
+      </Carousel>
     </>
   );
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await fetch('http://localhost:8080/movie');
+  const result = await response.json();
 
-//   const response = await fetch("http://localhost:8080/movie");
-//   const result = await response.json();
-
-//   return {
-//     props: {
-//       movies: result
-//     }
-//   }
-// }
+  return {
+    props: {
+      movies: result,
+    },
+  };
+};
 
 export default Home;
