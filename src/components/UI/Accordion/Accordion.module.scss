@@ -3,7 +3,6 @@
 .accordion {
   width: 100%;
   padding: 20px 0;
-  // margin-bottom: 20px;
   border-bottom: 1px solid rgba($color: $primaryGreyColor, $alpha: 0.2);
   cursor: pointer;
 
@@ -16,10 +15,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: $accentWhiteFontColor;
 }
 
 .accordionItems {
   margin-top: 20px;
+  color: $primaryFontColor;
 
   &>*:not(:last-child) {
     margin-bottom: 15px;

@@ -1,4 +1,10 @@
-@import "@/styles/variables.scss";
+@import "../../../styles/variables.scss";
+
+.buttonWrapper {
+  // display: inline-flex;
+  // align-items: center;
+  overflow: hidden;
+}
 
 .buttonOuterContainer,
 .buttonInnerContainer {
@@ -20,7 +26,7 @@
   &:hover {
 
     background-color: $primaryBlackColor;
-    
+
     .buttonInnerContainer {
       background-color: $primaryBlackColor;
     }
@@ -38,8 +44,8 @@
       background: radial-gradient(circle at 40px 40px, rgba(251, 251, 251, 1) 0%, rgba(161, 37, 155, 1) 49%, rgba(9, 12, 123, 1) 100%, rgba(0, 212, 255, 1) 100%);
       animation-name: spin;
       animation-duration: 1.5s;
-      --color-hover-gradient-primary-light: radial-gradient( circle at var(--coord-x) var(--coord-y), #5d0ef5 40.62%, #7e3eff 100% );
-      --color-hover-gradient-primary-dark: radial-gradient( circle var(--diameter-highlight) at var(--coord-x) var(--coord-y), #5d0ef5, #321069 40.62%, #321069 100% );
+      --color-hover-gradient-primary-light: radial-gradient(circle at var(--coord-x) var(--coord-y), #5d0ef5 40.62%, #7e3eff 100%);
+      --color-hover-gradient-primary-dark: radial-gradient(circle var(--diameter-highlight) at var(--coord-x) var(--coord-y), #5d0ef5, #321069 40.62%, #321069 100%);
     }
   }
 }
@@ -48,12 +54,15 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
 
 .button {
+  width: 100%;
+  height: 100%;
   position: sticky;
   display: flex;
   justify-content: center;
@@ -67,12 +76,17 @@
   border-radius: 10px;
   cursor: pointer;
   z-index: 1000;
-  width: 100%;
   // single
-  
-  & img {
-    margin-right: 5px;
+
+  &>*:not(:first-child) {
+    margin-left: 5px;
   }
+}
+
+.span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .accentBgColor {
@@ -81,4 +95,20 @@
 
 .primaryBgColor {
   background-color: $primaryGreyColor;
+}
+
+.circle {
+
+  .buttonOuterContainer {
+    height: calc(100% - 2px * 2);
+  }
+
+  .buttonInnerContainer {
+    height: calc(100% - 3px * 2);
+  }
+
+  * {
+    border-radius: 100vw;
+    aspect-ratio: 1;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useState } from "react";
-import arrow from "@/assets/arrow.svg";
+import arrow from "../../../assets/arrow.svg";
 import s from "./Accordion.module.scss";
 import Text from "../Text/Text";
 import Image from "next/image";

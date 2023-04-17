@@ -1,10 +1,10 @@
-import React, { FC, ReactNode, useEffect, useRef, useState } from "react";
+import React, { FC, ReactNode } from "react";
 import Text from "../Text/Text";
 import Link from "next/link";
 import Image from "next/image";
 import arrow from "../../../assets/arrow.svg";
 import s from "./Carousel.module.scss";
-import { useCarouselScroll } from "@/hooks/useCarouselScroll";
+import { useCarouselScroll } from "../../../hooks/useCarouselScroll";
 
 interface Props {
   title?: string;
@@ -43,7 +43,7 @@ const Carousel: FC<Props> = ({ title, linkHref, image, className, children }) =>
       {
         title && !linkHref && image &&
         <div className={s.titleContainer}>
-          <Image src={image} alt="" className={s.image} />
+          <Image src={image} alt="image" className={s.image} />
           <Text variant="h2" className={s.title}>{title}</Text>
         </div>
       }
