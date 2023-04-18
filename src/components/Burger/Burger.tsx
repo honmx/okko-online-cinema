@@ -6,7 +6,7 @@ import {useRouter} from "next/router";
 
 type BurgerProps = {};
 
-const Burger: React.FC<BurgerProps> = ({isOpen}) => {
+const Burger: React.FC<BurgerProps> = () => {
 
   const router = useRouter();
 

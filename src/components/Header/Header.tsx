@@ -16,6 +16,7 @@ import s from "./Header.module.scss";
 import Search from "@/components/Search/Search";
 import Burger from "@/components/Burger/Burger";
 import Login from "@/components/Login/Login";
+import {useSmallerDevice} from "@/hooks/useSmallerDevice";
 
 const Header = () => {
 
@@ -23,17 +24,20 @@ const Header = () => {
   const [burgerShowing, setBurgerShowing] = useState<boolean>(false);
   const [loginShowing, setLoginShowing] = useState<boolean>(false);
 
-  const handleSearchIconClick = () => {
+  const handleSearchIconClick = ():void => {
     setSearchShowing(prevState => !prevState);
   };
 
-  const handleBurgerClick = () => {
+  const handleBurgerClick = ():void => {
     setBurgerShowing(prevState => !prevState);
   };
 
-  const handleLoginClick = () => {
+  const handleLoginClick = ():void => {
     setLoginShowing(prevState => !prevState);
   }
+
+  const isSmaller = useSmallerDevice(959);
+  const isMedium = useSmallerDevice(1099);
 
   const router = useRouter();
 
@@ -43,12 +47,12 @@ const Header = () => {
         <Link className={s.logo} href="/">
           <Image src={main_logo} width={85} height={34} alt="okko" />
         </Link>
-        {searchShowing &&
+        {searchShowing && !isSmaller &&
           <div className={s.search_desktop}>
             <Search />
           </div>
         }
-        {!searchShowing &&
+        {!searchShowing && !isSmaller &&
           <ul className={s.links}>
             {
               headerLinks.map(link => (
@@ -73,36 +77,50 @@ const Header = () => {
               </IconButton>
             }
           </div>
-          <div className={s.search__after}></div>
-          <div className={s.subscription}>
-            <Button value={"Месяц за 1 ₽"} />
-          </div>
-          <div className={s.subscription__after}></div>
+          {!isSmaller &&
+            <div className={s.search__after}></div>
+          }
+          {!isMedium &&
+            <div className={s.subscription}>
+              <Button value={"Месяц за 1 ₽"} />
+            </div>
+          }
+          {!isMedium &&
+            <div className={s.subscription__after}></div>
+          }
           {/*todo при открытие бургера убирать логин и поиск, добовлять кнопку подписка */}
-          <IconButton className={s.promo}>
-            <Image width={30} height={30} src={gift} alt="promocode" />
-            <span>Ввести промокод</span>
-          </IconButton>
+          {!isSmaller &&
+            <IconButton className={s.promo}>
+              <Image width={30} height={30} src={gift} alt="promocode" />
+              <span>Ввести промокод</span>
+            </IconButton>
+          }
+
           <div onClick={handleLoginClick}>
             <IconButton className={s.login}>
               <Image width={30} height={30} src={login} alt="gift" />
-              <span>Войти</span>
-            </IconButton>
-          </div>
-          <div onClick={handleBurgerClick}>
-            <IconButton className={s.burger}>
-              {
-                burgerShowing ?
-                  <Image width={25} height={25} src={close} alt="close" />
-                  :
-                  <Image width={30} height={30} src={burger} alt="burger" />
+              {!isSmaller  &&
+                <span>Войти</span>
               }
             </IconButton>
           </div>
+          {isSmaller &&
+            <div onClick={handleBurgerClick}>
+              <IconButton className={s.burger}>
+                {
+                  burgerShowing ?
+                    <Image width={25} height={25} src={close} alt="close" />
+                    :
+                    <Image width={30} height={30} src={burger} alt="burger" />
+                }
+              </IconButton>
+            </div>
+          }
+
         </div>
       </nav>
       {
-        searchShowing &&
+        searchShowing && isSmaller &&
         <div className={s.search_mobile}>
           <div>
             <Search />

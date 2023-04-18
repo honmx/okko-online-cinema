@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, {FC, useEffect} from 'react';
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import close from '@/assets/close.svg';
-import { loginLinks } from '@/helpers/data/loginLinks.ts';
+import { loginLinks } from '@/helpers/data/loginLinks';
 import s from "./Login.module.scss";
 import Image from "next/image";
 import sberbank from '@/assets/sberbank.svg';
@@ -16,7 +16,7 @@ type LoginProps = {
   onClose: () => void;
 }
 
-const Login: FC<LoginProps> = ({ onClose }: LoginProps) => {
+const Login: FC<LoginProps> = ({onClose}) => {
 
   const getImageSrc = (icon: string) => {
     switch (icon) {
@@ -40,6 +40,14 @@ const Login: FC<LoginProps> = ({ onClose }: LoginProps) => {
   const handleCloseClick = () => {
     onClose();
   };
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
 
   return (
     <div className={s.login}>

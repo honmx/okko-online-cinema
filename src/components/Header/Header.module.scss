@@ -29,7 +29,6 @@
   flex: 0 1 auto;
   color: inherit;
   height: auto;
-  width: 4.74em;
   margin-right: 45px;
   z-index: 1;
   @media (max-width: 1320px) {
@@ -80,9 +79,6 @@
       font-weight: 400;
     }
   }
-  @media (max-width: 959px) {
-    display: none;
-  }
 }
 
 .active {
@@ -115,9 +111,7 @@
   width: 1px;
   opacity: .2;
   background-color: #f5f4f6;
-  @media (max-width: 959px) {
-    display: none;
-  }
+
 }
 
 .subscription {
@@ -141,9 +135,6 @@
   @media (max-width: 1320px) {
     line-height: 20px;
   }
-  @media (max-width: 1199px) {
-    display: none;
-  }
 }
 
 .subscription__after {
@@ -151,9 +142,7 @@
   width: 1px;
   opacity: .2;
   background-color: #f5f4f6;
-  @media (max-width: 1199px) {
-    display: none;
-  }
+
 }
 
 .promo {
@@ -181,10 +170,6 @@
     font-size: 14px;
     line-height: 22px;
   }
-  @media (max-width: 959px) {
-    display: none;
-  }
-
 }
 
 .login {
@@ -200,29 +185,6 @@
     display: block;
   }
 
-  span {
-    @media (max-width: 959px) {
-      display: none;
-    }
-  }
-}
-
-.burger {
-  @media (min-width: 960px) {
-    display: none;
-  }
-}
-
-.search_desktop {
-  @media (max-width: 960px) {
-    display: none;
-  }
-}
-
-.search_mobile {
-  @media (min-width: 960px) {
-    display: none;
-  }
 }
 
 .burger_container {
