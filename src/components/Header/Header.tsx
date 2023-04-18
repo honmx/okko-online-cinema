@@ -17,12 +17,14 @@ import Search from "@/components/Search/Search";
 import Burger from "@/components/Burger/Burger";
 import Login from "@/components/Login/Login";
 import {useSmallerDevice} from "@/hooks/useSmallerDevice";
+import Promocode from "@/components/Promocode/Promocode";
 
 const Header = () => {
 
   const [searchShowing, setSearchShowing] = useState<boolean>(false);
   const [burgerShowing, setBurgerShowing] = useState<boolean>(false);
   const [loginShowing, setLoginShowing] = useState<boolean>(false);
+  const [promocodeShowing, setPromoCodeShowing] = useState<boolean>(false);
 
   const handleSearchIconClick = ():void => {
     setSearchShowing(prevState => !prevState);
@@ -34,6 +36,10 @@ const Header = () => {
 
   const handleLoginClick = ():void => {
     setLoginShowing(prevState => !prevState);
+  }
+
+  const handlePromocodeClick = ():void => {
+    setPromoCodeShowing(prevState => !prevState);
   }
 
   const isSmaller = useSmallerDevice(959);
@@ -90,10 +96,12 @@ const Header = () => {
           }
           {/*todo при открытие бургера убирать логин и поиск, добовлять кнопку подписка */}
           {!isSmaller &&
+            <div onClick={handlePromocodeClick}>
             <IconButton className={s.promo}>
               <Image width={30} height={30} src={gift} alt="promocode" />
               <span>Ввести промокод</span>
             </IconButton>
+            </div>
           }
 
           <div onClick={handleLoginClick}>
@@ -138,6 +146,14 @@ const Header = () => {
         <div className={s.login_container}>
           <div className={s.login_container_inner}>
             <Login onClose={handleLoginClick} />
+          </div>
+        </div>
+      }
+      {
+        promocodeShowing &&
+        <div className={s.login_container}>
+          <div className={s.login_container_inner}>
+            <Promocode onClose={handlePromocodeClick} />
           </div>
         </div>
       }
