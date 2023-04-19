@@ -1,0 +1,79 @@
+@import "../../../styles/variables.scss";
+
+.selectContainer {
+  display: inline-block;
+  position: relative;
+}
+
+.select {
+  padding: 10px 30px 10px 20px;
+  background-color: $primaryGreyColor;
+  color: $accentWhiteFontColor;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  transition: all 0.15s ease;
+  appearance: none;
+
+  &:hover {
+    background-color: rgba($color: $primaryGreyColor, $alpha: 0.65);
+  }
+
+  :focus {
+    outline: none;
+  }
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  z-index: 1000;
+
+  img {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.optionsContainer {
+  position: absolute;
+  top: calc(100% + 10px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.option {
+  background-color: $primaryGreyColor;
+  color: $accentWhiteFontColor;
+  padding: 10px 30px 10px 20px;
+  border: none;
+  transition: all 0.15s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($color: $primaryGreyColor, $alpha: 0.75);
+  }
+}
+
+.selected {
+  position: relative;
+  background-color: rgba($color: $primaryGreyColor, $alpha: 0.35);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    background-image: url("../../../assets/check.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}

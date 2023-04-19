@@ -1,0 +1,12 @@
+@import "../../../styles/variables.scss";
+
+.buttonContainer {
+}
+
+.button {
+  background-color: transparent;
+  color: $accentPurpleFontColor;
+  font-weight: 700;
+  font-size: 22px;
+  cursor: pointer;
+}

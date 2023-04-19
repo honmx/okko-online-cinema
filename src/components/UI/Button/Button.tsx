@@ -5,7 +5,6 @@ import Image from "next/image";
 interface Props {
   value?: string;
   bgColor?: "accent" | "primary";
-  // ar?: number;
   p?: string;
   shape?: "circle" | "rectangle";
   img?: string;
