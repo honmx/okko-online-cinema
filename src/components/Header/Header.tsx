@@ -18,6 +18,7 @@ import Burger from "@/components/Burger/Burger";
 import Login from "@/components/Login/Login";
 import {useSmallerDevice} from "@/hooks/useSmallerDevice";
 import Promocode from "@/components/Promocode/Promocode";
+import Subscription_section from "@/components/Subscription_section/Subscription_section";
 
 const Header = () => {
 
@@ -25,6 +26,7 @@ const Header = () => {
   const [burgerShowing, setBurgerShowing] = useState<boolean>(false);
   const [loginShowing, setLoginShowing] = useState<boolean>(false);
   const [promocodeShowing, setPromoCodeShowing] = useState<boolean>(false);
+  const [subscriptionShowing, setSubscriptionShowing] = useState<boolean>(false);
 
   const handleSearchIconClick = ():void => {
     setSearchShowing(prevState => !prevState);
@@ -40,6 +42,11 @@ const Header = () => {
 
   const handlePromocodeClick = ():void => {
     setPromoCodeShowing(prevState => !prevState);
+  }
+
+
+  const handleSubscriptionClick = ():void => {
+    setSubscriptionShowing(prevState => !prevState);
   }
 
   const isSmaller = useSmallerDevice(959);
@@ -87,7 +94,7 @@ const Header = () => {
             <div className={s.search__after}></div>
           }
           {!isMedium &&
-            <div className={s.subscription}>
+            <div className={s.subscription} onClick={handleSubscriptionClick}>
               <Button value={"Месяц за 1 ₽"} />
             </div>
           }
@@ -154,6 +161,14 @@ const Header = () => {
         <div className={s.login_container}>
           <div className={s.login_container_inner}>
             <Promocode onClose={handlePromocodeClick} />
+          </div>
+        </div>
+      }
+      {
+        subscriptionShowing &&
+        <div className={s.login_container}>
+          <div className={s.login_container_inner}>
+            <Subscription_section onClose={handleSubscriptionClick} />
           </div>
         </div>
       }

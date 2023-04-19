@@ -3,7 +3,7 @@
   display: flex;
   justify-content: flex-end;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
 
   &__close {
     margin-top: 16px;
@@ -24,6 +24,7 @@
     width: 45%;
     max-width: 900px;
     padding-bottom: 40px;
+    overflow-x: hidden;
 
     &_title {
       background-color: #1b1a1d;
