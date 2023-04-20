@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import Text from "../Text/Text";
+import Title from "../Title/Title";
 import Link from "next/link";
 import Image from "next/image";
 import arrow from "../../../assets/arrow.svg";
@@ -44,13 +44,13 @@ const Carousel: FC<Props> = ({ title, linkHref, image, className, children }) =>
         title && !linkHref && image &&
         <div className={s.titleContainer}>
           <Image src={image} alt="image" className={s.image} />
-          <Text variant="h2" className={s.title}>{title}</Text>
+          <Title variant="h2" className={s.title}>{title}</Title>
         </div>
       }
       {
         title && linkHref && !image &&
         <Link href={linkHref} className={s.link}>
-          <Text variant="h2" className={s.title}>{title}</Text>
+          <Title variant="h2" className={s.title}>{title}</Title>
           <Image src={arrow} alt="arrow" className={s.arrow} />
         </Link>
       }
