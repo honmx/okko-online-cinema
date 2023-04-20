@@ -22,8 +22,8 @@ export const Select: Story = {
     })),
     selectedValue: {
       value: "All",
-      text: "All",
+      text: "Все",
     },
-    setSelectedValue: (value) => console.log("selected " + value.text)
+    setSelectedValue: (value) => {}
   }
 }

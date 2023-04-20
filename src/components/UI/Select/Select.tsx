@@ -39,7 +39,7 @@ const Select: FC<Props> = ({ values, selectedValue, setSelectedValue, className 
           value="All"
           className={selectedValue.value === "All" ? s.selected : ""}
         >
-          Все
+          {selectedValue.text}
         </option>
         {
           values.map(value => (
