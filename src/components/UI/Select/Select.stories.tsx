@@ -16,7 +16,7 @@ type Story = StoryObj<typeof SelectComponent>;
 export const Select: Story = {
 
   args: {
-    values: genres.map(genre => ({
+    values: genres.slice(0,2).map(genre => ({
       value: genre.title,
       text: genre.title,
     })),

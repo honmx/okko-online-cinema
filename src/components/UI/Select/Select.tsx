@@ -52,7 +52,7 @@ const Select: FC<Props> = ({ values, selectedValue, setSelectedValue, className 
           ))
         }
       </select>
-      <div className={s.arrow}>
+      <div className={`${s.arrow} ${active ? s.activeArrow : ""}`}>
         <Image src={arrow} alt="arrow" />
       </div>
       {
