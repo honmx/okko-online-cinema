@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import close from '@/assets/close.svg';
-import s from "./Subscription_section.module.scss";
+import s from "./SubscriptionSection.module.scss";
 import Image from "next/image";
 import visa from '@/assets/payment/visa.svg';
 import mir from '@/assets/payment/mir.svg';
@@ -10,13 +10,14 @@ import lock from '@/assets/payment/lock.svg';
 import mastercard_secure  from '@/assets/payment/mastercard_securecode.svg';
 import visa_secure  from '@/assets/payment/verified_by_visa.svg';
 import IconButton from "@/components/UI/IconButton/IconButton";
+import Title from "@/components/UI/Title/Title";
 
 
 type SubscriptionProps = {
   onClose: () => void;
 }
 
-const Subscription_section: FC<SubscriptionProps> = ({onClose}) => {
+const SubscriptionSection: FC<SubscriptionProps> = ({onClose}) => {
 
   const handleCloseClick = () => {
     onClose();
@@ -36,7 +37,7 @@ const Subscription_section: FC<SubscriptionProps> = ({onClose}) => {
   const [expirationYear, setExpirationYear] = useState("");
   const [securityCode, setSecurityCode] = useState("");
 
-  const handleSubmit = (e): void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
   };
@@ -50,15 +51,13 @@ const Subscription_section: FC<SubscriptionProps> = ({onClose}) => {
       </div>
       <div className={s.subscription__block}>
         <div className={s.subscription__block_title}>
-          <h2>ВЫБЕРИТЕ СПОСОБ ОПЛАТЫ</h2>
+          <Title variant={"h2"} fw={700} children={"ВЫБЕРИТЕ СПОСОБ ОПЛАТЫ"} />
         </div>
 
         <div className={s.subscription__block_top}>
           <div className={s.subscription__block_top_main}>
             <div className={s.subscription__block_top_main_title}>
-              <h4>
-                Подписка Оптимум
-              </h4>
+              <Title variant={"h4"} fw={600} children={"Подписка Оптимум"} />
             </div>
             <div className={s.subscription__block_top_advantages}>
               <div className={s.subscription__block_top_advantages_price}>
@@ -187,4 +186,4 @@ const Subscription_section: FC<SubscriptionProps> = ({onClose}) => {
     </div>
   );
 }
-export default Subscription_section;
+export default SubscriptionSection;

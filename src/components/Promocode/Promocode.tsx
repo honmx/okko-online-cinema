@@ -10,6 +10,7 @@ import plus from "@/assets/promo/plus.svg";
 
 
 import IconButton from "@/components/UI/IconButton/IconButton";
+import Title from "@/components/UI/Title/Title";
 
 type PromocodeProps = {
   onClose: () => void;
@@ -38,7 +39,8 @@ const Promocode: FC<PromocodeProps> = ({onClose}) => {
       </div>
       <div className={s.promo__block}>
         <div className={s.promo__block_title}>
-          <h2>АКТИВАЦИЯ ПРОМОКОДА</h2>
+          <Title variant={"h2"} children={"АКТИВАЦИЯ ПРОМОКОДА"} />
+
         </div>
         <div className={s.promo__block_main}>
           <section className={s.promo__block_main_steps}>
@@ -47,7 +49,7 @@ const Promocode: FC<PromocodeProps> = ({onClose}) => {
                 Шаг 1
               </span>
               <div className={s.promo__block_main_steps_title}>
-                <h3>Введите промокод</h3>
+                <Title variant={"h3"} fw={600} children={"Введите промокод"} />
               </div>
               <form>
                 <div className={s.promo__block_main_steps_input}>
@@ -70,10 +72,10 @@ const Promocode: FC<PromocodeProps> = ({onClose}) => {
           <section className={s.promo__block_main_advantages}>
             <div>
               <div className={s.promo__block_main_advantages_title}>
-                <h3>Преимущества Okko</h3>
+                <Title variant={"h3"} fw={600} children={"Преимущества Okko"} />
               </div>
               <div className={s.promo__block_main_advantages_images}>
-                <Image src={devices} alt={devices}/>
+                <Image src={devices} alt={"devices"}/>
                 <ul>
                   <li>
                     <Image width={30} height={30} src={plus} alt="plus"/>
