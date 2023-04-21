@@ -11,6 +11,7 @@ import yandex from '@/assets/yandex.svg';
 import odnoklassniki from '@/assets/odnoklassniki.svg';
 import twitter from '@/assets/twitter.svg';
 import IconButton from "@/components/UI/IconButton/IconButton";
+import Title from "@/components/UI/Title/Title";
 
 type LoginProps = {
   onClose: () => void;
@@ -58,11 +59,11 @@ const Login: FC<LoginProps> = ({onClose}) => {
       </div>
       <div className={s.login__block}>
         <div className={s.login__block_title}>
-          <h2>ВХОД ИЛИ РЕГИСТРАЦИЯ</h2>
+          <Title variant={"h1"} fw={700} children={"ВХОД ИЛИ РЕГИСТРАЦИЯ"} />
         </div>
         <div className={s.login__block_input}>
           <div className={s.login__block_input_area}>
-            <h2>Войдите или зарегистрируйтесь</h2>
+            <Title variant={"h2"} fw={600} children={"Войдите или зарегистрируйтесь"} />
             <p>
               Чтобы начать пользоваться сервисом Okko
             </p>
@@ -103,7 +104,7 @@ const Login: FC<LoginProps> = ({onClose}) => {
               </div>
               <div className={s.login__block_input_area_newsletter}>
                 <input type="checkbox" name="news" id="news" />
-                <label for="news"><span>Хочу узнавать о новинках и актуальных предложениях в соответствии с</span>
+                <label htmlFor="news"><span>Хочу узнавать о новинках и актуальных предложениях в соответствии с</span>
                   <CustomLink href={'/notifications'}>
                     Правилами рассылок
                   </CustomLink>

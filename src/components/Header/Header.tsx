@@ -18,7 +18,7 @@ import Burger from "@/components/Burger/Burger";
 import Login from "@/components/Login/Login";
 import {useSmallerDevice} from "@/hooks/useSmallerDevice";
 import Promocode from "@/components/Promocode/Promocode";
-import Subscription_section from "@/components/Subscription_section/Subscription_section";
+import SubscriptionSection from "@/components/SubscriptionSection/SubscriptionSection";
 
 const Header = () => {
 
@@ -28,24 +28,24 @@ const Header = () => {
   const [promocodeShowing, setPromoCodeShowing] = useState<boolean>(false);
   const [subscriptionShowing, setSubscriptionShowing] = useState<boolean>(false);
 
-  const handleSearchIconClick = ():void => {
+  const handleSearchIconClick = () => {
     setSearchShowing(prevState => !prevState);
   };
 
-  const handleBurgerClick = ():void => {
+  const handleBurgerClick = () => {
     setBurgerShowing(prevState => !prevState);
   };
 
-  const handleLoginClick = ():void => {
+  const handleLoginClick = () => {
     setLoginShowing(prevState => !prevState);
   }
 
-  const handlePromocodeClick = ():void => {
+  const handlePromocodeClick = () => {
     setPromoCodeShowing(prevState => !prevState);
   }
 
 
-  const handleSubscriptionClick = ():void => {
+  const handleSubscriptionClick = () => {
     setSubscriptionShowing(prevState => !prevState);
   }
 
@@ -168,7 +168,7 @@ const Header = () => {
         subscriptionShowing &&
         <div className={s.login_container}>
           <div className={s.login_container_inner}>
-            <Subscription_section onClose={handleSubscriptionClick} />
+            <SubscriptionSection onClose={handleSubscriptionClick} />
           </div>
         </div>
       }

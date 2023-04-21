@@ -22,7 +22,6 @@ const Search: React.FC<SearchProps> = () => {
   };
 
   useEffect(() => {
-    // Filter movies based on search query
     const filteredMovies = moviesData.movie.filter(movie =>
       movie.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
