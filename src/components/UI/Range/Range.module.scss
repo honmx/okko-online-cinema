@@ -1,0 +1,79 @@
+@import "../../../styles/variables.scss";
+
+.container {
+  min-width: 150px;
+  position: relative;
+}
+
+.valueContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  background-color: $primaryGreyColor;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  translate: 0 -50%;
+  width: 10px;
+  height: 10px;
+  transition: all 0.3s ease;
+}
+
+.activeArrow {
+  transform: rotate(180deg);
+}
+
+.selectContainer {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: $primaryGreyColor;
+  border-radius: 7px;
+
+  .value {
+    margin-bottom: 5px;
+  }
+}
+
+.value {
+  color: $accentWhiteFontColor;
+}
+
+.input {
+  width: 100%;
+  border-radius: 100vw;
+  appearance: none;
+  opacity: 0.8;
+  transition: all 0.15s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 100vw;
+    margin-top: -2px;
+    background-color: $accentPurpleColor;
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+  }
+}

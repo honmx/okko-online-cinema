@@ -5,9 +5,10 @@ interface Props {
   fs?: string;
   children: ReactNode;
   className?: string;
+  onClick?: () => void;
 }
 
-const TextButton: FC<Props> = ({ fs, children, className }) => {
+const TextButton: FC<Props> = ({ fs, children, className, onClick }) => {
   return (
     <div className={`${s.buttonContainer} ${className}`}>
       <button
@@ -15,6 +16,7 @@ const TextButton: FC<Props> = ({ fs, children, className }) => {
         style={{
           fontSize: fs && fs,
         }}
+        onClick={onClick && onClick}
       >
         {children}
       </button>

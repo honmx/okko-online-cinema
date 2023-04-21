@@ -5,7 +5,7 @@ import Carousel from '@/components/UI/Carousel/Carousel';
 import { GetStaticProps, NextPage } from 'next';
 import { IMovie } from "@/types/IMovie";
 import Card from "@/components/UI/Card/Card";
-import s from "@/styles/Home.module.scss";
+import s from "./Home.module.scss";
 import Subscription from "@/components/Subscription/Subscription";
 import { genres } from "@/helpers/data/genres";
 

@@ -5,6 +5,13 @@
   position: relative;
 }
 
+.selectImage {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+}
+
 .select {
   padding: 10px 30px 10px 20px;
   background-color: $primaryGreyColor;
@@ -12,16 +19,22 @@
   border-radius: 7px;
   border: none;
   outline: none;
+  font-size: 14px;
+  font-weight: 400;
   transition: all 0.15s ease;
   appearance: none;
 
   &:hover {
-    background-color: rgba($color: $primaryGreyColor, $alpha: 0.65);
+    background-color: #262626
   }
 
   :focus {
     outline: none;
   }
+}
+
+.selectWithImage {
+  padding-left: 30px;
 }
 
 .arrow {
@@ -50,6 +63,7 @@
   border-radius: 7px;
   overflow-y: scroll;
   max-height: 200px;
+  z-index: 1000;
   
   &::-webkit-scrollbar {
     display: none;
@@ -65,13 +79,13 @@
   cursor: pointer;
 
   &:hover {
-    background-color: rgba($color: $primaryGreyColor, $alpha: 0.75);
+    background-color: #262626
   }
 }
 
 .selected {
   position: relative;
-  background-color: rgba($color: $primaryGreyColor, $alpha: 0.35);
+  background-color: #202020;
 
   &::after {
     content: "";

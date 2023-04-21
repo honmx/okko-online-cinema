@@ -1,0 +1,85 @@
+@import "../../styles/variables.scss";
+
+.filmsPage {
+  padding: 30px 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.textContainer {
+  &>* {
+    margin-bottom: 15px;
+  }
+}
+
+.title {
+  font-size: 40px;
+}
+
+.description {
+  max-width: 700px;
+  height: 1.5em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: $primaryFontColor;
+  font-size: 18px;
+  line-height: 150%;
+}
+
+.show {
+  overflow: unset;
+  text-overflow: unset;
+  white-space: normal;
+  height: auto;
+}
+
+.textButton {
+  button {
+    font-weight: 700;
+    font-size: 18px;
+  }
+}
+
+.shareContainer {
+
+}
+
+.share {
+  display: flex;
+  align-items: center;
+}
+
+.shareText {
+  margin-right: 10px;
+}
+
+.socialNetworksContainer {
+  display: flex;
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.filtersContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filters {
+  display: flex;
+  align-items: stretch;
+}
+
+.select {
+
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+}

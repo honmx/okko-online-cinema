@@ -12,7 +12,7 @@
     cursor: pointer;
     
     img {
-      filter: invert(0%) sepia(0%) saturate(7492%) hue-rotate(346deg) brightness(50%) contrast(146%);
+      filter: invert(0%) sepia(0%) brightness(50%);
       transition: all 0.15s ease;
       margin-right: 5px;
     }
@@ -25,7 +25,7 @@
     
     &:hover {
       img {
-        filter: invert(0%) sepia(0%) saturate(7492%) hue-rotate(346deg) brightness(100%) contrast(146%); 
+        filter: invert(0%) sepia(0%) brightness(100%); 
       }
       
       p, span {
