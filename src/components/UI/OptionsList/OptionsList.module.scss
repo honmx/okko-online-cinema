@@ -1,0 +1,48 @@
+@import "../../../styles/variables.scss";
+
+.optionsContainer {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: 7px;
+  overflow-y: scroll;
+  max-height: 200px;
+  z-index: 10000;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.option {
+  background-color: $primaryGreyColor;
+  color: $accentWhiteFontColor;
+  padding: 10px 30px 10px 20px;
+  border: none;
+  transition: all 0.15s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #262626
+  }
+}
+
+.selected {
+  position: relative;
+  background-color: #202020;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    background-image: url("../../../assets/check.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}

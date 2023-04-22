@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@import "../../../../styles/variables.scss";
 
 .selectContainer {
   display: inline-block;
@@ -95,9 +95,13 @@
     transform: translateY(-50%);
     width: 15px;
     height: 15px;
-    background-image: url("../../../assets/check.svg");
+    background-image: url("../../../../assets/check.svg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
   }
+}
+
+.optionsList {
+  top: calc(100% + 10px);
 }

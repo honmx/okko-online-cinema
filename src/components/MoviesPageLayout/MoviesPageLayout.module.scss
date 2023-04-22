@@ -1,12 +1,19 @@
 @import "../../styles/variables.scss";
 
 .filmsPage {
+  position: relative;
   padding: 30px 0;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 959px) {
+  .header {
+    flex-direction: column;
+  }
 }
 
 .textContainer {
@@ -44,13 +51,17 @@
   }
 }
 
-.shareContainer {
-
-}
+.shareContainer {}
 
 .share {
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-width: 959px) {
+  .share {
+    margin: 15px 0 25px;
+  }
 }
 
 .shareText {
@@ -66,20 +77,6 @@
   }
 }
 
-.filtersContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.filters {
-  display: flex;
-  align-items: stretch;
-}
-
-.select {
-
-  &:not(:last-child) {
-    margin-right: 5px;
-  }
+.childrenContainer {
+  margin-top: 30px;
 }

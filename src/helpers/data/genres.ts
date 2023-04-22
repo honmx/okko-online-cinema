@@ -12,7 +12,7 @@ export const genres: CardType[] = [
     href: "/genre/action"
   },
   {
-    value: "fantasy",
+    value: "fantastic",
     title: "Фантастика",
     image: "https://static.okko.tv/images/v2/8255719,14448559,9120935?title=Фантастика&presetId=6001&width=317&scale=1&quality=80&mediaType=webp",
     href: "/genre/fantastic"

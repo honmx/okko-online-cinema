@@ -9,9 +9,10 @@ interface Props {
   shape?: "circle" | "rectangle";
   img?: string;
   className?: string;
+  onClick?: () => void;
 }
 
-const Button: FC<Props> = ({ value, bgColor, p, shape, img, className }) => {
+const Button: FC<Props> = ({ value, bgColor, p, shape, img, className, onClick }) => {
   return (
     <div className={`${s.buttonWrapper} ${className} ${shape === "circle" && s.circle}`}>
       <div className={`${s.buttonOuterContainer}`}>
@@ -19,6 +20,7 @@ const Button: FC<Props> = ({ value, bgColor, p, shape, img, className }) => {
           <button
             className={`${bgColor === "accent" ? s.accentBgColor : s.primaryBgColor} ${s.button}`}
             style={{padding: p && p}}
+            onClick={onClick && onClick}
           >
             {
               img &&

@@ -1,5 +1,4 @@
-import React, { FC, useState } from "react";
-import { NextPage } from "next";
+import React, { FC, ReactNode, useState } from "react";
 import Image from "next/image";
 import Title from "@/components/UI/Title/Title";
 import TextButton from "@/components/UI/TextButton/TextButton";
@@ -7,25 +6,20 @@ import IconButton from "@/components/UI/IconButton/IconButton";
 import vk from "@/assets/vk-icon.png";
 import odnoklassniki from "@/assets/odnoklassniki-icon.png";
 import viber from "@/assets/viber-icon.png";
-import sort from "@/assets/sort.svg";
-import s from "./Films.module.scss";
-import Select, { SelectOptionType } from "@/components/UI/Select/Select";
-import { genres } from "@/helpers/data/genres";
-import { sortByValues } from "@/helpers/data/sortByValues";
-import Range from "@/components/UI/Range/Range";
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import DesktopFilters from "../Filters/DesktopFilters/DesktopFilters";
+import MobileFilters from "../Filters/MobileFilters/MobileFilters";
+import s from "./MoviesPageLayout.module.scss";
 
 interface Props {
-
+  children: ReactNode;
 }
 
-const Films: NextPage<Props> = ({ }) => {
+const FilmsPageLayout: FC<Props> = ({ children }) => {
+
+  const isSmaller = useSmallerDevice(959);
 
   const [showText, setShowText] = useState<boolean>(false);
-  const [genre, setGenre] = useState<SelectOptionType>({ value: "All", text: "Все" });
-  const [genre1, setGenre1] = useState<SelectOptionType>({ value: "All", text: "Все" });
-  const [genre2, setGenre2] = useState<SelectOptionType>({ value: "All", text: "Все" });
-  const [sortBy, setSortBy] = useState<SelectOptionType>({ value: "All", text: "Все" });
-  const [minRating, setMinRating] = useState<number>(0);
 
   const handleShowTextClick = () => {
     setShowText(prev => !prev);
@@ -59,47 +53,14 @@ const Films: NextPage<Props> = ({ }) => {
           </div>
         </div>
       </div>
-      <div className={s.filtersContainer}>
-        <div className={s.filters}>
-          <Select
-            values={genres.map(genre => ({ value: genre.value, text: genre.title }))}
-            selectedValue={genre}
-            setSelectedValue={setGenre}
-            className={s.select}
-          />
-          <Select
-            values={genres.map(genre => ({ value: genre.value, text: genre.title }))}
-            selectedValue={genre1}
-            setSelectedValue={setGenre1}
-            className={s.select}
-          />
-          <Select
-            values={genres.map(genre => ({ value: genre.value, text: genre.title }))}
-            selectedValue={genre2}
-            setSelectedValue={setGenre2}
-            className={s.select}
-          />
-          <Range
-            value={minRating}
-            setValue={setMinRating}
-            min={0}
-            max={10}
-            step={0.1}
-            className={s.select}
-          />
-        </div>
-        <div className={s.sort}>
-          <Select
-            img={sort}
-            values={sortByValues.map(value => ({ value: value.value, text: value.text }))}
-            selectedValue={sortBy}
-            setSelectedValue={setSortBy}
-            className={s.select}
-          />
-        </div>
-      </div>
+      {
+        isSmaller 
+          ? <MobileFilters />
+          : <DesktopFilters />
+      }
+      <div className={s.childrenContainer}>{children}</div>
     </div>
   )
 };
 
-export default Films;
+export default FilmsPageLayout;

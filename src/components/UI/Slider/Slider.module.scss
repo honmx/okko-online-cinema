@@ -1,0 +1,29 @@
+@import "../../../styles/variables.scss";
+
+.input {
+  width: 100%;
+  border-radius: 100vw;
+  appearance: none;
+  opacity: 0.8;
+  transition: all 0.15s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 100vw;
+    margin-top: -2px;
+    background-color: $accentPurpleColor;
+    cursor: pointer;
+  }
+  
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+  }
+}

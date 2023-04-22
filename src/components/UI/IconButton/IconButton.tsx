@@ -4,12 +4,13 @@ import s from "./IconButton.module.scss";
 interface Props {
   className?: string;
   children: ReactNode;
+  onClick?: () => void;
 }
 
-const IconButton: FC<Props> = ({ className, children }) => {
+const IconButton: FC<Props> = ({ className, children, onClick }) => {
   return (
     <div className={`${s.buttonWrapper} ${className}`}>
-      <button>
+      <button onClick={onClick && onClick}>
         {children}
       </button>
     </div>

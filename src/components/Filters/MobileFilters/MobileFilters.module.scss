@@ -1,0 +1,40 @@
+@import "../../../styles/variables.scss";
+
+.filtersContainer {
+  position: absolute;
+  top: 0;
+  left: -15px;
+  right: -15px;
+  padding-inline: 15px;
+  bottom: 0;
+  background-color: $primaryBlackColor;
+  z-index: 1000;
+}
+
+.header {
+  position: relative;
+}
+
+.title {
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.parameters {
+  position: absolute;
+  top: 30px;
+  right: 0;
+}
+
+.select {
+
+  &:not(:last-child) {
+
+  }
+}

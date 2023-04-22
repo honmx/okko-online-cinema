@@ -1,7 +1,8 @@
-@import "../../../styles/variables.scss";
+@import "../../../../styles/variables.scss";
 
 .container {
   min-width: 150px;
+  max-width: 200px;
   position: relative;
 }
 
@@ -16,7 +17,12 @@
   font-size: 14px;
   font-weight: 400;
   border-radius: 7px;
+  transition: all 0.15s ease;
   cursor: pointer;
+
+  &:hover {
+    background-color: #262626;
+  }
 }
 
 .arrow {
@@ -35,11 +41,12 @@
 
 .selectContainer {
   position: absolute;
+  width: 100%;
   top: calc(100% + 10px);
   left: 0;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 20px;
   background-color: $primaryGreyColor;
   border-radius: 7px;
 
@@ -50,30 +57,5 @@
 
 .value {
   color: $accentWhiteFontColor;
-}
-
-.input {
-  width: 100%;
-  border-radius: 100vw;
-  appearance: none;
-  opacity: 0.8;
-  transition: all 0.15s ease;
-
-  &:hover {
-    opacity: 1;
-  }
-
-  &::-webkit-slider-thumb {
-    appearance: none;
-    width: 14px;
-    height: 14px;
-    border-radius: 100vw;
-    margin-top: -2px;
-    background-color: $accentPurpleColor;
-  }
-
-  &::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 10px;
-  }
+  font-size: 13px;
 }

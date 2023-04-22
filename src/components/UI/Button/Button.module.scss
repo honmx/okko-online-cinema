@@ -76,7 +76,6 @@
   border-radius: 10px;
   cursor: pointer;
   z-index: 1000;
-  // single
 
   &>*:not(:first-child) {
     margin-left: 5px;
@@ -102,11 +101,7 @@
   .buttonOuterContainer {
     height: calc(100% - 2px * 2);
   }
-
-  .buttonInnerContainer {
-    height: calc(100% - 3px * 2);
-  }
-
+  
   * {
     border-radius: 100vw;
     aspect-ratio: 1;

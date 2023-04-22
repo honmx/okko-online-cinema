@@ -1,0 +1,30 @@
+@import "../../../../styles/variables.scss";
+
+.selectContainer {
+  color: $accentWhiteFontColor;
+  padding: 20px 0;
+  border-bottom: 1px solid $primaryGreyColor;
+  cursor: pointer;
+
+  &:first-child {
+    border-top: 1px solid $primaryGreyColor;
+  }
+}
+
+.selectedValue {
+  margin-top: 5px;
+  color: $primaryFontColor;
+  font-size: 12px;
+}
+
+.optionsListContainer {
+  width: 100%;
+}
+
+.optionsList {
+  position: fixed;
+  margin-inline: -15px;
+  width: 100%;
+  bottom: 0;
+  max-height: 400px;
+}

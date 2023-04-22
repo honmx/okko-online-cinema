@@ -1,20 +1,18 @@
 import React, { FC, MouseEvent, useState, useRef } from "react";
 import Image from "next/image";
-import arrow from "../../../assets/arrow.svg";
-import s from "./Select.module.scss";
-import { useOutsideClick } from "../../../hooks/useOutsideClick";
+import arrow from "../../../../assets/arrow.svg";
+import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import s from "./DesktopSelect.module.scss";
+import CommonProps from "../IProps";
+import OptionsList from "../../OptionsList/OptionsList";
 
 export type SelectOptionType = {
   value: string;
   text: string;
 }
 
-interface Props {
-  img?: string;
-  values: SelectOptionType[];
-  selectedValue: SelectOptionType;
-  setSelectedValue: (value: SelectOptionType) => void;
-  className?: string;
+interface Props extends CommonProps {
+  
 }
 
 const Select: FC<Props> = ({ img, values, selectedValue, setSelectedValue, className }) => {
@@ -70,25 +68,12 @@ const Select: FC<Props> = ({ img, values, selectedValue, setSelectedValue, class
       </div>
       {
         active &&
-        <div className={s.optionsContainer}>
-          <button
-            className={`${s.option} ${selectedValue.value === "All" ? s.selected : ""}`}
-            onClick={() => handleOptionClick({ value: "All", text: "Все" })}
-          >
-            Все
-          </button>
-          {
-            values.map(value => (
-              <button
-                key={value.value}
-                className={`${s.option} ${selectedValue.value === value.value ? s.selected : ""}`}
-                onClick={() => handleOptionClick(value)}
-              >
-                {value.text}
-              </button>
-            ))
-          }
-        </div>
+        <OptionsList
+          values={values}
+          selectedValue={selectedValue}
+          onOptionClick={handleOptionClick}
+          className={s.optionsList}
+        />
       }
     </div>
   )

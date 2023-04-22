@@ -1,0 +1,26 @@
+
+
+.filtersContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.filters {
+  display: flex;
+  align-items: stretch;
+}
+
+@media screen and (max-width: 959px) {
+  .filters, .sort {
+    display: none;
+  }  
+}
+
+.select {
+
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+}
