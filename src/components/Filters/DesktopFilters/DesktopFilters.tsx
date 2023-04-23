@@ -49,14 +49,14 @@ const DesktopFilters: FC<Props> = ({ }) => {
         />
         {
           (genre.en !== "All" || country.en !== "All" || minRating !== 0
-          || minCountOfRating !== 0 || producer !== "" || actor !== "" || sortBy.en !== "All") && 
-        <TextButton
-          fs="14px"
-          onClick={() => dispatch(clearFilters())}
-          className={s.textButton}
-        >
-          Сбросить фильтры
-        </TextButton>
+            || minCountOfRating !== 0 || producer !== "" || actor !== "" || sortBy.en !== "All") &&
+          <TextButton
+            fs="14px"
+            onClick={() => dispatch(clearFilters())}
+            className={s.textButton}
+          >
+            Сбросить фильтры
+          </TextButton>
         }
       </div>
       <div className={s.sort}>

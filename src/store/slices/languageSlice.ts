@@ -12,11 +12,11 @@ export const languageSlice = createSlice({
   name: "language",
   initialState,
   reducers: {
-    switchLanguage(state) {
+    toggleLanguage(state) {
       state.language = state.language === "ru" ? "en" : "ru";
     }
   }
 });
 
-export const { switchLanguage } = languageSlice.actions;
+export const { toggleLanguage } = languageSlice.actions;
 export default languageSlice.reducer;

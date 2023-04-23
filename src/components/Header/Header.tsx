@@ -16,11 +16,23 @@ import s from "./Header.module.scss";
 import Search from "@/components/Search/Search";
 import Burger from "@/components/Burger/Burger";
 import Login from "@/components/Login/Login";
-import {useSmallerDevice} from "@/hooks/useSmallerDevice";
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import Promocode from "@/components/Promocode/Promocode";
 import SubscriptionSection from "@/components/SubscriptionSection/SubscriptionSection";
+import Toggle from '../UI/Toggle/Toggle';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { toggleLanguage } from '@/store/slices/languageSlice';
 
 const Header = () => {
+
+  const router = useRouter();
+
+  const dispatch = useAppDispatch();
+
+  const isSmaller = useSmallerDevice(959);
+  const isMedium = useSmallerDevice(1099);
+
+  const lang = useAppSelector(state => state.language.language);
 
   const [searchShowing, setSearchShowing] = useState<boolean>(false);
   const [burgerShowing, setBurgerShowing] = useState<boolean>(false);
@@ -49,11 +61,6 @@ const Header = () => {
     setSubscriptionShowing(prevState => !prevState);
   }
 
-  const isSmaller = useSmallerDevice(959);
-  const isMedium = useSmallerDevice(1099);
-
-  const router = useRouter();
-
   return (
     <div className={s.header}>
       <nav className={s.header_nav}>
@@ -79,42 +86,55 @@ const Header = () => {
         }
         <div className={s.right_part}>
           <div onClick={handleSearchIconClick}>
-            {searchShowing &&
+            {
+              searchShowing &&
               <IconButton>
                 <Image width={25} height={25} src={close} alt="search" />
               </IconButton>
             }
-            {!searchShowing &&
+            {
+              !searchShowing &&
               <IconButton>
                 <Image width={30} height={30} src={search} alt="search" />
               </IconButton>
             }
           </div>
-          {!isSmaller &&
+          {
+            !isSmaller &&
             <div className={s.search__after}></div>
           }
-          {!isMedium &&
+          {
+            !isSmaller &&
+            <Toggle
+              values={["ru", "en"]}
+              activeValue={lang}
+              onClick={() => dispatch(toggleLanguage())}
+            />
+          }
+          {
+            !isMedium &&
             <div className={s.subscription} onClick={handleSubscriptionClick}>
               <Button value={"Месяц за 1 ₽"} />
             </div>
           }
-          {!isMedium &&
+          {
+            !isMedium &&
             <div className={s.subscription__after}></div>
           }
           {/*todo при открытие бургера убирать логин и поиск, добовлять кнопку подписка */}
           {!isSmaller &&
             <div onClick={handlePromocodeClick}>
-            <IconButton className={s.promo}>
-              <Image width={30} height={30} src={gift} alt="promocode" />
-              <span>Ввести промокод</span>
-            </IconButton>
+              <IconButton className={s.promo}>
+                <Image width={30} height={30} src={gift} alt="promocode" />
+                <span>Ввести промокод</span>
+              </IconButton>
             </div>
           }
 
           <div onClick={handleLoginClick}>
             <IconButton className={s.login}>
               <Image width={30} height={30} src={login} alt="gift" />
-              {!isSmaller  &&
+              {!isSmaller &&
                 <span>Войти</span>
               }
             </IconButton>
