@@ -5,6 +5,11 @@ import DesktopRange from "@/components/UI/Range/DesktopRange/DesktopRange";
 import { sortByValues } from "@/helpers/data/sortByValues";
 import sort from "@/assets/sort.svg";
 import s from "./DesktopFilters.module.scss";
+import { useSelectedFilters } from "@/hooks/useSelectedFilters";
+import { IText } from "@/types/IText";
+import { useAppDispatch } from "@/store/hooks";
+import { clearFilters, setMinRating, setSelectedGenre, setSortBy } from "@/store/slices/moviesFilterSlice";
+import TextButton from "@/components/UI/TextButton/TextButton";
 
 interface Props {
 
@@ -12,49 +17,54 @@ interface Props {
 
 const DesktopFilters: FC<Props> = ({ }) => {
 
-  const [genre, setGenre] = useState<SelectOptionType>({ value: "All", text: "Все" });
-  const [genre1, setGenre1] = useState<SelectOptionType>({ value: "All", text: "Все" });
-  const [genre2, setGenre2] = useState<SelectOptionType>({ value: "All", text: "Все" });
-  const [sortBy, setSortBy] = useState<SelectOptionType>({ value: "All", text: "Все" });
-  const [minRating, setMinRating] = useState<number>(0);
+  const dispatch = useAppDispatch();
+
+  const {
+    genre,
+    country,
+    minRating,
+    minCountOfRating,
+    producer,
+    actor,
+    sortBy,
+  } = useSelectedFilters();
 
   return (
     <div className={s.filtersContainer}>
       {/* вынести */}
       <div className={s.filters}>
         <DesktopSelect
-          values={genres.map(genre => ({ value: genre.value, text: genre.title }))}
+          values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
           selectedValue={genre}
-          setSelectedValue={setGenre}
-          className={s.select}
-        />
-        <DesktopSelect
-          values={genres.map(genre => ({ value: genre.value, text: genre.title }))}
-          selectedValue={genre1}
-          setSelectedValue={setGenre1}
-          className={s.select}
-        />
-        <DesktopSelect
-          values={genres.map(genre => ({ value: genre.value, text: genre.title }))}
-          selectedValue={genre2}
-          setSelectedValue={setGenre2}
+          setSelectedValue={(value: IText) => dispatch(setSelectedGenre(value))}
           className={s.select}
         />
         <DesktopRange
           value={minRating}
-          setValue={setMinRating}
+          setValue={(value: number) => dispatch(setMinRating(value))}
           min={0}
           max={10}
           step={0.1}
           className={s.select}
         />
+        {
+          (genre.en !== "All" || country.en !== "All" || minRating !== 0
+          || minCountOfRating !== 0 || producer !== "" || actor !== "" || sortBy.en !== "All") && 
+        <TextButton
+          fs="14px"
+          onClick={() => dispatch(clearFilters())}
+          className={s.textButton}
+        >
+          Сбросить фильтры
+        </TextButton>
+        }
       </div>
       <div className={s.sort}>
         <DesktopSelect
           img={sort}
-          values={sortByValues.map(value => ({ value: value.value, text: value.text }))}
+          values={sortByValues.map(value => ({ ru: value.ru, en: value.en }))}
           selectedValue={sortBy}
-          setSelectedValue={setSortBy}
+          setSelectedValue={(value: IText) => dispatch(setSortBy(value))}
           className={s.select}
         />
       </div>

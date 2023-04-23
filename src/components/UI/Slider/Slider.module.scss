@@ -18,7 +18,14 @@
     border-radius: 100vw;
     margin-top: -2px;
     background-color: $accentPurpleColor;
+    transition: all 0.15s ease;
     cursor: pointer;
+
+    &:hover {
+      margin-top: -4px;
+      width: 18px;
+      height: 18px;
+    }
   }
   
   &::-webkit-slider-runnable-track {

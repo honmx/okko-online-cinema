@@ -15,6 +15,7 @@
   border-radius: 12px;
   background-color: transparent;
   z-index: 10;
+  transition: all 0.25s ease;
 }
 
 .buttonOuterContainer {
@@ -22,6 +23,18 @@
   border-radius: 14px;
   position: relative;
   overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 110%;
+    aspect-ratio: 1;
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
 
   &:hover {
 
@@ -32,20 +45,10 @@
     }
 
     &::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      translate: -50% -50%;
-      width: 110%;
-      aspect-ratio: 1;
-      // height: 100%;
-      background: rgb(251, 251, 251);
+      opacity: 1;
       background: radial-gradient(circle at 40px 40px, rgba(251, 251, 251, 1) 0%, rgba(161, 37, 155, 1) 49%, rgba(9, 12, 123, 1) 100%, rgba(0, 212, 255, 1) 100%);
       animation-name: spin;
       animation-duration: 1.5s;
-      --color-hover-gradient-primary-light: radial-gradient(circle at var(--coord-x) var(--coord-y), #5d0ef5 40.62%, #7e3eff 100%);
-      --color-hover-gradient-primary-dark: radial-gradient(circle var(--diameter-highlight) at var(--coord-x) var(--coord-y), #5d0ef5, #321069 40.62%, #321069 100%);
     }
   }
 }
@@ -101,7 +104,7 @@
   .buttonOuterContainer {
     height: calc(100% - 2px * 2);
   }
-  
+
   * {
     border-radius: 100vw;
     aspect-ratio: 1;

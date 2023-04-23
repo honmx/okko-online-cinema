@@ -5,11 +5,12 @@ import Button from "../Button/Button";
 import close from "../../../assets/close.svg";
 import s from "./OptionsList.module.scss";
 import Option from "../Option/Option";
+import { IText } from "@/types/IText";
 
 interface Props {
-  values: SelectOptionType[];
-  selectedValue: SelectOptionType;
-  onOptionClick: (arg: SelectOptionType) => void;
+  values: IText[];
+  selectedValue: IText;
+  onOptionClick: (arg: IText) => void;
   className?: string;
 }
 
@@ -18,14 +19,14 @@ const OptionsList: FC<Props> = ({ values, selectedValue, onOptionClick, classNam
   return (
     <div className={`${s.optionsContainer} ${className}`}>
       <Option
-        value={{ value: "All", text: "Все" }}
+        value={{ en: "All", ru: "Все" }}
         selectedValue={selectedValue}
-        onClick={() => onOptionClick({ value: "All", text: "Все" })}
+        onClick={() => onOptionClick({ en: "All", ru: "Все" })}
       />
       {
         values.map(value => (
           <Option
-            key={value.value}
+            key={value.en}
             value={value}
             selectedValue={selectedValue}
             onClick={() => onOptionClick(value)}

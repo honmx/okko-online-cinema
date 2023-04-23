@@ -5,6 +5,7 @@ import { SelectOptionType } from "../DesktopSelect/DesktopSelect";
 import Title from "../../Title/Title";
 import OptionsList from "../../OptionsList/OptionsList";
 import s from "./MobileSelect.module.scss";
+import { IText } from "@/types/IText";
 
 interface Props extends Omit<CommonProps, "img"> {
   title: string;
@@ -18,7 +19,7 @@ const MobileSelect: FC<Props> = ({ values, selectedValue, setSelectedValue, titl
 
   useOutsideClick(ref, () => setActive(false));
 
-  const handleOptionClick = (value: SelectOptionType) => {
+  const handleOptionClick = (value: IText) => {
     setSelectedValue(value);
     setActive(prev => !prev);
   }
@@ -31,7 +32,7 @@ const MobileSelect: FC<Props> = ({ values, selectedValue, setSelectedValue, titl
   return (
     <div ref={ref} className={`${s.selectContainer} ${className}`} onClick={handleSelectClick}>
       <Title fs="16px">{title}</Title>
-      <p className={s.selectedValue}>{selectedValue.text}</p>
+      <p className={s.selectedValue}>{selectedValue.ru}</p>
       {
         active &&
         <div className={s.optionsListContainer}>

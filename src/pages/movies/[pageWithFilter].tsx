@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from "react";
-import s from "./Genre.module.scss";
 import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import FilmsPageLayout from "@/components/MoviesPageLayout/MoviesPageLayout";
+import s from "./Genre.module.scss";
 
 interface Props {
 
@@ -16,7 +16,6 @@ const Genre: NextPageWithLayout<Props> = ({ }) => {
 };
 
 Genre.getLayout = (page: ReactElement) => {
-
   return (
     <FilmsPageLayout>{page}</FilmsPageLayout>
   )

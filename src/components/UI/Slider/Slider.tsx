@@ -3,7 +3,7 @@ import s from "./Slider.module.scss";
 
 interface Props {
   value: number;
-  setValue: Dispatch<SetStateAction<number>>;
+  setValue: (value: number) => void;
   min: number;
   max: number;
   step: number;

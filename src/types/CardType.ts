@@ -1,6 +1,8 @@
-type CardType = {
+import { IText } from "./IText";
+
+export type CardType = {
   value: string;
-  title: string;
+  title: IText;
   image: string;
   href: string;
 }

@@ -27,7 +27,7 @@ const Home: NextPage<Props> = ({ movies }) => {
       <Subscription />
       <Carousel title="Жанры" linkHref="/catalog" className={s.carousel}>
         {genres.map((genre) => (
-          <Card key={genre.title} item={genre} linkHref={genre.href} ar={1} />
+          <Card key={genre.title.en} item={genre} linkHref={genre.href} ar={1} />
         ))}
       </Carousel>
       <Carousel title="Фильмы" linkHref="/movies" className={s.carousel}>

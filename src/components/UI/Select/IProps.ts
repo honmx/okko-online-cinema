@@ -1,9 +1,9 @@
-import { SelectOptionType } from "./DesktopSelect/DesktopSelect";
+import { IText } from "@/types/IText";
 
 export default interface Props {
   img?: string;
-  values: SelectOptionType[];
-  selectedValue: SelectOptionType;
-  setSelectedValue: (value: SelectOptionType) => void;
+  values: IText[];
+  selectedValue: IText;
+  setSelectedValue: (value: IText) => void;
   className?: string;
 }

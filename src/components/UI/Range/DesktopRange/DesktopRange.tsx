@@ -18,10 +18,6 @@ const Range: FC<Props> = ({ value, setValue, min, max, step, className }) => {
 
   useOutsideClick(ref, () => setActive(false));
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(parseFloat(e.target.value));
-  }
-
   const handleClick = () => {
     setActive(prev => !prev);
   }

@@ -5,6 +5,7 @@ import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import s from "./DesktopSelect.module.scss";
 import CommonProps from "../IProps";
 import OptionsList from "../../OptionsList/OptionsList";
+import { IText } from "@/types/IText";
 
 export type SelectOptionType = {
   value: string;
@@ -23,7 +24,7 @@ const Select: FC<Props> = ({ img, values, selectedValue, setSelectedValue, class
 
   useOutsideClick(ref, () => setActive(false));
 
-  const handleOptionClick = (value: SelectOptionType) => {
+  const handleOptionClick = (value: IText) => {
     setSelectedValue(value);
     setActive(prev => !prev);
   }
@@ -43,22 +44,23 @@ const Select: FC<Props> = ({ img, values, selectedValue, setSelectedValue, class
         className={`${s.select} ${img ? s.selectWithImage : ""}`}
         onMouseDown={handleSelectClick}
         onChange={() => { }}
-        value={selectedValue.value}
+        value={selectedValue.en}
       >
+        {/* нужно для корректного определения ширины select`а */}
         <option
           value="All"
-          className={selectedValue.value === "All" ? s.selected : ""}
+          className={selectedValue.en === "All" ? s.selected : ""}
         >
-          {selectedValue.text}
+          {selectedValue.ru}
         </option>
         {
           values.map(value => (
             <option
-              key={value.value}
-              value={value.value}
-              className={selectedValue.value === value.value ? s.selected : ""}
+              key={value.en}
+              value={value.en}
+              className={selectedValue.en === value.en ? s.selected : ""}
             >
-              {value.text}
+              {value.ru}
             </option>
           ))
         }

@@ -1,10 +1,11 @@
 import React, { FC, MouseEvent } from "react";
 import { SelectOptionType } from "../Select/DesktopSelect/DesktopSelect";
 import s from "./Option.module.scss";
+import { IText } from "@/types/IText";
 
 interface Props {
-  value: SelectOptionType;
-  selectedValue: SelectOptionType;
+  value: IText;
+  selectedValue: IText;
   className?: string;
   onClick?: () => void;
 }
@@ -19,10 +20,10 @@ const Option: FC<Props> = ({ value, selectedValue, className, onClick }) => {
 
   return (
     <button
-      className={`${s.option} ${selectedValue.value === value.value ? s.selected : ""} ${className}`}
+      className={`${s.option} ${selectedValue.en === value.en ? s.selected : ""} ${className}`}
       onClick={handleClick}
     >
-      {value.text}
+      {value.ru}
     </button>
   )
 };
