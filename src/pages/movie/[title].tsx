@@ -21,6 +21,7 @@ import Carousel from "@/components/UI/Carousel/Carousel";
 import SubscribeCard from "@/components/SubscribeCard/SubscribeCard";
 import { subscribtions } from "@/helpers/data/subscribtions";
 import MovieBannerText from "@/components/MovieBannerText/MovieBannerText";
+import Head from "next/head";
 
 interface Props {
   movie: IMovie;
@@ -40,38 +41,47 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
   }
 
   return (
-    <div className={s.moviePageContainer}>
-      <div className={s.movieBanner}>
-        <div className={s.background}>
-          <Image src={"https:" + movie.photo} alt="img" priority width={1920} height={1080} />
+    <>
+      <Head>
+        <title>{movie.title}</title>
+        <meta
+          name="description"
+          content={movie.description}
+        />
+      </Head>
+      <div className={s.moviePageContainer}>
+        <div className={s.movieBanner}>
+          <div className={s.background}>
+            <Image src={"https:" + movie.photo} alt="img" priority width={1920} height={1080} />
+          </div>
+          <MovieBannerText movie={movie} className={s.textContainer} />
         </div>
-        <MovieBannerText movie={movie} className={s.textContainer} />
+        <div className={s.tabsContainer}>
+          <Tabs tabs={["Описание", "Варианты просмотра"]} tabIndex={tabIndex} onChange={handleTabIndexChange}>
+            <div className={s.fullDescriptionContainer}>
+              <p className={s.fullDescription}>{movie.description}</p>
+              <Rate />
+            </div>
+            <div className={s.subcriptions}>
+              <Carousel>
+                {
+                  subscribtions.map(subscription => (
+                    <SubscribeCard
+                      key={subscription.title}
+                      title={subscription.title}
+                      subtitle={subscription.subtitle}
+                      accentText={subscription.accentText}
+                      usualText={subscription.usualText}
+                      className={s.subscriptionCard}
+                    />
+                  ))
+                }
+              </Carousel>
+            </div>
+          </Tabs>
+        </div>
       </div>
-      <div className={s.tabsContainer}>
-        <Tabs tabs={["Описание", "Варианты просмотра"]} tabIndex={tabIndex} onChange={handleTabIndexChange}>
-          <div className={s.fullDescriptionContainer}>
-            <p className={s.fullDescription}>{movie.description}</p>
-            <Rate />
-          </div>
-          <div className={s.subcriptions}>
-            <Carousel>
-              {
-                subscribtions.map(subscription => (
-                  <SubscribeCard
-                    key={subscription.title}
-                    title={subscription.title}
-                    subtitle={subscription.subtitle}
-                    accentText={subscription.accentText}
-                    usualText={subscription.usualText}
-                    className={s.subscriptionCard}
-                  />
-                ))
-              }
-            </Carousel>
-          </div>
-        </Tabs>
-      </div>
-    </div>
+    </>
   )
 };
 

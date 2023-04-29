@@ -2,6 +2,7 @@ import React, { FC, ReactElement } from "react";
 import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import MoviesPageLayout from "@/components/MoviesPageLayout/MoviesPageLayout";
 import s from "./Genre.module.scss";
+import Head from "next/head";
 
 interface Props {
 
@@ -9,9 +10,18 @@ interface Props {
 
 const Genre: NextPageWithLayout<Props> = ({ }) => {
   return (
-    <div>
-      page with filter
-    </div>
+    <>
+      <Head>
+        <title>Фильмы</title>
+        <meta
+          name="description"
+          content="Смотреть фильмы онлайн в хорошем качестве"
+        />
+      </Head>
+      <div>
+        page with filter
+      </div>
+    </>
   )
 };
 

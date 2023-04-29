@@ -7,6 +7,7 @@ import s from "./Movies.module.scss";
 import { IMovie } from "@/types/IMovie";
 import { GetStaticProps } from "next";
 import axios from "axios";
+import Head from "next/head";
 
 interface Props {
   movies: IMovie[];
@@ -15,19 +16,28 @@ interface Props {
 const Movies: NextPageWithLayout<Props> = ({ movies }) => {
 
   return (
-    <div className={s.moviesContainer}>
-      <div className={s.block}>
-        <Carousel title="Рекомендуемое" linkHref="/films/recommended" className={s.carousel}>
-          {movies.map(movie => <Card key={movie.id} item={movie} linkHref={movie.title} />)}
-        </Carousel>
-        <Carousel title="Новинки" linkHref="/films/new" className={s.carousel}>
-          {movies.map(movie => <Card key={movie.id} item={movie} linkHref={movie.title} />)}
-        </Carousel>
-        <Carousel title="Лучшее" linkHref="/films/best" className={s.carousel}>
-          {movies.map(movie => <Card key={movie.id} item={movie} linkHref={movie.title} />)}
-        </Carousel>
+    <>
+      <Head>
+        <title>Фильмы</title>
+        <meta
+          name="description"
+          content="Смотреть фильмы онлайн в хорошем качестве"
+        />
+      </Head>
+      <div className={s.moviesContainer}>
+        <div className={s.block}>
+          <Carousel title="Рекомендуемое" linkHref="/films/recommended" className={s.carousel}>
+            {movies.map(movie => <Card key={movie.id} item={movie} linkHref={movie.title} />)}
+          </Carousel>
+          <Carousel title="Новинки" linkHref="/films/new" className={s.carousel}>
+            {movies.map(movie => <Card key={movie.id} item={movie} linkHref={movie.title} />)}
+          </Carousel>
+          <Carousel title="Лучшее" linkHref="/films/best" className={s.carousel}>
+            {movies.map(movie => <Card key={movie.id} item={movie} linkHref={movie.title} />)}
+          </Carousel>
+        </div>
       </div>
-    </div>
+    </>
   )
 };
 
