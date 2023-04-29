@@ -9,7 +9,6 @@ export interface IMovie {
   originalTitle: string;
   ageRate: number;
   description: string;
-  images: IIMage[];
   yearSince: number;
   yearTill: number;
   country: string;
@@ -20,7 +19,8 @@ export interface IMovie {
   rateQuantity: number;
   createdAt: Date;
   updatedAt: Date;
+  photo: string;
+  trailer: string;
   genres: IGenre[];
   people: IPerson[];
-  image?: string;
 }

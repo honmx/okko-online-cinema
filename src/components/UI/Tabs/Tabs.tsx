@@ -10,14 +10,18 @@ interface Props {
 
 const Tabs: FC<Props> = ({ tabs, tabIndex, onChange, children }) => {
 
-  console.log(children);
-
   return (
     <div className={s.tabsContainer}>
       <div className={s.tabsHeader}>
         {
           tabs.map((tab, i) => (
-            <button className={`${s.tab} ${i === tabIndex ? s.active : ""}`} onClick={() => onChange(i)}>{tab}</button>
+            <button
+              key={tab}
+              className={`${s.tab} ${i === tabIndex ? s.active : ""}`}
+              onClick={() => onChange(i)}
+            >
+              {tab}
+            </button>
           ))
         }
       </div>

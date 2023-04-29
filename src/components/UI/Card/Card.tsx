@@ -16,7 +16,7 @@ const Card: FC<Props> = ({ item, linkHref, ar = 1.77 }) => {
   return (
     <Link href={linkHref}>
       <div className={s.card} style={{aspectRatio: ar}}>
-        <Image src={item.image ? item.image : ""} alt={item.title.toString()} priority width={1920} height={1080} className={s.img} />
+        <Image src={item.photo ? item.photo : ""} alt={item.title.toString()} priority width={1920} height={1080} className={s.img} />
       </div>
     </Link>
   )

@@ -21,7 +21,7 @@ const PeopleList: FC<Props> = ({ people, title, pluralTitle, className }) => {
       }
       {
         people.map((person, i) => (
-          <div className={s.linkContainer}>
+          <div key={person.id} className={s.linkContainer}>
             <CustomLink href={person.fullName}>{person.fullName}</CustomLink>
             {
               i !== people.length - 1 &&

@@ -3,6 +3,6 @@ import { IText } from "./IText";
 export type CardType = {
   value: string;
   title: IText;
-  image?: string;
+  photo?: string;
   href: string;
 }

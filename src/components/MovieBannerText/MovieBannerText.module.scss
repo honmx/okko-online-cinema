@@ -1,0 +1,110 @@
+@import "../../styles/variables.scss";
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  
+  &>*:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 959px) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 599px) {
+    font-size: 80%;
+  }
+}
+
+.title {}
+
+.commonInfoContainer {
+
+  display: flex;
+  align-items: center;
+  color: $primaryFontColor;
+  font-weight: 700;
+  margin-bottom: 5px !important;
+
+  &>*:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  .ratingContainer {
+    .rating {
+      padding: 5px 10px;
+      color: $accentWhiteFontColor;
+      border-radius: 5px;
+    }
+
+    .usualRate {
+      background-color: $primaryGreyColor;
+    }
+
+    .greenRate {
+      background-color: $greenColor;
+    }
+  }
+}
+
+.description {
+  line-height: 125%;
+}
+
+.peopleList {
+  display: flex;
+}
+
+.titleContainer {
+  &>*:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}
+
+.buttonsContainer {
+  max-width: 355px;
+  display: grid;
+  grid-template-areas:
+    "a b c";
+
+  @media screen and (max-width: 599px) {
+    grid-template-areas: 
+      "a a a"
+      "b c d";
+    max-width: 100%;
+  }
+
+  .subscriptionButton {
+    grid-area: a;
+
+    @media screen and (max-width: 599px) {
+      width: 100%;
+    }
+  }
+
+  .trailerButton {
+    grid-area: b;
+
+    @media screen and (max-width: 599px) {
+      justify-self: end;
+    }
+  }
+
+  .favouritesButton {
+    grid-area: c;
+
+    @media screen and (max-width: 599px) {
+      justify-self: center;
+    }
+  }
+  
+  .rateButton {
+    grid-area: d;
+
+    @media screen and (max-width: 599px) {
+      justify-self: start;
+    }
+  }
+}

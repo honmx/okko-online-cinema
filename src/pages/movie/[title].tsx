@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import { ParsedUrlQuery } from "querystring";
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import { IMovie } from "@/types/IMovie";
 import axios from "axios";
 import Image from "next/image";
@@ -20,6 +20,7 @@ import Rate from "@/components/Rate/Rate";
 import Carousel from "@/components/UI/Carousel/Carousel";
 import SubscribeCard from "@/components/SubscribeCard/SubscribeCard";
 import { subscribtions } from "@/helpers/data/subscribtions";
+import MovieBannerText from "@/components/MovieBannerText/MovieBannerText";
 
 interface Props {
   movie: IMovie;
@@ -42,42 +43,9 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
     <div className={s.moviePageContainer}>
       <div className={s.movieBanner}>
         <div className={s.background}>
-          <Image src={movie.images[0].image} alt="img" width={1920} height={1080} />
+          <Image src={"https:" + movie.photo} alt="img" priority width={1920} height={1080} />
         </div>
-        {/* выделить компонент */}
-        <div className={s.textContainer}>
-          <Title variant="h2" fs={isSmaller ? "45px" : "60px"} className={s.title}>{movie.title}</Title>
-          <div className={s.commonInfoContainer}>
-            <div className={s.ratingContainer}>
-              <p className={`${s.rating} ${movie.rate > 7 ? s.greenRate : s.usualRate}`}>{movie.rate}</p>
-            </div>
-            <p className={s.year}>{movie.yearTill}</p>
-            <p className={s.genre}>{movie.genres[0].genre}</p>
-            {/* <p className={s.time}></p> */}
-            {/* <p className={s.audio}></p> */}
-            <p className={s.minAge}>{movie.ageRate}+</p>
-          </div>
-          <p className={s.description}>{getFirstSentence(movie.description)}</p>
-          <PeopleList people={producers} title="Режиссёр" pluralTitle="Режиссёры" className={`${s.producers} ${s.peopleList}`} />
-          <PeopleList people={actors} title="Актёр" pluralTitle="Актёры" className={`${s.actors} ${s.peopleList}`} />
-          <div className={s.titleContainer}>
-            <Title color="gold" fs={isSmaller ? "16px" : "26px"}>Месяц за 1 ₽, затем месяц за 199 ₽</Title>
-            <Title fw={400} fs={isSmaller ? "12px" : "20px"}>дальше — 399 ₽⁠/⁠месяц в подписке Оптимум</Title>
-          </div>
-          <div className={s.buttonsContainer}>
-            <Button bgColor="accent" value="Оформить подписку" p="15px 10px" className={s.subscriptionButton} />
-            {
-              isSmaller
-                ? <Button img={soundtrack} p="15px" className={s.trailerButton} />
-                : <Button value="Трейлер" p="15px 10px" className={s.trailerButton} />
-            }
-            <Button img={favourites} p="15px" className={s.favouritesButton} />
-            {
-              isSmaller &&
-              <Button img={star} p="15px" />
-            }
-          </div>
-        </div>
+        <MovieBannerText movie={movie} className={s.textContainer} />
       </div>
       <div className={s.tabsContainer}>
         <Tabs tabs={["Описание", "Варианты просмотра"]} tabIndex={tabIndex} onChange={handleTabIndexChange}>
@@ -90,6 +58,7 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
               {
                 subscribtions.map(subscription => (
                   <SubscribeCard
+                    key={subscription.title}
                     title={subscription.title}
                     subtitle={subscription.subtitle}
                     accentText={subscription.accentText}
@@ -109,18 +78,31 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
 export default Movie;
 
 interface Params extends ParsedUrlQuery {
-  movie: string;
+  title: string;
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
-  const { data: movie } = await axios.get<IMovie>("/movie/12");
-  const { data: persons } = await axios.get("/movie/12/people");
+  const { data: movies } = await axios.get<IMovie[]>("/movie");
+
+  return {
+    paths: movies.map(movie => ({
+      params: {
+        title: movie.title
+      }
+    })),
+    fallback: "blocking"
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+
+  const title = context.params?.title;
+  const { data: movie } = await axios.get<IMovie>(`/movie/title/${title}`);
 
   return {
     props: {
-      movie,
-      persons
+      movie
     }
   }
 }

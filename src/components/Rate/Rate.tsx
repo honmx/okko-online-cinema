@@ -20,7 +20,7 @@ const Rate: FC<Props> = ({ className }) => {
   const handleActiveIndexChange = (index: number | null) => {
     setActiveIndex(prev => prev === index ? null : index);
   }
-  
+
   const handleDeleteRateClick = () => {
     setActiveIndex(null);
   }
@@ -37,6 +37,7 @@ const Rate: FC<Props> = ({ className }) => {
         {
           Array(10).fill("").map((value, i) => (
             <Star
+              key={i}
               index={i}
               activeIndex={activeIndex}
               setActiveIndex={handleActiveIndexChange}
