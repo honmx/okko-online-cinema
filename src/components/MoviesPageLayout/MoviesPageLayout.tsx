@@ -15,7 +15,7 @@ interface Props {
   children: ReactNode;
 }
 
-const FilmsPageLayout: FC<Props> = ({ children }) => {
+const MoviesPageLayout: FC<Props> = ({ children }) => {
 
   const isSmaller = useSmallerDevice(959);
 
@@ -26,7 +26,7 @@ const FilmsPageLayout: FC<Props> = ({ children }) => {
   }
 
   return (
-    <div className={s.filmsPage}>
+    <div className={s.moviesPage}>
       <div className={s.header}>
         <div className={s.textContainer}>
           <Title className={s.title}>Фильмы</Title>
@@ -63,4 +63,4 @@ const FilmsPageLayout: FC<Props> = ({ children }) => {
   )
 };
 
-export default FilmsPageLayout;
+export default MoviesPageLayout;

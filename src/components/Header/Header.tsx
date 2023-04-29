@@ -22,6 +22,7 @@ import SubscriptionSection from "@/components/SubscriptionSection/SubscriptionSe
 import Toggle from '../UI/Toggle/Toggle';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { toggleLanguage } from '@/store/slices/languageSlice';
+import { GetStaticProps } from 'next';
 
 const Header = () => {
 
@@ -196,4 +197,16 @@ const Header = () => {
     </div>
   );
 };
+
 export default Header;
+
+export const getStaticProps: GetStaticProps = () => {
+
+    
+
+  return {
+    props: {
+
+    }
+  }
+}

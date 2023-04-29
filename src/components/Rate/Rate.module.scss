@@ -1,0 +1,47 @@
+@import "../../styles/variables.scss";
+
+.rateContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin-top: 25px;
+  border-radius: 15px;
+  background-color: #1a1a1a;
+}
+
+.title {
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  margin-bottom: 25px;
+  color: $primaryFontColor;
+}
+
+.rate {
+  margin-inline: -10px;
+
+  &>* {
+    padding-inline: 5px;
+  }
+}
+
+.deleteButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  &>div {
+
+    * {
+      background-color: $primaryDarkGreyColor;
+    }
+
+    &:hover {
+      &>div {
+        background-color: $primaryDarkGreyColor !important;
+      }
+    }
+  }
+}

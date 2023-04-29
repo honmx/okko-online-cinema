@@ -1,0 +1,12 @@
+.linkContainer {
+  display: flex;
+
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+}
+
+.title {
+  display: inline-block;
+  margin-right: 5px;
+}

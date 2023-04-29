@@ -2,12 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'static.okko.tv',
-      },
-    ],
+    domains: ["avatars.mds.yandex.net", "static.okko.tv"]
   },
 }
+
 module.exports = nextConfig

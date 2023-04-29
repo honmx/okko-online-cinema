@@ -44,14 +44,36 @@
 }
 
 .left {
-  margin-right: auto;
+  margin-left: 0;
+  animation-name: toggleLeft;
+  animation-duration: 0.15s;
+}
+
+@keyframes toggleLeft {
+  0% {
+    margin-left: 22px;
+  }
+  100% {
+    margin-left: 0;
+  }
 }
 
 .right {
-  margin-left: auto;
+  margin-left: 22px;
   background-color: $accentWhiteColor;
-
+  animation-name: toggleRight;
+  animation-duration: 0.15s;
+  
   &:hover {
     background-color: #ddd
+  }
+}
+
+@keyframes toggleRight {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: 22px;
   }
 }

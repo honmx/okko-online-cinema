@@ -5,9 +5,10 @@ import Carousel from '@/components/UI/Carousel/Carousel';
 import { GetStaticProps, NextPage } from 'next';
 import { IMovie } from "@/types/IMovie";
 import Card from "@/components/UI/Card/Card";
-import s from "./Home.module.scss";
 import Subscription from "@/components/Subscription/Subscription";
 import { genres } from "@/helpers/data/genres";
+import axios from "axios";
+import s from "./Home.module.scss";
 
 interface Props {
   movies: IMovie[];
@@ -50,12 +51,12 @@ const Home: NextPage<Props> = ({ movies }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await fetch('http://localhost:8080/movie');
-  const result = await response.json();
+  const response = await axios.get("/movie")
+  const movies = response.data;
 
   return {
     props: {
-      movies: result,
+      movies,
     },
   };
 };

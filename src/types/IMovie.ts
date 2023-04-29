@@ -1,16 +1,26 @@
+import { IGenre } from "./IGenre";
+import { IIMage } from "./IImage";
+import { IPerson } from "./IPerson";
+
 // поменять, как только будем забирать данные с бекенда 
 export interface IMovie {
-  id: string;
+  id: number;
   title: string;
+  originalTitle: string;
+  ageRate: number;
   description: string;
-  language_audio: string[];
-  language_subtitles: string[];
-  duration: string;
-  year: string;
-  genre: string[];
-  age_category: string;
-  director: string;
-  rating: string;
-  actors: string[];
-  image: string;
+  images: IIMage[];
+  yearSince: number;
+  yearTill: number;
+  country: string;
+  premierRussia: string;
+  premier: string;
+  seasons: null;
+  rate: number;
+  rateQuantity: number;
+  createdAt: Date;
+  updatedAt: Date;
+  genres: IGenre[];
+  people: IPerson[];
+  image?: string;
 }

@@ -1,0 +1,58 @@
+@import "../../styles/variables.scss";
+
+.subscribeCardContainer {
+  min-height: 180px;
+  min-width: 350px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 20px;
+  background: linear-gradient(60deg, rgba($color: $primaryGreyColor, $alpha: 0.7), $primaryDarkGreyColor);
+  border-radius: 20px;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background-color: rgba($color: $primaryGreyColor, $alpha: 0.7);
+  } 
+}
+
+.topItems {
+  flex: 1 1 0;
+}
+
+.title {
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 12px;
+}
+
+.bottomItems {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.price {
+  width: 50%;
+  align-self: center;
+}
+
+.accentText {
+  color: $yellowColor;
+}
+
+.usualText {}
+
+.buyButton {
+  align-self: flex-end;
+  &>div {
+    &:hover {
+      &>div {
+        background-color: $primaryDarkGreyColor !important;
+      }
+    }
+  }
+}

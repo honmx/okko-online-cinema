@@ -30,8 +30,8 @@ export const PrimaryButton: Story = {
 
 export const RectangleButtonWithIcon: Story = {
   args: {
-    value: "Click me",
     img: close,
+    p: "15px"
   }
 } 
 

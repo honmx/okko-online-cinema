@@ -1,17 +1,20 @@
 {
   "movie": [
     {
-      "id": "1",
+      "id": 1,
       "title": "Время первых",
+      "originalTitle": "sdfsdf",
+      "ageRate": 6,
       "description": "Они шагнут в холодную неизвестность вопреки всему. Грандиозная история о первом выходе человека в открытый космос",
-      "language_audio": ["Rus"],
+      "images": [],
+      "yearSince": 2022,
+      "yearTill": 2022,
+      "country": "Russia",
       "language_subtitles": [],
       "duration": "2 ч 14 мин",
-      "year": "2017",
       "genre": [
         "Приключения"
       ],
-      "age_category": "6+",
       "director": "Дмитрий Киселёв",
       "rating": "7.9",
       "actors": [

@@ -1,0 +1,30 @@
+@import "../../styles/variables.scss";
+
+.starContainer {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+
+  * {
+    transition: all 0.15s ease;
+  }
+}
+
+.starImg {
+  width: 40px;
+  height: 40px;
+}
+
+.active {
+  filter: invert(100%) sepia(0%);
+}
+
+.starNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  color: $blackFontColor;
+  font-size: 12px;
+  font-weight: 700;
+}

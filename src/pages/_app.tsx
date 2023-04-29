@@ -4,6 +4,9 @@ import { NextPageWithLayout } from '@/types/NextPageWithLayout';
 import "../styles/nullable.scss";
 import { Provider } from 'react-redux';
 import { store } from '@/store/store';
+import axios from 'axios';
+
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout

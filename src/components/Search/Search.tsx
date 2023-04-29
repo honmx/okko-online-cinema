@@ -4,16 +4,16 @@ import styles from "./Search.module.scss";
 import Image from "next/image";
 import search from "@/assets/search_icon.svg";
 import close from "@/assets/close.svg";
-import moviesData from "@/helpers/data/data.json"
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import { IMovie } from '@/types/IMovie';
 
 type SearchProps = {
-  movies?: IMovie[];
+  movies: IMovie[];
   onSearch?: (query: string) => void;
 };
 
-const Search: React.FC<SearchProps> = () => {
+const Search: React.FC<SearchProps> = ({ movies, onSearch }) => {
+
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<IMovie[]>([]);
 
@@ -22,7 +22,7 @@ const Search: React.FC<SearchProps> = () => {
   };
 
   useEffect(() => {
-    const filteredMovies = moviesData.movie.filter(movie =>
+    const filteredMovies = movies.filter(movie =>
       movie.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
     if (!searchQuery) {
@@ -30,7 +30,7 @@ const Search: React.FC<SearchProps> = () => {
     } else {
       setSearchResults(filteredMovies);
     }
-  }, [searchQuery, moviesData.movie]);
+  }, [searchQuery, movies]);
 
   return (
     <div>

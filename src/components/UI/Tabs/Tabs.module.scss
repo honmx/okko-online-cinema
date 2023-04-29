@@ -1,0 +1,28 @@
+@import "../../../styles/variables.scss";
+
+.tabsContainer {
+  color: $accentWhiteFontColor;
+}
+
+.tabsHeader {
+  display: flex;
+}
+
+.tab {
+  padding: 10px 15px;
+  background-color: transparent;
+  color: $primaryFontColor;
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+}
+
+.active {
+  border-bottom: 2px solid $accentPurpleColor;
+  color: $accentWhiteFontColor;
+}
+
+.tabsBody {
+  margin-top: 20px;
+}
