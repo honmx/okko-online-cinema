@@ -1,7 +1,8 @@
 @import "../../../styles/variables.scss";
 
 .toggleOuterContainer {
-  color: $accentWhiteFontColor;
+  color: $primaryFontColor;
+  font-weight: 700;
 }
 
 .toggleInnerContainer {
@@ -19,8 +20,7 @@
   width: 50px;
   padding: 0;
   border-radius: 100vw;
-  background-color: transparent;
-  border: 2px solid rgba($color: $accentWhiteColor, $alpha: 0.33);
+  background-color: $primaryDarkGreyColor;
   cursor: pointer;
 }
 
