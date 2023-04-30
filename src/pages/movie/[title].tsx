@@ -4,17 +4,6 @@ import { ParsedUrlQuery } from "querystring";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { IMovie } from "@/types/IMovie";
 import axios from "axios";
-import Image from "next/image";
-import Title from "@/components/UI/Title/Title";
-import { getFirstSentence } from "@/helpers/getFirstSentence";
-import CustomLink from "@/components/UI/CustomLink/CustomLink";
-import PeopleList from "@/components/PeopleList/PeopleList";
-import Button from "@/components/UI/Button/Button";
-import favourites from "@/assets/favourites.svg";
-import { useSmallerDevice } from "@/hooks/useSmallerDevice";
-import star from "@/assets/star.svg";
-import soundtrack from "@/assets/soundtrack.svg";
-import s from "./Movie.module.scss";
 import Tabs from "@/components/UI/Tabs/Tabs";
 import Rate from "@/components/Rate/Rate";
 import Carousel from "@/components/UI/Carousel/Carousel";
@@ -22,6 +11,11 @@ import SubscribeCard from "@/components/SubscribeCard/SubscribeCard";
 import { subscribtions } from "@/helpers/data/subscribtions";
 import MovieBannerText from "@/components/MovieBannerText/MovieBannerText";
 import Head from "next/head";
+import Image from "next/image";
+import trailer from "../../assets/trailer.mp4";
+import ReactPlayer from "react-player";
+import s from "./Movie.module.scss";
+import { useDelay } from "@/hooks/useDelay";
 
 interface Props {
   movie: IMovie;
@@ -29,10 +23,7 @@ interface Props {
 
 const Movie: NextPageWithLayout<Props> = ({ movie }) => {
 
-  const producers = movie.people.filter(person => person.profession === "Режиссёр");
-  const actors = movie.people.filter(person => person.profession === "Актёр").slice(0, 3);
-
-  const isSmaller = useSmallerDevice(599);
+  const isActive = useDelay(4000);
 
   const [tabIndex, setTabIndex] = useState<number>(0);
 
@@ -52,7 +43,19 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
       <div className={s.moviePageContainer}>
         <div className={s.movieBanner}>
           <div className={s.background}>
-            <Image src={"https:" + movie.photo} alt="img" priority width={1920} height={1080} />
+            <iframe
+              width={isActive ? "100%" : "0%"}
+              height={isActive ? "100%" : "0%"}
+              src="https://www.youtube.com/embed/tTwFeGArcrs?autoplay=1&mute=1"
+              title="YouTube video player"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              className={s.video}
+            ></iframe>
+            {
+              !isActive &&
+              <Image src={"https:" + movie.photo} alt="img" priority width={1920} height={1080} />
+            }
           </div>
           <MovieBannerText movie={movie} className={s.textContainer} />
         </div>

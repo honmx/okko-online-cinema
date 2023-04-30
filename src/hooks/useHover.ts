@@ -3,7 +3,7 @@ import { RefObject, useEffect, useState } from "react";
 export const useHover = (
   ref: RefObject<HTMLDivElement>,
   index: number,
-  setActiveIndex?: (value: number | null) => void,
+  setActiveIndex?: (value: number) => void,
   setActiveHoverIndex?: (value: number | null) => void,
 ) => {
 

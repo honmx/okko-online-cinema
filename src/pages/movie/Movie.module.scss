@@ -13,7 +13,7 @@
   position: relative;
   margin-inline: -15px;
   background: radial-gradient(at 100% 30%, transparent, #000);
-  width: 100%;
+  // width: 100%;
   aspect-ratio: 1.77;
 
   & img {
@@ -38,11 +38,15 @@
   }
 
   &::after {
-    background: radial-gradient(circle at 100% 0%, transparent -10%, #000 75%);
+    background: radial-gradient(circle at 100% 0%, transparent 25%, #000 75%);
 
     @media screen and (max-width: 959px) {
       background: none;
     }
+  }
+
+  .video {
+    z-index: 10000;
   }
 }
 
@@ -66,6 +70,10 @@
 
 .fullDescriptionContainer {
   width: 75%;
+
+  @media screen and (max-width: 959px) {
+    width: 100%;
+  }
 }
 
 .fullDescription {

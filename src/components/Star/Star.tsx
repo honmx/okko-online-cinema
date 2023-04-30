@@ -7,7 +7,7 @@ import { useHover } from "@/hooks/useHover";
 interface Props {
   index: number;
   activeIndex: number | null;
-  setActiveIndex: (value: number | null) => void;
+  setActiveIndex: (value: number) => void;
   activeHoverIndex: number | null;
   setActiveHoverIndex: (value: number | null) => void;
 }

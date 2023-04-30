@@ -9,4 +9,15 @@
 
 .main {
   flex: 1 1 auto;
+  position: relative;
+}
+
+.notifications {
+  position: fixed;
+  top: 125px;
+  right: 15px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }

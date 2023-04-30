@@ -2,7 +2,7 @@
 
 .rateContainer {
   position: relative;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   padding: 20px;
   margin-top: 25px;
@@ -20,10 +20,12 @@
 }
 
 .rate {
-  margin-inline: -10px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
 
-  &>* {
-    padding-inline: 5px;
+  @media screen and (max-width: 599px) {
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 

@@ -1,7 +1,9 @@
 @import "../../styles/variables.scss";
 
 .starContainer {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   cursor: pointer;
 

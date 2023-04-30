@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import { ParsedUrlQuery } from "querystring";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -34,6 +34,12 @@ const MovieBannerText: FC<Props> = ({ movie, className }) => {
 
   const isSmaller = useSmallerDevice(599);
 
+  const [acitveRate, setActiveRate] = useState<boolean>(false);
+
+  const handleRateClick = () => {
+    setActiveRate(prev => !prev);
+  }
+
   return (
     <div className={`${s.textContainer} ${className}`}>
       <Title variant="h2" fs={isSmaller ? "45px" : "60px"} className={s.title}>{movie.title}</Title>
@@ -64,7 +70,7 @@ const MovieBannerText: FC<Props> = ({ movie, className }) => {
         <Button img={favourites} p="15px" className={s.favouritesButton} />
         {
           isSmaller &&
-          <Button img={star} p="15px" />
+          <Button img={star} p="15px" onClick={handleRateClick} />
         }
       </div>
     </div>
