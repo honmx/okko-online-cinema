@@ -56,6 +56,14 @@
     position: static;
     opacity: 1;
   }
+
+  .movieButtonsContainer {
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+  }
 }
 
 .textContainer {

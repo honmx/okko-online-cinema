@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import { ParsedUrlQuery } from "querystring";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -14,6 +14,10 @@ import Head from "next/head";
 import Image from "next/image";
 import { useDelay } from "@/hooks/useDelay";
 import ReactPlayer from "react-player";
+import Button from "@/components/UI/Button/Button";
+import sound from "@/assets/sound.svg";
+import soundDisabled from "@/assets/soundDisabled.svg";
+import fullScreen from "@/assets/fullScreen.svg";
 import s from "./Movie.module.scss";
 
 interface Props {
@@ -25,9 +29,14 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
   const isActive = useDelay(4000);
 
   const [tabIndex, setTabIndex] = useState<number>(0);
+  const [activeSound, setActiveSound] = useState<boolean>(true);
 
   const handleTabIndexChange = (value: number) => {
     setTabIndex(value);
+  }
+
+  const handleSoundClick = () => {
+    setActiveSound(prev => !prev);
   }
 
   return (
@@ -43,19 +52,27 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
         <div className={s.movieBanner}>
           <div className={s.background}>
             {
-              isActive &&
-              <video
-                src="/trailer.mp4"
-                autoPlay
-                width="100%"
-                height="100%"
-                muted
-                className={`${s.video} ${isActive ? s.activeVideo : ""}`}
-              />
-            }
-            {
-              !isActive &&
-              <Image src={movie.horizontalPhoto} alt="img" priority width={1920} height={1080} />
+              isActive
+                ? (
+                  <>
+                    <video
+                      src="/trailer.mp4"
+                      autoPlay
+                      width="100%"
+                      height="100%"
+                      muted={activeSound}
+                      controls
+                      loop
+                      className={`${s.video} ${isActive ? s.activeVideo : ""}`}
+                    />
+                    <div className={s.movieButtonsContainer}>
+                      <Button shape="circle" p="10px" img={!activeSound ? sound : soundDisabled} onClick={handleSoundClick} />
+                      <Button shape="circle" p="10px" img={fullScreen} />
+                    </div>
+                  </>
+                ) : (
+                  <Image src={movie.horizontalPhoto} alt="img" priority width={1920} height={1080} />
+                )
             }
           </div>
           <MovieBannerText movie={movie} className={s.textContainer} />
