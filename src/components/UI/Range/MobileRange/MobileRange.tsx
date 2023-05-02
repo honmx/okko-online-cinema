@@ -9,7 +9,7 @@ import IconButton from "../../IconButton/IconButton";
 import s from "./MobileRange.module.scss";
 
 interface Props extends CommonProps {
-  title: string;
+
 }
 
 const MobileRange: FC<Props> = ({ value, setValue, min, max, step, title, className }) => {
@@ -42,7 +42,7 @@ const MobileRange: FC<Props> = ({ value, setValue, min, max, step, title, classN
             max={max}
             step={step}
           />
-          <IconButton className={s.button} onClick={() => setActive(prev => !prev)}>
+          <IconButton className={s.button} onClick={() => setActive(false)}>
             <Image src={close} alt="close" />
           </IconButton>
         </div>

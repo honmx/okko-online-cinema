@@ -6,8 +6,8 @@ interface IInitialState {
   selectedCountry: IText;
   minRating: number;
   minCountOfRating: number;
-  producer: string;
-  actor: string;
+  selectedProducer: string;
+  selectedActor: string;
   sortBy: IText;
 }
 
@@ -16,8 +16,8 @@ const initialState: IInitialState = {
   selectedCountry: {en: "All", ru: "Все"},
   minRating: 0,
   minCountOfRating: 0,
-  producer: "",
-  actor: "",
+  selectedProducer: "",
+  selectedActor: "",
   sortBy: {en: "All", ru: "Все"},
 } 
 
@@ -37,11 +37,11 @@ const moviesFilterSlice = createSlice({
     setMinCountOfRating(state, action: PayloadAction<number>) {
       state.minCountOfRating = action.payload;
     },
-    setProducer(state, action: PayloadAction<string>) {
-      state.producer = action.payload;
+    setSelectedProducer(state, action: PayloadAction<string>) {
+      state.selectedProducer = action.payload;
     },
-    setActor(state, action: PayloadAction<string>) {
-      state.actor = action.payload;
+    setSelectedActor(state, action: PayloadAction<string>) {
+      state.selectedActor = action.payload;
     },
     setSortBy(state, action: PayloadAction<IText>) {
       state.sortBy = action.payload;
@@ -54,8 +54,8 @@ const moviesFilterSlice = createSlice({
       state.selectedCountry = {en: "All", ru: "Все"};
       state.minRating = 0;
       state.minCountOfRating = 0;
-      state.producer = "";
-      state.actor = "";
+      state.selectedProducer = "";
+      state.selectedActor = "";
       state.sortBy = {en: "All", ru: "Все"};
     }
   }
@@ -67,8 +67,8 @@ export const {
   setSelectedCountry,
   setMinRating,
   setMinCountOfRating,
-  setProducer,
-  setActor,
+  setSelectedProducer,
+  setSelectedActor,
   setSortBy,
   applyFilters,
   clearFilters,

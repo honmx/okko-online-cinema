@@ -10,7 +10,7 @@ interface Props extends CommonProps {
 
 }
 
-const Range: FC<Props> = ({ value, setValue, min, max, step, className }) => {
+const Range: FC<Props> = ({ value, setValue, min, max, step, className, title }) => {
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -25,7 +25,7 @@ const Range: FC<Props> = ({ value, setValue, min, max, step, className }) => {
   return (
     <div ref={ref} className={`${s.container} ${className}`}>
       <div className={s.valueContainer} onClick={handleClick}>
-        <p className={s.value}>{value === 0 ? "Рейтинг" : `От ${value}`}</p>
+        <p className={s.value}>{value === 0 ? title : `От ${value}`}</p>
         <Image src={arrow} alt="arrow" className={`${s.arrow} ${active ? s.activeArrow : ""}`} />
       </div>
       {

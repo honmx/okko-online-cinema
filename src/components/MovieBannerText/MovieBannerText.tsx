@@ -29,6 +29,8 @@ interface Props {
 
 const MovieBannerText: FC<Props> = ({ movie, className }) => {
 
+  if (!movie.people) return null;
+
   const producers = movie.people.filter(person => person.profession === "Режиссёр");
   const actors = movie.people.filter(person => person.profession === "Актёр").slice(0, 3);
 

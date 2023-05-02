@@ -12,10 +12,9 @@ import { subscribtions } from "@/helpers/data/subscribtions";
 import MovieBannerText from "@/components/MovieBannerText/MovieBannerText";
 import Head from "next/head";
 import Image from "next/image";
-import trailer from "../../assets/trailer.mp4";
+import { useDelay } from "@/hooks/useDelay";
 import ReactPlayer from "react-player";
 import s from "./Movie.module.scss";
-import { useDelay } from "@/hooks/useDelay";
 
 interface Props {
   movie: IMovie;
@@ -43,18 +42,20 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
       <div className={s.moviePageContainer}>
         <div className={s.movieBanner}>
           <div className={s.background}>
-            <iframe
-              width={isActive ? "100%" : "0%"}
-              height={isActive ? "100%" : "0%"}
-              src="https://www.youtube.com/embed/tTwFeGArcrs?autoplay=1&mute=1"
-              title="YouTube video player"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              className={s.video}
-            ></iframe>
+            {
+              isActive &&
+              <video
+                src="/trailer.mp4"
+                autoPlay
+                width="100%"
+                height="100%"
+                muted
+                className={`${s.video} ${isActive ? s.activeVideo : ""}`}
+              />
+            }
             {
               !isActive &&
-              <Image src={"https:" + movie.photo} alt="img" priority width={1920} height={1080} />
+              <Image src={movie.horizontalPhoto} alt="img" priority width={1920} height={1080} />
             }
           </div>
           <MovieBannerText movie={movie} className={s.textContainer} />

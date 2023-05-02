@@ -3,10 +3,10 @@
 .rangeContainer {
   position: relative;
   padding: 20px 0;
+  cursor: pointer;
 }
 
 .rangeSelect {
-  cursor: pointer;
 }
 
 .value {
@@ -28,6 +28,7 @@
   padding: 35px 15px 35px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  z-index: 10000;
 }
 
 .button {

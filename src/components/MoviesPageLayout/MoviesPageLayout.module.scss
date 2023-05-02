@@ -10,7 +10,7 @@
   justify-content: space-between;
 }
 
-@media screen and (max-width: 959px) {
+@media screen and (max-width: 1319px) {
   .header {
     flex-direction: column;
   }
@@ -58,7 +58,7 @@
   align-items: center;
 }
 
-@media screen and (max-width: 959px) {
+@media screen and (max-width: 1319px) {
   .share {
     margin: 15px 0 25px;
   }

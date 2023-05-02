@@ -17,7 +17,7 @@ interface Props {
 
 const MoviesPageLayout: FC<Props> = ({ children }) => {
 
-  const isSmaller = useSmallerDevice(959);
+  const isSmaller = useSmallerDevice(1319);
 
   const [showText, setShowText] = useState<boolean>(false);
 

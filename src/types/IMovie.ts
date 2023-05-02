@@ -1,5 +1,4 @@
 import { IGenre } from "./IGenre";
-import { IIMage } from "./IImage";
 import { IPerson } from "./IPerson";
 
 // поменять, как только будем забирать данные с бекенда 
@@ -19,7 +18,8 @@ export interface IMovie {
   rateQuantity: number;
   createdAt: Date;
   updatedAt: Date;
-  photo: string;
+  horizontalPhoto: string;
+  verticalPhoto: string;
   trailer: string;
   genres: IGenre[];
   people: IPerson[];

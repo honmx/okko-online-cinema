@@ -80,9 +80,9 @@
 .childrenContainer {
   display: flex;
   overflow-x: scroll;
-  overflow-y: hidden;
+  // overflow-y: hidden;
   margin-inline: -15px;
-  padding: 2% 15px;
+  padding: 15px;
 
   &::-webkit-scrollbar {
     display: none;

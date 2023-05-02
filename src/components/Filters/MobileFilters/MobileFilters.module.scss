@@ -1,6 +1,8 @@
 @import "../../../styles/variables.scss";
 
 .filtersContainer {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 0;
   left: -15px;
@@ -8,16 +10,36 @@
   padding-inline: 15px;
   bottom: 0;
   background-color: $primaryBlackColor;
+  height: calc(100vh - 90px);
   z-index: 1000;
 }
 
 .header {
   position: relative;
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+
+  @media screen and (max-width: 599px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .title {
+      margin-bottom: 15px;
+    }
+
+    .textButton {
+      margin-left: 0;
+    }
+  }
 }
 
 .title {
-  padding-top: 10px;
-  margin-bottom: 20px;
+}
+
+.textButton {
+  margin-left: 10px;
 }
 
 .closeButton {
@@ -32,9 +54,25 @@
   right: 0;
 }
 
+.optionsContainer {
+
+  &>* {
+    border-bottom: 1px solid $primaryGreyColor;
+    &:first-child {
+      border-top: 1px solid $primaryGreyColor;
+    }
+  }
+}
+
 .select {
 
-  &:not(:last-child) {
+}
 
-  }
+// .buttonLink {
+// }
+
+.applyButton {
+  margin-top: auto;
+  margin-bottom: 10px;
+  width: 100%;
 }

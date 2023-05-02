@@ -31,10 +31,11 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 1000;
   }
 
   &::before {
-    background: linear-gradient(180deg, transparent 70%, #000);
+    background: linear-gradient(180deg, transparent 75%, #000 98%);
   }
 
   &::after {
@@ -46,7 +47,14 @@
   }
 
   .video {
+    position: absolute;
     z-index: 10000;
+    opacity: 0;
+  }
+
+  .activeVideo {
+    position: static;
+    opacity: 1;
   }
 }
 

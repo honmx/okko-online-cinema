@@ -11,10 +11,11 @@ interface Props {
   linkHref?: string;
   image?: string;
   className?: string;
+  onClick?: () => void;
   children: ReactNode;
 }
 
-const Carousel: FC<Props> = ({ title, linkHref, image, className, children }) => {
+const Carousel: FC<Props> = ({ title, linkHref, image, className, children, onClick }) => {
 
   const { ref, isAbleToScrollLeft, isAbleToScrollRight } = useCarouselScroll();
 
@@ -40,20 +41,22 @@ const Carousel: FC<Props> = ({ title, linkHref, image, className, children }) =>
 
   return (
     <div className={`${s.carouselContainer} ${className}`}>
-      {
-        title && !linkHref && image &&
-        <div className={s.titleContainer}>
-          <Image src={image} alt="image" className={s.image} />
-          <Title variant="h2" className={s.title}>{title}</Title>
-        </div>
-      }
-      {
-        title && linkHref && !image &&
-        <Link href={linkHref} className={s.link}>
-          <Title variant="h2" className={s.title}>{title}</Title>
-          <Image src={arrow} alt="arrow" className={s.arrow} />
-        </Link>
-      }
+      <div className={s.titleContainer} onClick={onClick}>
+        {
+          title && !linkHref && image &&
+          <>
+            <Image src={image} alt="image" className={s.image} />
+            <Title variant="h2" className={s.title}>{title}</Title>
+          </>
+        }
+        {
+          title && linkHref && !image &&
+          <Link href={linkHref} className={s.link}>
+            <Title variant="h2" className={s.title}>{title}</Title>
+            <Image src={arrow} alt="arrow" className={s.arrow} />
+          </Link>
+        }
+      </div>
       <div className={s.listContainer}>
         {
           isAbleToScrollLeft &&

@@ -1,11 +1,13 @@
-
-
-.filtersContainer {
+.filtersWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.filtersContainer {
+  display: flex;
+  align-items: stretch;
+}
 
 .filters {
   display: flex;
@@ -13,7 +15,7 @@
 }
 
 .textButton {
-  margin-top: 8px;
+  margin: 8px 0 0 5px;
 }
 
 @media screen and (max-width: 959px) {

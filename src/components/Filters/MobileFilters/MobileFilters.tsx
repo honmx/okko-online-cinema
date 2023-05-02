@@ -15,7 +15,11 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import s from "./MobileFilters.module.scss";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { IText } from "@/types/IText";
-import { setMinRating, setSelectedGenre, setSortBy } from "@/store/slices/moviesFilterSlice";
+import { clearFilters, setMinCountOfRating, setMinRating, setSelectedCountry, setSelectedGenre, setSortBy } from "@/store/slices/moviesFilterSlice";
+import Link from "next/link";
+import TextButton from "@/components/UI/TextButton/TextButton";
+import { useRouter } from "next/router";
+import { areFiltersClear } from "@/helpers/areFiltersClear";
 
 interface Props {
 
@@ -24,14 +28,15 @@ interface Props {
 const MobileFilters: FC<Props> = ({ }) => {
 
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const {
-    genre,
-    country,
+    selectedGenre,
+    selectedCountry,
     minRating,
     minCountOfRating,
-    producer,
-    actor,
+    selectedProducer,
+    selectedActor,
     sortBy,
   } = useSelectedFilters();
 
@@ -41,6 +46,17 @@ const MobileFilters: FC<Props> = ({ }) => {
 
   const handleParametersClick = () => {
     setActiveParameters(prev => !prev);
+
+    if (areFiltersClear({
+      selectedGenre, selectedCountry, minRating,
+      minCountOfRating, selectedProducer, selectedActor, sortBy
+    })) return;
+
+    router.push("/movies/filters");
+  }
+
+  const handleResetFiltersClick = () => {
+    dispatch(clearFilters());
   }
 
   return (
@@ -50,35 +66,22 @@ const MobileFilters: FC<Props> = ({ }) => {
         <div className={s.filtersContainer}>
           <div className={s.header}>
             <Title className={s.title}>Фильтры</Title>
+            <TextButton fs="14px" onClick={handleResetFiltersClick} className={s.textButton}>Сбросить фильтры</TextButton>
             <Button shape="circle" img={close} p="10px" className={s.closeButton} onClick={handleParametersClick} />
           </div>
           <div className={s.optionsContainer}>
             <MobileSelect
               title="Жанры"
               values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
-              selectedValue={genre}
+              selectedValue={selectedGenre}
               setSelectedValue={(value: IText) => dispatch(setSelectedGenre(value))}
               className={s.select}
             />
-            {/* <MobileSelect
-              title="Жанры 2"
-              values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
-              selectedValue={genre1}
-              setSelectedValue={setGenre1}
-              className={s.select}
-            /> */}
-            {/* <MobileSelect
-              title="Жанры 3"
-              values={genres.map(genre => ({ value: genre.value, text: genre.title }))}
-              selectedValue={genre2}
-              setSelectedValue={setGenre2}
-              className={s.select}
-            /> */}
             <MobileSelect
-              title="Сортировка"
-              values={sortByValues.map(value => ({ ru: value.ru, en: value.en }))}
-              selectedValue={sortBy}
-              setSelectedValue={(value: IText) => dispatch(setSortBy(value))}
+              title="Страны"
+              values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
+              selectedValue={selectedGenre}
+              setSelectedValue={(value: IText) => dispatch(setSelectedCountry(value))}
               className={s.select}
             />
             <MobileRange
@@ -90,7 +93,26 @@ const MobileFilters: FC<Props> = ({ }) => {
               step={0.1}
               className={s.select}
             />
+            <MobileRange
+              title="Кол-во оценок"
+              value={minCountOfRating}
+              setValue={(value: number) => dispatch(setMinCountOfRating(value))}
+              min={0}
+              max={1000000}
+              step={50000}
+              className={s.select}
+            />
+            {/* поиск режиссеров */}
+            {/* поиск актеров */}
+            <MobileSelect
+              title="Сортировка"
+              values={sortByValues.map(value => ({ ru: value.ru, en: value.en }))}
+              selectedValue={sortBy}
+              setSelectedValue={(value: IText) => dispatch(setSortBy(value))}
+              className={s.select}
+            />
           </div>
+          <Button value="Применить фильтры" bgColor="accent" className={s.applyButton} onClick={handleParametersClick} />
         </div>
       }
       {
@@ -101,7 +123,6 @@ const MobileFilters: FC<Props> = ({ }) => {
           </IconButton>
         </div>
       }
-
     </>
   )
 };
