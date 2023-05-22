@@ -12,7 +12,9 @@ const MovieList: FC<Props> = ({ movies, className }) => {
   return (
     <div className={`${s.movieListContainer} ${className}`}>
       {
-        movies.filter(movie => movie.horizontalPhoto).map(movie => <Card item={movie} linkHref={`/movie/${movie.title}`} />)
+        movies
+          .filter(movie => movie.horizontalPhoto)
+          .map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} />)
       }
     </div>
   )

@@ -10,7 +10,7 @@ import { IMovie } from "@/types/IMovie";
 import axios from "axios";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { ParsedUrlQuery } from "querystring";
-import s from "./MoviesFilterPage.module.scss";
+import s from "./MoviesFilter.module.scss";
 import MovieList from "@/components/MovieList/MovieList";
 import dynamic from "next/dynamic";
 
@@ -20,7 +20,7 @@ interface Props {
 
 const ClientMovieList = dynamic(() => import("../../components/MovieList/MovieList"));
 
-const MoviesFilterPage: NextPageWithLayout<Props> = ({ movies }) => {
+const MoviesFilter: NextPageWithLayout<Props> = ({ movies }) => {
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -28,23 +28,23 @@ const MoviesFilterPage: NextPageWithLayout<Props> = ({ movies }) => {
   const {
     selectedGenre,
     selectedCountry,
-    minRating,
-    minCountOfRating,
+    selectedMinRating,
+    selectedMinCountOfRating,
     selectedProducer,
     selectedActor,
-    sortBy
+    selectedSortBy
   } = useSelectedFilters();
 
   useEffect(() => {
     if (selectedGenre.en === "All" && selectedCountry.en === "All"
-      && minRating === 0 && minCountOfRating === 0 && selectedProducer === ""
-      && selectedActor === "" && sortBy.en === "All"
+      && selectedMinRating === 0 && selectedMinCountOfRating === 0 && selectedProducer === ""
+      && selectedActor === "" && selectedSortBy.en === "All"
     ) router.push("/movies");
   }, [
     JSON.stringify({
       selectedGenre, selectedCountry,
-      minRating, minCountOfRating,
-      selectedProducer, selectedActor, sortBy
+      selectedMinRating, selectedMinCountOfRating,
+      selectedProducer, selectedActor, selectedSortBy
     })
   ])
 
@@ -57,14 +57,14 @@ const MoviesFilterPage: NextPageWithLayout<Props> = ({ movies }) => {
           content="Смотреть фильмы онлайн в хорошем качестве"
         />
       </Head>
-      <div>
+      <div className={s.moviesFilterContainer}>
         <ClientMovieList movies={movies} />
       </div>
     </>
   )
 };
 
-MoviesFilterPage.getLayout = (page: ReactElement) => {
+MoviesFilter.getLayout = (page: ReactElement) => {
   return (
     <MoviesPageLayout>{page}</MoviesPageLayout>
   )
@@ -99,4 +99,4 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default MoviesFilterPage;
+export default MoviesFilter;

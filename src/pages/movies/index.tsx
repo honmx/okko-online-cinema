@@ -9,11 +9,12 @@ import axios from "axios";
 import Head from "next/head";
 import s from "./Movies.module.scss";
 import { useAppDispatch } from "@/store/hooks";
-import { clearFilters, setMinRating, setSelectedGenre } from "@/store/slices/moviesFilterSlice";
+import { clearFilters, setSelectedMinRating, setSelectedGenre } from "@/store/slices/moviesFilterSlice";
 import { IGenre } from "@/types/IGenre";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import { areFiltersClear } from "@/helpers/areFiltersClear";
 
 interface Props {
   movies: IMovie[];
@@ -32,12 +33,27 @@ const Movies: NextPageWithLayout<Props> = ({ movies }) => {
   const {
     selectedGenre,
     selectedCountry,
-    minRating,
-    minCountOfRating,
+    selectedMinRating,
+    selectedMinCountOfRating,
     selectedProducer,
     selectedActor,
-    sortBy,
+    selectedSortBy,
   } = useSelectedFilters();
+
+  useEffect(() => {
+    if (areFiltersClear({
+      selectedGenre, selectedCountry, selectedMinRating,
+      selectedMinCountOfRating, selectedProducer, selectedActor, selectedSortBy
+    })) return;
+
+    router.push("/movies/filters");
+  }, [
+    JSON.stringify({
+      selectedGenre, selectedCountry,
+      selectedMinRating, selectedMinCountOfRating,
+      selectedProducer, selectedActor, selectedSortBy
+    })
+  ]);
 
   useEffect(() => {
     dispatch(clearFilters());
@@ -59,15 +75,23 @@ const Movies: NextPageWithLayout<Props> = ({ movies }) => {
             linkHref="/movies/recommended"
             className={s.carousel}
           >
-            {movies.filter(movie => movie.horizontalPhoto).slice(0, 25).map(movie => <Card key={movie.id} item={movie} linkHref={movie.title} />)}
+            {
+              movies
+                .slice(0, 25)
+                .map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} />)
+            }
           </ClientCarousel>
           <ClientCarousel
             title="Лучшее"
             linkHref="/movies/best"
-            onClick={() => dispatch(setMinRating(8))}
+            onClick={() => dispatch(setSelectedMinRating(8))}
             className={s.carousel}
           >
-            {movies.filter(movie => movie.horizontalPhoto).filter(movie => movie.rate > 8).map(movie => <Card key={movie.id} item={movie} linkHref={movie.title} />)}
+            {
+              movies
+                .filter(movie => movie.rate > 8)
+                .map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} />)
+            }
           </ClientCarousel>
         </div>
       </div>
@@ -84,7 +108,7 @@ Movies.getLayout = (page: ReactNode) => {
 export const getStaticProps: GetStaticProps = async () => {
 
   const response = await axios.get<IMovie[]>("/movie");
-  const movies = response.data;
+  const movies = response.data.filter(movie => movie.horizontalPhoto);
 
   return {
     props: {

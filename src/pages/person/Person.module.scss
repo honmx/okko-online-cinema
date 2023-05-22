@@ -1,0 +1,49 @@
+@import "../../styles/variables.scss";
+
+.personContainer {
+  position: relative;
+
+  &>*:not(:last-child) {
+    margin-bottom: 25px;
+  }
+}
+
+.personCard {
+  display: flex;
+
+  .imgWrapper {
+    width: 200px;
+    height: 320px;
+    margin-right: 20px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 25px;
+    }
+  }
+
+  .name {
+    max-width: 250px;
+  }
+
+  .profession {
+    margin-top: 5px;
+    color: $primaryFontColor
+  }
+
+  @media screen and (max-width: 599px) {
+    flex-direction: column;
+
+    .name {
+      margin-top: 10px;
+    }
+  }
+}
+
+.filtersContainer {
+  
+}
+
+.movies {}

@@ -7,17 +7,17 @@ import sort from "@/assets/sort.svg";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { IText } from "@/types/IText";
 import { useAppDispatch } from "@/store/hooks";
-import { clearFilters, setMinCountOfRating, setMinRating, setSelectedCountry, setSelectedGenre, setSortBy } from "@/store/slices/moviesFilterSlice";
+import { clearFilters, setSelectedMinCountOfRating, setSelectedMinRating, setSelectedCountry, setSelectedGenre, setSelectedSortBy } from "@/store/slices/moviesFilterSlice";
 import TextButton from "@/components/UI/TextButton/TextButton";
-import s from "./DesktopFilters.module.scss";
 import { useRouter } from "next/router";
-import { areFiltersClear } from "@/helpers/areFiltersClear";
+import CommonProps from "../IProps";
+import s from "./DesktopFilters.module.scss";
 
-interface Props {
+interface Props extends CommonProps {
 
 }
 
-const DesktopFilters: FC<Props> = ({ }) => {
+const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter = true }) => {
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -25,27 +25,12 @@ const DesktopFilters: FC<Props> = ({ }) => {
   const {
     selectedGenre,
     selectedCountry,
-    minRating,
-    minCountOfRating,
+    selectedMinRating,
+    selectedMinCountOfRating,
     selectedProducer,
     selectedActor,
-    sortBy,
+    selectedSortBy,
   } = useSelectedFilters();
-
-  useEffect(() => {
-    if (areFiltersClear({
-      selectedGenre, selectedCountry, minRating,
-      minCountOfRating, selectedProducer, selectedActor, sortBy
-    })) return;
-
-    router.push("/movies/filters");
-  }, [
-    JSON.stringify({
-      selectedGenre, selectedCountry,
-      minRating, minCountOfRating,
-      selectedProducer, selectedActor, sortBy
-    })
-  ]);
 
   return (
     <div className={s.filtersWrapper}>
@@ -69,8 +54,8 @@ const DesktopFilters: FC<Props> = ({ }) => {
           {/* minRating */}
           <DesktopRange
             title="Рейтинг"
-            value={minRating}
-            setValue={(value: number) => dispatch(setMinRating(value))}
+            value={selectedMinRating}
+            setValue={(value: number) => dispatch(setSelectedMinRating(value))}
             min={0}
             max={10}
             step={0.1}
@@ -79,31 +64,37 @@ const DesktopFilters: FC<Props> = ({ }) => {
           {/* minCountOfRating */}
           <DesktopRange
             title="Кол-во оценок"
-            value={minCountOfRating}
-            setValue={(value: number) => dispatch(setMinCountOfRating(value))}
+            value={selectedMinCountOfRating}
+            setValue={(value: number) => dispatch(setSelectedMinCountOfRating(value))}
             min={0}
             max={1000000}
             step={50000}
             className={s.select}
           />
           {/* компонент для поиска продюссера */}
-          <DesktopSelect
-            values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
-            selectedValue={selectedGenre}
-            setSelectedValue={(value: IText) => dispatch(setSelectedCountry(value))}
-            className={s.select}
-          />
+          {
+            showProducerFilter &&
+            < DesktopSelect
+              values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
+              selectedValue={selectedGenre}
+              setSelectedValue={(value: IText) => dispatch(setSelectedCountry(value))}
+              className={s.select}
+            />
+          }
           {/* компонент для поиска актера */}
-          <DesktopSelect
-            values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
-            selectedValue={selectedGenre}
-            setSelectedValue={(value: IText) => dispatch(setSelectedCountry(value))}
-            className={s.select}
-          />
+          {
+            showActorFilter &&
+            <DesktopSelect
+              values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
+              selectedValue={selectedGenre}
+              setSelectedValue={(value: IText) => dispatch(setSelectedCountry(value))}
+              className={s.select}
+            />
+          }
         </div>
         {
-          (selectedGenre.en !== "All" || selectedCountry.en !== "All" || minRating !== 0
-            || minCountOfRating !== 0 || selectedProducer !== "" || selectedActor !== "" || sortBy.en !== "All") &&
+          (selectedGenre.en !== "All" || selectedCountry.en !== "All" || selectedMinRating !== 0
+            || selectedMinCountOfRating !== 0 || selectedProducer !== "" || selectedActor !== "" || selectedSortBy.en !== "All") &&
           <TextButton
             fs="14px"
             onClick={() => dispatch(clearFilters())}
@@ -117,8 +108,8 @@ const DesktopFilters: FC<Props> = ({ }) => {
         <DesktopSelect
           img={sort}
           values={sortByValues.map(value => ({ ru: value.ru, en: value.en }))}
-          selectedValue={sortBy}
-          setSelectedValue={(value: IText) => dispatch(setSortBy(value))}
+          selectedValue={selectedSortBy}
+          setSelectedValue={(value: IText) => dispatch(setSelectedSortBy(value))}
           className={s.select}
         />
       </div>

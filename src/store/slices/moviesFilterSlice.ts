@@ -4,21 +4,21 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface IInitialState {
   selectedGenre: IText;
   selectedCountry: IText;
-  minRating: number;
-  minCountOfRating: number;
+  selectedMinRating: number;
+  selectedMinCountOfRating: number;
   selectedProducer: string;
   selectedActor: string;
-  sortBy: IText;
+  selectedSortBy: IText;
 }
 
 const initialState: IInitialState = {
   selectedGenre: {en: "All", ru: "Все"},
   selectedCountry: {en: "All", ru: "Все"},
-  minRating: 0,
-  minCountOfRating: 0,
+  selectedMinRating: 0,
+  selectedMinCountOfRating: 0,
   selectedProducer: "",
   selectedActor: "",
-  sortBy: {en: "All", ru: "Все"},
+  selectedSortBy: {en: "All", ru: "Все"},
 } 
 
 const moviesFilterSlice = createSlice({
@@ -31,11 +31,11 @@ const moviesFilterSlice = createSlice({
     setSelectedCountry(state, action: PayloadAction<IText>) {
       state.selectedCountry = action.payload;
     },
-    setMinRating(state, action: PayloadAction<number>) {
-      state.minRating = action.payload;
+    setSelectedMinRating(state, action: PayloadAction<number>) {
+      state.selectedMinRating = action.payload;
     },
-    setMinCountOfRating(state, action: PayloadAction<number>) {
-      state.minCountOfRating = action.payload;
+    setSelectedMinCountOfRating(state, action: PayloadAction<number>) {
+      state.selectedMinCountOfRating = action.payload;
     },
     setSelectedProducer(state, action: PayloadAction<string>) {
       state.selectedProducer = action.payload;
@@ -43,8 +43,8 @@ const moviesFilterSlice = createSlice({
     setSelectedActor(state, action: PayloadAction<string>) {
       state.selectedActor = action.payload;
     },
-    setSortBy(state, action: PayloadAction<IText>) {
-      state.sortBy = action.payload;
+    setSelectedSortBy(state, action: PayloadAction<IText>) {
+      state.selectedSortBy = action.payload;
     },
     applyFilters(state, action: PayloadAction<IInitialState>) {
       return action.payload;
@@ -52,11 +52,11 @@ const moviesFilterSlice = createSlice({
     clearFilters(state) {
       state.selectedGenre = {en: "All", ru: "Все"};
       state.selectedCountry = {en: "All", ru: "Все"};
-      state.minRating = 0;
-      state.minCountOfRating = 0;
+      state.selectedMinRating = 0;
+      state.selectedMinCountOfRating = 0;
       state.selectedProducer = "";
       state.selectedActor = "";
-      state.sortBy = {en: "All", ru: "Все"};
+      state.selectedSortBy = {en: "All", ru: "Все"};
     }
   }
 });
@@ -65,11 +65,11 @@ export default moviesFilterSlice.reducer;
 export const {
   setSelectedGenre,
   setSelectedCountry,
-  setMinRating,
-  setMinCountOfRating,
+  setSelectedMinRating,
+  setSelectedMinCountOfRating,
   setSelectedProducer,
   setSelectedActor,
-  setSortBy,
+  setSelectedSortBy,
   applyFilters,
   clearFilters,
 } = moviesFilterSlice.actions;

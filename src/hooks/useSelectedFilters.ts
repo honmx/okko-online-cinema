@@ -3,19 +3,19 @@ import { useAppSelector } from "@/store/hooks";
 export const useSelectedFilters = () => {
   const selectedGenre = useAppSelector(state => state.moviesFilters.selectedGenre);
   const selectedCountry = useAppSelector(state => state.moviesFilters.selectedCountry);
-  const minRating = useAppSelector(state => state.moviesFilters.minRating);
-  const minCountOfRating = useAppSelector(state => state.moviesFilters.minCountOfRating);
+  const selectedMinRating = useAppSelector(state => state.moviesFilters.selectedMinRating);
+  const selectedMinCountOfRating = useAppSelector(state => state.moviesFilters.selectedMinCountOfRating);
   const selectedProducer = useAppSelector(state => state.moviesFilters.selectedProducer);
   const selectedActor = useAppSelector(state => state.moviesFilters.selectedActor);
-  const sortBy = useAppSelector(state => state.moviesFilters.sortBy);
+  const selectedSortBy = useAppSelector(state => state.moviesFilters.selectedSortBy);
 
   return {
     selectedGenre,
     selectedCountry,
-    minRating,
-    minCountOfRating,
+    selectedMinRating,
+    selectedMinCountOfRating,
     selectedProducer,
     selectedActor,
-    sortBy,
+    selectedSortBy,
   }
 }
