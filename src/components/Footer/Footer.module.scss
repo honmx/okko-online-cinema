@@ -96,6 +96,11 @@
   }
 }
 
+.rights {
+  position: relative;
+  z-index: 10000;
+}
+
 .links {
   display: flex;
 
