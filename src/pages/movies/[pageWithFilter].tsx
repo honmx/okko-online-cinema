@@ -13,6 +13,8 @@ import { ParsedUrlQuery } from "querystring";
 import s from "./MoviesFilter.module.scss";
 import MovieList from "@/components/MovieList/MovieList";
 import dynamic from "next/dynamic";
+import entitiesService from "@/services/entitiesService";
+import { areFiltersClear } from "@/helpers/areFiltersClear";
 
 interface Props {
   movies: IMovie[];
@@ -36,10 +38,10 @@ const MoviesFilter: NextPageWithLayout<Props> = ({ movies }) => {
   } = useSelectedFilters();
 
   useEffect(() => {
-    if (selectedGenre.en === "All" && selectedCountry.en === "All"
-      && selectedMinRating === 0 && selectedMinCountOfRating === 0 && selectedProducer === ""
-      && selectedActor === "" && selectedSortBy.en === "All"
-    ) router.push("/movies");
+    if (areFiltersClear({
+      selectedGenre, selectedCountry, selectedMinRating,
+      selectedMinCountOfRating, selectedProducer, selectedActor, selectedSortBy
+    })) router.push("/movies");
   }, [
     JSON.stringify({
       selectedGenre, selectedCountry,
@@ -76,7 +78,7 @@ interface Params extends ParsedUrlQuery {
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
-  const { data: movies } = await axios.get<IMovie[]>("/movie");
+  const movies = await entitiesService.getMovies();
 
   return {
     paths: movies.map(movie => ({
@@ -90,7 +92,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const { data: movies } = await axios.get<IMovie[]>("/movie");
+  const movies = await entitiesService.getMovies();
 
   return {
     props: {

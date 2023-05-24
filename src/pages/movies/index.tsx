@@ -15,6 +15,7 @@ import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { areFiltersClear } from "@/helpers/areFiltersClear";
+import entitiesService from "@/services/entitiesService";
 
 interface Props {
   movies: IMovie[];
@@ -107,12 +108,11 @@ Movies.getLayout = (page: ReactNode) => {
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const response = await axios.get<IMovie[]>("/movie");
-  const movies = response.data.filter(movie => movie.horizontalPhoto);
+  const movies = await entitiesService.getMovies();
 
   return {
     props: {
-      movies
+      movies: movies?.filter(movie => movie.horizontalPhoto)
     }
   }
 }

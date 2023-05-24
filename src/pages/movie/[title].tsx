@@ -19,6 +19,7 @@ import sound from "@/assets/sound.svg";
 import soundDisabled from "@/assets/soundDisabled.svg";
 import fullScreen from "@/assets/fullScreen.svg";
 import s from "./Movie.module.scss";
+import entitiesService from "@/services/entitiesService";
 
 interface Props {
   movie: IMovie;
@@ -115,7 +116,7 @@ interface Params extends ParsedUrlQuery {
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
-  const { data: movies } = await axios.get<IMovie[]>("/movie");
+  const movies = await entitiesService.getMovies();
 
   return {
     paths: movies.map(movie => ({
@@ -129,8 +130,8 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 
-  const title = context.params?.title;
-  const { data: movie } = await axios.get<IMovie>(`/movie/title/${title}`);
+  const title = context.params?.title as string;
+  const movie = await entitiesService.getMovieByTitle(title);
 
   return {
     props: {

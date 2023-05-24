@@ -12,6 +12,7 @@ import Range from "@/components/UI/Range/DesktopRange/DesktopRange";
 import DesktopFilters from "@/components/Filters/DesktopFilters/DesktopFilters";
 import MobileFilters from "@/components/Filters/MobileFilters/MobileFilters";
 import MovieList from "@/components/MovieList/MovieList";
+import entitiesService from "@/services/entitiesService";
 
 interface Props {
   person: IPerson;
@@ -73,12 +74,12 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 
+  // TODO - refactor
   const personName = context.params?.personName;
   const personResponse = await axios.get<IPerson[]>("/movie/12/people");
   const person = personResponse.data[2];
 
-  const moviesResponse = await axios.get<IMovie[]>(`/movie/human/${person.fullName}`);
-  const movies = moviesResponse.data;
+  const movies = await entitiesService.getMoviesByPersonName(person.fullName);
 
   return {
     props: {
