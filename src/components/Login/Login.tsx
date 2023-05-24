@@ -1,115 +1,66 @@
-import React, {FC, useEffect} from 'react';
+import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import close from '@/assets/close.svg';
-import { loginLinks } from '@/helpers/data/loginLinks';
 import s from "./Login.module.scss";
 import Image from "next/image";
-import sberbank from '@/assets/sberbank.svg';
 import vkontakte from '@/assets/vk.svg';
 import google from '@/assets/google.svg';
-import yandex from '@/assets/yandex.svg';
-import odnoklassniki from '@/assets/odnoklassniki.svg';
-import twitter from '@/assets/twitter.svg';
-import IconButton from "@/components/UI/IconButton/IconButton";
 import Title from "@/components/UI/Title/Title";
+import Button from '../UI/Button/Button';
+import InputField from '../UI/InputField/InputField';
+import authService from '@/services/authService';
+import CheckEmailForm from '../CheckEmailForm/CheckEmailForm';
+import RegisterForm from '../RegisterForm/RegisterForm';
 
-type LoginProps = {
+interface Props {
   onClose: () => void;
 }
 
-const Login: FC<LoginProps> = ({onClose}) => {
+const Login: FC<Props> = ({ onClose }) => {
 
-  const getImageSrc = (icon: string) => {
-    switch (icon) {
-      case 'sberbank':
-        return sberbank;
-      case 'vkontakte':
-        return vkontakte;
-      case 'google':
-        return google;
-      case 'yandex':
-        return yandex;
-      case 'twitter':
-        return twitter;
-      case 'odnoklassniki':
-        return odnoklassniki;
-      default:
-        return '';
-    }
-  };
+  const [emailExists, setEmailExists] = useState<boolean | null>(null);
 
   const handleCloseClick = () => {
     onClose();
   };
 
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, []);
-
   return (
-    <div className={s.login}>
-      <div className={s.login__close} onClick={handleCloseClick}>
-        <IconButton>
-          <Image width={18} height={18} alt={close} src={close} />
-        </IconButton>
-      </div>
-      <div className={s.login__block}>
-        <div className={s.login__block_title}>
-          <Title variant={"h1"} fw={700} children={"ВХОД ИЛИ РЕГИСТРАЦИЯ"} />
+    <div className={s.loginWrapper}>
+      <div className={s.loginContainer}>
+        <div className={s.closeBtnContainer}>
+          <Button shape="circle" p="13px" img={close} onClick={handleCloseClick} />
         </div>
-        <div className={s.login__block_input}>
-          <div className={s.login__block_input_area}>
-            <Title variant={"h2"} fw={600} children={"Войдите или зарегистрируйтесь"} />
-            <p>
-              Чтобы начать пользоваться сервисом Okko
-            </p>
-            <form>
-              <input type={'text'} placeholder={'Электронная почти или телефон'} />
-              <button>
-                <span>
-                  Продолжить
-                </span>
-              </button>
-            </form>
-            <ul className={s.login__block_input_area_links}>
-              {
-                loginLinks.map(link => (
-                  <li key={link.href}
-                  >
-                    <CustomLink href={link.href} className={s.link}>
-                      <Image width={20} height={20} src={getImageSrc(link.icon)} alt={link.icon} />
-                      <span>{link.text}</span>
-                    </CustomLink>
-                  </li>
-                ))
-
-              }
-            </ul>
-            <div className={s.login__block_input_area_policy}>
-              <div>
-                <p className={s.agreement}>
-                  <span>Продолжая, я соглашаюсь c</span>
-                  <CustomLink href='/terms'>
-                    Пользовательским соглашением
-                  </CustomLink>
-                  <span>и</span>
-                  <CustomLink href='/privacy'>
-                    Политикой конфиденциальности
-                  </CustomLink>
-                </p>
-              </div>
-              <div className={s.login__block_input_area_newsletter}>
-                <input type="checkbox" name="news" id="news" />
-                <label htmlFor="news"><span>Хочу узнавать о новинках и актуальных предложениях в соответствии с</span>
-                  <CustomLink href={'/notifications'}>
-                    Правилами рассылок
-                  </CustomLink>
-                </label>
-              </div>
+        <div className={s.loginTitleContainer}>
+          <Title fw={400} fs="20px">ВХОД ИЛИ РЕГИСТРАЦИЯ</Title>
+        </div>
+        <div className={s.authorizeContainer}>
+          <div className={s.authorizeCard}>
+            <Title fs="24px" className={s.loginOrRegisterTitle}>Войдите или зарегистрируйтесь</Title>
+            <p>Чтобы начать пользоваться сервисом Okko</p>
+            {
+              emailExists === null &&
+              <CheckEmailForm setEmailExists={setEmailExists} className={s.form} />
+            }
+            {
+              emailExists === false &&
+              <RegisterForm className={s.form} />
+            }
+            {
+              emailExists === null && <>
+                <CustomLink href="/" target="_blank" className={s.loginWith}>
+                  <Image src={vkontakte} alt="vk" />
+                  Войти через VK
+                </CustomLink>
+                <CustomLink href="/" target="_blank" className={s.loginWith}>
+                  <Image src={google} alt="google" />
+                  Войти через Google
+                </CustomLink>
+              </>
+            }
+            <div className={s.agreement}>
+              Продолжая, я соглашаюсь с
+              <CustomLink href="/">Пользовательским соглашением</CustomLink>
+              и <CustomLink href="/">Политикой конфиденциальности</CustomLink>
             </div>
           </div>
         </div>
@@ -117,4 +68,5 @@ const Login: FC<LoginProps> = ({onClose}) => {
     </div>
   );
 }
+
 export default Login;

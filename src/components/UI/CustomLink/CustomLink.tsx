@@ -4,14 +4,15 @@ import Link from "next/link";
 
 interface Props {
   href: string;
+  target?: "_blank" | "_parent" | "_self" | "_top";
   className?: string;
-  children: ReactNode
+  children: ReactNode;
 }
 
-const CustomLink: FC<Props> = ({ href, className, children }) => {
+const CustomLink: FC<Props> = ({ href, target, className, children }) => {
   return (
     <div className={`${s.linkContainer} ${className}`}>
-      <Link href={href}>{children}</Link>
+      <Link href={href} target={target && target}>{children}</Link>
     </div>
   )
 };

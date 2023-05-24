@@ -8,19 +8,21 @@ interface Props {
   p?: string;
   shape?: "circle" | "rectangle";
   img?: string;
+  disabled?: boolean;
   className?: string;
   onClick?: () => void;
 }
 
-const Button: FC<Props> = ({ value, bgColor, p, shape, img, className, onClick }) => {
+const Button: FC<Props> = ({ value, bgColor, p, shape, img, disabled, className, onClick }) => {
   return (
-    <div className={`${s.buttonWrapper} ${className} ${shape === "circle" && s.circle}`}>
+    <div className={`${s.buttonWrapper} ${className} ${shape === "circle" && s.circle} ${disabled && s.disabled}`}>
       <div className={`${s.buttonOuterContainer}`}>
         <div className={s.buttonInnerContainer}>
           <button
             className={`${bgColor === "accent" ? s.accentBgColor : s.primaryBgColor} ${s.button}`}
             style={{padding: p && p}}
             onClick={onClick && onClick}
+            disabled={disabled && disabled}
           >
             {
               img &&

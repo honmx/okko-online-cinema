@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import Image from "next/image";
 import Button from "@/components/UI/Button/Button";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
@@ -13,7 +13,6 @@ import main_logo from "@/assets/main_logo.png";
 import search from "@/assets/search_icon.svg";
 import close from "@/assets/close.svg";
 import s from "./Header.module.scss";
-import Search from "@/components/Search/Search";
 import Burger from "@/components/Burger/Burger";
 import Login from "@/components/Login/Login";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
@@ -22,9 +21,13 @@ import SubscriptionSection from "@/components/SubscriptionSection/SubscriptionSe
 import Toggle from '../UI/Toggle/Toggle';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { toggleLanguage } from '@/store/slices/languageSlice';
-import { GetStaticProps } from 'next';
+import { useScrollStart } from '@/hooks/useScrollStart';
 
-const Header = () => {
+interface Props {
+
+}
+
+const Header: FC<Props> = () => {
 
   const router = useRouter();
 
@@ -35,15 +38,12 @@ const Header = () => {
 
   const lang = useAppSelector(state => state.language.language);
 
-  const [searchShowing, setSearchShowing] = useState<boolean>(false);
   const [burgerShowing, setBurgerShowing] = useState<boolean>(false);
   const [loginShowing, setLoginShowing] = useState<boolean>(false);
   const [promocodeShowing, setPromoCodeShowing] = useState<boolean>(false);
   const [subscriptionShowing, setSubscriptionShowing] = useState<boolean>(false);
 
-  const handleSearchIconClick = () => {
-    setSearchShowing(prevState => !prevState);
-  };
+  useScrollStart(loginShowing || promocodeShowing || subscriptionShowing);
 
   const handleBurgerClick = () => {
     setBurgerShowing(prevState => !prevState);
@@ -57,7 +57,6 @@ const Header = () => {
     setPromoCodeShowing(prevState => !prevState);
   }
 
-
   const handleSubscriptionClick = () => {
     setSubscriptionShowing(prevState => !prevState);
   }
@@ -68,12 +67,8 @@ const Header = () => {
         <Link className={s.logo} href="/">
           <Image src={main_logo} width={85} height={34} alt="okko" />
         </Link>
-        {searchShowing && !isSmaller &&
-          <div className={s.search_desktop}>
-            <Search />
-          </div>
-        }
-        {!searchShowing && !isSmaller &&
+        {
+          !isSmaller &&
           <ul className={s.links}>
             {
               headerLinks.map(link => (
@@ -86,19 +81,10 @@ const Header = () => {
           </ul>
         }
         <div className={s.right_part}>
-          <div onClick={handleSearchIconClick}>
-            {
-              searchShowing &&
-              <IconButton>
-                <Image width={25} height={25} src={close} alt="search" />
-              </IconButton>
-            }
-            {
-              !searchShowing &&
+          <div>
               <IconButton>
                 <Image width={30} height={30} src={search} alt="search" />
               </IconButton>
-            }
           </div>
           {
             !isSmaller &&
@@ -123,7 +109,8 @@ const Header = () => {
             <div className={s.subscription__after}></div>
           }
           {/*todo при открытие бургера убирать логин и поиск, добовлять кнопку подписка */}
-          {!isSmaller &&
+          {
+            !isSmaller &&
             <div onClick={handlePromocodeClick}>
               <IconButton className={s.promo}>
                 <Image width={30} height={30} src={gift} alt="promocode" />
@@ -135,12 +122,14 @@ const Header = () => {
           <div onClick={handleLoginClick}>
             <IconButton className={s.login}>
               <Image width={30} height={30} src={login} alt="gift" />
-              {!isSmaller &&
+              {
+                !isSmaller &&
                 <span>Войти</span>
               }
             </IconButton>
           </div>
-          {isSmaller &&
+          {
+            isSmaller &&
             <div onClick={handleBurgerClick}>
               <IconButton className={s.burger}>
                 {
@@ -155,14 +144,6 @@ const Header = () => {
 
         </div>
       </nav>
-      {
-        searchShowing && isSmaller &&
-        <div className={s.search_mobile}>
-          <div>
-            <Search />
-          </div>
-        </div>
-      }
       {
         burgerShowing &&
         <div className={s.burger_container + (burgerShowing ? '' : ' ' + s.hidden)}>
@@ -193,20 +174,8 @@ const Header = () => {
           </div>
         </div>
       }
-
     </div>
   );
 };
 
 export default Header;
-
-export const getStaticProps: GetStaticProps = () => {
-
-    
-
-  return {
-    props: {
-
-    }
-  }
-}

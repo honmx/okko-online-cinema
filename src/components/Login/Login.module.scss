@@ -1,196 +1,91 @@
-.login {
-  position: static;
+@import "../../styles/variables.scss";
+
+.loginWrapper {
   display: flex;
   justify-content: flex-end;
   height: 100%;
-  overflow: auto;
+}
 
-  &__close {
-    margin-top: 16px;
-    margin-right: 16px;
-    background-color: rgba(139, 136, 146, .32);;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.loginContainer {
+  position: relative;
+  background-color: $primaryDarkGreyColor;
+  max-width: 550px;
+}
+
+.closeBtnContainer {
+  position: absolute;
+  top: 15px;
+  left: -75px;
+}
+
+.loginTitleContainer {
+  padding: 25px;
+  text-align: center;
+  background-color: rgba($color: $primaryGreyColor, $alpha: 0.5)
+}
+
+.authorizeContainer {
+  padding: 40px;
+  margin: 35px 50px auto;
+  background-color: rgba($color: $primaryGreyColor, $alpha: 0.5);
+  border-radius: 15px;
+}
+
+.authorizeCard {
+
+  &>*:not(:last-child) {
+    margin-bottom: 10px;
   }
+}
 
-  &__block {
-    height: 100vh;
-    background-color: #101011;
-    min-width: 720px;
-    width: 45%;
-    max-width: 900px;
-    padding-bottom: 40px;
-    overflow-x: hidden;
+.loginOrRegisterTitle {}
 
-    &_title {
-      background-color: #1b1a1d;
-      color: rgba(255, 255, 255, .96);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      height: 60px;
+.emailInputField {
+  width: calc(100% - 5px);
+  margin-inline: 5px;
+}
 
-      & h2 {
-        font-size: 16px;
-        line-height: 24px;
-        font-family: "OKKO Sans Medium", sans-serif;
-        letter-spacing: 1px;
-      }
-    }
 
-    &_input {
-      color: rgba(255, 255, 255, .96);
-      padding-left: 80px;
-      padding-right: 80px;
-      padding-top: 40px;
+.form {
 
-      &_area {
-        background: #1b1a1d;
-        padding: 32px 40px;
-        border-radius: 8px;
-        box-shadow: 0 1px 4px 0 black;
+  &>div {
+    width: 100%;
+    margin-top: 5px;
 
-        & h2 {
-          font-size: 24px;
-          line-height: 30px;
-        }
-
-        & p {
-          color: rgba(255, 255, 255, .78);
-          font-size: 16px;
-          line-height: 16px;
-          font-family: "OKKO Sans Regular", sans-serif;
-          margin-bottom: 20px;
-        }
-
-        & form input {
-          margin-bottom: 5px;
-          color: rgba(255, 255, 255, .96);
-          caret-color: rgba(255, 255, 255, .96);
-          background-color: rgba(139, 136, 146, .32);
-          border: 2px solid transparent;
-          border-radius: 8px;
-          font-size: 16px;
-          line-height: 24px;
-          font-family: "OKKO Sans Regular", sans-serif;
-          box-sizing: border-box;
-          width: 100%;
-          padding-left: 14px;
-          height: 50px;
-        }
-
-        & form button {
-          border: 2px solid transparent;
-          border-radius: 8px;
-          width: 100%;
-          height: 52px;
-          background: linear-gradient(26.57deg, #3c1a70 0%, rgba(93, 14, 245, .83));
-          opacity: .5;
-
-          & span {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            vertical-align: baseline;
-            text-rendering: optimizeLegibility;
-            color: rgba(255, 255, 255, .96);
-            font-size: 18px;
-            line-height: 24px;
-          }
-        }
-
-        &_links {
-          display: grid;
-          border-top: 1px solid rgba(140, 132, 147, .2);
-          padding-top: 24px;
-          grid-column-gap: 10px;
-          grid-row-gap: 14px;
-          grid-template-columns: repeat(5, 1fr);
-          justify-items: center;
-
-          :first-child {
-            grid-column: 1/-1;
-          }
-          & li{
-            width: 100%;
-            height: 40px;
-          }
-
-          & .link {
-            background-color: transparent;
-            border: 1px solid rgba(139, 136, 146, 0.32);
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            padding: 8px 0;
-            & a {
-
-              width: 100%;
-              justify-content: center;
-            }
-            & span {
-              color: rgba(255, 255, 255, 0.96);
-              font-size: 16px;
-              font-weight: 400;
-            }
-
-            &:not(:first-child) {
-              & img {
-                margin-top: 6px;
-              }
-            }
-          }
-        }
-
-        &_policy {
-          color: rgba(255, 255, 255, .56);
-          font-size: 15px;
-          line-height: 18px;
-
-          & a {
-            color: rgba(255, 255, 255, .56);
-            text-decoration: none;
-          }
-
-          & p {
-            margin-bottom: 4px;
-          }
-        }
-
-        &_newsletter {
-          display: flex;
-          align-items: flex-start;
-
-          & > * {
-            display: inline-block;
-            font-size: 12px;
-            color: #999;
-            margin-right: 5px;
-          }
-
-          & input {
-            margin-top: 0;
-            margin-right: 6px;
-            accent-color: #5d0ef5;
-          }
+    &:hover {
+      &>div {
+        &>div {
+          background-color: rgba($color: $primaryDarkGreyColor, $alpha: 0.85) !important;
         }
       }
     }
   }
 }
 
-.agreement {
-  line-height: 0;
+.loginWith {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $primaryGreyColor;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
 
-  & > * {
+  img {
+    margin-right: 10px;
+  }
+}
+
+.agreement {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+
+  &>* {
     display: inline-block;
-    font-size: 12px;
-    color: #999;
-    margin-right: 5px;
+  }
+
+  &>*:not(:last-child) {
+    margin-inline: 5px;
   }
 }

@@ -1,8 +1,7 @@
 @import "../../../styles/variables.scss";
 
 .buttonWrapper {
-  // display: inline-flex;
-  // align-items: center;
+  position: relative;
   overflow: hidden;
 }
 
@@ -110,5 +109,36 @@
   * {
     border-radius: 100vw;
     aspect-ratio: 1;
+  }
+}
+
+.disabled {
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    z-index: 1000000;
+  }
+
+  button {
+    color: rgba($color: $accentWhiteFontColor, $alpha: 0.5);
+    background: linear-gradient(65deg, rgba($color: $accentPurpleColor, $alpha: 0.5), rgba($color: $accentPurpleColor, $alpha: 0.25));
+  }
+
+  &:hover {
+
+    &:hover {
+      &>div {
+        &>div {
+          background-color: rgba($color: $primaryDarkGreyColor, $alpha: 0.15) !important;
+        }
+      }
+    }
+
   }
 }

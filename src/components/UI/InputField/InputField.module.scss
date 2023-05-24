@@ -1,0 +1,27 @@
+@import "../../../styles/variables.scss";
+
+.inputFieldWrapper {
+  
+
+  input {
+    width: inherit;
+    padding: 10px;
+    border-radius: 10px;
+    border: 0px solid $primaryDarkGreyColor;
+    background-color: rgba($color: $accentWhiteColor, $alpha: 0.3);
+    color: rgba($color: $accentWhiteColor, $alpha: 0.75);
+    font-weight: 700;
+    transition: all 0.15s ease;
+    
+    &:focus {
+      outline: none;
+      border: none;
+      outline: 3px solid $primaryDarkGreyColor;
+    }
+    
+    &::placeholder {
+      font-weight: 700;
+      color: rgba($color: $accentWhiteColor, $alpha: 0.5);
+    }
+  }
+}
