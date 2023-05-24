@@ -11,6 +11,7 @@ import InputField from '../UI/InputField/InputField';
 import authService from '@/services/authService';
 import CheckEmailForm from '../CheckEmailForm/CheckEmailForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import LoginForm from '../LoginForm/LoginForm';
 
 interface Props {
   onClose: () => void;
@@ -31,11 +32,19 @@ const Login: FC<Props> = ({ onClose }) => {
           <Button shape="circle" p="13px" img={close} onClick={handleCloseClick} />
         </div>
         <div className={s.loginTitleContainer}>
-          <Title fw={400} fs="20px">ВХОД ИЛИ РЕГИСТРАЦИЯ</Title>
+          <Title fw={400} fs="20px">
+            {emailExists === null && "ВХОД ИЛИ РЕГИСТРАЦИЯ"}
+            {emailExists === false && "РЕГИСТРАЦИЯ"}
+            {emailExists && "ВХОД"}
+          </Title>
         </div>
         <div className={s.authorizeContainer}>
           <div className={s.authorizeCard}>
-            <Title fs="24px" className={s.loginOrRegisterTitle}>Войдите или зарегистрируйтесь</Title>
+            <Title fs="24px" className={s.loginOrRegisterTitle}>
+              {emailExists === null && "Войдите или зарегистрируйтесь"}
+              {emailExists === false && "Зарегиструйтесь"}
+              {emailExists && "Войдите"}
+            </Title>
             <p>Чтобы начать пользоваться сервисом Okko</p>
             {
               emailExists === null &&
@@ -44,6 +53,10 @@ const Login: FC<Props> = ({ onClose }) => {
             {
               emailExists === false &&
               <RegisterForm className={s.form} />
+            }
+            {
+              emailExists &&
+              <LoginForm className={s.form} />
             }
             {
               emailExists === null && <>

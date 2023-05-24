@@ -1,33 +1,29 @@
-import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
-import s from "./RegisterForm.module.scss";
+import React, { FC, FormEvent, useState } from "react";
+import s from "./LoginForm.module.scss";
+import { useDisabledButton } from "@/hooks/useDisabledButton";
 import InputField from "../UI/InputField/InputField";
 import Button from "../UI/Button/Button";
-import { useDisabledButton } from "@/hooks/useDisabledButton";
-import authService from "@/services/authService";
 
 interface Props {
   className?: string;
 }
 
-const RegisterForm: FC<Props> = ({ className }) => {
-
+const LoginForm: FC<Props> = ({ className }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [passwordRepeat, setPasswordRepeat] = useState<string>("");
 
-  const [isDisabled, setIsDisabled] = useDisabledButton([email, password, passwordRepeat]);
+  const [isDisabled, setIsDisabled] = useDisabledButton([email, password]);
 
   const handleEmailChange = (value: string) => setEmail(value);
   const handlePasswordChange = (value: string) => setPassword(value);
-  const handlePasswordRepeatChange = (value: string) => setPasswordRepeat(value);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 
     e.preventDefault();
 
     setIsDisabled(true);
     
-    const res = await authService.register(email, password);
+    // 
 
     setIsDisabled(false);
   }
@@ -46,12 +42,6 @@ const RegisterForm: FC<Props> = ({ className }) => {
         value={password}
         onChange={handlePasswordChange}
       />
-      <InputField
-        type="text"
-        placeholder="Повторите пароль"
-        value={passwordRepeat}
-        onChange={handlePasswordRepeatChange}
-      />
       <Button
         bgColor="accent"
         className={`${isDisabled && s.disabledBtn}`}
@@ -62,4 +52,4 @@ const RegisterForm: FC<Props> = ({ className }) => {
   )
 };
 
-export default RegisterForm;
+export default LoginForm;

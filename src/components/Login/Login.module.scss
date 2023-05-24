@@ -18,6 +18,24 @@
   left: -75px;
 }
 
+@media screen and (max-width: 640px) {
+  .closeBtnContainer {
+    top: 8px;
+    left: 10px;
+
+      &>div {
+        &:hover {
+          &>div {
+            &>div {
+              background-color: rgba($color: $primaryDarkGreyColor, $alpha: 0.9) !important;
+            }
+          }
+        }
+      }
+    
+  }
+}
+
 .loginTitleContainer {
   padding: 25px;
   text-align: center;

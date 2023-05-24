@@ -22,11 +22,13 @@ const CheckEmailForm: FC<Props> = ({ setEmailExists, className }) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    await authService.logout();
+
     setIsDisabled(true);
     var result = await authService.checkEmail(value.trim());
 
     if (result) setEmailExists(true);
-    else setEmailExists(false);
+    else if (result === false) setEmailExists(false);
 
     setIsDisabled(false);
   }

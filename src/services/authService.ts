@@ -1,6 +1,6 @@
 import $authAPI from "@/http/auth"
 
-const checkEmail = async (email: string): Promise<boolean> => {
+const checkEmail = async (email: string): Promise<boolean | void> => {
 
   try {
     const { data: result } = await $authAPI.get(`/check/${email}`);
@@ -8,8 +8,9 @@ const checkEmail = async (email: string): Promise<boolean> => {
     console.log(result);
 
     return !!result;
+
   } catch (error) {
-    return false; 
+    console.log(error);
   }
 }
 
@@ -30,5 +31,13 @@ const register = async (email: string, password: string) => {
   }
 }
 
+const logout = async () => {
+  try {
+    await $authAPI.post("/logout");
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-export default { checkEmail, register };
+
+export default { checkEmail, register, logout };

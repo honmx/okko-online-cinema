@@ -10,6 +10,7 @@ import { genres } from "@/helpers/data/genres";
 import axios from "axios";
 import s from "./Home.module.scss";
 import dynamic from "next/dynamic";
+import entitiesService from "@/services/entitiesService";
 
 interface Props {
   movies: IMovie[];
@@ -57,8 +58,7 @@ const Home: NextPage<Props> = ({ movies }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await axios.get<IMovie[]>("/movie")
-  const movies = response.data;
+  const movies = await entitiesService.getMovies();
 
   return {
     props: {
