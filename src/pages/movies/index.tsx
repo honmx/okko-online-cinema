@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import MoviesPageLayout from "@/components/MoviesPageLayout/MoviesPageLayout";
 import Carousel from "@/components/UI/Carousel/Carousel";
@@ -9,13 +9,14 @@ import axios from "axios";
 import Head from "next/head";
 import s from "./Movies.module.scss";
 import { useAppDispatch } from "@/store/hooks";
-import { clearFilters, setSelectedMinRating, setSelectedGenre } from "@/store/slices/moviesFilterSlice";
+import { clearFilters, setSelectedMinRating, setSelectedGenre, setSelectedActor } from "@/store/slices/moviesFilterSlice";
 import { IGenre } from "@/types/IGenre";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { areFiltersClear } from "@/helpers/areFiltersClear";
 import entitiesService from "@/services/entitiesService";
+import AutoSuggestModal from "@/components/UI/AutoSuggestModal/AutoSuggestModal";
 
 interface Props {
   movies: IMovie[];

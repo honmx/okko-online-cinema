@@ -15,6 +15,7 @@ import MovieList from "@/components/MovieList/MovieList";
 import dynamic from "next/dynamic";
 import entitiesService from "@/services/entitiesService";
 import { areFiltersClear } from "@/helpers/areFiltersClear";
+import AutoSuggestModal from "@/components/UI/AutoSuggestModal/AutoSuggestModal";
 
 interface Props {
   movies: IMovie[];

@@ -1,8 +1,6 @@
 @import "../../../styles/variables.scss";
 
 .inputFieldWrapper {
-  
-
   input {
     width: inherit;
     padding: 10px;
@@ -22,6 +20,20 @@
     &::placeholder {
       font-weight: 700;
       color: rgba($color: $accentWhiteColor, $alpha: 0.5);
+    }
+  }
+}
+
+.transparent {
+  input {
+    background-color: transparent;
+    border-radius: 0;
+    border-bottom: 1px solid $primaryDarkGreyColor;
+    transition: all 0.15s ease;
+
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid $primaryDarkGreyColor; 
     }
   }
 }

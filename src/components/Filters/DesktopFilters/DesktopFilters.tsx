@@ -12,6 +12,8 @@ import TextButton from "@/components/UI/TextButton/TextButton";
 import { useRouter } from "next/router";
 import CommonProps from "../IProps";
 import s from "./DesktopFilters.module.scss";
+import AutoSuggestSelectDesktop from "@/components/UI/AutoSuggestSelect/AutoSuggestSelectDesktop/AutoSuggestSelectDesktop";
+import AutoSuggestModal from "@/components/UI/AutoSuggestModal/AutoSuggestModal";
 
 interface Props extends CommonProps {
 
@@ -21,7 +23,7 @@ const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter 
 
   const dispatch = useAppDispatch();
   const router = useRouter();
-
+  
   const {
     selectedGenre,
     selectedCountry,
@@ -31,6 +33,17 @@ const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter 
     selectedActor,
     selectedSortBy,
   } = useSelectedFilters();
+  
+  const [isProducerModalActive, setIsProducerModalActive] = useState<boolean>(false);
+  const [isActorModalActive, setIsActorModalActive] = useState<boolean>(false);
+
+  const handleSelectProducerClick = () => {
+    setIsProducerModalActive(prev => !prev);
+  }
+
+  const handleSelectActorClick = () => {
+    setIsActorModalActive(prev => !prev);
+  }
 
   return (
     <div className={s.filtersWrapper}>
@@ -74,20 +87,20 @@ const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter 
           {/* компонент для поиска продюссера */}
           {
             showProducerFilter &&
-            < DesktopSelect
-              values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
-              selectedValue={selectedGenre}
-              setSelectedValue={(value: IText) => dispatch(setSelectedCountry(value))}
+            <AutoSuggestSelectDesktop
+              value={selectedProducer}
+              placeholder="Режиссёр"
+              onClick={handleSelectProducerClick}
               className={s.select}
             />
           }
           {/* компонент для поиска актера */}
           {
             showActorFilter &&
-            <DesktopSelect
-              values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
-              selectedValue={selectedGenre}
-              setSelectedValue={(value: IText) => dispatch(setSelectedCountry(value))}
+            <AutoSuggestSelectDesktop
+              value={selectedActor}
+              placeholder="Актёр"
+              onClick={handleSelectActorClick}
               className={s.select}
             />
           }
@@ -113,6 +126,14 @@ const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter 
           className={s.select}
         />
       </div>
+      {
+        isProducerModalActive &&
+        <AutoSuggestModal entitiyType="Режиссёр" onClose={handleSelectProducerClick} />
+      }
+      {
+        isActorModalActive &&
+        <AutoSuggestModal entitiyType="Актёр" onClose={handleSelectActorClick} />
+      }
     </div>
   )
 };

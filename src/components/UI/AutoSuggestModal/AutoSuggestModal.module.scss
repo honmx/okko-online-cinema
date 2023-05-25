@@ -1,0 +1,48 @@
+@import "../../../styles/variables.scss";
+
+.modalWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vw;
+  backdrop-filter: blur(4px);
+  z-index: 1000000;
+}
+
+.window {
+  position: relative;
+  height: 80vh;
+  width: 80vw;
+  margin-top: 10vh;
+  margin-inline: auto;
+  padding: 15px 40px 40px;
+  background-color: $primaryGreyColor;
+  border-radius: 20px;
+}
+
+.input {
+  width: 90%;
+}
+
+.resultContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 25px;
+
+  &>* {
+    
+  }
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.clearBtn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}

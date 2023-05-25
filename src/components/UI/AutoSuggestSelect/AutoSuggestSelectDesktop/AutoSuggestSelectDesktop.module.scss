@@ -1,0 +1,23 @@
+@import "../../../../styles/variables.scss";
+
+.container {
+  padding: 10px 30px 10px 20px;
+  background-color: $primaryGreyColor;
+  color: $accentWhiteFontColor;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  font-weight: 400;
+  transition: all 0.15s ease;
+  appearance: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #262626
+  }
+
+  :focus {
+    outline: none;
+  }
+}

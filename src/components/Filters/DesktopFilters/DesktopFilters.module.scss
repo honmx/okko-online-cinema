@@ -12,6 +12,12 @@
 .filters {
   display: flex;
   align-items: stretch;
+  max-width: 445px;
+  flex-wrap: wrap;
+
+  &>*{
+    margin-top: 5px;
+  }
 }
 
 .textButton {
@@ -19,9 +25,11 @@
 }
 
 @media screen and (max-width: 959px) {
-  .filters, .sort {
+
+  .filters,
+  .sort {
     display: none;
-  }  
+  }
 }
 
 .select {
