@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import s from "./Layout.module.scss";
 import Footer from "../Footer/Footer";
 import Container from "../Container/Container";
@@ -6,7 +6,9 @@ import { maxWidth } from "@/helpers/constants";
 import { Roboto } from "next/font/google";
 import Header from "../Header/Header";
 import Notification from "../UI/Notification/Notification";
-import { useAppSelector } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { checkAuth } from "@/store/thunks/checkAuth";
+import $authAPI from "@/http/auth";
 
 interface Props {
   children: ReactNode;
@@ -19,6 +21,14 @@ const roboto = Roboto({
 })
 
 const Layout: FC<Props> = ({ children }) => {
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      dispatch(checkAuth());
+    }
+  }, []);
 
   const notifications = useAppSelector(state => state.notifications.notifications);
 

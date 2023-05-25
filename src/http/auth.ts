@@ -1,4 +1,6 @@
 import axios from "axios";
+import bearerAxios from "./bearer";
+import { IAuthResponse } from "@/types/IAuthResponse";
 
 const $authAPI = axios.create({
   withCredentials: true,
@@ -6,8 +8,31 @@ const $authAPI = axios.create({
 });
 
 $authAPI.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer wioroiwei`;
+  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
   return config;
 });
+
+$authAPI.interceptors.response.use(
+  config => config,
+  async error => {
+
+    const originalRequestConfig = error.config;
+
+    if (error.response.status !== 401 || originalRequestConfig?._isRetry) {
+      throw error;
+    }
+
+    originalRequestConfig._isRetry = true;
+
+    try {
+      const response = await bearerAxios.get<IAuthResponse>("/refresh");
+      localStorage.setItem("token", response.data.accessToken);
+      return $authAPI.request(originalRequestConfig);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+)
 
 export default $authAPI;

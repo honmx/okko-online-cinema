@@ -12,6 +12,7 @@ import login from "@/assets/login_icon.svg";
 import main_logo from "@/assets/main_logo.png";
 import search from "@/assets/search_icon.svg";
 import close from "@/assets/close.svg";
+import logoutIcon from "@/assets/logout.svg";
 import s from "./Header.module.scss";
 import Burger from "@/components/Burger/Burger";
 import Login from "@/components/Login/Login";
@@ -22,6 +23,7 @@ import Toggle from '../UI/Toggle/Toggle';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { toggleLanguage } from '@/store/slices/languageSlice';
 import { useScrollStart } from '@/hooks/useScrollStart';
+import { logout } from '@/store/thunks/logout';
 
 interface Props {
 
@@ -37,6 +39,7 @@ const Header: FC<Props> = () => {
   const isMedium = useSmallerDevice(1099);
 
   const lang = useAppSelector(state => state.language.language);
+  const isAuth = useAppSelector(state => state.auth.isAuth);
 
   const [burgerShowing, setBurgerShowing] = useState<boolean>(false);
   const [loginShowing, setLoginShowing] = useState<boolean>(false);
@@ -51,6 +54,10 @@ const Header: FC<Props> = () => {
 
   const handleLoginClick = () => {
     setLoginShowing(prevState => !prevState);
+  }
+
+  const handleLogoutClick = () => {
+    dispatch(logout());
   }
 
   const handlePromocodeClick = () => {
@@ -82,14 +89,10 @@ const Header: FC<Props> = () => {
         }
         <div className={s.right_part}>
           <div>
-              <IconButton>
-                <Image width={30} height={30} src={search} alt="search" />
-              </IconButton>
+            <IconButton>
+              <Image width={30} height={30} src={search} alt="search" />
+            </IconButton>
           </div>
-          {
-            !isSmaller &&
-            <div className={s.search__after}></div>
-          }
           {
             !isSmaller &&
             <Toggle
@@ -118,16 +121,26 @@ const Header: FC<Props> = () => {
               </IconButton>
             </div>
           }
-
-          <div onClick={handleLoginClick}>
-            <IconButton className={s.login}>
+          {
+            !isAuth &&
+            <IconButton onClick={handleLoginClick} className={s.login}>
               <Image width={30} height={30} src={login} alt="gift" />
               {
                 !isSmaller &&
                 <span>Войти</span>
               }
             </IconButton>
-          </div>
+          }
+          {
+            isAuth &&
+            <IconButton onClick={handleLogoutClick} className={s.login}>
+              <Image width={23} height={23} src={logoutIcon} alt="logout" />
+              {
+                !isSmaller &&
+                <span>Выйти</span>
+              }
+            </IconButton>
+          }
           {
             isSmaller &&
             <div onClick={handleBurgerClick}>

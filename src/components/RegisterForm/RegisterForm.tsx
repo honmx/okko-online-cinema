@@ -6,18 +6,18 @@ import { useDisabledButton } from "@/hooks/useDisabledButton";
 import authService from "@/services/authService";
 
 interface Props {
+  email: string;
+  handleEmailChange: (value: string) => void;
   className?: string;
 }
 
-const RegisterForm: FC<Props> = ({ className }) => {
+const RegisterForm: FC<Props> = ({ email, handleEmailChange, className }) => {
 
-  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordRepeat, setPasswordRepeat] = useState<string>("");
 
   const [isDisabled, setIsDisabled] = useDisabledButton([email, password, passwordRepeat]);
 
-  const handleEmailChange = (value: string) => setEmail(value);
   const handlePasswordChange = (value: string) => setPassword(value);
   const handlePasswordRepeatChange = (value: string) => setPasswordRepeat(value);
 
@@ -27,6 +27,7 @@ const RegisterForm: FC<Props> = ({ className }) => {
 
     setIsDisabled(true);
     
+        // todo - fetch with async thunk
     const res = await authService.register(email, password);
 
     setIsDisabled(false);

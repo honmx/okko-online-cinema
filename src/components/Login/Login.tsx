@@ -12,6 +12,8 @@ import authService from '@/services/authService';
 import CheckEmailForm from '../CheckEmailForm/CheckEmailForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import LoginForm from '../LoginForm/LoginForm';
+import { useAppSelector } from '@/store/hooks';
+import { useRouter } from 'next/router';
 
 interface Props {
   onClose: () => void;
@@ -19,11 +21,29 @@ interface Props {
 
 const Login: FC<Props> = ({ onClose }) => {
 
+  const router = useRouter();
+
+  const authState = useAppSelector(state => state.auth);
+
   const [emailExists, setEmailExists] = useState<boolean | null>(null);
+
+  const [email, setEmail] = useState<string>("");
+
+  const handleEmailChange = (value: string) => {
+    setEmail(value);
+  }
 
   const handleCloseClick = () => {
     onClose();
   };
+
+  useEffect(() => {
+    console.log(authState.isAuth);
+    if (authState.isAuth) {
+      onClose();
+      router.push("/");
+    }
+  }, [authState.isAuth])
 
   return (
     <div className={s.loginWrapper}>
@@ -48,15 +68,15 @@ const Login: FC<Props> = ({ onClose }) => {
             <p>Чтобы начать пользоваться сервисом Okko</p>
             {
               emailExists === null &&
-              <CheckEmailForm setEmailExists={setEmailExists} className={s.form} />
+              <CheckEmailForm email={email} handleEmailChange={handleEmailChange} setEmailExists={setEmailExists} className={s.form} />
             }
             {
               emailExists === false &&
-              <RegisterForm className={s.form} />
+              <RegisterForm email={email} handleEmailChange={handleEmailChange} className={s.form} />
             }
             {
               emailExists &&
-              <LoginForm className={s.form} />
+              <LoginForm email={email} handleEmailChange={handleEmailChange} className={s.form} />
             }
             {
               emailExists === null && <>

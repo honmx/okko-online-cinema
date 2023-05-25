@@ -6,26 +6,22 @@ import s from "./CheckEmailForm.module.scss";
 import { useDisabledButton } from "@/hooks/useDisabledButton";
 
 interface Props {
+  email: string;
+  handleEmailChange: (value: string) => void;
   setEmailExists: Dispatch<SetStateAction<boolean | null>>;
   className?: string;
 }
 
-const CheckEmailForm: FC<Props> = ({ setEmailExists, className }) => {
+const CheckEmailForm: FC<Props> = ({ email, handleEmailChange, setEmailExists, className }) => {
 
-  const [value, setValue] = useState<string>("");
-  const [isDisabled, setIsDisabled] = useDisabledButton(value);
-
-  const handleChange = (value: string) => {
-    setValue(value);
-  }
+  const [isDisabled, setIsDisabled] = useDisabledButton(email);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await authService.logout();
-
     setIsDisabled(true);
-    var result = await authService.checkEmail(value.trim());
+
+    var result = await authService.checkEmail(email.trim());
 
     if (result) setEmailExists(true);
     else if (result === false) setEmailExists(false);
@@ -38,8 +34,8 @@ const CheckEmailForm: FC<Props> = ({ setEmailExists, className }) => {
       <InputField
         type="text"
         placeholder="Электронная почта"
-        value={value}
-        onChange={handleChange}
+        value={email}
+        onChange={handleEmailChange}
       />
       <Button
         bgColor="accent"
