@@ -4,8 +4,8 @@ export const headerLinks = [
     text: "Главная",
   },
   {
-    href: "/catalog",
-    text: "Каталог",
+    href: "/movies",
+    text: "Фильмы",
   },
   {
     href: "/store",

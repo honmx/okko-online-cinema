@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .header {
   background-color: #000;
   color: rgba(255, 255, 255, .56);
@@ -82,10 +84,14 @@
 }
 
 .active {
-  color: rgba(255, 255, 255, .96);
+
+  & a {
+    color: $accentWhiteFontColor !important;
+  }
   border-bottom: 2px solid transparent;
   border-image: linear-gradient(0.25turn, rgba(93, 14, 245, 0.13), #5d0ef5, #5d0ef5, white, white, white, #5d0ef5, #5d0ef5, rgba(93, 14, 245, 0.13));
   border-image-slice: 1;
+
   @media (max-width: 1320px) {
     border-bottom: 1px solid transparent;
   }
@@ -115,12 +121,6 @@
 }
 
 .subscription {
-  button {
-    min-width: 138px;
-    color: white;
-    background: radial-gradient(circle at 50px 32.4063px, #5d0ef5 40.62%, #7e3eff 100%);
-    border-radius: 8px;
-  }
 
   span {
     color: white;

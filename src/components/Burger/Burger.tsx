@@ -1,12 +1,16 @@
-import React, {useEffect} from "react";
+import {FC, useEffect} from "react";
 import s from "./Burger.module.scss";
 import {headerLinks} from "@/helpers/data/headerLinks";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import {useRouter} from "next/router";
+import IconButton from "../UI/IconButton/IconButton";
 
-type BurgerProps = {};
+interface IProps {
+  handleLoginClick: () => void;
+  handlePromocodeClick: () => void;
+}
 
-const Burger: React.FC<BurgerProps> = () => {
+const Burger: FC<IProps> = ({ handleLoginClick, handlePromocodeClick }) => {
 
   const router = useRouter();
 
@@ -20,22 +24,26 @@ const Burger: React.FC<BurgerProps> = () => {
 
   return (
     <div className={s.burger}>
-      <ul>
+      <ul className={s.list}>
         {
           headerLinks.map(link => (
-            <li key={link.href}
-                className={link.href === router.pathname || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : ""}>
+            <li
+              key={link.href}
+              className={
+                (link.href === router.pathname
+                || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : "")
+                + " " + s.item
+              }
+            >
               <CustomLink href={link.href}>{link.text}</CustomLink>
             </li>
           ))
         }
-        <li>
-          {/*todo сделать компонент промокода*/}
-          <CustomLink href={"#promo-code"}>ВВЕСТИ ПРОМОКОД</CustomLink>
+        <li className={s.item}>
+          <IconButton onClick={handlePromocodeClick} className={s.loginBtn}>ВВЕСТИ ПРОМОКОД</IconButton>
         </li>
-        <li>
-          {/*todo сделать компонент логина*/}
-          <CustomLink href={"/login"}>ВОЙТИ</CustomLink>
+        <li className={s.item}>
+          <IconButton onClick={handleLoginClick} className={s.loginBtn}>ВОЙТИ</IconButton>
         </li>
       </ul>
 

@@ -40,6 +40,7 @@ const Header: FC<Props> = () => {
 
   const lang = useAppSelector(state => state.language.language);
   const isAuth = useAppSelector(state => state.auth.isAuth);
+  const isLoading = useAppSelector(state => state.auth.isLoading);
 
   const [burgerShowing, setBurgerShowing] = useState<boolean>(false);
   const [loginShowing, setLoginShowing] = useState<boolean>(false);
@@ -78,89 +79,88 @@ const Header: FC<Props> = () => {
           !isSmaller &&
           <ul className={s.links}>
             {
-              headerLinks.map(link => (
-                <li key={link.href}
-                  className={link.href === router.pathname || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : ""}>
-                  <CustomLink href={link.href}>{link.text}</CustomLink>
+              headerLinks.map(link => {
+                return <li key={link.href}
+                className={link.href === router.pathname || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : ""}>
+                <CustomLink href={link.href}>{link.text}</CustomLink>
                 </li>
-              ))
+              
+              })
             }
           </ul>
         }
-        <div className={s.right_part}>
-          <div>
-            <IconButton>
-              <Image width={30} height={30} src={search} alt="search" />
-            </IconButton>
-          </div>
-          {
-            !isSmaller &&
-            <Toggle
-              values={["ru", "en"]}
-              activeValue={lang}
-              onClick={() => dispatch(toggleLanguage())}
-            />
-          }
-          {
-            !isMedium &&
-            <div className={s.subscription} onClick={handleSubscriptionClick}>
-              <Button value={"Месяц за 1 ₽"} />
-            </div>
-          }
-          {
-            !isMedium &&
-            <div className={s.subscription__after}></div>
-          }
-          {/*todo при открытие бургера убирать логин и поиск, добовлять кнопку подписка */}
-          {
-            !isSmaller &&
-            <div onClick={handlePromocodeClick}>
-              <IconButton className={s.promo}>
-                <Image width={30} height={30} src={gift} alt="promocode" />
-                <span>Ввести промокод</span>
+        {
+          !isLoading &&
+          <div className={s.right_part}>
+            <div>
+              <IconButton>
+                <Image width={30} height={30} src={search} alt="search" />
               </IconButton>
             </div>
-          }
-          {
-            !isAuth &&
-            <IconButton onClick={handleLoginClick} className={s.login}>
-              <Image width={30} height={30} src={login} alt="gift" />
-              {
-                !isSmaller &&
-                <span>Войти</span>
-              }
-            </IconButton>
-          }
-          {
-            isAuth &&
-            <IconButton onClick={handleLogoutClick} className={s.login}>
-              <Image width={23} height={23} src={logoutIcon} alt="logout" />
-              {
-                !isSmaller &&
-                <span>Выйти</span>
-              }
-            </IconButton>
-          }
-          {
-            isSmaller &&
-            <div onClick={handleBurgerClick}>
-              <IconButton className={s.burger}>
+            {
+              !isSmaller &&
+              <Toggle
+                values={["ru", "en"]}
+                activeValue={lang}
+                onClick={() => dispatch(toggleLanguage())}
+              />
+            }
+            {
+              !isMedium &&
+              <div className={s.subscription} onClick={handleSubscriptionClick}>
+                <Button bgColor="accent" value={"Месяц за 1 ₽"} />
+              </div>
+            }
+            {
+              !isSmaller &&
+              <div onClick={handlePromocodeClick}>
+                <IconButton className={s.promo}>
+                  <Image width={30} height={30} src={gift} alt="promocode" />
+                  <span>Ввести промокод</span>
+                </IconButton>
+              </div>
+            }
+            {
+              !isAuth &&
+              <IconButton onClick={handleLoginClick} className={s.login}>
+                <Image width={30} height={30} src={login} alt="gift" />
                 {
-                  burgerShowing ?
-                    <Image width={25} height={25} src={close} alt="close" />
-                    :
-                    <Image width={30} height={30} src={burger} alt="burger" />
+                  !isSmaller &&
+                  <span>Войти</span>
                 }
               </IconButton>
-            </div>
-          }
+            }
+            {
+              isAuth &&
+              <IconButton onClick={handleLogoutClick} className={s.login}>
+                <Image width={23} height={23} src={logoutIcon} alt="logout" />
+                {
+                  !isSmaller &&
+                  <span>Выйти</span>
+                }
+              </IconButton>
+            }
+            {
+              isSmaller &&
+              <div onClick={handleBurgerClick}>
+                <IconButton className={s.burger}>
+                  {
+                    burgerShowing ?
+                      <Image width={23} height={23} src={close} alt="close" />
+                      :
+                      <Image width={30} height={30} src={burger} alt="burger" />
+                  }
+                </IconButton>
+              </div>
+            }
 
-        </div>
+          </div>
+        }
       </nav>
       {
         burgerShowing &&
         <div className={s.burger_container + (burgerShowing ? '' : ' ' + s.hidden)}>
-          <Burger />
+          <Burger handleLoginClick={handleLoginClick} handlePromocodeClick={handlePromocodeClick} />
         </div>
       }
       {

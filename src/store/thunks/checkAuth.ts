@@ -7,7 +7,7 @@ export const checkAuth = createAsyncThunk(
     try {
       const response = await authService.checkAuth();
       return response.data;
-      
+
     } catch (error: any) {
       return rejectWithValue(error.message);
     }

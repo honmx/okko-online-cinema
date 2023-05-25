@@ -13,22 +13,24 @@
   overflow-y: auto;
   transition: all 0.15s ease;
   margin-top: 13px;
-  & li {
-    padding-left: 7px;
-    text-transform: uppercase;
-    margin-bottom: 25px;
+}
 
-    & a {
-      color: rgba(255, 255, 255, .96);
-    }
+.item {
+  padding-left: 7px;
+
+  &:not(:last-child) {
+    margin-bottom: 25px;
   }
 
-  & .active {
-    border-left: 2px white solid;
+  & a,
+  & button {
+    font-size: 14px;
+    font-weight: 700;
+    color: $accentWhiteFontColor;
+    text-transform: uppercase;
   }
 }
 
-.loginBtn {
-  z-index: 10000;
-  color: $accentWhiteFontColor !important;
+.active {
+  border-left: 2px $accentWhiteFontColor solid;
 }
