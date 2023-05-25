@@ -38,7 +38,7 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onClose, className }) => {
   }, []);
 
   const handleChange = (value: string) => {
-    setValue(value.trim());
+    setValue(value);
   }
 
   const handlePersonClick = (person: IPerson) => {
@@ -73,8 +73,8 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onClose, className }) => {
             value.length > 0 && persons.length > 0 &&
             persons
               .filter(person => person.profession === entitiyType &&
-                (person.fullName.toLowerCase().includes(value.toLowerCase())
-                  || person.fullNameOrig.toLowerCase().includes(value.toLowerCase())))
+                (person.fullName.toLowerCase().includes(value.trim().toLowerCase())
+                  || person.fullNameOrig.toLowerCase().includes(value.trim().toLowerCase())))
               .slice(0, 18)
               .map(person => (
                 <PersonAutoSuggestCard person={person} onClick={handlePersonClick} className={s.person} />
