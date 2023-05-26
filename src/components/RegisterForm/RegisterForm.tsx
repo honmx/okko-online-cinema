@@ -4,6 +4,8 @@ import InputField from "../UI/InputField/InputField";
 import Button from "../UI/Button/Button";
 import { useDisabledButton } from "@/hooks/useDisabledButton";
 import authService from "@/services/authService";
+import { useAppDispatch } from "@/store/hooks";
+import { register } from "@/store/thunks/register";
 
 interface Props {
   email: string;
@@ -12,6 +14,8 @@ interface Props {
 }
 
 const RegisterForm: FC<Props> = ({ email, handleEmailChange, className }) => {
+
+  const dispatch = useAppDispatch();
 
   const [password, setPassword] = useState<string>("");
   const [passwordRepeat, setPasswordRepeat] = useState<string>("");
@@ -26,9 +30,8 @@ const RegisterForm: FC<Props> = ({ email, handleEmailChange, className }) => {
     e.preventDefault();
 
     setIsDisabled(true);
-    
-        // todo - fetch with async thunk
-    const res = await authService.register(email, password);
+
+    dispatch(register({ email, password }));
 
     setIsDisabled(false);
   }

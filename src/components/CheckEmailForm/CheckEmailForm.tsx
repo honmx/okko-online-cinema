@@ -21,10 +21,10 @@ const CheckEmailForm: FC<Props> = ({ email, handleEmailChange, setEmailExists, c
 
     setIsDisabled(true);
 
-    var result = await authService.checkEmail(email.trim());
+    var { data: result } = await authService.checkEmail(email.trim());
 
     if (result) setEmailExists(true);
-    else if (result === false) setEmailExists(false);
+    else setEmailExists(false);
 
     setIsDisabled(false);
   }

@@ -9,6 +9,7 @@ import Notification from "../UI/Notification/Notification";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { checkAuth } from "@/store/thunks/checkAuth";
 import $authAPI from "@/http/auth";
+import axios from "axios";
 
 interface Props {
   children: ReactNode;
@@ -28,6 +29,23 @@ const Layout: FC<Props> = ({ children }) => {
     if (localStorage.getItem("token")) {
       dispatch(checkAuth());
     }
+
+    // const a = async () => {
+    //   const admin = await axios.post("http://localhost:5000/role", {
+    //     value: "ADMIN",
+    //     description: "Администратор",
+    //   })
+  
+    //   const user = await axios.post("http://localhost:5000/role", {
+    //     value: "USER",
+    //     description: "Пользователь",
+    //   });
+
+    //   console.log(admin);
+    //   console.log(user);
+    // }
+
+    // a();
   }, []);
 
   const notifications = useAppSelector(state => state.notifications.notifications);

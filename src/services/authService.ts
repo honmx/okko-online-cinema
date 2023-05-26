@@ -4,10 +4,14 @@ import { IAuthResponse } from "@/types/IAuthResponse";
 import { IUser } from "@/types/IUser";
 import axios, { AxiosResponse } from "axios";
 
-const checkEmail = async (email: string): Promise<AxiosResponse<IUser>> => {
-  const response = await $authAPI.get<IUser>(`/check/${email}`);
-
-  return response;
+const checkEmail = async (email: string): Promise<AxiosResponse<IUser | "" | undefined>> => {
+  try {
+    const response = await $authAPI.get<IUser>(`/check/${email}`);
+    
+    return response;
+  } catch (error) {
+    throw error;
+  }
 }
 
 const login = async (email: string, password: string): Promise<AxiosResponse<IAuthResponse>> => {
@@ -25,6 +29,8 @@ const register = async (email: string, password: string) => {
     password
   });
 
+  console.log(response);
+
   return response;
 }
 
@@ -34,6 +40,8 @@ const logout = async (): Promise<void> => {
 
 const checkAuth = async (): Promise<AxiosResponse<IAuthResponse>> => {
   const response = await bearerAxios.get<IAuthResponse>("/refresh");
+
+  console.log(response);
 
   return response;
 }

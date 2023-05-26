@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { login } from "../thunks/login";
 import { logout } from "../thunks/logout";
 import { checkAuth } from "../thunks/checkAuth";
+import { register } from "../thunks/register";
 
 interface IInitialState {
   user: IUser,
@@ -22,6 +23,21 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
+    builder.addCase(register.fulfilled, (state, action) => {
+      localStorage.setItem("token", action.payload?.accessToken as string);
+      state.user = action.payload?.user as IUser;
+      state.isAuth = true;
+      state.isLoading = false;
+    });
+    builder.addCase(register.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(register.rejected, (state, action) => {
+      // todo...
+      // iserror ...
+      state.isLoading = false;
+    });
+
     builder.addCase(login.fulfilled, (state, action) => {
       localStorage.setItem("token", action.payload?.accessToken as string);
       state.user = action.payload?.user as IUser;
@@ -33,6 +49,7 @@ export const authSlice = createSlice({
     });
     builder.addCase(login.rejected, (state, action) => {
       // todo...
+      // iserror ...
       state.isLoading = false;
     });
 

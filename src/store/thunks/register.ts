@@ -6,11 +6,11 @@ interface IParams {
   password: string;
 }
 
-export const login = createAsyncThunk(
-  "auth/login",
+export const register = createAsyncThunk(
+  "auth/register",
   async ({ email, password }: IParams, { rejectWithValue }) => {
     try {
-      const response = await authService.login(email, password);
+      const response = await authService.register(email, password);
 
       console.log(response);
 

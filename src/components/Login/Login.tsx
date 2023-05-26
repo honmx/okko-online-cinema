@@ -43,7 +43,11 @@ const Login: FC<Props> = ({ onClose }) => {
       onClose();
       router.push("/");
     }
-  }, [authState.isAuth])
+  }, [authState.isAuth]);
+
+  useEffect(() => {
+    console.log(emailExists); 
+  }, [emailExists]);
 
   return (
     <div className={s.loginWrapper}>
