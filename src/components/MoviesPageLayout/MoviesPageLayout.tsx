@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { FC, ReactNode, useEffect, useState } from "react";
 import Image from "next/image";
 import Title from "@/components/UI/Title/Title";
 import TextButton from "@/components/UI/TextButton/TextButton";
@@ -10,6 +10,8 @@ import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import DesktopFilters from "../Filters/DesktopFilters/DesktopFilters";
 import MobileFilters from "../Filters/MobileFilters/MobileFilters";
 import s from "./MoviesPageLayout.module.scss";
+import $entitiesAPI from "@/http/entities";
+import { useGenresAndCountries } from "@/hooks/useGenresAndCountries";
 
 interface Props {
   children: ReactNode;
@@ -20,6 +22,8 @@ const MoviesPageLayout: FC<Props> = ({ children }) => {
   const isSmaller = useSmallerDevice(959);
 
   const [showText, setShowText] = useState<boolean>(false);
+
+  const { genres, countries } = useGenresAndCountries();
 
   const handleShowTextClick = () => {
     setShowText(prev => !prev);
@@ -54,9 +58,9 @@ const MoviesPageLayout: FC<Props> = ({ children }) => {
         </div>
       </div>
       {
-        isSmaller 
-          ? <MobileFilters />
-          : <DesktopFilters />
+        isSmaller
+          ? <MobileFilters genres={genres} countries={countries} />
+          : <DesktopFilters genres={genres} countries={countries} />
       }
       <div className={s.childrenContainer}>{children}</div>
     </div>
