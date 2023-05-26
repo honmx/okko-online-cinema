@@ -7,13 +7,16 @@ import sort from "@/assets/sort.svg";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { IText } from "@/types/IText";
 import { useAppDispatch } from "@/store/hooks";
-import { clearFilters, setSelectedMinCountOfRating, setSelectedMinRating, setSelectedCountry, setSelectedGenre, setSelectedSortBy } from "@/store/slices/moviesFilterSlice";
+import { clearFilters, setSelectedMinCountOfRating, setSelectedMinRating, setSelectedCountry, setSelectedGenre, setSelectedSortBy, setSelectedProducer, setSelectedActor } from "@/store/slices/moviesFilterSlice";
 import TextButton from "@/components/UI/TextButton/TextButton";
 import { useRouter } from "next/router";
 import CommonProps from "../IProps";
 import s from "./DesktopFilters.module.scss";
 import AutoSuggestSelectDesktop from "@/components/UI/AutoSuggestSelect/AutoSuggestSelectDesktop/AutoSuggestSelectDesktop";
 import AutoSuggestModal from "@/components/UI/AutoSuggestModal/AutoSuggestModal";
+import { areFiltersClear } from "@/helpers/areFiltersClear";
+import { IPerson } from "@/types/IPerson";
+import { useScrollStart } from "@/hooks/useScrollStart";
 
 interface Props extends CommonProps {
 
@@ -23,7 +26,7 @@ const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter 
 
   const dispatch = useAppDispatch();
   const router = useRouter();
-  
+
   const {
     selectedGenre,
     selectedCountry,
@@ -33,15 +36,27 @@ const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter 
     selectedActor,
     selectedSortBy,
   } = useSelectedFilters();
-  
+
   const [isProducerModalActive, setIsProducerModalActive] = useState<boolean>(false);
   const [isActorModalActive, setIsActorModalActive] = useState<boolean>(false);
 
-  const handleSelectProducerClick = () => {
+  useScrollStart(isProducerModalActive || isActorModalActive);
+
+  const handleProducerFilterClick = () => {
     setIsProducerModalActive(prev => !prev);
   }
-
-  const handleSelectActorClick = () => {
+  
+  const handleActorFilterClick = () => {
+    setIsActorModalActive(prev => !prev);
+  }
+  
+  const handleProducerClick = (value: string) => {
+    dispatch(setSelectedProducer(value));
+    setIsProducerModalActive(prev => !prev);
+  }
+  
+  const handleActorClick = (value: string) => {
+    dispatch(setSelectedActor(value));
     setIsActorModalActive(prev => !prev);
   }
 
@@ -90,7 +105,7 @@ const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter 
             <AutoSuggestSelectDesktop
               value={selectedProducer}
               placeholder="Режиссёр"
-              onClick={handleSelectProducerClick}
+              onClick={handleProducerFilterClick}
               className={s.select}
             />
           }
@@ -100,14 +115,21 @@ const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter 
             <AutoSuggestSelectDesktop
               value={selectedActor}
               placeholder="Актёр"
-              onClick={handleSelectActorClick}
+              onClick={handleActorFilterClick}
               className={s.select}
             />
           }
         </div>
         {
-          (selectedGenre.en !== "All" || selectedCountry.en !== "All" || selectedMinRating !== 0
-            || selectedMinCountOfRating !== 0 || selectedProducer !== "" || selectedActor !== "" || selectedSortBy.en !== "All") &&
+          (!areFiltersClear({
+            selectedGenre,
+            selectedCountry,
+            selectedMinRating,
+            selectedMinCountOfRating,
+            selectedProducer,
+            selectedActor,
+            selectedSortBy
+          })) &&
           <TextButton
             fs="14px"
             onClick={() => dispatch(clearFilters())}
@@ -128,11 +150,11 @@ const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter 
       </div>
       {
         isProducerModalActive &&
-        <AutoSuggestModal entitiyType="Режиссёр" onClose={handleSelectProducerClick} />
+        <AutoSuggestModal entitiyType="Режиссёр" onEntityClick={handleProducerClick} onClose={handleProducerFilterClick} />
       }
       {
         isActorModalActive &&
-        <AutoSuggestModal entitiyType="Актёр" onClose={handleSelectActorClick} />
+        <AutoSuggestModal entitiyType="Актёр" onEntityClick={handleActorClick} onClose={handleActorFilterClick} />
       }
     </div>
   )

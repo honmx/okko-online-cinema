@@ -11,14 +11,16 @@ import PersonAutoSuggestCard from "@/components/PersonAutoSuggestCard/PersonAuto
 import { useAppDispatch } from "@/store/hooks";
 import { setSelectedActor, setSelectedProducer } from "@/store/slices/moviesFilterSlice";
 import TextButton from "../TextButton/TextButton";
+import { useScrollStart } from "@/hooks/useScrollStart";
 
 interface Props {
   entitiyType: "Актёр" | "Режиссёр";
+  onEntityClick: (value: string) => void;
   onClose: () => void;
   className?: string;
 }
 
-const AutoSuggestModal: FC<Props> = ({ entitiyType, onClose, className }) => {
+const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, className }) => {
 
   const dispatch = useAppDispatch();
 
@@ -29,7 +31,6 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onClose, className }) => {
 
     const getPeople = async () => {
       const persons = await entitiesService.getPeople();
-      console.log(persons);
       setPersons(persons);
     }
 
@@ -42,19 +43,11 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onClose, className }) => {
   }
 
   const handlePersonClick = (person: IPerson) => {
-    entitiyType === "Актёр"
-      ? dispatch(setSelectedActor(person.fullName))
-      : dispatch(setSelectedProducer(person.fullName));
-
-    onClose();
+    onEntityClick(person.fullName);
   }
 
   const handleClearClick = () => {
-    entitiyType === "Актёр"
-      ? dispatch(setSelectedActor(""))
-      : dispatch(setSelectedProducer(""));
-
-    onClose();
+    onEntityClick("");
   }
 
   return (

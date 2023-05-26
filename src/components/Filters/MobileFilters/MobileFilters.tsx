@@ -15,18 +15,20 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import s from "./MobileFilters.module.scss";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { IText } from "@/types/IText";
-import { clearFilters, setSelectedMinCountOfRating, setSelectedMinRating, setSelectedCountry, setSelectedGenre, setSelectedSortBy } from "@/store/slices/moviesFilterSlice";
+import { clearFilters, setSelectedMinCountOfRating, setSelectedMinRating, setSelectedCountry, setSelectedGenre, setSelectedSortBy, setSelectedProducer, setSelectedActor } from "@/store/slices/moviesFilterSlice";
 import Link from "next/link";
 import TextButton from "@/components/UI/TextButton/TextButton";
 import { useRouter } from "next/router";
 import { areFiltersClear } from "@/helpers/areFiltersClear";
 import CommonProps from "../IProps";
+import AutoSuggestSelectDesktop from "@/components/UI/AutoSuggestSelect/AutoSuggestSelectDesktop/AutoSuggestSelectDesktop";
+import AutoSuggestModal from "@/components/UI/AutoSuggestModal/AutoSuggestModal";
 
 interface Props extends CommonProps {
-  
+
 }
 
-const MobileFilters: FC<Props> = ({ showProducerFilter, showActorFilter }) => {
+const MobileFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter = true }) => {
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -42,6 +44,8 @@ const MobileFilters: FC<Props> = ({ showProducerFilter, showActorFilter }) => {
   } = useSelectedFilters();
 
   const [activeParameters, setActiveParameters] = useState<boolean>(false);
+  const [isProducerModalActive, setIsProducerModalActive] = useState<boolean>(false);
+  const [isActorModalActive, setIsActorModalActive] = useState<boolean>(false);
 
   useScrollStart(activeParameters);
 
@@ -51,6 +55,24 @@ const MobileFilters: FC<Props> = ({ showProducerFilter, showActorFilter }) => {
 
   const handleResetFiltersClick = () => {
     dispatch(clearFilters());
+  }
+
+  const handleProducerFilterClick = () => {
+    setIsProducerModalActive(prev => !prev);
+  }
+
+  const handleActorFilterClick = () => {
+    setIsActorModalActive(prev => !prev);
+  }
+
+  const handleProducerClick = (value: string) => {
+    dispatch(setSelectedProducer(value));
+    setIsProducerModalActive(prev => !prev);
+  }
+  
+  const handleActorClick = (value: string) => {
+    dispatch(setSelectedActor(value));
+    setIsActorModalActive(prev => !prev);
   }
 
   return (
@@ -103,14 +125,22 @@ const MobileFilters: FC<Props> = ({ showProducerFilter, showActorFilter }) => {
               className={s.select}
             />
             {/* поиск режиссеров */}
+            {
+              showProducerFilter &&
+              <AutoSuggestSelectDesktop
+                value={selectedProducer}
+                placeholder="Режиссёр"
+                onClick={handleProducerFilterClick}
+                className={s.select}
+              />
+            }
             {/* поиск актеров */}
             {
               showActorFilter &&
-              <MobileSelect
-                title="Сортировка"
-                values={sortByValues.map(value => ({ ru: value.ru, en: value.en }))}
-                selectedValue={selectedSortBy}
-                setSelectedValue={(value: IText) => dispatch(setSelectedSortBy(value))}
+              <AutoSuggestSelectDesktop
+                value={selectedActor}
+                placeholder="Актёр"
+                onClick={handleActorFilterClick}
                 className={s.select}
               />
             }
@@ -125,6 +155,14 @@ const MobileFilters: FC<Props> = ({ showProducerFilter, showActorFilter }) => {
             <Image src={parameters} alt="parameters" />
           </IconButton>
         </div>
+      }
+      {
+        isProducerModalActive &&
+        <AutoSuggestModal entitiyType="Режиссёр" onEntityClick={handleProducerClick} onClose={handleProducerFilterClick} />
+      }
+      {
+        isActorModalActive &&
+        <AutoSuggestModal entitiyType="Актёр" onEntityClick={handleActorClick} onClose={handleActorFilterClick} />
       }
     </>
   )
