@@ -1,3 +1,4 @@
+import { capitalize } from "@/helpers/capitalize";
 import entitiesService from "@/services/entitiesService";
 import { useEffect, useState } from "react"
 
@@ -12,7 +13,7 @@ export const useGenresAndCountries = () => {
       const genres = new Set<string>();
       const countries = new Set<string>();
 
-      movies.forEach(movie => movie.genres.forEach(genre => genres.add(genre.genre)));
+      movies.forEach(movie => movie.genres.forEach(genre => genres.add(capitalize(genre.genre))));
       movies.forEach(movie => movie.country.split(", ").forEach(country => countries.add(country)));
 
       setGenres(Array.from(genres));

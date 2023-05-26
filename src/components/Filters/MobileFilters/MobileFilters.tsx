@@ -28,7 +28,7 @@ interface Props extends CommonProps {
 
 }
 
-const MobileFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter = true }) => {
+const MobileFilters: FC<Props> = ({ genres, countries, showProducerFilter = true, showActorFilter = true }) => {
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -94,16 +94,16 @@ const MobileFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter =
           <div className={s.optionsContainer}>
             <MobileSelect
               title="Жанры"
-              values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
+              values={genres}
               selectedValue={selectedGenre}
-              setSelectedValue={(value: IText) => dispatch(setSelectedGenre(value))}
+              setSelectedValue={(value: string) => dispatch(setSelectedGenre(value))}
               className={s.select}
             />
             <MobileSelect
               title="Страны"
-              values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
-              selectedValue={selectedGenre}
-              setSelectedValue={(value: IText) => dispatch(setSelectedCountry(value))}
+              values={countries}
+              selectedValue={selectedCountry}
+              setSelectedValue={(value: string) => dispatch(setSelectedCountry(value))}
               className={s.select}
             />
             <MobileRange

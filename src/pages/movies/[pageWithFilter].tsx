@@ -16,6 +16,7 @@ import dynamic from "next/dynamic";
 import entitiesService from "@/services/entitiesService";
 import { areFiltersClear } from "@/helpers/areFiltersClear";
 import AutoSuggestModal from "@/components/UI/AutoSuggestModal/AutoSuggestModal";
+import { useFilteredMovies } from "@/hooks/useFilteredMovies";
 
 interface Props {
   movies: IMovie[];
@@ -38,6 +39,8 @@ const MoviesFilter: NextPageWithLayout<Props> = ({ movies }) => {
     selectedSortBy
   } = useSelectedFilters();
 
+  const filteredMovies = useFilteredMovies(movies);
+
   useEffect(() => {
     if (areFiltersClear({
       selectedGenre, selectedCountry, selectedMinRating,
@@ -49,7 +52,7 @@ const MoviesFilter: NextPageWithLayout<Props> = ({ movies }) => {
       selectedMinRating, selectedMinCountOfRating,
       selectedProducer, selectedActor, selectedSortBy
     })
-  ])
+  ]);
 
   return (
     <>
@@ -61,7 +64,7 @@ const MoviesFilter: NextPageWithLayout<Props> = ({ movies }) => {
         />
       </Head>
       <div className={s.moviesFilterContainer}>
-        <ClientMovieList movies={movies} />
+        <ClientMovieList movies={filteredMovies} />
       </div>
     </>
   )

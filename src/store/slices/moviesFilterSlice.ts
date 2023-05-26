@@ -2,33 +2,33 @@ import { IText } from "@/types/IText";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IInitialState {
-  selectedGenre: IText;
-  selectedCountry: IText;
+  selectedGenre: string;
+  selectedCountry: string;
   selectedMinRating: number;
   selectedMinCountOfRating: number;
   selectedProducer: string;
   selectedActor: string;
-  selectedSortBy: IText;
+  selectedSortBy: string;
 }
 
 const initialState: IInitialState = {
-  selectedGenre: {en: "All", ru: "Все"},
-  selectedCountry: {en: "All", ru: "Все"},
+  selectedGenre: "Все",
+  selectedCountry: "Все",
   selectedMinRating: 0,
   selectedMinCountOfRating: 0,
   selectedProducer: "",
   selectedActor: "",
-  selectedSortBy: {en: "All", ru: "Все"},
+  selectedSortBy: "Все",
 } 
 
 const moviesFilterSlice = createSlice({
   name: "moviesFilter",
   initialState,
   reducers: {
-    setSelectedGenre(state, action: PayloadAction<IText>) {
+    setSelectedGenre(state, action: PayloadAction<string>) {
       state.selectedGenre = action.payload;
     },
-    setSelectedCountry(state, action: PayloadAction<IText>) {
+    setSelectedCountry(state, action: PayloadAction<string>) {
       state.selectedCountry = action.payload;
     },
     setSelectedMinRating(state, action: PayloadAction<number>) {
@@ -43,20 +43,20 @@ const moviesFilterSlice = createSlice({
     setSelectedActor(state, action: PayloadAction<string>) {
       state.selectedActor = action.payload;
     },
-    setSelectedSortBy(state, action: PayloadAction<IText>) {
+    setSelectedSortBy(state, action: PayloadAction<string>) {
       state.selectedSortBy = action.payload;
     },
     applyFilters(state, action: PayloadAction<IInitialState>) {
       return action.payload;
     },
     clearFilters(state) {
-      state.selectedGenre = {en: "All", ru: "Все"};
-      state.selectedCountry = {en: "All", ru: "Все"};
+      state.selectedGenre = "Все";
+      state.selectedCountry = "Все";
       state.selectedMinRating = 0;
       state.selectedMinCountOfRating = 0;
       state.selectedProducer = "";
       state.selectedActor = "";
-      state.selectedSortBy = {en: "All", ru: "Все"};
+      state.selectedSortBy = "Все";
     }
   }
 });

@@ -10,13 +10,17 @@
 }
 
 .filters {
-  display: flex;
-  align-items: stretch;
-  max-width: 445px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   flex-wrap: wrap;
+
+  & select {
+    width: 100%;
+  }
 
   &>*{
     margin-top: 5px;
+    margin-right: 5px;
   }
 }
 
@@ -29,12 +33,5 @@
   .filters,
   .sort {
     display: none;
-  }
-}
-
-.select {
-
-  &:not(:last-child) {
-    margin-right: 5px;
   }
 }

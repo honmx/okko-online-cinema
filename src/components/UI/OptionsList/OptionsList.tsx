@@ -8,9 +8,9 @@ import Option from "../Option/Option";
 import { IText } from "@/types/IText";
 
 interface Props {
-  values: IText[];
-  selectedValue: IText;
-  onOptionClick: (arg: IText) => void;
+  values: string[];
+  selectedValue: string;
+  onOptionClick: (arg: string) => void;
   className?: string;
 }
 
@@ -19,14 +19,14 @@ const OptionsList: FC<Props> = ({ values, selectedValue, onOptionClick, classNam
   return (
     <div className={`${s.optionsContainer} ${className}`}>
       <Option
-        value={{ en: "All", ru: "Все" }}
+        value="Все"
         selectedValue={selectedValue}
-        onClick={() => onOptionClick({ en: "All", ru: "Все" })}
+        onClick={() => onOptionClick("Все")}
       />
       {
         values.map(value => (
           <Option
-            key={value.en}
+            key={value}
             value={value}
             selectedValue={selectedValue}
             onClick={() => onOptionClick(value)}

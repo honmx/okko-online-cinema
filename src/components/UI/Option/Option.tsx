@@ -4,8 +4,8 @@ import s from "./Option.module.scss";
 import { IText } from "@/types/IText";
 
 interface Props {
-  value: IText;
-  selectedValue: IText;
+  value: string;
+  selectedValue: string;
   className?: string;
   onClick?: () => void;
 }
@@ -20,10 +20,10 @@ const Option: FC<Props> = ({ value, selectedValue, className, onClick }) => {
 
   return (
     <button
-      className={`${s.option} ${selectedValue.en === value.en ? s.selected : ""} ${className}`}
+      className={`${s.option} ${selectedValue === value ? s.selected : ""} ${className}`}
       onClick={handleClick}
     >
-      {value.ru}
+      {value}
     </button>
   )
 };

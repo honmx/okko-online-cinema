@@ -1,20 +1,8 @@
 import { IText } from "@/types/IText";
 
-export const sortByValues: IText[] = [
-  {
-    en: "rating count",
-    ru: "По кол-ву оценок",
-  },
-  {
-    en: "rating",
-    ru: "По рейтингу"
-  },
-  {
-    en: "date",
-    ru: "По дате выхода"
-  },
-  {
-    en: "alphabet",
-    ru: "По алфавиту"
-  }
+export const sortByValues: string[] = [
+  "По кол-ву оценок",
+  "По рейтингу",
+  "По дате выхода",
+  "По алфавиту"
 ]

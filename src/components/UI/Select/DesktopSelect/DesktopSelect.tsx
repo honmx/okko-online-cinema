@@ -24,7 +24,7 @@ const Select: FC<Props> = ({ img, values, selectedValue, setSelectedValue, class
 
   useOutsideClick(ref, () => setActive(false));
 
-  const handleOptionClick = (value: IText) => {
+  const handleOptionClick = (value: string) => {
     setSelectedValue(value);
     setActive(prev => !prev);
   }
@@ -44,23 +44,23 @@ const Select: FC<Props> = ({ img, values, selectedValue, setSelectedValue, class
         className={`${s.select} ${img ? s.selectWithImage : ""}`}
         onMouseDown={handleSelectClick}
         onChange={() => { }}
-        value={selectedValue.en}
+        value={selectedValue}
       >
         {/* нужно для корректного определения ширины select`а */}
         <option
           value="All"
-          className={selectedValue.en === "All" ? s.selected : ""}
+          className={selectedValue === "All" ? s.selected : ""}
         >
-          {selectedValue.ru}
+          {selectedValue}
         </option>
         {
           values.map(value => (
             <option
-              key={value.en}
-              value={value.en}
-              className={selectedValue.en === value.en ? s.selected : ""}
+              key={value}
+              value={value}
+              className={selectedValue === value ? s.selected : ""}
             >
-              {value.ru}
+              {value}
             </option>
           ))
         }

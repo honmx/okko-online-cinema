@@ -27,6 +27,8 @@ interface Props {
 
 const Movie: NextPageWithLayout<Props> = ({ movie }) => {
 
+  console.log(movie);
+
   const isActive = useDelay(4000);
 
   const [tabIndex, setTabIndex] = useState<number>(0);

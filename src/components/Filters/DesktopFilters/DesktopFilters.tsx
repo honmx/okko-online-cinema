@@ -22,7 +22,7 @@ interface Props extends CommonProps {
 
 }
 
-const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter = true }) => {
+const DesktopFilters: FC<Props> = ({ genres, countries, showProducerFilter = true, showActorFilter = true }) => {
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -67,16 +67,16 @@ const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter 
         <div className={s.filters}>
           {/* genres */}
           <DesktopSelect
-            values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
+            values={genres}
             selectedValue={selectedGenre}
-            setSelectedValue={(value: IText) => dispatch(setSelectedGenre(value))}
+            setSelectedValue={(value: string) => dispatch(setSelectedGenre(value))}
             className={s.select}
           />
           {/* countries */}
           <DesktopSelect
-            values={genres.map(genre => ({ ru: genre.title.ru, en: genre.title.en }))}
-            selectedValue={selectedGenre}
-            setSelectedValue={(value: IText) => dispatch(setSelectedCountry(value))}
+            values={countries}
+            selectedValue={selectedCountry}
+            setSelectedValue={(value: string) => dispatch(setSelectedCountry(value))}
             className={s.select}
           />
           {/* minRating */}
@@ -142,9 +142,9 @@ const DesktopFilters: FC<Props> = ({ showProducerFilter = true, showActorFilter 
       <div className={s.sort}>
         <DesktopSelect
           img={sort}
-          values={sortByValues.map(value => ({ ru: value.ru, en: value.en }))}
+          values={sortByValues}
           selectedValue={selectedSortBy}
-          setSelectedValue={(value: IText) => dispatch(setSelectedSortBy(value))}
+          setSelectedValue={(value: string) => dispatch(setSelectedSortBy(value))}
           className={s.select}
         />
       </div>

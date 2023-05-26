@@ -19,7 +19,7 @@ const MobileSelect: FC<Props> = ({ values, selectedValue, setSelectedValue, titl
 
   useOutsideClick(ref, () => setActive(false));
 
-  const handleOptionClick = (value: IText) => {
+  const handleOptionClick = (value: string) => {
     setSelectedValue(value);
     setActive(prev => !prev);
   }
@@ -32,7 +32,7 @@ const MobileSelect: FC<Props> = ({ values, selectedValue, setSelectedValue, titl
   return (
     <div ref={ref} className={`${s.selectContainer} ${className}`} onClick={handleSelectClick}>
       <Title fs="16px">{title}</Title>
-      <p className={s.selectedValue}>{selectedValue.ru}</p>
+      <p className={s.selectedValue}>{selectedValue}</p>
       {
         active &&
         <div className={s.optionsListContainer}>
