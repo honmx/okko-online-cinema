@@ -23,7 +23,7 @@ const BreadCrumbs: FC<Props> = ({ values, onClick, className }) => {
     <div className={`${s.container} ${className}`}>
       {
         values.map((value, i) =>
-          <div className={s.breadCrumb} onClick={onClick}>
+          <div key={i} onClick={onClick} className={s.breadCrumb}>
             <CustomLink href={value.href} isDisabled={i === values.length - 1}>{value.value}</CustomLink>
             {
               i !== values.length - 1 &&

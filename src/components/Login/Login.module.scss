@@ -23,16 +23,16 @@
     top: 8px;
     left: 10px;
 
-      &>div {
-        &:hover {
+    &>div {
+      &:hover {
+        &>div {
           &>div {
-            &>div {
-              background-color: rgba($color: $primaryDarkGreyColor, $alpha: 0.9) !important;
-            }
+            background-color: rgba($color: $primaryDarkGreyColor, $alpha: 0.9) !important;
           }
         }
       }
-    
+    }
+
   }
 }
 
@@ -74,7 +74,7 @@
 
     width: 100%;
     margin-top: 5px;
-    
+
     &:not(:last-child) {
       text-align: center;
 
@@ -99,8 +99,23 @@
   align-items: center;
   border: 1px solid $primaryGreyColor;
   border-radius: 8px;
-  padding: 8px;
   cursor: pointer;
+
+  button {
+    padding: 8px;
+    transition: all 0.15s ease;
+    
+    p {
+      font-weight: 700;
+      font-style: 16px;
+      color: $primaryFontColor;
+      margin-top: 2px;
+    }
+
+    &:hover {
+      color: $accentWhiteFontColor;
+    }
+  }
 
   img {
     margin-right: 10px;

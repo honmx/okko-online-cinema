@@ -4,6 +4,7 @@ import { login } from "../thunks/login";
 import { logout } from "../thunks/logout";
 import { checkAuth } from "../thunks/checkAuth";
 import { register } from "../thunks/register";
+import { vkLogin } from "../thunks/vkLogin";
 
 interface IInitialState {
   user: IUser,
@@ -55,6 +56,7 @@ export const authSlice = createSlice({
 
     builder.addCase(logout.fulfilled, (state, action) => {
       localStorage.removeItem("token");
+      localStorage.removeItem("vkToken");
       state.user = {} as IUser;
       state.isAuth = false;
       state.isLoading = false;
@@ -78,6 +80,19 @@ export const authSlice = createSlice({
     });
     builder.addCase(checkAuth.rejected, (state, action) => {
       state.user = {} as IUser;
+      state.isAuth = false;
+      state.isLoading = false;
+    });
+
+    builder.addCase(vkLogin.fulfilled, (state, action) => {
+      localStorage.setItem("vkToken", action.payload?.access_token as string);
+      state.isAuth = true;
+      state.isLoading = false;
+    });
+    builder.addCase(vkLogin.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(vkLogin.rejected, (state, action) => {
       state.isAuth = false;
       state.isLoading = false;
     });

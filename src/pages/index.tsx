@@ -13,6 +13,9 @@ import dynamic from "next/dynamic";
 import entitiesService from "@/services/entitiesService";
 import { clearFilters } from "@/store/slices/moviesFilterSlice";
 import { useAppDispatch } from "@/store/hooks";
+import { useRouter } from "next/router";
+import authService from "@/services/authService";
+import { vkLogin } from "@/store/thunks/vkLogin";
 
 interface Props {
   movies: IMovie[];
@@ -25,11 +28,23 @@ const ClientCarousel = dynamic(() => import("../components/UI/Carousel/Carousel"
 
 const Home: NextPage<Props> = ({ movies }) => {
 
-  const dispatch = useAppDispatch(); 
+  const router = useRouter();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(clearFilters());
   }, []);
+
+  useEffect(() => {
+
+    const code = router.query.code as string; 
+
+    if (!code) return;
+
+    dispatch(vkLogin(code));
+    
+    // console.log(router.query.code);
+  }, [router.query]);
 
   return (
     <>

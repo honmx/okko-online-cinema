@@ -7,7 +7,7 @@ import axios, { AxiosResponse } from "axios";
 const checkEmail = async (email: string): Promise<AxiosResponse<IUser | "" | undefined>> => {
   try {
     const response = await $authAPI.get<IUser>(`/check/${email}`);
-    
+
     return response;
   } catch (error) {
     throw error;
@@ -42,5 +42,11 @@ const checkAuth = async (): Promise<AxiosResponse<IAuthResponse>> => {
   return response;
 }
 
+const loginWithVk = async (code: string) => {
+  const response = await axios.post<IVKAuthResponse>(`${process.env.NEXT_PUBLIC_AUTH_API_URL}/login/vk`, {code});
 
-export default { checkEmail, login, register, logout, checkAuth };
+  return response;
+}
+
+
+export default { checkEmail, login, register, logout, checkAuth, loginWithVk };

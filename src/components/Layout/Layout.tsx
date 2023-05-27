@@ -25,29 +25,37 @@ const Layout: FC<Props> = ({ children }) => {
 
   const dispatch = useAppDispatch();
 
+  // const isAuth = useAppSelector(state => state.auth.isAuth);
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       dispatch(checkAuth());
     }
-
+    
     // const a = async () => {
-    //   const admin = await axios.post("http://localhost:5000/role", {
-    //     value: "ADMIN",
-    //     description: "Администратор",
-    //   })
-  
-    //   const user = await axios.post("http://localhost:5000/role", {
-    //     value: "USER",
+      //   const admin = await axios.post("http://localhost:5000/role", {
+        //     value: "ADMIN",
+        //     description: "Администратор",
+        //   })
+        
+        //   const user = await axios.post("http://localhost:5000/role", {
+          //     value: "USER",
     //     description: "Пользователь",
     //   });
-
+    
     //   console.log(admin);
     //   console.log(user);
     // }
 
     // a();
   }, []);
-
+  
+  // useEffect(() => {
+  //   if (localStorage.getItem("vkToken") && !isAuth) {
+  //     window.location.href = `https://oauth.vk.com/authorize?client_id=${process.env.NEXT_PUBLIC_VK_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_APP_URL}&display=page&scope=email&response_type=code&v=5.131`;
+  //   }
+  // }, [isAuth]);
+  
   const notifications = useAppSelector(state => state.notifications.notifications);
 
   return (

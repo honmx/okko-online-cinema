@@ -14,6 +14,7 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 import LoginForm from '../LoginForm/LoginForm';
 import { useAppSelector } from '@/store/hooks';
 import { useRouter } from 'next/router';
+import IconButton from '../UI/IconButton/IconButton';
 
 interface Props {
   onClose: () => void;
@@ -29,6 +30,13 @@ const Login: FC<Props> = ({ onClose }) => {
 
   const [email, setEmail] = useState<string>("");
 
+  useEffect(() => {
+    if (authState.isAuth) {
+      onClose();
+      router.push("/");
+    }
+  }, [authState.isAuth]);
+
   const handleEmailChange = (value: string) => {
     setEmail(value);
   }
@@ -37,12 +45,13 @@ const Login: FC<Props> = ({ onClose }) => {
     onClose();
   };
 
-  useEffect(() => {
-    if (authState.isAuth) {
-      onClose();
-      router.push("/");
-    }
-  }, [authState.isAuth]);
+  const handleVKClick = () => {
+    window.location.href = `https://oauth.vk.com/authorize?client_id=${process.env.NEXT_PUBLIC_VK_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_APP_URL}&display=page&scope=email&response_type=code&v=5.131`;
+  }
+
+  const handleGoogleClick = () => {
+
+  }
 
   return (
     <div className={s.loginWrapper}>
@@ -79,14 +88,14 @@ const Login: FC<Props> = ({ onClose }) => {
             }
             {
               emailExists === null && <>
-                <CustomLink href="/" target="_blank" className={s.loginWith}>
+                <IconButton className={s.loginWith} onClick={handleVKClick}>
                   <Image src={vkontakte} alt="vk" />
-                  Войти через VK
-                </CustomLink>
-                <CustomLink href="/" target="_blank" className={s.loginWith}>
+                  <p>Войти через VK</p>
+                </IconButton>
+                <IconButton className={s.loginWith} onClick={handleGoogleClick}>
                   <Image src={google} alt="google" />
-                  Войти через Google
-                </CustomLink>
+                  <p>Войти через Google</p>
+                </IconButton>
               </>
             }
             <div className={s.agreement}>
