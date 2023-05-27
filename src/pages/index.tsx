@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import Carousel from '@/components/UI/Carousel/Carousel';
@@ -11,6 +11,8 @@ import axios from "axios";
 import s from "./Home.module.scss";
 import dynamic from "next/dynamic";
 import entitiesService from "@/services/entitiesService";
+import { clearFilters } from "@/store/slices/moviesFilterSlice";
+import { useAppDispatch } from "@/store/hooks";
 
 interface Props {
   movies: IMovie[];
@@ -22,6 +24,12 @@ const ClientCarousel = dynamic(() => import("../components/UI/Carousel/Carousel"
 });
 
 const Home: NextPage<Props> = ({ movies }) => {
+
+  const dispatch = useAppDispatch(); 
+
+  useEffect(() => {
+    dispatch(clearFilters());
+  }, []);
 
   return (
     <>

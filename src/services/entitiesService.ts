@@ -1,6 +1,7 @@
 import $entitiesAPI from "@/http/entities";
 import { IMovie } from "@/types/IMovie";
 import { IPerson } from "@/types/IPerson";
+import axios from "axios";
 
 const getMovies = async (): Promise<IMovie[]> => {
   try {
@@ -46,4 +47,15 @@ const getPeople = async (): Promise<IPerson[]> => {
   }
 }
 
-export default { getMovies, getMoviesByPersonName, getMovieByTitle, getPeople };
+const getReviewsByMovieId = async (id: number) => {
+  try {
+    const { data: reviews } = await axios.get(`http://localhost:5000/review/movie/${id}`);
+
+    return reviews;
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export default { getMovies, getMoviesByPersonName, getMovieByTitle, getPeople, getReviewsByMovieId };

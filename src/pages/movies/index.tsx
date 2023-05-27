@@ -57,10 +57,6 @@ const Movies: NextPageWithLayout<Props> = ({ movies }) => {
     })
   ]);
 
-  useEffect(() => {
-    dispatch(clearFilters());
-  }, []);
-
   return (
     <>
       <Head>

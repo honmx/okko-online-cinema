@@ -40,6 +40,17 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
     setActiveSound(prev => !prev);
   }
 
+  const a = async () => {
+    try {
+      const reviews = await entitiesService.getReviewsByMovieId(movie.id);
+      console.log(reviews)
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  a();
+
   return (
     <>
       <Head>
@@ -133,9 +144,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const title = context.params?.title as string;
   const movie = await entitiesService.getMovieByTitle(title);
 
+  // const reviews = await entitiesService.getReviewsByMovieId(movie.id);
+
   return {
     props: {
-      movie
+      movie,
+      // reviews
     }
   }
 }

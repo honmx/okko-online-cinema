@@ -70,7 +70,7 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, clas
                   || person.fullNameOrig.toLowerCase().includes(value.trim().toLowerCase())))
               .slice(0, 18)
               .map(person => (
-                <PersonAutoSuggestCard person={person} onClick={handlePersonClick} className={s.person} />
+                <PersonAutoSuggestCard key={person.id} person={person} onClick={handlePersonClick} className={s.person} />
               ))
           }
         </div>

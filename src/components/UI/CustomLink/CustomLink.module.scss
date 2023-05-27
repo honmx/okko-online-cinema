@@ -23,9 +23,29 @@
     a {
       color: $accentWhiteFontColor;
       text-shadow: 0 0 25px rgba($color: $accentWhiteColor, $alpha: 0.7);
-      
+
       img {
         filter: brightness(100%);
+      }
+    }
+  }
+}
+
+.disabled {
+
+  cursor:auto;
+
+  a {
+    color: $accentWhiteFontColor;
+    pointer-events: none;
+  }
+
+  &:hover {
+    a {
+      text-shadow: none;
+
+      img {
+        filter: brightness(50%);
       }
     }
   }

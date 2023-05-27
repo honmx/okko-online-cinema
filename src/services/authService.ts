@@ -29,8 +29,6 @@ const register = async (email: string, password: string) => {
     password
   });
 
-  console.log(response);
-
   return response;
 }
 
@@ -40,8 +38,6 @@ const logout = async (): Promise<void> => {
 
 const checkAuth = async (): Promise<AxiosResponse<IAuthResponse>> => {
   const response = await bearerAxios.get<IAuthResponse>("/refresh");
-
-  console.log(response);
 
   return response;
 }

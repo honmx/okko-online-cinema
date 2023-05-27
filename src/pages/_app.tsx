@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { useAppDispatch } from '@/store/hooks';
 import { checkAuth } from '@/store/thunks/checkAuth';
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_ENTITIES_API_URL;
+// axios.defaults.baseURL = process.env.NEXT_PUBLIC_ENTITIES_API_URL;
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout

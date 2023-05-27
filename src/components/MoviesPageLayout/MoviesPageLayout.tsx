@@ -12,6 +12,12 @@ import MobileFilters from "../Filters/MobileFilters/MobileFilters";
 import s from "./MoviesPageLayout.module.scss";
 import $entitiesAPI from "@/http/entities";
 import { useGenresAndCountries } from "@/hooks/useGenresAndCountries";
+import BreadCrumbs from "../UI/BreadCrumbs/BreadCrumbs";
+import { useRouter } from "next/router";
+import { useSelectedFilters } from "@/hooks/useSelectedFilters";
+import { moviesPageBreadCrumbs } from "@/helpers/data/breadCrumbs";
+import { useAppDispatch } from "@/store/hooks";
+import { clearFilters } from "@/store/slices/moviesFilterSlice";
 
 interface Props {
   children: ReactNode;
@@ -19,14 +25,22 @@ interface Props {
 
 const MoviesPageLayout: FC<Props> = ({ children }) => {
 
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
   const isSmaller = useSmallerDevice(959);
+
+  const { genres, countries } = useGenresAndCountries();
+  const { selectedGenre } = useSelectedFilters();
 
   const [showText, setShowText] = useState<boolean>(false);
 
-  const { genres, countries } = useGenresAndCountries();
-
   const handleShowTextClick = () => {
     setShowText(prev => !prev);
+  }
+
+  const handleBreadCrumbClick = () => {
+    dispatch(clearFilters());
   }
 
   return (
@@ -57,6 +71,11 @@ const MoviesPageLayout: FC<Props> = ({ children }) => {
           </div>
         </div>
       </div>
+      {
+        router.pathname === "/movies" && selectedGenre === "Все"
+          ? <BreadCrumbs values={moviesPageBreadCrumbs} className={s.breadCrumbs} onClick={handleBreadCrumbClick} />
+          : <BreadCrumbs values={[...moviesPageBreadCrumbs, { value: selectedGenre, href: "" }]} className={s.breadCrumbs} onClick={handleBreadCrumbClick} />
+      }
       {
         isSmaller
           ? <MobileFilters genres={genres} countries={countries} />
