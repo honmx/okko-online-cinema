@@ -12,6 +12,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { setSelectedActor, setSelectedProducer } from "@/store/slices/moviesFilterSlice";
 import TextButton from "../TextButton/TextButton";
 import { useScrollStart } from "@/hooks/useScrollStart";
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 
 interface Props {
   entitiyType: "Актёр" | "Режиссёр";
@@ -23,6 +24,8 @@ interface Props {
 const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, className }) => {
 
   const dispatch = useAppDispatch();
+
+  const isSmaller = useSmallerDevice(519);
 
   const [value, setValue] = useState<string>("");
   const [persons, setPersons] = useState<IPerson[]>([]);
@@ -63,25 +66,25 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, clas
         />
         <div className={s.resultContainer}>
           {
-            value.length > 0 && persons.length > 0 &&
+            value.length > 1 && persons.length > 0 &&
             persons
               .filter(person => person.profession === entitiyType &&
                 (person.fullName.toLowerCase().includes(value.trim().toLowerCase())
                   || person.fullNameOrig.toLowerCase().includes(value.trim().toLowerCase())))
-              .slice(0, 18)
+              // .slice(0, 18)
               .map(person => (
                 <PersonAutoSuggestCard key={person.id} person={person} onClick={handlePersonClick} className={s.person} />
               ))
           }
         </div>
-        <IconButton onClick={onClose} className={s.closeBtn}>
+        {/* <IconButton onClick={onClose} className={s.closeBtn}>
           <Image src={close} alt="close" />
-        </IconButton>
-        <IconButton onClick={onClose} className={s.closeBtn}>
-          <Image src={close} alt="close" />
-        </IconButton>
-        <TextButton fs="16px" onClick={handleClearClick} className={s.clearBtn}>Очистить</TextButton>
+        </IconButton> */}
+        <TextButton fs={isSmaller ? "12px" : "16px"} onClick={handleClearClick} className={s.clearBtn}>Очистить</TextButton>
       </div>
+        <IconButton onClick={onClose} className={s.closeBtn}>
+          <Image src={close} alt="close" />
+        </IconButton>
     </div>
   )
 };

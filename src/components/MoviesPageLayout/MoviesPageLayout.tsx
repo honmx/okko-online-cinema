@@ -31,7 +31,13 @@ const MoviesPageLayout: FC<Props> = ({ children }) => {
   const isSmaller = useSmallerDevice(959);
 
   const { genres, countries } = useGenresAndCountries();
-  const { selectedGenre } = useSelectedFilters();
+  const { selectedGenre, selectedCountry, selectedProducer, selectedActor } = useSelectedFilters();
+
+  const lastBreadCrumb =
+    selectedGenre !== "Все" && selectedGenre
+    || selectedActor
+    || selectedCountry !== "Все" && selectedCountry
+    || selectedProducer;
 
   const [showText, setShowText] = useState<boolean>(false);
 
@@ -72,9 +78,9 @@ const MoviesPageLayout: FC<Props> = ({ children }) => {
         </div>
       </div>
       {
-        router.pathname === "/movies" && selectedGenre === "Все"
-          ? <BreadCrumbs values={moviesPageBreadCrumbs} className={s.breadCrumbs} onClick={handleBreadCrumbClick} />
-          : <BreadCrumbs values={[...moviesPageBreadCrumbs, { value: selectedGenre, href: "" }]} className={s.breadCrumbs} onClick={handleBreadCrumbClick} />
+        router.pathname !== "/movies" && (selectedGenre !== "Все" || selectedCountry !== "Все" || selectedActor !== "" || selectedProducer !== "")
+          ? <BreadCrumbs values={[...moviesPageBreadCrumbs, { value: lastBreadCrumb, href: "" }]} className={s.breadCrumbs} onClick={handleBreadCrumbClick} />
+          : <BreadCrumbs values={moviesPageBreadCrumbs} className={s.breadCrumbs} onClick={handleBreadCrumbClick} />
       }
       {
         isSmaller
