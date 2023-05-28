@@ -10,6 +10,8 @@ import sound from "../../../assets/sound.svg";
 import soundDisabled from "../../../assets/soundDisabled.svg";
 import s from "./Card.module.scss";
 import { isMovieType } from "@/helpers/isMovieType";
+import Title from "../Title/Title";
+import { capitalize } from "@/helpers/capitalize";
 
 interface Props {
   item: CardType | IMovie;
@@ -32,7 +34,7 @@ const Card: FC<Props> = ({ item, linkHref, ar = 1.77 }) => {
   }
 
   return (
-    <div className={s.cardWrapper} ref={ref}>
+    <div className={`${s.cardWrapper} ${isHover && isActive ? s.cardWithTrailer : ""}`} ref={ref}>
       <Link href={linkHref}>
         <div className={s.card} style={{ aspectRatio: ar }}>
           {
@@ -46,7 +48,6 @@ const Card: FC<Props> = ({ item, linkHref, ar = 1.77 }) => {
                   muted={activeSound}
                   loop
                 />
-                <div className={s.movieTitle}>5.0 sdfsd  sdfg sdfg</div>
               </> : <Image
                 src={ar === 0.66 ? item.verticalPhoto : item.horizontalPhoto}
                 alt={item.title.toString()}
@@ -60,6 +61,19 @@ const Card: FC<Props> = ({ item, linkHref, ar = 1.77 }) => {
       </Link>
       {
         isHover && isActive && isMovieType(item) && <>
+          <div className={s.movieInfo}>
+            <div className={s.upperLine}>
+              <div className={s.ratingContainer}>
+                <p className={`${s.rating} ${item.rate > 7 ? s.greenRate : s.usualRate}`}>{item.rate}</p>
+              </div>
+              <Title fs="14px" fw={400}>{item.title}</Title>
+            </div>
+            <div className={s.lowerLine}>
+              <p className={s.genre}>{capitalize(item.genres[0].genre)}</p>
+              <p className={s.year}>{item.yearTill}</p>
+              <p className={s.country}>{item.country.split(", ")[0]}</p>
+            </div>
+          </div>
           <Button shape="circle" p="5px" img={!activeSound ? sound : soundDisabled} onClick={handleSoundClick} className={s.sound} />
         </>
       }
