@@ -2,6 +2,12 @@
 
 .cardWrapper {
   position: relative;
+  transition: scale 0.15s ease;
+  height: 100%;
+
+  &:hover {
+    scale: 1.05
+  }
 }
 
 .cardWithTrailer {
@@ -10,15 +16,10 @@
   border-radius: 25px;
   // height: 100%;
 
-  &:hover {
-    scale: 1.05
-  }
-
   & .card {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
-
 }
 
 .card {
@@ -26,15 +27,11 @@
   width: min(25vw, 350px);
   overflow: hidden;
   border-radius: 25px;
-  transition: all 0.15s ease;
 
   video {
     object-fit: cover;
   }
 
-  // &:hover {
-  //   scale: 1.05
-  // }
 }
 
 @media screen and (max-width: 960px) {

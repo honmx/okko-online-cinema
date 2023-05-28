@@ -34,7 +34,7 @@ const Card: FC<Props> = ({ item, linkHref, ar = 1.77 }) => {
   }
 
   return (
-    <div className={`${s.cardWrapper} ${isHover && isActive ? s.cardWithTrailer : ""}`} ref={ref}>
+    <div className={`${s.cardWrapper} ${isHover && isActive && isMovieType(item) ? s.cardWithTrailer : ""}`} ref={ref}>
       <Link href={linkHref}>
         <div className={s.card} style={{ aspectRatio: ar }}>
           {
