@@ -18,8 +18,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding-top: 10px;
-  padding-bottom: 20px;
+  padding-top: 5px;
+  padding-bottom: 10px;
 
   @media screen and (max-width: 599px) {
     flex-direction: column;
@@ -44,7 +44,7 @@
 
 .closeButton {
   position: absolute;
-  top: 0;
+  top: -8px;
   right: 0;
 }
 

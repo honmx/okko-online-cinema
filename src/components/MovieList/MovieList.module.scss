@@ -1,45 +1,91 @@
 .movieListContainer {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  // justify-content: space-between;
+  flex-wrap: wrap;
+
+  // display: grid;
+  // grid-template-columns: repeat(4, 1fr);
   gap: 15px;
 
-  & div {
-    width: min(23vw, 330px) !important;
+  &>div {
+    &>a, &>a>div {
+      width: min(23vw, 330px) !important;
+    }
   }
 
   @media screen and (max-width: 1319px) {
-    & div {
-      width: min(31.5vw, 420px) !important;
-    }
-
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  @media screen and (max-width: 799px) {
-    & div {
-      width: min(30.5vw, 420px) !important;
+    &>div {
+      &>a,  &>a>div {
+        width: min(31.5vw, 420px) !important;
+      }
     }
   }
 
-  @media screen and (max-width: 599px) {
-    & div {
-      width: min(45vw, 300px) !important;
+  @media screen and (max-width: 1099px) {
+    &>div {
+      &>a,  &>a>div {
+        width: min(31vw, 420px) !important;
+      }
     }
-
-    grid-template-columns: repeat(2, 1fr);
   }
-  
-  @media screen and (max-width: 424px) {
-    & div {
-      width: min(93vw, 500px) !important;
+
+  @media screen and (max-width: 859px) {
+    &>div {
+      &>a,  &>a>div {
+        width: min(30.5vw, 420px) !important;
+      }
     }
-
-    grid-template-columns: 1fr;
   }
-  
+
+  @media screen and (max-width: 719px) {
+    &>div {
+      &>a,  &>a>div {
+        width: min(45vw, 420px) !important;
+      }
+    }
+  }
+
+  @media screen and (max-width: 469px) {
+    &>div {
+      &>a,  &>a>div {
+        width: min(92vw, 420px) !important;
+      }
+    }
+  }
+
   @media screen and (max-width: 374px) {
-    & div {
-      width: min(91vw, 500px) !important;
+    &>div {
+      &>a,  &>a>div {
+        width: min(90vw, 420px) !important;
+      }
     }
   }
+
+  // @media screen and (max-width: 799px) {
+  //   &>div {
+  //     width: min(30.5vw, 420px) !important;
+  //   }
+  // }
+
+  // @media screen and (max-width: 599px) {
+  //   &>div {
+  //     width: min(45vw, 300px) !important;
+  //   }
+
+  //   grid-template-columns: repeat(2, 1fr);
+  // }
+
+  // @media screen and (max-width: 424px) {
+  //   &>div {
+  //     width: min(93vw, 500px) !important;
+  //   }
+
+  //   grid-template-columns: 1fr;
+  // }
+
+  // @media screen and (max-width: 374px) {
+  //   &>div {
+  //     width: min(91vw, 500px) !important;
+  //   }
+  // }
 }
