@@ -1,8 +1,8 @@
 import { RefObject, useEffect, useState } from "react";
 
 export const useHover = (
-  ref: RefObject<HTMLDivElement>,
-  index: number,
+  ref: RefObject<HTMLElement>,
+  index?: number,
   setActiveIndex?: (value: number) => void,
   setActiveHoverIndex?: (value: number | null) => void,
 ) => {
@@ -12,7 +12,7 @@ export const useHover = (
   useEffect(() => {
     const handleMouseOver = () => {
       setIsHovered(true);
-      setActiveHoverIndex && setActiveHoverIndex(index);
+      setActiveHoverIndex && index && setActiveHoverIndex(index);
     }
 
     const handleMouseOut = () => {
@@ -21,7 +21,7 @@ export const useHover = (
     }
 
     const handleClick = () => {
-      setActiveIndex && setActiveIndex(index);
+      setActiveIndex && index && setActiveIndex(index);
     }
 
     ref.current?.addEventListener("mouseover", handleMouseOver);

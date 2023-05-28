@@ -73,9 +73,7 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
                       width="100%"
                       height="100%"
                       muted={activeSound}
-                      controls
                       loop
-                      
                       className={`${s.video} ${isActive ? s.activeVideo : ""}`}
                     />
                     <div className={s.movieButtonsContainer}>
