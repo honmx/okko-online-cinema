@@ -31,7 +31,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1000;
+    z-index: 100;
   }
 
   &::before {
@@ -62,7 +62,7 @@
     position: absolute;
     bottom: 20px;
     right: 20px;
-    z-index: 10000;
+    z-index: 1000;
   }
 }
 

@@ -8,7 +8,7 @@
 .contacts {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 45px;
+  margin-bottom: 15px;
 }
 
 .socialNetworksContainer {
@@ -102,6 +102,11 @@
   7%, 10%, 12% {
     background: none;
   }
+}
+
+.adminLink {
+  font-size: 30px;
+  margin-bottom: 50px;
 }
 
 .rights {

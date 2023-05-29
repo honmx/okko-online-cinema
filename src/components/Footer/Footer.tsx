@@ -37,6 +37,7 @@ const Footer: FC<Props> = ({ }) => {
           </div>
           <Button value="Нужна помощь?" bgColor="accent" img={chat} />
         </div>
+        <CustomLink href="/admin" className={s.adminLink}>Админ</CustomLink>
         <div className={s.navbar}>
           {
             footerNavbar.map(block => (

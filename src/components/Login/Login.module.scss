@@ -1,15 +1,18 @@
 @import "../../styles/variables.scss";
 
 .loginWrapper {
+  position: relative;
   display: flex;
   justify-content: flex-end;
   height: 100%;
+  z-index: 1000000;
 }
 
 .loginContainer {
   position: relative;
   background-color: $primaryDarkGreyColor;
   max-width: 550px;
+  z-index: 1000000;
 }
 
 .closeBtnContainer {
@@ -65,7 +68,6 @@
 
 
 .form {
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,14 +96,14 @@
 }
 
 .loginWith {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border: 1px solid $primaryGreyColor;
   border-radius: 8px;
   cursor: pointer;
-
+  
   button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 8px;
     transition: all 0.15s ease;
     
