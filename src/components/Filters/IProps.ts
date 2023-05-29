@@ -1,6 +1,8 @@
+import { IGenre } from "@/types/IGenre";
+
 export default interface Props {
   showProducerFilter?: boolean;
   showActorFilter?: boolean;
-  genres: string[];
+  genres: IGenre[];
   countries: string[];
 }

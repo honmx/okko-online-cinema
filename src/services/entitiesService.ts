@@ -1,7 +1,8 @@
 import $entitiesAPI from "@/http/entities";
+import { IGenre } from "@/types/IGenre";
 import { IMovie } from "@/types/IMovie";
 import { IPerson } from "@/types/IPerson";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 const getMovies = async (): Promise<IMovie[]> => {
   try {
@@ -36,6 +37,28 @@ const getMovieByTitle = async (title: string): Promise<IMovie> => {
   }
 }
 
+const getAdminMovies = async (): Promise<IMovie[]> => {
+  try {
+    const { data: movies } = await $entitiesAPI.get<IMovie[]>("/admin/movies");
+    return movies;
+  
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+const getGenres = async (): Promise<IGenre[]> => {
+  try {
+    const { data: genres } = await $entitiesAPI.get<IGenre[]>("/admin/genres");
+    return genres;
+
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
 const getPeople = async (): Promise<IPerson[]> => {
   try {
     const { data: persons } = await $entitiesAPI.get<IPerson[]>("/people");
@@ -58,4 +81,4 @@ const getReviewsByMovieId = async (id: number) => {
   }
 }
 
-export default { getMovies, getMoviesByPersonName, getMovieByTitle, getPeople, getReviewsByMovieId };
+export default { getMovies, getMoviesByPersonName, getMovieByTitle, getAdminMovies, getGenres, getPeople, getReviewsByMovieId };

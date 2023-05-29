@@ -6,9 +6,12 @@ import close from "../../../assets/close.svg";
 import s from "./OptionsList.module.scss";
 import Option from "../Option/Option";
 import { IText } from "@/types/IText";
+import { IGenre } from "@/types/IGenre";
+import { isGenreType } from "@/helpers/isGenreType";
+import { capitalize } from "@/helpers/capitalize";
 
 interface Props {
-  values: string[];
+  values: string[] | IGenre[];
   selectedValue: string;
   onOptionClick: (arg: string) => void;
   className?: string;
@@ -26,10 +29,10 @@ const OptionsList: FC<Props> = ({ values, selectedValue, onOptionClick, classNam
       {
         values.map(value => (
           <Option
-            key={value}
-            value={value}
+            key={isGenreType(value) ? capitalize(value.genre) : value}
+            value={isGenreType(value) ? capitalize(value.genre) : value}
             selectedValue={selectedValue}
-            onClick={() => onOptionClick(value)}
+            onClick={() => onOptionClick(isGenreType(value) ? capitalize(value.genre) : value)}
           />
         ))
       }

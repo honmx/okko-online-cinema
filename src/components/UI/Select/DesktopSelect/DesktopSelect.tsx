@@ -6,6 +6,7 @@ import s from "./DesktopSelect.module.scss";
 import CommonProps from "../IProps";
 import OptionsList from "../../OptionsList/OptionsList";
 import { IText } from "@/types/IText";
+import { isGenreType } from "@/helpers/isGenreType";
 
 export type SelectOptionType = {
   value: string;
@@ -56,11 +57,11 @@ const Select: FC<Props> = ({ img, values, selectedValue, setSelectedValue, class
         {
           values.map(value => (
             <option
-              key={value}
-              value={value}
+              key={isGenreType(value) ? value.genre : value}
+              value={isGenreType(value) ? value.genre : value}
               className={selectedValue === value ? s.selected : ""}
             >
-              {value}
+              {isGenreType(value) ? value.genre : value}
             </option>
           ))
         }

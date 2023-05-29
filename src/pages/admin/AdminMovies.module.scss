@@ -1,0 +1,10 @@
+.adminMoviesPageContainer {
+  padding-top: 50px;
+}
+
+.moviesContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+

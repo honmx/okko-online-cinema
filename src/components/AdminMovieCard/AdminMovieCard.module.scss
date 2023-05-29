@@ -1,0 +1,82 @@
+@import "../../styles/variables.scss";
+
+.adminMovieCardContainer {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.imgWrapper {
+  position: relative;
+  z-index: 1000;
+
+  & img {
+    position: relative;
+    object-fit: cover;
+    border-radius: 20px;
+    z-index: 1000;
+  }
+}
+
+.rightSideContainer {
+  position: relative;
+  margin: 10px 15px;
+  flex: 1 1 0;
+  z-index: 100;
+
+  &>* {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &:hover {
+    & .editBtn {
+      opacity: 1
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -250px;
+    height: 100%;
+    aspect-ratio: 1;
+    background: radial-gradient(closest-side, rgba($color: $accentWhiteColor, $alpha: 0.18), transparent);
+    transition: all 0.5s ease;
+  }
+  
+  &:hover {
+    &::before {
+      left: calc(100% - 85px);
+    }
+  }
+}
+
+.editBtn {
+  opacity: 0;
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  transition: all 0.15s ease;
+}
+
+.form {
+  position: relative;
+  z-index: 100;
+  &>* {
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.confirmBtn {
+  button {
+    font-size: 12px;
+  }
+}

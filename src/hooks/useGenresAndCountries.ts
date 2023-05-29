@@ -1,22 +1,22 @@
 import { capitalize } from "@/helpers/capitalize";
 import entitiesService from "@/services/entitiesService";
+import { IGenre } from "@/types/IGenre";
 import { useEffect, useState } from "react"
 
 export const useGenresAndCountries = () => {
-  const [genres, setGenres] = useState<string[]>([]);
+  const [genres, setGenres] = useState<IGenre[]>([]);
   const [countries, setCountries] = useState<string[]>([]);
 
   useEffect(() => {
     const getGenresAndCountries = async () => {
       const movies = await entitiesService.getMovies();
-      
-      const genres = new Set<string>();
+      const genres = await entitiesService.getGenres();
+
       const countries = new Set<string>();
 
-      movies.forEach(movie => movie.genres.forEach(genre => genres.add(capitalize(genre.genre))));
       movies.forEach(movie => movie.country.split(", ").forEach(country => countries.add(country)));
 
-      setGenres(Array.from(genres));
+      setGenres(genres);
       setCountries(Array.from(countries));
     }
 

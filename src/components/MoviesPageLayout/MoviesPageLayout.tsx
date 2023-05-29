@@ -18,6 +18,7 @@ import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { moviesPageBreadCrumbs } from "@/helpers/data/breadCrumbs";
 import { useAppDispatch } from "@/store/hooks";
 import { clearFilters } from "@/store/slices/moviesFilterSlice";
+import { capitalize } from "@/helpers/capitalize";
 
 interface Props {
   children: ReactNode;

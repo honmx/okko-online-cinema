@@ -109,7 +109,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      movies: movies?.filter(movie => movie.horizontalPhoto)
+      movies: movies?.filter(movie => movie.horizontalPhoto),
     }
   }
 }

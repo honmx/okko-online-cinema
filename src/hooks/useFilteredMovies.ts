@@ -25,7 +25,7 @@ export const useFilteredMovies = (movies: IMovie[]) => {
       .filter(movie => selectedProducer === ""
         ? movie
         : movie.people.filter(person => (person.profession.toLowerCase() === "режиссёр"
-          || person.profession === "Сценарист" || person.profession === "Продюсер")
+          || person.profession.toLowerCase() === "сценарист" || person.profession.toLowerCase() === "продюсер")
           && person.fullName.toLowerCase() === selectedProducer.toLowerCase()).length > 0)
       .filter(movie => selectedActor === ""
         ? movie
