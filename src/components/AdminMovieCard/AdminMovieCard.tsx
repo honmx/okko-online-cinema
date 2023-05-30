@@ -7,6 +7,10 @@ import pen from "@/assets/pen.svg";
 import s from "./AdminMovieCard.module.scss";
 import InputField from "../UI/InputField/InputField";
 import Button from "../UI/Button/Button";
+import Title from "../UI/Title/Title";
+import Link from "next/link";
+import Card from "../UI/Card/Card";
+import entitiesService from "@/services/entitiesService";
 
 interface Props {
   movie: IMovie;
@@ -15,13 +19,20 @@ interface Props {
 const AdminMovieCard: FC<Props> = ({ movie }) => {
 
   const ref = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [inputTitle, setInputTitle] = useState<string>(movie.title);
+  const [inputOriginalTitle, setInputOriginalTitle] = useState<string>(movie.originalTitle || "");
   const [title, setTitle] = useState<string>(movie.title);
   const [originalTitle, setOriginalTitle] = useState<string>(movie.originalTitle || "");
 
-  const [inputTitle, setInputTitle] = useState<string>(movie.title);
-  const [inputOriginalTitle, setInputOriginalTitle] = useState<string>(movie.originalTitle || "");
+  useEffect(() => {
+    if (!isEdit) return;
+
+    const firstInput = formRef.current?.firstElementChild?.firstElementChild as HTMLInputElement;
+    firstInput.focus();
+  }, [isEdit]);
 
   const handleEditClick = () => {
     setIsEdit(true);
@@ -30,39 +41,41 @@ const AdminMovieCard: FC<Props> = ({ movie }) => {
   const handleTitleChange = (value: string) => {
     setInputTitle(value);
   }
-  
+
   const handleOriginalTitleChange = (value: string) => {
     setInputOriginalTitle(value);
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setIsEdit(false);
+
+    if (inputTitle === title && inputOriginalTitle === originalTitle) return;
+
+    const response = await entitiesService.updateMovie(
+      movie.id,
+      inputTitle,
+      inputOriginalTitle
+    );
 
     setTitle(inputTitle);
     setOriginalTitle(inputOriginalTitle);
-
-    setIsEdit(false);
   }
 
   return (
     <div className={s.adminMovieCardContainer}>
-      <div className={s.imgWrapper}>
-        <Image src={movie.horizontalPhoto} alt={movie.title} width={250} height={150} className={s.img} />
-      </div>
+      <Card item={movie} linkHref={`/movie/${movie.title}`} />
       <div className={s.rightSideContainer}>
         {
           !isEdit ? <>
-            <div className={s.title}>
-              <p>{title}</p>
-            </div>
+            <Title fs="14px" fw={400} className={s.title}>{title}</Title>
             {
               originalTitle &&
-              <div className={s.title}>
-                <p>{originalTitle}</p>
-              </div>
+              <Title fs="14px" fw={400} className={s.title}>{originalTitle}</Title>
             }
           </> : <>
-            <form className={s.form} onSubmit={handleSubmit}>
+            <form className={s.form} onSubmit={handleSubmit} ref={formRef}>
               <InputField type="text" placeholder="title" value={inputTitle} onChange={handleTitleChange} />
               <InputField type="text" placeholder="originalTitle" value={inputOriginalTitle} onChange={handleOriginalTitleChange} />
               <Button value="Подтвердить" className={s.confirmBtn} />

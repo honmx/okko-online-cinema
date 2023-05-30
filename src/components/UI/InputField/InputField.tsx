@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from "react";
+import React, { ChangeEvent, FC, RefObject } from "react";
 import s from "./InputField.module.scss";
 
 interface Props {

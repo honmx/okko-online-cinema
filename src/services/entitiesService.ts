@@ -41,7 +41,7 @@ const getAdminMovies = async (): Promise<IMovie[]> => {
   try {
     const { data: movies } = await $entitiesAPI.get<IMovie[]>("/admin/movies");
     return movies;
-  
+
   } catch (error) {
     console.log(error);
     return [];
@@ -81,4 +81,28 @@ const getReviewsByMovieId = async (id: number) => {
   }
 }
 
-export default { getMovies, getMoviesByPersonName, getMovieByTitle, getAdminMovies, getGenres, getPeople, getReviewsByMovieId };
+const updateMovie = async (id: number, title: string, originalTitle: string) => {
+  try {
+    const { data: movie } = await $entitiesAPI.put("/admin/movie", {
+      id,
+      title,
+      originalTitle
+    });
+
+    return movie;
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export default {
+  getMovies,
+  getMoviesByPersonName,
+  getMovieByTitle,
+  getAdminMovies,
+  getGenres,
+  getPeople,
+  getReviewsByMovieId,
+  updateMovie,
+};
