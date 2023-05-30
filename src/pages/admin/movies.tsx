@@ -27,7 +27,7 @@ const AdminMovies: NextPage<Props> = ({ movies }) => {
   }, [debouncedValue]);
 
   const handleChange = (value: string) => {
-    setValue(value);
+    setValue(value.trim());
   }
 
   return (

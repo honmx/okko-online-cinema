@@ -13,6 +13,7 @@ import { setSelectedActor, setSelectedProducer } from "@/store/slices/moviesFilt
 import TextButton from "../TextButton/TextButton";
 import { useScrollStart } from "@/hooks/useScrollStart";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import { useDebounce } from "@/hooks/useDebounce";
 
 interface Props {
   entitiyType: "Актёр" | "Режиссёр";
@@ -29,20 +30,27 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, clas
 
   const [value, setValue] = useState<string>("");
   const [persons, setPersons] = useState<IPerson[]>([]);
+  const [filteredPersons, setFilteredPersons] = useState<IPerson[]>(persons);
+
+  const debouncedValue = useDebounce(value);
 
   useEffect(() => {
-
     const getPeople = async () => {
       const persons = await entitiesService.getPeople();
       setPersons(persons);
     }
 
     getPeople();
-
   }, []);
 
+  useEffect(() => {
+    setFilteredPersons(persons.filter(person => person.profession === entitiyType &&
+      (person.fullName.toLowerCase().includes(value.toLowerCase())
+        || person.fullNameOrig.toLowerCase().includes(value.toLowerCase()))))
+  }, [debouncedValue]);
+
   const handleChange = (value: string) => {
-    setValue(value);
+    setValue(value.trim());
   }
 
   const handlePersonClick = (person: IPerson) => {
@@ -66,12 +74,8 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, clas
         />
         <div className={s.resultContainer}>
           {
-            value.length > 1 && persons.length > 0 &&
-            persons
-              .filter(person => person.profession === entitiyType &&
-                (person.fullName.toLowerCase().includes(value.trim().toLowerCase())
-                  || person.fullNameOrig.toLowerCase().includes(value.trim().toLowerCase())))
-              // .slice(0, 18)
+            persons.length > 0 &&
+            filteredPersons
               .map(person => (
                 <PersonAutoSuggestCard key={person.id} person={person} onClick={handlePersonClick} className={s.person} />
               ))
@@ -82,9 +86,9 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, clas
         </IconButton> */}
         <TextButton fs={isSmaller ? "12px" : "16px"} onClick={handleClearClick} className={s.clearBtn}>Очистить</TextButton>
       </div>
-        <IconButton onClick={onClose} className={s.closeBtn}>
-          <Image src={close} alt="close" />
-        </IconButton>
+      <IconButton onClick={onClose} className={s.closeBtn}>
+        <Image src={close} alt="close" />
+      </IconButton>
     </div>
   )
 };
