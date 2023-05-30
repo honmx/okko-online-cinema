@@ -1,31 +1,36 @@
-import React, { ChangeEvent, FC, FormEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, FC, FormEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { IMovie } from "@/types/IMovie";
 import Image from "next/image";
 import { useHover } from "@/hooks/useHover";
 import IconButton from "../UI/IconButton/IconButton";
 import pen from "@/assets/pen.svg";
-import s from "./AdminMovieCard.module.scss";
+import s from "./AdminCard.module.scss";
 import InputField from "../UI/InputField/InputField";
 import Button from "../UI/Button/Button";
 import Title from "../UI/Title/Title";
 import Link from "next/link";
 import Card from "../UI/Card/Card";
 import entitiesService from "@/services/entitiesService";
+import { IGenre } from "@/types/IGenre";
+import { isGenreType } from "@/helpers/isGenreType";
+import { capitalize } from "@/helpers/capitalize";
 
 interface Props {
-  movie: IMovie;
+  item: IMovie | IGenre;
+  makeUpdateRequest: (item: IMovie | IGenre, title: string, originalTitle: string) => Promise<void>;
+  children?: ReactNode;
 }
 
-const AdminMovieCard: FC<Props> = ({ movie }) => {
+const AdminMovieCard: FC<Props> = ({ item, makeUpdateRequest, children }) => {
 
   const ref = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [inputTitle, setInputTitle] = useState<string>(movie.title);
-  const [inputOriginalTitle, setInputOriginalTitle] = useState<string>(movie.originalTitle || "");
-  const [title, setTitle] = useState<string>(movie.title);
-  const [originalTitle, setOriginalTitle] = useState<string>(movie.originalTitle || "");
+  const [inputTitle, setInputTitle] = useState<string>(isGenreType(item) ? capitalize(item.genre) : item.title);
+  const [inputOriginalTitle, setInputOriginalTitle] = useState<string>(isGenreType(item) ? capitalize(item.genre) : item.originalTitle || "");
+  const [title, setTitle] = useState<string>(isGenreType(item) ? capitalize(item.genre) : item.title);
+  const [originalTitle, setOriginalTitle] = useState<string>(isGenreType(item) ? capitalize(item.genre) : item.originalTitle || "");
 
   useEffect(() => {
     if (!isEdit) return;
@@ -52,12 +57,8 @@ const AdminMovieCard: FC<Props> = ({ movie }) => {
     setIsEdit(false);
 
     if (inputTitle === title && inputOriginalTitle === originalTitle) return;
-
-    const response = await entitiesService.updateMovie(
-      movie.id,
-      inputTitle,
-      inputOriginalTitle
-    );
+    
+    makeUpdateRequest(item, inputTitle, inputOriginalTitle);
 
     setTitle(inputTitle);
     setOriginalTitle(inputOriginalTitle);
@@ -65,7 +66,7 @@ const AdminMovieCard: FC<Props> = ({ movie }) => {
 
   return (
     <div className={s.adminMovieCardContainer}>
-      <Card item={movie} linkHref={`/movie/${movie.title}`} />
+      {children}
       <div className={s.rightSideContainer}>
         {
           !isEdit ? <>
@@ -76,8 +77,8 @@ const AdminMovieCard: FC<Props> = ({ movie }) => {
             }
           </> : <>
             <form className={s.form} onSubmit={handleSubmit} ref={formRef}>
-              <InputField type="text" placeholder="title" value={inputTitle} onChange={handleTitleChange} />
-              <InputField type="text" placeholder="originalTitle" value={inputOriginalTitle} onChange={handleOriginalTitleChange} />
+              <InputField type="text" placeholder="Название" value={inputTitle} onChange={handleTitleChange} />
+              <InputField type="text" placeholder="Title" value={inputOriginalTitle} onChange={handleOriginalTitleChange} />
               <Button value="Подтвердить" className={s.confirmBtn} />
             </form>
           </>

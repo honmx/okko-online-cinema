@@ -96,6 +96,20 @@ const updateMovie = async (id: number, title: string, originalTitle: string) => 
   }
 }
 
+const updateGenre = async (id: number, title: string, originalTitle: string) => {
+  try {
+    const { data: genre } = await $entitiesAPI.put("/admin/genre", {
+      id,
+      genre: title,
+    });
+
+    return genre;
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default {
   getMovies,
   getMoviesByPersonName,
@@ -105,4 +119,5 @@ export default {
   getPeople,
   getReviewsByMovieId,
   updateMovie,
+  updateGenre
 };

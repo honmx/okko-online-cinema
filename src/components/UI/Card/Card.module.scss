@@ -36,13 +36,13 @@
 }
 
 @media screen and (max-width: 960px) {
-  .card {
+  .card, .movieInfo {
     width: min(65vw, 300px);
   }
 }
 
 @media screen and (max-width: 375px) {
-  .card {
+  .card, .movieInfo {
     width: min(85vw, 290px);
   }
 }
@@ -78,7 +78,10 @@
 }
 
 .movieInfo {
-  position: relative;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   padding: 5px 20px;
   background-color: $primaryDarkGreyColor;
   border-bottom-left-radius: 25px;

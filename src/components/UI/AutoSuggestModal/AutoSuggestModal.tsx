@@ -81,9 +81,6 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, clas
               ))
           }
         </div>
-        {/* <IconButton onClick={onClose} className={s.closeBtn}>
-          <Image src={close} alt="close" />
-        </IconButton> */}
         <TextButton fs={isSmaller ? "12px" : "16px"} onClick={handleClearClick} className={s.clearBtn}>Очистить</TextButton>
       </div>
       <IconButton onClick={onClose} className={s.closeBtn}>

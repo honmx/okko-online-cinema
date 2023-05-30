@@ -1,0 +1,47 @@
+@import "../../styles/variables.scss";
+
+.adminGenresContainer {
+  padding-top: 50px;
+}
+
+.genres {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+
+  &>div {
+    background-color: $primaryDarkGreyColor;
+    border-radius: 15px;
+    height: 150px;
+  }
+}
+
+.moviesLink {
+  position: relative;
+  display: inline-block;
+  float: right;
+  margin-right: 20px;
+  margin-top: 20px;
+  font-size: 20px;
+
+  &:hover {
+    & .arrow {
+      opacity: 1;
+      right: -20px;
+    }
+  }
+}
+
+.linkTitle {
+}
+
+.arrow {
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: rotate(90deg);
+  translate: 0 -30%;
+}

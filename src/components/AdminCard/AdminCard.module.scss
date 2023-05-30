@@ -1,8 +1,17 @@
 @import "../../styles/variables.scss";
 
 .adminMovieCardContainer {
-  display: flex;
+  display: inline-flex;
   width: 100%;
+  
+  @media screen and (max-width: 1023px) {
+    flex-direction: column;
+    width: auto;
+
+    &>:first-child {
+      height: auto;
+    }
+  }
 }
 
 .imgWrapper {
@@ -39,6 +48,12 @@
       opacity: 1
     }
   }
+
+  @media screen and (max-width: 1023px) {
+    &:first-child {
+      height: auto;
+    }
+  }
 }
 
 .editBtn {
@@ -53,8 +68,10 @@
 .form {
   position: relative;
   z-index: 100;
-  
+
   &>* {
+    width: 100%;
+    
     &:not(:last-child) {
       margin-bottom: 5px;
     }

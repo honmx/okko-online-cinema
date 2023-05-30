@@ -81,8 +81,7 @@
 
 .childrenContainer {
   display: flex;
-  overflow-x: scroll;
-  overflow-y: auto;
+  overflow: auto;
   margin-inline: -15px;
   padding: 55px 15px;
 
