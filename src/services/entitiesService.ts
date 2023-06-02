@@ -92,6 +92,39 @@ const getRecommendedMovies = async (movie: IMovie): Promise<IMovie[]> => {
   }
 }
 
+const getTop10Movies = async (): Promise<IMovie[]> => {
+  try {
+    const { data: movies } = await $entitiesAPI.get<IMovie[]>(`movie/rate/8.8`);
+    return movies.slice(0, 10);
+
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+const getMoviesByCountry = async (country: string): Promise<IMovie[]> => {
+  try {
+    const { data: movies } = await $entitiesAPI.get<IMovie[]>(`movie/country/${country}`);
+    return movies;
+
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+const getMoviesByGenre = async (genre: string): Promise<IMovie[]> => {
+  try {
+    const { data: movies } = await $entitiesAPI.get<IMovie[]>(`movie/genre/${genre}`);
+    return movies;
+
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
 const updateMovie = async (id: number, title: string, originalTitle: string) => {
   try {
     const { data: movie } = await $entitiesAPI.put("/admin/movie", {
@@ -130,6 +163,9 @@ export default {
   getPeople,
   getReviewsByMovieId,
   getRecommendedMovies,
+  getTop10Movies,
+  getMoviesByCountry,
+  getMoviesByGenre,
   updateMovie,
   updateGenre
 };

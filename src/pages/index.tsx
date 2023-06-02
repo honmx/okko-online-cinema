@@ -20,18 +20,24 @@ import { IGenre } from "@/types/IGenre";
 import { capitalize } from "@/helpers/capitalize";
 import top10 from "@/assets/top10.png";
 import Top10Card from "@/components/Top10Card/Top10Card";
+import Loading from "@/components/UI/Loading/Loading";
 
 interface Props {
   movies: IMovie[];
   genres: IGenre[];
+  top10Movies: IMovie[];
+  USSRMovies: IMovie[];
+  cartoons: IMovie[];
 }
 
 const ClientCarousel = dynamic(() => import("../components/UI/Carousel/Carousel"), {
   ssr: false,
-  loading: () => <p>loading...</p>
+  loading: () => <Loading />
 });
 
-const Home: NextPage<Props> = ({ movies, genres }) => {
+const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoons }) => {
+
+  console.log(cartoons);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -41,14 +47,11 @@ const Home: NextPage<Props> = ({ movies, genres }) => {
   }, []);
 
   useEffect(() => {
-
     const code = router.query.code as string;
 
     if (!code) return;
 
     dispatch(vkLogin(code));
-
-    // console.log(router.query.code);
   }, [router.query]);
 
   const handleGenreClick = (genre: IGenre) => {
@@ -67,15 +70,16 @@ const Home: NextPage<Props> = ({ movies, genres }) => {
       <Subscription />
       <ClientCarousel title="Жанры" className={s.carousel}>
         {
-          genres.map(genre => <Card item={genre} linkHref="/movies/filters" ar={1} onClick={() => handleGenreClick(genre)} />)
+          genres.map(genre => <Card key={genre.id} item={genre} linkHref="/movies/filters" ar={1} onClick={() => handleGenreClick(genre)} />)
         }
       </ClientCarousel>
       <ClientCarousel image={top10} title="недели" className={s.carousel}>
         {
           movies
-          .filter(movie => movie.verticalPhoto)
+          // top10Movies
+            .filter(movie => movie.verticalPhoto)
             .slice(0, 10)
-            .map((movie, i) => <Top10Card movie={movie} number={i} />)
+            .map((movie, i) => <Top10Card key={movie.id} movie={movie} number={i} />)
         }
       </ClientCarousel>
       <ClientCarousel title="Фильмы" linkHref="/movies" className={s.carousel}>
@@ -107,10 +111,17 @@ export const getStaticProps: GetStaticProps = async () => {
   const movies = await entitiesService.getMovies();
   const genres = await entitiesService.getGenres();
 
+  const top10Movies = await entitiesService.getTop10Movies();
+  const USSRMovies = await entitiesService.getMoviesByCountry("СССР");
+  const cartoons = await entitiesService.getMoviesByGenre("мультфильм");
+
   return {
     props: {
       movies,
       genres,
+      top10Movies,
+      USSRMovies,
+      cartoons,
     },
   };
 };
