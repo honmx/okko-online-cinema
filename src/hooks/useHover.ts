@@ -10,6 +10,7 @@ export const useHover = (
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   useEffect(() => {
+
     const handleMouseOver = () => {
       setIsHovered(true);
       setActiveHoverIndex && index && setActiveHoverIndex(index);

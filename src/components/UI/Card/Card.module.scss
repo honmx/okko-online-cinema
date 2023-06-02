@@ -11,12 +11,15 @@
   }
 }
 
-.cardWithTrailer {
-  margin-bottom: -40px;
-  background-color: $primaryDarkGreyColor;
-  border-radius: 25px;
-  // height: 100%;
+.link {
+  text-decoration: none;
+}
 
+.cardWithTrailer {
+  border-radius: 25px;
+  // background-color: $primaryDarkGreyColor;
+  // height: 100%;
+  
   & .card {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -25,6 +28,7 @@
 
 .card {
   // height: 100%;
+  background-color: $primaryDarkGreyColor;
   width: min(25vw, 350px);
   overflow: hidden;
   border-radius: 25px;
@@ -125,4 +129,12 @@
   .greenRate {
     background-color: $greenColor;
   }
+}
+
+.genreTitle {
+  margin: 20px;
+  color: $accentWhiteFontColor;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 22px;
 }

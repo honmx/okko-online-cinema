@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import Title from "../Title/Title";
 import Link from "next/link";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import arrow from "../../../assets/arrow.svg";
 import s from "./Carousel.module.scss";
 import { useCarouselScroll } from "../../../hooks/useCarouselScroll";
@@ -9,7 +9,7 @@ import { useCarouselScroll } from "../../../hooks/useCarouselScroll";
 interface Props {
   title?: string;
   linkHref?: string;
-  image?: string;
+  image?: StaticImageData;
   className?: string;
   onClick?: () => void;
   children: ReactNode;
