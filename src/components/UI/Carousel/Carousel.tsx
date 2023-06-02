@@ -56,6 +56,10 @@ const Carousel: FC<Props> = ({ title, linkHref, image, className, children, onCl
             <Image src={arrow} alt="arrow" className={s.arrow} />
           </Link>
         }
+        {
+          title && !linkHref && !image &&
+          <Title variant="h2" className={s.title}>{title}</Title>
+        }
       </div>
       <div className={s.listContainer}>
         {

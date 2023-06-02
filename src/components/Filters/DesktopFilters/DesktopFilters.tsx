@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 import CommonProps from "../IProps";
 import s from "./DesktopFilters.module.scss";
 import AutoSuggestSelectDesktop from "@/components/UI/AutoSuggestSelect/AutoSuggestSelectDesktop/AutoSuggestSelectDesktop";
-import AutoSuggestModal from "@/components/UI/AutoSuggestModal/AutoSuggestModal";
+import AutoSuggestModal from "@/components/AutoSuggestModal/AutoSuggestModal";
 import { areFiltersClear } from "@/helpers/areFiltersClear";
 import { IPerson } from "@/types/IPerson";
 import { useScrollStart } from "@/hooks/useScrollStart";

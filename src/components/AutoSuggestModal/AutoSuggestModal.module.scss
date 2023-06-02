@@ -1,0 +1,32 @@
+@import "../../styles/variables.scss";
+
+.input {
+  width: 90%;
+}
+
+.resultContainer {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 25px;
+  overflow-y: auto;
+
+  &>* {
+    
+  }
+
+  @media screen and (max-width: 599px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.clearBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  @media screen and (max-width: 519px) {
+    top: 20px;
+    right: 10px;
+  }
+}

@@ -19,7 +19,7 @@
   padding: 15px 40px 40px;
   background-color: $primaryGreyColor;
   border-radius: 20px;
-  overflow-y: auto;
+  overflow: auto;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -41,39 +41,8 @@
   }
 }
 
-.input {
-  width: 90%;
-}
-
-.resultContainer {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-top: 25px;
-  overflow-y: auto;
-
-  &>* {
-    
-  }
-
-  @media screen and (max-width: 599px) {
-    grid-template-columns: 1fr;
-  }
-}
-
 .closeBtn {
   position: absolute;
   top: 20px;
   right: 20px;
-}
-
-.clearBtn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-
-  @media screen and (max-width: 519px) {
-    top: 20px;
-    right: 10px;
-  }
 }

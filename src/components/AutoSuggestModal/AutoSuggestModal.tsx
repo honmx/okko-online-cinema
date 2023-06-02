@@ -1,19 +1,19 @@
 import React, { FC, useEffect, useState } from "react";
-import IconButton from "../IconButton/IconButton";
+import IconButton from "../UI/IconButton/IconButton";
 import Image from "next/image";
-import close from "../../../assets/close.svg";
 import s from "./AutoSuggestModal.module.scss";
-import InputField from "../InputField/InputField";
+import InputField from "../UI/InputField/InputField";
 import $entitiesAPI from "@/http/entities";
 import { IPerson } from "@/types/IPerson";
 import entitiesService from "@/services/entitiesService";
-import PersonAutoSuggestCard from "@/components/PersonAutoSuggestCard/PersonAutoSuggestCard";
+import PersonAutoSuggestCard from "@/components/PersonCard/PersonCard";
 import { useAppDispatch } from "@/store/hooks";
 import { setSelectedActor, setSelectedProducer } from "@/store/slices/moviesFilterSlice";
-import TextButton from "../TextButton/TextButton";
+import TextButton from "../UI/TextButton/TextButton";
 import { useScrollStart } from "@/hooks/useScrollStart";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import { useDebounce } from "@/hooks/useDebounce";
+import Modal from "../UI/Modal/Modal";
 
 interface Props {
   entitiyType: "Актёр" | "Режиссёр";
@@ -62,31 +62,26 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, clas
   }
 
   return (
-    <div className={`${s.modalWrapper} ${className}`}>
-      <div className={s.window}>
-        <InputField
-          type="text"
-          placeholder="Введите имя"
-          appearanceType="transparent"
-          value={value}
-          onChange={handleChange}
-          className={s.input}
-        />
-        <div className={s.resultContainer}>
-          {
-            persons.length > 0 &&
-            filteredPersons
-              .map(person => (
-                <PersonAutoSuggestCard key={person.id} person={person} onClick={handlePersonClick} className={s.person} />
-              ))
-          }
-        </div>
-        <TextButton fs={isSmaller ? "12px" : "16px"} onClick={handleClearClick} className={s.clearBtn}>Очистить</TextButton>
+    <Modal onClose={onClose}>
+      <InputField
+        type="text"
+        placeholder="Введите имя"
+        appearanceType="transparent"
+        value={value}
+        onChange={handleChange}
+        className={s.input}
+      />
+      <div className={s.resultContainer}>
+        {
+          persons.length > 0 &&
+          filteredPersons
+            .map(person => (
+              <PersonAutoSuggestCard key={person.id} person={person} onClick={handlePersonClick} className={s.person} />
+            ))
+        }
       </div>
-      <IconButton onClick={onClose} className={s.closeBtn}>
-        <Image src={close} alt="close" />
-      </IconButton>
-    </div>
+      <TextButton fs={isSmaller ? "12px" : "16px"} onClick={handleClearClick} className={s.clearBtn}>Очистить</TextButton>
+    </Modal>
   )
 };
 

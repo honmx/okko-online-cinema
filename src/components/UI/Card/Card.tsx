@@ -69,9 +69,9 @@ const Card: FC<Props> = ({ item, linkHref, ar = 1.77 }) => {
               <Title fs="14px" fw={400}>{item.title}</Title>
             </div>
             <div className={s.lowerLine}>
-              <p className={s.genre}>{capitalize(item.genres[0].genre)}</p>
+              <p className={s.genre}>{capitalize(item.genres[0].title)}</p>
               <p className={s.year}>{item.yearTill}</p>
-              <p className={s.country}>{item.country.split(", ")[0]}</p>
+              {/* <p className={s.country}>{item.country.split(", ")[0]}</p> */}
             </div>
           <Button shape="circle" p="5px" img={!activeSound ? sound : soundDisabled} onClick={handleSoundClick} className={s.sound} />
           </div>

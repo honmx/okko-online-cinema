@@ -1,0 +1,12 @@
+.title {
+  margin: 15px 0 5px 15px;
+}
+
+.peopleList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+  @media screen and (max-width: 599px) {
+    grid-template-columns: 1fr;
+  }
+}

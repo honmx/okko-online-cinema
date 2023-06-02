@@ -57,11 +57,11 @@ const Select: FC<Props> = ({ img, values, selectedValue, setSelectedValue, class
         {
           values.map(value => (
             <option
-              key={isGenreType(value) ? value.genre : value}
-              value={isGenreType(value) ? value.genre : value}
+              key={isGenreType(value) ? value.title : value}
+              value={isGenreType(value) ? value.title : value}
               className={selectedValue === value ? s.selected : ""}
             >
-              {isGenreType(value) ? value.genre : value}
+              {isGenreType(value) ? value.title : value}
             </option>
           ))
         }

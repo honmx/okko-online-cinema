@@ -55,6 +55,12 @@
 
 .peopleList {
   display: flex;
+  flex-wrap: wrap;
+  // width: 50%;
+}
+
+.moreBtn {
+  align-self: flex-start;
 }
 
 .titleContainer {

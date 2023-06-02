@@ -15,7 +15,7 @@ import MovieList from "@/components/MovieList/MovieList";
 import dynamic from "next/dynamic";
 import entitiesService from "@/services/entitiesService";
 import { areFiltersClear } from "@/helpers/areFiltersClear";
-import AutoSuggestModal from "@/components/UI/AutoSuggestModal/AutoSuggestModal";
+import AutoSuggestModal from "@/components/AutoSuggestModal/AutoSuggestModal";
 import { useFilteredMovies } from "@/hooks/useFilteredMovies";
 
 interface Props {

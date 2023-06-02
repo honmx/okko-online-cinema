@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { IPerson } from "@/types/IPerson";
 import Image from "next/image";
 import personIcon from "@/assets/person.svg"; 
-import s from "./PersonAutoSuggestCard.module.scss";
+import s from "./PersonCard.module.scss";
 
 interface Props {
   person: IPerson;

@@ -27,10 +27,10 @@ const AdminMovieCard: FC<Props> = ({ item, makeUpdateRequest, children }) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [inputTitle, setInputTitle] = useState<string>(isGenreType(item) ? capitalize(item.genre) : item.title);
-  const [inputOriginalTitle, setInputOriginalTitle] = useState<string>(isGenreType(item) ? capitalize(item.genre) : item.originalTitle || "");
-  const [title, setTitle] = useState<string>(isGenreType(item) ? capitalize(item.genre) : item.title);
-  const [originalTitle, setOriginalTitle] = useState<string>(isGenreType(item) ? capitalize(item.genre) : item.originalTitle || "");
+  const [inputTitle, setInputTitle] = useState<string>(capitalize(item.title));
+  const [inputOriginalTitle, setInputOriginalTitle] = useState<string>(capitalize(item?.originalTitle) || "");
+  const [title, setTitle] = useState<string>(capitalize(item.title));
+  const [originalTitle, setOriginalTitle] = useState<string>(capitalize(item?.originalTitle) || "");
 
   useEffect(() => {
     if (!isEdit) return;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import { ParsedUrlQuery } from "querystring";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -20,17 +20,23 @@ import soundDisabled from "@/assets/soundDisabled.svg";
 import fullScreen from "@/assets/fullScreen.svg";
 import s from "./Movie.module.scss";
 import entitiesService from "@/services/entitiesService";
+import Card from "@/components/UI/Card/Card";
 
 interface Props {
   movie: IMovie;
+  recommendations: IMovie[];
 }
 
-const Movie: NextPageWithLayout<Props> = ({ movie }) => {
+const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
+
+  // console.log(recommendations);
 
   const isActive = useDelay(4000);
 
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [activeSound, setActiveSound] = useState<boolean>(true);
+
+  const ref = useRef<HTMLVideoElement>(null);
 
   const handleTabIndexChange = (value: number) => {
     setTabIndex(value);
@@ -40,16 +46,27 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
     setActiveSound(prev => !prev);
   }
 
-  const a = async () => {
-    try {
-      const reviews = await entitiesService.getReviewsByMovieId(movie.id);
-      console.log(reviews)
-    } catch (e) {
-      console.log(e);
-    }
+  const handleFullScreenClick = () => {
+    ref.current?.requestFullscreen();
   }
 
-  a();
+  const handleVolumeChange = () => {
+    if (!ref.current) return;
+
+    setActiveSound(ref.current.muted);
+  }
+
+  // const a = async () => {
+  //   try {
+  //     const reviews = await entitiesService.getReviewsByMovieId(movie.id);
+  //     console.log(reviews)
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
+
+  // a();
+
 
   return (
     <>
@@ -68,17 +85,18 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
                 ? (
                   <>
                     <video
+                      ref={ref}
                       src="/trailer.mp4"
                       autoPlay
                       width="100%"
                       height="100%"
                       muted={activeSound}
-                      loop
                       className={`${s.video} ${isActive ? s.activeVideo : ""}`}
+                      onVolumeChange={handleVolumeChange}
                     />
                     <div className={s.movieButtonsContainer}>
                       <Button shape="circle" p="10px" img={!activeSound ? sound : soundDisabled} onClick={handleSoundClick} />
-                      <Button shape="circle" p="10px" img={fullScreen} />
+                      <Button shape="circle" p="10px" img={fullScreen} onClick={handleFullScreenClick} />
                     </div>
                   </>
                 ) : (
@@ -112,6 +130,11 @@ const Movie: NextPageWithLayout<Props> = ({ movie }) => {
             </div>
           </Tabs>
         </div>
+        <Carousel title="Похожие" className={s.recommendations}>
+          {
+            recommendations.map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} />)
+          }
+        </Carousel>
       </div>
     </>
   )
@@ -141,12 +164,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const title = context.params?.title as string;
   const movie = await entitiesService.getMovieByTitle(title);
-
-  // const reviews = await entitiesService.getReviewsByMovieId(movie.id);
+  const recommendations = await entitiesService.getRecommendedMovies(movie);
 
   return {
     props: {
       movie,
+      recommendations: recommendations.filter(recMovie =>
+        recMovie.title !== movie.title
+        && recMovie.horizontalPhoto),
       // reviews
     }
   }

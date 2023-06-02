@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { areFiltersClear } from "@/helpers/areFiltersClear";
 import entitiesService from "@/services/entitiesService";
-import AutoSuggestModal from "@/components/UI/AutoSuggestModal/AutoSuggestModal";
+import AutoSuggestModal from "@/components/AutoSuggestModal/AutoSuggestModal";
 
 interface Props {
   movies: IMovie[];

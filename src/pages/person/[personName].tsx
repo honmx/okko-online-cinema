@@ -41,11 +41,11 @@ const Person: NextPage<Props> = ({ person, movies }) => {
         </div>
       </div>
       <div className={s.filtersContainer}>
-        {
+        {/* {
           isSmaller
             ? <MobileFilters showActorFilter={false} showProducerFilter={false} />
             : <DesktopFilters showActorFilter={false} showProducerFilter={false} />
-        }
+        } */}
       </div>
       <Title variant="h2">Фильмы</Title>
       <MovieList movies={movies} className={s.movies} />
@@ -59,7 +59,7 @@ interface Params extends ParsedUrlQuery {
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
-  const response = await axios.get<IMovie[]>("/movie");
+  const response = await axios.get<IMovie[]>("http://localhost:5001/movie");
   const movies = response.data;
 
   return {
@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   // TODO - refactor
   const personName = context.params?.personName;
-  const personResponse = await axios.get<IPerson[]>("/movie/12/people");
+  const personResponse = await axios.get<IPerson[]>("http://localhost:5001/movie/12/people");
   const person = personResponse.data[2];
 
   const movies = await entitiesService.getMoviesByPersonName(person.fullName);

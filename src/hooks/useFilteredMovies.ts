@@ -16,7 +16,7 @@ export const useFilteredMovies = (movies: IMovie[]) => {
     const filtered = movies
       .filter(movie => selectedGenre === "Все"
         ? movie
-        : movie.genres.map(genre => genre.genre.toLowerCase()).includes(selectedGenre.toLowerCase()))
+        : movie.genres.map(genre => genre.title.toLowerCase()).includes(selectedGenre.toLowerCase()))
       .filter(movie => selectedCountry === "Все"
         ? movie
         : movie.country.split(", ").some(country => country.toLowerCase() === selectedCountry.toLowerCase()))

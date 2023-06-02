@@ -29,10 +29,10 @@ const OptionsList: FC<Props> = ({ values, selectedValue, onOptionClick, classNam
       {
         values.map(value => (
           <Option
-            key={isGenreType(value) ? capitalize(value.genre) : value}
-            value={isGenreType(value) ? capitalize(value.genre) : value}
+            key={isGenreType(value) ? capitalize(value.title) : value}
+            value={isGenreType(value) ? capitalize(value.title) : value}
             selectedValue={selectedValue}
-            onClick={() => onOptionClick(isGenreType(value) ? capitalize(value.genre) : value)}
+            onClick={() => onOptionClick(isGenreType(value) ? capitalize(value.title) : value)}
           />
         ))
       }
