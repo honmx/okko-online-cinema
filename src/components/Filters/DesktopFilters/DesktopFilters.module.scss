@@ -4,34 +4,79 @@
   align-items: center;
 }
 
+
 .filtersContainer {
   display: flex;
-  align-items: stretch;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  
+  @media screen and (max-width: 959px) {
+    position: absolute;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    top: -75px;
+    left: -15px;
+    width: calc(100vw - 15px);
+    min-height: 100vh;
+    padding-inline: 15px;
+    background-color: #000;
+    z-index: 100000;
+  }
+}
+
+.filtersWithTextButton {
+  display: flex;
+  align-items: center;
+  
+  @media screen and (max-width: 959px) {
+    display: block;
+  }
 }
 
 .filters {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+
+  @media screen and (max-width: 959px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.select {
+  width: 100%;
 
   & select {
     width: 100%;
   }
+}
 
-  &>*{
-    margin-top: 5px;
-    margin-right: 5px;
-  }
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-25%);
 }
 
 .textButton {
-  margin: 8px 0 0 5px;
+  margin: 15px 0 0 10px;
+
+  @media screen and (max-width: 959px) {
+    margin: 10px 0 0 0;
+  }
 }
 
-@media screen and (max-width: 959px) {
+.parameters {
+  position: absolute;
+  top: 30px;
+  right: 0;
+}
 
-  .filters,
-  .sort {
-    display: none;
-  }
+.applyButton {
+  width: 100%;
+  
 }

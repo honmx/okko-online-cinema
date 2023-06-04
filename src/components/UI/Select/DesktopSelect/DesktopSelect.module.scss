@@ -13,7 +13,6 @@
 }
 
 .select {
-  // width: 100%;
   padding: 10px 30px 10px 20px;
   background-color: $primaryGreyColor;
   color: $accentWhiteFontColor;
@@ -33,6 +32,11 @@
   :focus {
     outline: none;
   }
+
+  @media screen and (max-width: 959px) {
+    padding: 20px 0;
+    background-color: transparent;
+  }
 }
 
 .selectWithImage {
@@ -50,6 +54,10 @@
     display: block;
     width: 10px;
     height: 10px;
+  }
+
+  @media screen and (max-width: 959px) {
+    display: none;
   }
 }
 

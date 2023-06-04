@@ -6,6 +6,7 @@ import Title from "../../Title/Title";
 import OptionsList from "../../OptionsList/OptionsList";
 import s from "./MobileSelect.module.scss";
 import { IText } from "@/types/IText";
+import { IGenre } from "@/types/IGenre";
 
 interface Props extends Omit<CommonProps, "img"> {
   title: string;

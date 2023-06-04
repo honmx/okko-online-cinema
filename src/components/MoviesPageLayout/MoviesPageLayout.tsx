@@ -83,11 +83,12 @@ const MoviesPageLayout: FC<Props> = ({ children }) => {
           ? <BreadCrumbs values={[...moviesPageBreadCrumbs, { value: lastBreadCrumb, href: "" }]} className={s.breadCrumbs} onClick={handleBreadCrumbClick} />
           : <BreadCrumbs values={moviesPageBreadCrumbs} className={s.breadCrumbs} onClick={handleBreadCrumbClick} />
       }
-      {
+      {/* {
         isSmaller
           ? <MobileFilters genres={genres} countries={countries} />
           : <DesktopFilters genres={genres} countries={countries} />
-      }
+        } */}
+      <DesktopFilters genres={genres} countries={countries} />
       <div className={s.childrenContainer}>{children}</div>
     </div>
   )

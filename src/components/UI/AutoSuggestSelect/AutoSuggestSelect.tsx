@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import s from "./AutoSuggestSelectDesktop.module.scss";
+import s from "./AutoSuggestSelect.module.scss";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-const AutoSuggestSelectDesktop: FC<Props> = ({ value, placeholder, onClick, className }) => {
+const AutoSuggestSelect: FC<Props> = ({ value, placeholder, onClick, className }) => {
 
   const isSmaller = useSmallerDevice(959);
 
@@ -27,4 +27,4 @@ const AutoSuggestSelectDesktop: FC<Props> = ({ value, placeholder, onClick, clas
   )
 };
 
-export default AutoSuggestSelectDesktop;
+export default AutoSuggestSelect;

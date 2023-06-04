@@ -6,5 +6,5 @@ export default interface Props {
   values: string[] | IGenre[];
   selectedValue: string;
   setSelectedValue: (value: string) => void;
-  className?: string;
+  className?: string; 
 }

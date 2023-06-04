@@ -21,7 +21,7 @@ import TextButton from "@/components/UI/TextButton/TextButton";
 import { useRouter } from "next/router";
 import { areFiltersClear } from "@/helpers/areFiltersClear";
 import CommonProps from "../IProps";
-import AutoSuggestSelectDesktop from "@/components/UI/AutoSuggestSelect/AutoSuggestSelectDesktop/AutoSuggestSelectDesktop";
+import AutoSuggestSelectDesktop from "@/components/UI/AutoSuggestSelect/AutoSuggestSelect";
 import AutoSuggestModal from "@/components/AutoSuggestModal/AutoSuggestModal";
 
 interface Props extends CommonProps {

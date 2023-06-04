@@ -7,6 +7,9 @@ import CommonProps from "../IProps";
 import OptionsList from "../../OptionsList/OptionsList";
 import { IText } from "@/types/IText";
 import { isGenreType } from "@/helpers/isGenreType";
+import Title from "../../Title/Title";
+import { IGenre } from "@/types/IGenre";
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 
 export type SelectOptionType = {
   value: string;
@@ -47,7 +50,6 @@ const Select: FC<Props> = ({ img, values, selectedValue, setSelectedValue, class
         onChange={() => { }}
         value={selectedValue}
       >
-        {/* нужно для корректного определения ширины select`а */}
         <option
           value="All"
           className={selectedValue === "All" ? s.selected : ""}
