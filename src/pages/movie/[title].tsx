@@ -21,6 +21,8 @@ import fullScreen from "@/assets/fullScreen.svg";
 import s from "./Movie.module.scss";
 import entitiesService from "@/services/entitiesService";
 import Card from "@/components/UI/Card/Card";
+import $commentsAPI from "@/http/comments";
+import { useAppSelector } from "@/store/hooks";
 
 interface Props {
   movie: IMovie;
@@ -29,14 +31,38 @@ interface Props {
 
 const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
 
-  // console.log(recommendations);
-
   const isActive = useDelay(4000);
+
+  const user = useAppSelector(state => state.auth.user);
 
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [activeSound, setActiveSound] = useState<boolean>(true);
+  // const [comments, setComments] = useState<any>([]);
 
   const ref = useRef<HTMLVideoElement>(null);
+
+  // useEffect(() => {
+  //   const getComments = async () => {
+  //     const { data: comments } = await $commentsAPI.get("/comment");
+  //     setComments(comments);
+  //   }
+
+  //   getComments();
+
+  //   const makeComments = async () => {
+  //     const comment = await $commentsAPI.post("/comment", {
+  //       userId: 2,
+  //       comment: "dfgdfgdf",
+  //       reviewId: 1
+  //     });
+  //   }
+
+  //   makeComments()
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log(comments);
+  // }, [comments]);
 
   const handleTabIndexChange = (value: number) => {
     setTabIndex(value);
@@ -55,18 +81,6 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
 
     setActiveSound(ref.current.muted);
   }
-
-  // const a = async () => {
-  //   try {
-  //     const reviews = await entitiesService.getReviewsByMovieId(movie.id);
-  //     console.log(reviews)
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
-  // a();
-
 
   return (
     <>
@@ -172,7 +186,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       recommendations: recommendations.filter(recMovie =>
         recMovie.title !== movie.title
         && recMovie.horizontalPhoto),
-      // reviews
     }
   }
 }

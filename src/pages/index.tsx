@@ -21,6 +21,7 @@ import { capitalize } from "@/helpers/capitalize";
 import top10 from "@/assets/top10.png";
 import Top10Card from "@/components/Top10Card/Top10Card";
 import Loading from "@/components/UI/Loading/Loading";
+import $commentsAPI from "@/http/comments";
 
 interface Props {
   movies: IMovie[];
@@ -36,8 +37,10 @@ const ClientCarousel = dynamic(() => import("../components/UI/Carousel/Carousel"
 });
 
 const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoons }) => {
-
-  console.log(cartoons);
+  
+  // console.log(top10Movies);
+  // console.log(USSRMovies);
+  // console.log(cartoons);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -57,6 +60,21 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
   const handleGenreClick = (genre: IGenre) => {
     dispatch(setSelectedGenre(capitalize(genre.title)));
   }
+
+  // useEffect(() => {
+  //   const a = async () => {
+  //     const b = await $commentsAPI.post("/role", {
+  //       value: "USER",
+  //       description: "Пользователь"
+  //     })
+  //     const с = await $commentsAPI.post("/role", {
+  //       value: "ADMIN",
+  //       description: "Администратор"
+  //     })
+  //   }
+
+  //   a();
+  // }, []);
 
   return (
     <>

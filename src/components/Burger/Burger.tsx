@@ -7,10 +7,9 @@ import IconButton from "../UI/IconButton/IconButton";
 
 interface IProps {
   handleLoginClick: () => void;
-  handlePromocodeClick: () => void;
 }
 
-const Burger: FC<IProps> = ({ handleLoginClick, handlePromocodeClick }) => {
+const Burger: FC<IProps> = ({ handleLoginClick }) => {
 
   const router = useRouter();
 
@@ -40,7 +39,7 @@ const Burger: FC<IProps> = ({ handleLoginClick, handlePromocodeClick }) => {
           ))
         }
         <li className={s.item}>
-          <IconButton onClick={handlePromocodeClick} className={s.loginBtn}>ВВЕСТИ ПРОМОКОД</IconButton>
+          <IconButton className={s.loginBtn}>ВВЕСТИ ПРОМОКОД</IconButton>
         </li>
         <li className={s.item}>
           <IconButton onClick={handleLoginClick} className={s.loginBtn}>ВОЙТИ</IconButton>

@@ -17,8 +17,6 @@ import s from "./Header.module.scss";
 import Burger from "@/components/Burger/Burger";
 import Login from "@/components/Login/Login";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
-import Promocode from "@/components/Promocode/Promocode";
-import SubscriptionSection from "@/components/SubscriptionSection/SubscriptionSection";
 import Toggle from '../UI/Toggle/Toggle';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { toggleLanguage } from '@/store/slices/languageSlice';
@@ -44,10 +42,8 @@ const Header: FC<Props> = () => {
 
   const [burgerShowing, setBurgerShowing] = useState<boolean>(false);
   const [loginShowing, setLoginShowing] = useState<boolean>(false);
-  const [promocodeShowing, setPromoCodeShowing] = useState<boolean>(false);
-  const [subscriptionShowing, setSubscriptionShowing] = useState<boolean>(false);
 
-  useScrollStart(loginShowing || promocodeShowing || subscriptionShowing);
+  useScrollStart(loginShowing);
 
   const handleBurgerClick = () => {
     setBurgerShowing(prevState => !prevState);
@@ -59,14 +55,6 @@ const Header: FC<Props> = () => {
 
   const handleLogoutClick = () => {
     dispatch(logout());
-  }
-
-  const handlePromocodeClick = () => {
-    setPromoCodeShowing(prevState => !prevState);
-  }
-
-  const handleSubscriptionClick = () => {
-    setSubscriptionShowing(prevState => !prevState);
   }
 
   return (
@@ -107,13 +95,13 @@ const Header: FC<Props> = () => {
             }
             {
               !isMedium &&
-              <div className={s.subscription} onClick={handleSubscriptionClick}>
+              <div className={s.subscription}>
                 <Button bgColor="accent" value={"Месяц за 1 ₽"} />
               </div>
             }
             {
               !isSmaller &&
-              <div onClick={handlePromocodeClick}>
+              <div>
                 <IconButton className={s.promo}>
                   <Image width={30} height={30} src={gift} alt="promocode" />
                   <span>Ввести промокод</span>
@@ -160,7 +148,7 @@ const Header: FC<Props> = () => {
       {
         burgerShowing &&
         <div className={s.burger_container + (burgerShowing ? '' : ' ' + s.hidden)}>
-          <Burger handleLoginClick={handleLoginClick} handlePromocodeClick={handlePromocodeClick} />
+          <Burger handleLoginClick={handleLoginClick} />
         </div>
       }
       {
@@ -168,22 +156,6 @@ const Header: FC<Props> = () => {
         <div className={s.login_container}>
           <div className={s.login_container_inner}>
             <Login onClose={handleLoginClick} />
-          </div>
-        </div>
-      }
-      {
-        promocodeShowing &&
-        <div className={s.login_container}>
-          <div className={s.login_container_inner}>
-            <Promocode onClose={handlePromocodeClick} />
-          </div>
-        </div>
-      }
-      {
-        subscriptionShowing &&
-        <div className={s.login_container}>
-          <div className={s.login_container_inner}>
-            <SubscriptionSection onClose={handleSubscriptionClick} />
           </div>
         </div>
       }

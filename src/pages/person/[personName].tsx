@@ -13,18 +13,23 @@ import DesktopFilters from "@/components/Filters/DesktopFilters/DesktopFilters";
 import MobileFilters from "@/components/Filters/MobileFilters/MobileFilters";
 import MovieList from "@/components/MovieList/MovieList";
 import entitiesService from "@/services/entitiesService";
+import { NextPageWithLayout } from "@/types/NextPageWithLayout";
+import MoviesPageLayout from "@/components/MoviesPageLayout/MoviesPageLayout";
+import { useGenresAndCountries } from "@/hooks/useGenresAndCountries";
 
 interface Props {
   person: IPerson;
   movies: IMovie[];
 }
 
-const Person: NextPage<Props> = ({ person, movies }) => {
+const Person: NextPageWithLayout<Props> = ({ person, movies }) => {
 
-  console.log(person);
-  console.log(movies);
+  // console.log(person);
+  // console.log(movies);
 
   const isSmaller = useSmallerDevice(959);
+
+  const { genres, countries } = useGenresAndCountries();
 
   return (
     <div className={s.personContainer}>
@@ -41,11 +46,11 @@ const Person: NextPage<Props> = ({ person, movies }) => {
         </div>
       </div>
       <div className={s.filtersContainer}>
-        {/* {
+        {
           isSmaller
-            ? <MobileFilters showActorFilter={false} showProducerFilter={false} />
-            : <DesktopFilters showActorFilter={false} showProducerFilter={false} />
-        } */}
+            ? <MobileFilters genres={genres} countries={countries} showActorFilter={false} showProducerFilter={false} />
+            : <DesktopFilters genres={genres} countries={countries} showActorFilter={false} showProducerFilter={false} />
+        }
       </div>
       <Title variant="h2">Фильмы</Title>
       <MovieList movies={movies} className={s.movies} />
