@@ -27,7 +27,7 @@ interface Props {
 
 }
 
-const Header: FC<Props> = () => {
+const Header: FC<Props> = ({ }) => {
 
   const router = useRouter();
 
@@ -69,10 +69,9 @@ const Header: FC<Props> = () => {
             {
               headerLinks.map(link => {
                 return <li key={link.href}
-                className={link.href === router.pathname || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : ""}>
-                <CustomLink href={link.href}>{link.text}</CustomLink>
+                  className={link.href === router.pathname || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : ""}>
+                  <CustomLink href={link.href}>{link.text}</CustomLink>
                 </li>
-              
               })
             }
           </ul>

@@ -22,6 +22,8 @@ import top10 from "@/assets/top10.png";
 import Top10Card from "@/components/Top10Card/Top10Card";
 import Loading from "@/components/UI/Loading/Loading";
 import $commentsAPI from "@/http/comments";
+import TrailerCard from "@/components/TrailerCard/TrailerCard";
+import TrailerCarousel from "@/components/UI/TrailerCarousel/TrailerCarousel";
 
 interface Props {
   movies: IMovie[];
@@ -37,7 +39,7 @@ const ClientCarousel = dynamic(() => import("../components/UI/Carousel/Carousel"
 });
 
 const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoons }) => {
-  
+
   // console.log(top10Movies);
   // console.log(USSRMovies);
   // console.log(cartoons);
@@ -61,21 +63,6 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
     dispatch(setSelectedGenre(capitalize(genre.title)));
   }
 
-  // useEffect(() => {
-  //   const a = async () => {
-  //     const b = await $commentsAPI.post("/role", {
-  //       value: "USER",
-  //       description: "Пользователь"
-  //     })
-  //     const с = await $commentsAPI.post("/role", {
-  //       value: "ADMIN",
-  //       description: "Администратор"
-  //     })
-  //   }
-
-  //   a();
-  // }, []);
-
   return (
     <>
       <Head>
@@ -85,6 +72,11 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
           content="Смотреть фильмы онлайн в хорошем качестве"
         />
       </Head>
+      <TrailerCarousel movies={
+        movies
+          .slice(0, 15)
+          .filter(movie => movie.horizontalPhoto)} className={s.carousel}
+      />
       <Subscription />
       <ClientCarousel title="Жанры" className={s.carousel}>
         {
@@ -94,7 +86,7 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
       <ClientCarousel image={top10} title="недели" className={s.carousel}>
         {
           movies
-          // top10Movies
+            // top10Movies
             .filter(movie => movie.verticalPhoto)
             .slice(0, 10)
             .map((movie, i) => <Top10Card key={movie.id} movie={movie} number={i} />)
