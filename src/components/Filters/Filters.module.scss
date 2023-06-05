@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .filtersWrapper {
   display: flex;
   justify-content: space-between;
@@ -10,7 +12,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  
+
   @media screen and (max-width: 959px) {
     position: absolute;
     flex-direction: column;
@@ -18,7 +20,7 @@
     align-items: stretch;
     top: -75px;
     left: -15px;
-    width: calc(100vw - 15px);
+    width: 100vw;
     min-height: 100vh;
     padding-inline: 15px;
     background-color: #000;
@@ -29,7 +31,7 @@
 .filtersWithTextButton {
   display: flex;
   align-items: center;
-  
+
   @media screen and (max-width: 959px) {
     display: block;
   }
@@ -44,6 +46,7 @@
 
   @media screen and (max-width: 959px) {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 }
 
@@ -53,12 +56,22 @@
   & select {
     width: 100%;
   }
+
+  @media screen and (max-width: 959px) {
+    border-bottom: 1px solid $primaryGreyColor !important;
+  }
+}
+
+.sort {
+  & .select {
+    border-bottom: none !important;
+  }
 }
 
 .closeButton {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 10px;
   transform: translateY(-25%);
 }
 
@@ -78,5 +91,5 @@
 
 .applyButton {
   width: 100%;
-  
+
 }

@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent, useRef, useState } from "react";
-import CommonProps from "../IProps";
+import { CommonProps } from "../index";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import { SelectOptionType } from "../DesktopSelect/DesktopSelect";
 import Title from "../../Title/Title";

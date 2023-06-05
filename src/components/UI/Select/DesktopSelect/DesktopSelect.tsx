@@ -3,7 +3,7 @@ import Image from "next/image";
 import arrow from "../../../../assets/arrow.svg";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import s from "./DesktopSelect.module.scss";
-import CommonProps from "../IProps";
+import { CommonProps } from "../index";
 import OptionsList from "../../OptionsList/OptionsList";
 import { IText } from "@/types/IText";
 import { isGenreType } from "@/helpers/isGenreType";
@@ -16,11 +16,11 @@ export type SelectOptionType = {
   text: string;
 }
 
-interface Props extends CommonProps {
-  
+interface Props extends Omit<CommonProps, "title"> {
+
 }
 
-const Select: FC<Props> = ({ img, values, selectedValue, setSelectedValue, className }) => {
+const DesktopSelect: FC<Props> = ({ img, values, selectedValue, setSelectedValue, className }) => {
 
   const [active, setActive] = useState<boolean>(false);
 
@@ -84,4 +84,4 @@ const Select: FC<Props> = ({ img, values, selectedValue, setSelectedValue, class
   )
 };
 
-export default Select;
+export default DesktopSelect;

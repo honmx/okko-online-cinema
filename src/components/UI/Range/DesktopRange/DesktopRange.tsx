@@ -3,14 +3,14 @@ import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import Image from "next/image";
 import arrow from "../../../../assets/arrow.svg";
 import s from "./DesktopRange.module.scss";
-import CommonProps from "../IProps";
+import { CommonProps } from "../index";
 import Slider from "../../Slider/Slider";
 
 interface Props extends CommonProps {
 
 }
 
-const Range: FC<Props> = ({ value, setValue, min, max, step, className, title }) => {
+const DesktopRange: FC<Props> = ({ value, setValue, min, max, step, className, title }) => {
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -46,4 +46,4 @@ const Range: FC<Props> = ({ value, setValue, min, max, step, className, title })
   )
 };
 
-export default Range;
+export default DesktopRange;

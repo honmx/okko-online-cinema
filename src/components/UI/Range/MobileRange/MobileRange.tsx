@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent, useRef, useState } from "react";
-import CommonProps from "../IProps";
+import { CommonProps } from "../index";
 import Title from "../../Title/Title";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 import Slider from "../../Slider/Slider";
