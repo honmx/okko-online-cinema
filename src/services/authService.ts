@@ -1,7 +1,7 @@
-import $authAPI from "@/http/auth"
-import bearerAxios from "@/http/bearer";
-import { IAuthResponse } from "@/types/IAuthResponse";
-import { IUser } from "@/types/IUser";
+import $authAPI from "../http/auth";
+import bearerAxios from "../http/bearer";
+import { IAuthResponse } from "../types/IAuthResponse";
+import { IUser } from "../types/IUser";
 import axios, { AxiosResponse } from "axios";
 
 const checkEmail = async (email: string): Promise<AxiosResponse<IUser | "" | undefined>> => {

@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import { useSmallerDevice } from "../../../hooks/useSmallerDevice";
 import MobileSelect from "./MobileSelect/MobileSelect";
 import DesktopSelect from "./DesktopSelect/DesktopSelect";
-import { IGenre } from "@/types/IGenre";
+import { IGenre } from "../../../types/IGenre";
 
 export interface CommonProps {
   values: string[] | IGenre[];

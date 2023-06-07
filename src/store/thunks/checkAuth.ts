@@ -1,8 +1,5 @@
-import $authAPI from "@/http/auth";
-import bearerAxios from "@/http/bearer";
-import authService from "@/services/authService";
+import authService from "../../services/authService";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 
 export const checkAuth = createAsyncThunk(
   "auth/checkAuth",

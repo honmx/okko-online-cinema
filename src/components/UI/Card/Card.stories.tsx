@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import Card from "./Card";
+import { movies } from "../../../helpers/data/movies";
 import { genres } from "../../../helpers/data/genres";
 
 const meta: Meta<typeof Card> = {
@@ -15,25 +16,33 @@ export default meta;
 
 type Story = StoryObj<typeof Card>;
 
-export const Card16x9: Story = {
+export const MovieCard16x9: Story = {
   args: {
-    item: genres[0],
+    item: movies[0],
     linkHref: "/"
   }
 }
 
-export const Card1x1: Story = {
+export const MovieCard1x1: Story = {
   args: {
-    item: genres[0],
+    item: movies[0],
     linkHref: "/",
     ar: 1
   }
 }
 
-export const Card9x16: Story = {
+export const MovieCard9x16: Story = {
+  args: {
+    item: movies[0],
+    linkHref: "/",
+    ar: 0.66
+  }
+}
+
+export const GenreCard1x1: Story = {
   args: {
     item: genres[0],
     linkHref: "/",
-    ar: 0.66
+    ar: 1
   }
 }

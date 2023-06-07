@@ -1,10 +1,10 @@
 import React, { FC, ReactNode, useState } from "react";
 import s from "./TrailerCarousel.module.scss";
-import { useCarouselScroll } from "@/hooks/useCarouselScroll";
+import { useCarouselScroll } from "../../../hooks/useCarouselScroll";
 import Image from "next/image";
 import arrow from "../../../assets/arrow.svg";
-import { IMovie } from "@/types/IMovie";
-import TrailerCard from "@/components/TrailerCard/TrailerCard";
+import { IMovie } from "../../../types/IMovie";
+import TrailerCard from "../../../components/TrailerCard/TrailerCard";
 
 interface Props {
   movies: IMovie[];

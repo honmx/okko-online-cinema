@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import CarouselComponent from "./Carousel";
-import { genres } from "../../../helpers/data/genres";
 import Card from "../Card/Card";
+import { movies } from "../../../helpers/data/movies";
 
 const meta: Meta<typeof CarouselComponent> = {
   title: "Carousel",
@@ -16,14 +16,14 @@ type Story = StoryObj<typeof CarouselComponent>
 
 export const CarouselOfCardsWithoutTitle: Story = {
   args: {
-    children: genres.map(genre => <Card key={genre.value} item={genre} linkHref="/" />)
+    children: movies.map(movie => <Card key={movie.id} item={movie} linkHref="/" />)
   }
 }
 
 export const CarouselOfCardsWithTitle: Story = {
   args: {
-    title: "Жанры",
+    title: "Фильмы",
     linkHref: "/",
-    children: genres.map(genre => <Card key={genre.value} item={genre} linkHref="/" />)
+    children: movies.map(movie => <Card key={movie.id} item={movie} linkHref="/" />)
   }
 }

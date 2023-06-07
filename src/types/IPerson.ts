@@ -1,9 +1,7 @@
 export interface IPerson {
   id: number;
   fullName: string;
-  fullNameOrig: string;
-  createdAt: Date;
-  updatedAt: Date;
+  fullNameOrig?: string;
   photo?: string;
   profession: string;
 }

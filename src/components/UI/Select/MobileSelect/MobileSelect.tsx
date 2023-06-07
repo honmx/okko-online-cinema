@@ -1,12 +1,9 @@
 import React, { FC, MouseEvent, useRef, useState } from "react";
 import { CommonProps } from "../index";
-import { useOutsideClick } from "@/hooks/useOutsideClick";
-import { SelectOptionType } from "../DesktopSelect/DesktopSelect";
+import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import Title from "../../Title/Title";
 import OptionsList from "../../OptionsList/OptionsList";
 import s from "./MobileSelect.module.scss";
-import { IText } from "@/types/IText";
-import { IGenre } from "@/types/IGenre";
 
 interface Props extends Omit<CommonProps, "img"> {
   title: string;

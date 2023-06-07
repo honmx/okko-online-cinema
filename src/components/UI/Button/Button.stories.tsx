@@ -49,3 +49,11 @@ export const RoundButtonWithGivenPadding: Story = {
     p: "10px",
   }
 }
+
+export const DisabledButton: Story = {
+  args: {
+    img: close,
+    shape: "circle",
+    disabled: true
+  }
+}

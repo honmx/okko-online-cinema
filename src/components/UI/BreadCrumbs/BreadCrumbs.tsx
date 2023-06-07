@@ -1,10 +1,7 @@
 import React, { FC } from "react";
 import s from "./BreadCrumbs.module.scss";
 import CustomLink from "../CustomLink/CustomLink";
-import { useAppDispatch } from "@/store/hooks";
-import { clearFilters } from "@/store/slices/moviesFilterSlice";
-
-
+import { useAppDispatch } from "../../../store/hooks";
 
 interface Props {
   values: {

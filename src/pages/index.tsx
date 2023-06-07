@@ -40,6 +40,7 @@ const ClientCarousel = dynamic(() => import("../components/UI/Carousel/Carousel"
 
 const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoons }) => {
 
+  console.log(movies.slice(0, 10));
   // console.log(top10Movies);
   // console.log(USSRMovies);
   // console.log(cartoons);

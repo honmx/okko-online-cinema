@@ -3,7 +3,7 @@ import s from "./Modal.module.scss";
 import IconButton from "../IconButton/IconButton";
 import Image from "next/image";
 import close from "../../../assets/close.svg";
-import { useScrollStart } from "@/hooks/useScrollStart";
+import { useScrollStart } from "../../../hooks/useScrollStart";
 
 interface Props {
   onClose: () => void;

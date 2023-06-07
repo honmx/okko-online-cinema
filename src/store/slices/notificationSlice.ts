@@ -1,4 +1,4 @@
-import { createId } from "@/helpers/createId";
+import { createId } from "../../helpers/createId";
 import { INotification } from "@/types/INotification";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 

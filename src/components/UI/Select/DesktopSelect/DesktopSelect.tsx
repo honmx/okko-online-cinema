@@ -5,11 +5,11 @@ import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import s from "./DesktopSelect.module.scss";
 import { CommonProps } from "../index";
 import OptionsList from "../../OptionsList/OptionsList";
-import { IText } from "@/types/IText";
-import { isGenreType } from "@/helpers/isGenreType";
+import { IText } from "../../../../types/IText";
+import { isGenreType } from "../../../../helpers/isGenreType";
 import Title from "../../Title/Title";
-import { IGenre } from "@/types/IGenre";
-import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import { IGenre } from "../../../../types/IGenre";
+import { useSmallerDevice } from "../../../../hooks/useSmallerDevice";
 
 export type SelectOptionType = {
   value: string;

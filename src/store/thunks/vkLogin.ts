@@ -1,4 +1,4 @@
-import authService from "@/services/authService";
+import authService from "../../services/authService";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const vkLogin = createAsyncThunk(

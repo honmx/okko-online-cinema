@@ -1,5 +1,12 @@
+@import "../../../styles/variables.scss";
+
 .container {
   display: flex;
+  color: $accentWhiteFontColor;
+
+  & p {
+    margin: 0;
+  }
 }
 
 .breadCrumb {
@@ -7,5 +14,5 @@
 }
 
 .divider {
-  margin-inline: 5px;
+  margin-inline: 5px !important;
 }

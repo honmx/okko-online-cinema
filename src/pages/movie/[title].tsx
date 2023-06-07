@@ -31,6 +31,8 @@ interface Props {
 
 const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
 
+  console.log(movie);
+
   const isActive = useDelay(4000);
 
   const user = useAppSelector(state => state.auth.user);

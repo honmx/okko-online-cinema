@@ -1,6 +1,7 @@
 @import "../../../styles/variables.scss";
 
 .cardWrapper {
+  display: inline-block;
   position: relative;
   transition: scale 0.15s ease;
   height: 100%;
@@ -9,9 +10,14 @@
     scale: 1.05;
     z-index: 10000000;
   }
+
+  & p {
+    margin: 0;
+  }
 }
 
 .link {
+  position: relative;
   text-decoration: none;
 }
 
@@ -28,6 +34,7 @@
 
 .card {
   // height: 100%;
+  position: relative;
   background-color: $primaryDarkGreyColor;
   width: min(25vw, 350px);
   overflow: hidden;
@@ -132,7 +139,7 @@
 }
 
 .genreTitle {
-  margin: 20px;
+  margin: 20px !important;
   color: $accentWhiteFontColor;
   text-transform: uppercase;
   font-weight: 700;

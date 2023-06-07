@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import s from "./AutoSuggestSelect.module.scss";
-import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import { useSmallerDevice } from "../../../hooks/useSmallerDevice";
 
 interface Props {
   value: string;

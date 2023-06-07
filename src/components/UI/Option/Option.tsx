@@ -1,7 +1,5 @@
 import React, { FC, MouseEvent } from "react";
-import { SelectOptionType } from "../Select/DesktopSelect/DesktopSelect";
 import s from "./Option.module.scss";
-import { IText } from "@/types/IText";
 
 interface Props {
   value: string;
