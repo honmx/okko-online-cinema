@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from "react";
+import React, { FC, ReactNode, useEffect, useState } from "react";
 import s from "./TrailerCarousel.module.scss";
 import { useCarouselScroll } from "../../../hooks/useCarouselScroll";
 import Image from "next/image";
@@ -15,13 +15,13 @@ const TrailerCarousel: FC<Props> = ({ movies, className }) => {
 
   const { ref, isAbleToScrollLeft, isAbleToScrollRight } = useCarouselScroll();
 
-  const [activeMovie, setActiveMovie] = useState<number>(0);
+  const [activeMovie, setActiveMovie] = useState<number>(4);
 
   const handleLeftButtonClick = () => {
     if (!ref.current) return;
 
     ref.current.scrollTo({
-      left: ref.current.scrollLeft - ref.current.clientWidth,
+      left: ref.current.scrollLeft - ref.current.children[0].clientWidth,
       top: 0,
       behavior: "smooth",
     });
@@ -40,6 +40,15 @@ const TrailerCarousel: FC<Props> = ({ movies, className }) => {
 
     setActiveMovie(prev => prev + 1);
   }
+
+  useEffect(() => {
+    if (!ref.current) return;
+    
+    ref.current.scrollTo({
+      left: ref.current.children[0].clientWidth * 4,
+      top: 0,
+    });
+  }, []);
 
   return (
     <div className={`${s.container} ${className}`}>

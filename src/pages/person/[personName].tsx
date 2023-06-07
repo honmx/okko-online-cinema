@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useEffect, useState } from "react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import axios from "axios";
 import { IMovie } from "@/types/IMovie";
@@ -9,13 +9,15 @@ import Image from "next/image";
 import s from "./Person.module.scss";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import Range from "@/components/UI/Range/DesktopRange/DesktopRange";
-import DesktopFilters from "@/components/Filters/DesktopFilters/DesktopFilters";
-import MobileFilters from "@/components/Filters/MobileFilters/MobileFilters";
+import Filters from "@/components/Filters/Filters";
+import MobileFilters from "@/components/Filters/Filters";
 import MovieList from "@/components/MovieList/MovieList";
 import entitiesService from "@/services/entitiesService";
 import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import MoviesPageLayout from "@/components/MoviesPageLayout/MoviesPageLayout";
 import { useGenresAndCountries } from "@/hooks/useGenresAndCountries";
+import { useSelectedFilters } from "@/hooks/useSelectedFilters";
+import { useFilteredMovies } from "@/hooks/useFilteredMovies";
 
 interface Props {
   person: IPerson;
@@ -24,12 +26,19 @@ interface Props {
 
 const Person: NextPageWithLayout<Props> = ({ person, movies }) => {
 
-  // console.log(person);
-  // console.log(movies);
-
   const isSmaller = useSmallerDevice(959);
 
   const { genres, countries } = useGenresAndCountries();
+
+  const {
+    selectedGenre,
+    selectedCountry,
+    selectedMinRating,
+    selectedMinCountOfRating,
+    selectedSortBy
+  } = useSelectedFilters();
+
+  const filteredMovies = useFilteredMovies(movies);
 
   return (
     <div className={s.personContainer}>
@@ -46,14 +55,10 @@ const Person: NextPageWithLayout<Props> = ({ person, movies }) => {
         </div>
       </div>
       <div className={s.filtersContainer}>
-        {
-          isSmaller
-            ? <MobileFilters genres={genres} countries={countries} showActorFilter={false} showProducerFilter={false} />
-            : <DesktopFilters genres={genres} countries={countries} showActorFilter={false} showProducerFilter={false} />
-        }
+        <Filters genres={genres} countries={countries} showActorFilter={false} showProducerFilter={false} />
       </div>
       <Title variant="h2">Фильмы</Title>
-      <MovieList movies={movies} className={s.movies} />
+      <MovieList movies={filteredMovies} className={s.movies} />
     </div>
   )
 };
@@ -64,13 +69,12 @@ interface Params extends ParsedUrlQuery {
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
-  const response = await axios.get<IMovie[]>("http://localhost:5001/movie");
-  const movies = response.data;
+  const people = await entitiesService.getPeople();
 
   return {
-    paths: movies.map(movie => ({
+    paths: people.map(person => ({
       params: {
-        personName: movie.people[2].fullName
+        personName: person.fullName
       }
     })),
     fallback: "blocking"
@@ -79,11 +83,9 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
 
-  // TODO - refactor
-  const personName = context.params?.personName;
-  const personResponse = await axios.get<IPerson[]>("http://localhost:5001/movie/12/people");
-  const person = personResponse.data[2];
-
+  const personName = context.params?.personName as string;
+  const persons = await entitiesService.getPersonByName(personName);
+  const person = persons[0];
   const movies = await entitiesService.getMoviesByPersonName(person.fullName);
 
   return {

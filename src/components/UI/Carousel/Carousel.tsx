@@ -5,17 +5,18 @@ import Image, { StaticImageData } from "next/image";
 import arrow from "../../../assets/arrow.svg";
 import s from "./Carousel.module.scss";
 import { useCarouselScroll } from "../../../hooks/useCarouselScroll";
+import { useRouter } from "next/router";
 
 interface Props {
   title?: string;
   linkHref?: string;
   image?: StaticImageData;
   className?: string;
-  onClick?: () => void;
+  onTitleClick?: () => void;
   children: ReactNode;
 }
 
-const Carousel: FC<Props> = ({ title, linkHref, image, className, children, onClick }) => {
+const Carousel: FC<Props> = ({ title, linkHref, image, className, children, onTitleClick }) => {
 
   const { ref, isAbleToScrollLeft, isAbleToScrollRight } = useCarouselScroll();
 
@@ -41,7 +42,7 @@ const Carousel: FC<Props> = ({ title, linkHref, image, className, children, onCl
 
   return (
     <div className={`${s.carouselContainer} ${className}`}>
-      <div className={s.titleContainer} onClick={onClick}>
+      <div className={s.titleContainer}>
         {
           title && !linkHref && image &&
           <>
@@ -51,7 +52,7 @@ const Carousel: FC<Props> = ({ title, linkHref, image, className, children, onCl
         }
         {
           title && linkHref && !image &&
-          <Link href={linkHref} className={s.link}>
+          <Link href={linkHref} className={s.link} onClick={onTitleClick}>
             <Title variant="h2" className={s.title}>{title}</Title>
             <Image src={arrow} alt="arrow" className={s.arrow} />
           </Link>

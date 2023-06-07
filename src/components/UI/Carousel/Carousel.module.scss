@@ -80,7 +80,7 @@
   overflow: auto;
   margin-inline: -15px;
   margin-top: -20px;
-  padding: 55px 15px;
+  padding: 55px 15px 75px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -94,6 +94,11 @@
 .titleContainer {
   display: flex;
   align-items: center;
+
+  & .title {
+    position: relative;
+    z-index: 1000;
+  }
 }
 
 .image {

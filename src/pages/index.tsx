@@ -11,7 +11,7 @@ import axios from "axios";
 import s from "./Home.module.scss";
 import dynamic from "next/dynamic";
 import entitiesService from "@/services/entitiesService";
-import { clearFilters, setSelectedGenre } from "@/store/slices/moviesFilterSlice";
+import { clearFilters, setSelectedCountry, setSelectedGenre } from "@/store/slices/moviesFilterSlice";
 import { useAppDispatch } from "@/store/hooks";
 import { useRouter } from "next/router";
 import authService from "@/services/authService";
@@ -21,8 +21,6 @@ import { capitalize } from "@/helpers/capitalize";
 import top10 from "@/assets/top10.png";
 import Top10Card from "@/components/Top10Card/Top10Card";
 import Loading from "@/components/UI/Loading/Loading";
-import $commentsAPI from "@/http/comments";
-import TrailerCard from "@/components/TrailerCard/TrailerCard";
 import TrailerCarousel from "@/components/UI/TrailerCarousel/TrailerCarousel";
 
 interface Props {
@@ -39,11 +37,6 @@ const ClientCarousel = dynamic(() => import("../components/UI/Carousel/Carousel"
 });
 
 const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoons }) => {
-
-  console.log(movies.slice(0, 10));
-  // console.log(top10Movies);
-  // console.log(USSRMovies);
-  // console.log(cartoons);
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -64,6 +57,14 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
     dispatch(setSelectedGenre(capitalize(genre.title)));
   }
 
+  const handleUSSRMoviesClick = () => {
+    dispatch(setSelectedCountry("СССР"));
+  }
+
+  const handleCartoonsClick = () => {
+    dispatch(setSelectedGenre("Мультфильм"));
+  }
+
   return (
     <>
       <Head>
@@ -81,37 +82,35 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
       <Subscription />
       <ClientCarousel title="Жанры" className={s.carousel}>
         {
-          genres.map(genre => <Card key={genre.id} item={genre} linkHref="/movies/filters" ar={1} onClick={() => handleGenreClick(genre)} />)
+          genres.map(genre => (
+            <Card
+              key={genre.id}
+              item={genre}
+              linkHref="/movies/filters"
+              ar={1}
+              onClick={() => handleGenreClick(genre)}
+            />)
+          )
         }
       </ClientCarousel>
       <ClientCarousel image={top10} title="недели" className={s.carousel}>
         {
-          movies
-            // top10Movies
-            .filter(movie => movie.verticalPhoto)
-            .slice(0, 10)
+          top10Movies
             .map((movie, i) => <Top10Card key={movie.id} movie={movie} number={i} />)
         }
       </ClientCarousel>
-      <ClientCarousel title="Фильмы" linkHref="/movies" className={s.carousel}>
+      <ClientCarousel title="Советские фильмы" linkHref="/movies/filters" onTitleClick={handleUSSRMoviesClick} className={s.carousel}>
         {
-          movies
+          USSRMovies
             .filter(movie => movie.horizontalPhoto)
             .map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} />)
         }
       </ClientCarousel>
-      <ClientCarousel title="Фильмы 2" linkHref="/movies" className={s.carousel}>
+      <ClientCarousel title="Мультфильмы" linkHref="/movies/filters" onTitleClick={handleCartoonsClick} className={s.carousel}>
         {
-          movies
+          cartoons
             .filter(movie => movie.horizontalPhoto)
             .map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} ar={1} />)
-        }
-      </ClientCarousel>
-      <ClientCarousel title="Фильмы 3" linkHref="/movies" className={s.carousel}>
-        {
-          movies
-            .filter(movie => movie.verticalPhoto)
-            .map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} ar={0.66} />)
         }
       </ClientCarousel>
     </>

@@ -47,13 +47,13 @@
 }
 
 @media screen and (max-width: 960px) {
-  .card, .movieInfo {
+  .card {
     width: min(65vw, 300px);
   }
 }
 
 @media screen and (max-width: 375px) {
-  .card, .movieInfo {
+  .card {
     width: min(85vw, 290px);
   }
 }

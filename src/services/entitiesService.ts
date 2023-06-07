@@ -70,6 +70,17 @@ const getPeople = async (): Promise<IPerson[]> => {
   }
 }
 
+const getPersonByName = async (name: string): Promise<IPerson[]> => {
+  try {
+    const { data: person } = await $entitiesAPI.get<IPerson[]>(`/people/${name}`);
+    return person;
+  
+  } catch (error) {
+    console.log(error);
+    return [] as IPerson[];
+  }
+}
+
 const getReviewsByMovieId = async (id: number) => {
   try {
     const { data: reviews } = await axios.get(`http://localhost:5000/review/movie/${id}`);
@@ -95,7 +106,7 @@ const getRecommendedMovies = async (movie: IMovie): Promise<IMovie[]> => {
 const getTop10Movies = async (): Promise<IMovie[]> => {
   try {
     const { data: movies } = await $entitiesAPI.get<IMovie[]>(`movie/rate/8.8`);
-    return movies.slice(0, 10);
+    return movies.filter(movie => movie.verticalPhoto).slice(0, 10);
 
   } catch (error) {
     console.log(error);
@@ -119,6 +130,17 @@ const getMoviesByGenre = async (genre: string): Promise<IMovie[]> => {
     const { data: movies } = await $entitiesAPI.get<IMovie[]>(`movie/genre/${genre}`);
     return movies;
 
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+const getMoviesByMinRating = async (minRating: number): Promise<IMovie[]> => {
+  try {
+    const { data: movies } = await $entitiesAPI.get<IMovie[]>(`movie/rate/${minRating}`);
+    return movies;
+  
   } catch (error) {
     console.log(error);
     return [];
@@ -161,11 +183,13 @@ export default {
   getAdminMovies,
   getGenres,
   getPeople,
+  getPersonByName,
   getReviewsByMovieId,
   getRecommendedMovies,
   getTop10Movies,
   getMoviesByCountry,
   getMoviesByGenre,
+  getMoviesByMinRating,
   updateMovie,
   updateGenre
 };

@@ -9,7 +9,7 @@ import axios from "axios";
 import Head from "next/head";
 import s from "./Movies.module.scss";
 import { useAppDispatch } from "@/store/hooks";
-import { clearFilters, setSelectedMinRating, setSelectedGenre, setSelectedActor } from "@/store/slices/moviesFilterSlice";
+import { clearFilters, setSelectedMinRating, setSelectedGenre, setSelectedActor, setSelectedCountry } from "@/store/slices/moviesFilterSlice";
 import { IGenre } from "@/types/IGenre";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { useRouter } from "next/router";
@@ -20,6 +20,8 @@ import AutoSuggestModal from "@/components/AutoSuggestModal/AutoSuggestModal";
 
 interface Props {
   movies: IMovie[];
+  bestMovies: IMovie[];
+  russianMovies: IMovie[];
 }
 
 const ClientCarousel = dynamic(() => import("../../components/UI/Carousel/Carousel"), {
@@ -27,7 +29,7 @@ const ClientCarousel = dynamic(() => import("../../components/UI/Carousel/Carous
   loading: () => <p>loading...</p>
 });
 
-const Movies: NextPageWithLayout<Props> = ({ movies }) => {
+const Movies: NextPageWithLayout<Props> = ({ movies, bestMovies, russianMovies }) => {
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -69,25 +71,24 @@ const Movies: NextPageWithLayout<Props> = ({ movies }) => {
       <div className={s.moviesContainer}>
         <div className={s.block}>
           <ClientCarousel
-            title="Рекомендуемое"
-            linkHref="/movies/recommended"
+            title="Лучшее"
+            linkHref="/movies/filters"
+            onTitleClick={() => dispatch(setSelectedMinRating(8.8))}
             className={s.carousel}
           >
             {
-              movies
-                .slice(0, 25)
+              bestMovies
                 .map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} />)
             }
           </ClientCarousel>
           <ClientCarousel
-            title="Лучшее"
-            linkHref="/movies/best"
-            onClick={() => dispatch(setSelectedMinRating(8))}
+            title="Российские Фильмы"
+            linkHref="/movies/filters"
+            onTitleClick={() => dispatch(setSelectedCountry("Россия"))}
             className={s.carousel}
           >
             {
-              movies
-                .filter(movie => movie.rate > 8)
+              russianMovies
                 .map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} />)
             }
           </ClientCarousel>
@@ -107,9 +108,14 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const movies = await entitiesService.getMovies();
 
+  const bestMovies = await entitiesService.getMoviesByMinRating(8.8);
+  const russianMovies = await entitiesService.getMoviesByCountry("Россия");
+
   return {
     props: {
-      movies: movies?.filter(movie => movie.horizontalPhoto),
+      movies: movies.filter(movie => movie.horizontalPhoto),
+      bestMovies: bestMovies.filter(movie => movie.horizontalPhoto),
+      russianMovies: russianMovies.filter(movie => movie.horizontalPhoto),
     }
   }
 }

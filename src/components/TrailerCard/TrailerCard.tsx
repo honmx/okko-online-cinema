@@ -6,6 +6,7 @@ import Button from "../UI/Button/Button";
 import sound from "../../assets/sound.svg";
 import soundDisabled from "../../assets/soundDisabled.svg";
 import Link from "next/link";
+import { useDelay } from "@/hooks/useDelay";
 
 interface Props {
   movie: IMovie;
@@ -15,6 +16,8 @@ interface Props {
 const TrailerCard: FC<Props> = ({ movie, active }) => {
 
   const ref = useRef<HTMLDivElement>(null);
+
+  const isAfterDelay = useDelay(1000, active);
 
   const [activeSound, setActiveSound] = useState<boolean>(true);
 
@@ -28,14 +31,14 @@ const TrailerCard: FC<Props> = ({ movie, active }) => {
         <Link href={`/movie/${movie.title}`}>
           <div className={s.imgWrapper}>
             {
-              active
+              active && isAfterDelay
                 ? <video src="/trailer.mp4" autoPlay width="100%" height="100%" muted={activeSound} loop />
                 : <Image src={movie.horizontalPhoto} alt="movie photo" width={1920} height={1080} />
             }
           </div>
         </Link>
         {
-          active &&
+          active && isAfterDelay &&
           <div className={s.trailerButtonsContainer}>
             <Button shape="circle" p="10px" img={!activeSound ? sound : soundDisabled} onClick={handleSoundClick} />
           </div>
