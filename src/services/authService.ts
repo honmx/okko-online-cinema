@@ -23,8 +23,8 @@ const login = async (email: string, password: string): Promise<AxiosResponse<IAu
   return response;
 }
 
-const register = async (email: string, password: string) => {
-  const response = await $authAPI.post<any>("/registration", {
+const register = async (email: string, password: string): Promise<AxiosResponse<IAuthResponse>> => {
+  const response = await $authAPI.post<IAuthResponse>("/registration", {
     email,
     password
   });
@@ -43,10 +43,17 @@ const checkAuth = async (): Promise<AxiosResponse<IAuthResponse>> => {
 }
 
 const loginWithVk = async (code: string) => {
-  const response = await axios.post<IVKAuthResponse>(`${process.env.NEXT_PUBLIC_AUTH_API_URL}/login/vk`, {code});
+  const response = await axios.post<IVKAuthResponse>(`${process.env.NEXT_PUBLIC_AUTH_API_URL}/login/vk`, { code });
 
   return response;
 }
 
 
-export default { checkEmail, login, register, logout, checkAuth, loginWithVk };
+export default {
+  checkEmail,
+  login,
+  register,
+  logout,
+  checkAuth,
+  loginWithVk
+};

@@ -18,7 +18,7 @@ $authAPI.interceptors.response.use(
 
     const originalRequestConfig = error.config;
 
-    if (error.response.status === 401 && originalRequestConfig && !originalRequestConfig?._isRetry) {
+    if (error.response?.status === 401 && originalRequestConfig && !originalRequestConfig?._isRetry) {
       originalRequestConfig._isRetry = true;
 
       try {

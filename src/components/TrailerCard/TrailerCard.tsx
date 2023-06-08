@@ -6,7 +6,7 @@ import Button from "../UI/Button/Button";
 import sound from "../../assets/sound.svg";
 import soundDisabled from "../../assets/soundDisabled.svg";
 import Link from "next/link";
-import { useDelay } from "@/hooks/useDelay";
+import { useDelay } from "../../hooks/useDelay";
 
 interface Props {
   movie: IMovie;

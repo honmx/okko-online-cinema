@@ -100,3 +100,46 @@
 .recommendations {
   margin-top: 40px;
 }
+
+.commentsContainer {
+  margin-top: 20px;
+  margin-left: -25px;
+}
+
+.form {
+  display: flex;
+  margin-left: 25px;
+  margin-bottom: 5px;
+
+  & button {
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+.input {
+  width: calc(100% - 25px);
+
+  & textarea {
+    width: 100%;
+  }
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+
+  &>button {
+    flex: 1 1 0;
+  }
+}
+
+.submitBtn {
+  background-color: $primaryDarkGreyColor;
+  transition: all 0.15s ease;
+  
+  &:hover {
+    background-color: rgba($color: $primaryDarkGreyColor, $alpha: 0.8);
+  }
+}

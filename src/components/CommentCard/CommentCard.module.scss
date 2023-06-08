@@ -1,0 +1,89 @@
+@import "../../styles/variables.scss";
+
+.container {}
+
+.commentInfo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: $primaryDarkGreyColor;
+  margin-bottom: 5px;
+  padding: 20px 20px 30px 20px;
+  border-radius: 15px;
+  // border-bottom: 1px solid $primaryGreyColor;
+}
+
+.user {
+  margin-right: 10px;
+
+  & .imgWrapper {
+    & img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
+.replyBtn, .likeBtn {
+  position: absolute;
+  bottom: 3px;
+
+  & button p {
+    font-weight: 400;
+  }
+}
+
+.likeBtn {
+  display: flex;
+  align-items: center;
+  right: 0;
+
+  & p {
+    margin-right: 5px;
+  }
+}
+
+.form {
+  display: flex;
+  margin-left: 25px;
+  margin-bottom: 5px;
+
+  & button {
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+.input {
+  width: calc(100% - 25px);
+
+  & textarea {
+    width: 100%;
+  }
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+
+  &>button {
+    flex: 1 1 0;
+  }
+}
+
+.submitBtn, .cancelBtn {
+  background-color: $primaryDarkGreyColor;
+  transition: all 0.15s ease;
+  
+  &:hover {
+    background-color: rgba($color: $primaryDarkGreyColor, $alpha: 0.8);
+  }
+}
+
+.cancelBtn {
+  & img {
+    width: 15px;
+    height: 15px;
+  }
+}

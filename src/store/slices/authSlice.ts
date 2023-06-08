@@ -26,7 +26,7 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(register.fulfilled, (state, action) => {
       localStorage.setItem("token", action.payload?.accessToken as string);
-      state.user = action.payload?.user as IUser;
+      state.user = action.payload.user;
       state.isAuth = true;
       state.isLoading = false;
     });

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import { ParsedUrlQuery } from "querystring";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -23,6 +23,12 @@ import entitiesService from "@/services/entitiesService";
 import Card from "@/components/UI/Card/Card";
 import $commentsAPI from "@/http/comments";
 import { useAppSelector } from "@/store/hooks";
+import Title from "@/components/UI/Title/Title";
+import CommentList from "@/components/CommentList/CommentList";
+import { IComment } from "@/types/IComment";
+import check from "@/assets/check.svg";
+import TextArea from "@/components/UI/TextArea/TextArea";
+import commentsService from "@/services/commentsService";
 
 interface Props {
   movie: IMovie;
@@ -31,7 +37,7 @@ interface Props {
 
 const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
 
-  console.log(movie);
+  const ref = useRef<HTMLVideoElement>(null);
 
   const isActive = useDelay(4000);
 
@@ -39,32 +45,33 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
 
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [activeSound, setActiveSound] = useState<boolean>(true);
-  // const [comments, setComments] = useState<any>([]);
+  const [comments, setComments] = useState<IComment[]>([]);
+  const [value, setValue] = useState<string>("");
 
-  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const getComments = async () => {
+      const { data: comments } = await $commentsAPI.get(`/movie-comment/movie/${movie.id}`);
+      setComments(comments);
+    }
 
-  // useEffect(() => {
-  //   const getComments = async () => {
-  //     const { data: comments } = await $commentsAPI.get("/comment");
-  //     setComments(comments);
-  //   }
+    getComments();
+  }, []);
 
-  //   getComments();
+  useEffect(() => {
+    console.log(comments);
+  }, [comments]);
 
-  //   const makeComments = async () => {
-  //     const comment = await $commentsAPI.post("/comment", {
-  //       userId: 2,
-  //       comment: "dfgdfgdf",
-  //       reviewId: 1
-  //     });
-  //   }
+  const handleTextAreaChange = (value: string) => {
+    setValue(value);
+  }
 
-  //   makeComments()
-  // }, []);
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  // useEffect(() => {
-  //   console.log(comments);
-  // }, [comments]);
+    const newComment = await commentsService.createComment(user.id, value, movie.id);
+    setComments(prev => [...prev, newComment]);
+    setValue("");
+  }
 
   const handleTabIndexChange = (value: number) => {
     setTabIndex(value);
@@ -82,6 +89,43 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
     if (!ref.current) return;
 
     setActiveSound(ref.current.muted);
+  }
+
+  const handleMakeCommentClick = async () => {
+    try {
+      const comment = await $commentsAPI.post("/movie-comment", {
+        userId: user.id,
+        comment: "aaaaa",
+        movieId: movie.id,
+        commentId: 14
+      });
+
+      console.log(comment.data);
+
+    } catch (error) {
+      console.log(error);
+    }
+
+    // try {
+    //   // const reviewComment = await $commentsAPI.post("/review-comment", {
+    //   //   userId: user.id,
+    //   //   comment: "dfgdfgdf",
+    //   //   reviewId: 22
+    //   // });
+
+    //   // console.log(reviewComment);
+
+    //   const review = await $commentsAPI.post("/review", {
+    //     userId: user.id,
+    //     movieId: movie.id,
+    //     review: "sdfsdf",
+    //   });
+
+    //   console.log(review.data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
   }
 
   return (
@@ -151,6 +195,24 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
             recommendations.map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} />)
           }
         </Carousel>
+        <div className={s.commentsBlock}>
+          <Title className={s.commentsTitle}>Комментарии</Title>
+          <div className={s.commentsContainer}>
+            <CommentList comments={comments.filter(comment => comment.commentId === null)} allComments={comments} movieId={movie.id} />
+            {
+              user &&
+              <form onSubmit={handleFormSubmit} className={s.form}>
+                <TextArea value={value} onChange={handleTextAreaChange} placeholder="Оставьте комментарий" className={s.input} />
+                <div className={s.buttonsContainer}>
+                  <button className={s.submitBtn}>
+                    <Image src={check} alt="check" />
+                  </button>
+                </div>
+              </form>
+            }
+          </div>
+        </div>
+        {/* <Button value="make comment" onClick={handleMakeCommentClick} /> */}
       </div>
     </>
   )

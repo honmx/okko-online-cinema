@@ -75,7 +75,7 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
         />
       </Head>
       <TrailerCarousel movies={
-        movies
+        top10Movies
           .slice(0, 15)
           .filter(movie => movie.horizontalPhoto)} className={s.carousel}
       />
@@ -118,7 +118,7 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const movies = await entitiesService.getMovies();
+  // const movies = await entitiesService.getMovies();
   const genres = await entitiesService.getGenres();
 
   const top10Movies = await entitiesService.getTop10Movies();
@@ -127,7 +127,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      movies,
+      // movies,
       genres,
       top10Movies,
       USSRMovies,
