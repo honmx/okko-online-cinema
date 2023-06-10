@@ -1,22 +1,22 @@
 export const headerLinks = [
   {
     href: "/",
-    text: "Главная",
+    text: "main",
   },
   {
     href: "/movies",
-    text: "Фильмы",
+    text: "movies",
   },
   {
-    href: "/store",
-    text: "Магазин",
+    href: "https://okko.tv/store",
+    text: "shop",
   },
   {
-    href: "/sport",
-    text: "Спорт",
+    href: "https://okko.sport/sport",
+    text: "sport",
   },
   {
-    href: "/tv-channels",
-    text: "ТВ каналы",
+    href: "https://okko.tv/tv_channels/tvchannels_all",
+    text: "tvChannels",
   },
 ]

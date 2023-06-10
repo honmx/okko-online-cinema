@@ -32,8 +32,6 @@ const MoviesPageLayout: FC<Props> = ({ children }) => {
   const isSmaller = useSmallerDevice(959);
 
   const { genres, countries } = useGenresAndCountries();
-
-  console.log(genres);
   const { selectedGenre, selectedCountry, selectedProducer, selectedActor } = useSelectedFilters();
 
   const lastBreadCrumb =

@@ -22,6 +22,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { toggleLanguage } from '@/store/slices/languageSlice';
 import { useScrollStart } from '@/hooks/useScrollStart';
 import { logout } from '@/store/thunks/logout';
+import { useTranslation } from 'next-i18next';
 
 interface Props {
 
@@ -33,10 +34,11 @@ const Header: FC<Props> = ({ }) => {
 
   const dispatch = useAppDispatch();
 
-  const isSmaller = useSmallerDevice(959);
-  const isMedium = useSmallerDevice(1099);
+  const { t, i18n } = useTranslation("header");
 
-  const lang = useAppSelector(state => state.language.language);
+  const isSmaller = useSmallerDevice(959);
+
+  const lang = i18n.language;
   const isAuth = useAppSelector(state => state.auth.isAuth);
   const isLoading = useAppSelector(state => state.auth.isLoading);
 
@@ -51,11 +53,40 @@ const Header: FC<Props> = ({ }) => {
 
   const handleLoginClick = () => {
     setLoginShowing(prevState => !prevState);
+    setBurgerShowing(false);
   }
 
   const handleLogoutClick = () => {
     dispatch(logout());
+    setBurgerShowing(false);
   }
+
+  const handleToggleLanguageClick = (lang: string) => {
+    router.push(router.asPath, router.asPath, { locale: lang });
+  }
+
+  const headerLinks = [
+    {
+      href: "/",
+      text: t("header:links.main"),
+    },
+    {
+      href: "/movies",
+      text: t("header:links.movies"),
+    },
+    {
+      href: "https://okko.tv/store",
+      text: t("header:links.store"),
+    },
+    {
+      href: "https://okko.sport/sport",
+      text: t("header:links.sport"),
+    },
+    {
+      href: "https://okko.tv/tv_channels/tvchannels_all",
+      text: t("header:links.tvChannels"),
+    },
+  ];
 
   return (
     <div className={s.header}>
@@ -89,21 +120,18 @@ const Header: FC<Props> = ({ }) => {
               <Toggle
                 values={["ru", "en"]}
                 activeValue={lang}
-                onClick={() => dispatch(toggleLanguage())}
+                onClick={() => handleToggleLanguageClick(lang === "ru" ? "en" : "ru")}
               />
             }
-            {
-              !isMedium &&
-              <div className={s.subscription}>
-                <Button bgColor="accent" value={"Месяц за 1 ₽"} />
-              </div>
-            }
+            <div className={s.subscription}>
+              <Button bgColor="accent">{t("subscribeButton")}</Button>
+            </div>
             {
               !isSmaller &&
               <div>
                 <IconButton className={s.promo}>
                   <Image width={30} height={30} src={gift} alt="promocode" />
-                  <span>Ввести промокод</span>
+                  <span>{t("enterPromocode")}</span>
                 </IconButton>
               </div>
             }
@@ -113,7 +141,7 @@ const Header: FC<Props> = ({ }) => {
                 <Image width={30} height={30} src={login} alt="gift" />
                 {
                   !isSmaller &&
-                  <span>Войти</span>
+                  <span>{t("login")}</span>
                 }
               </IconButton>
             }
@@ -123,7 +151,7 @@ const Header: FC<Props> = ({ }) => {
                 <Image width={23} height={23} src={logoutIcon} alt="logout" />
                 {
                   !isSmaller &&
-                  <span>Выйти</span>
+                  <span>{t("logout")}</span>
                 }
               </IconButton>
             }
@@ -132,10 +160,9 @@ const Header: FC<Props> = ({ }) => {
               <div onClick={handleBurgerClick}>
                 <IconButton className={s.burger}>
                   {
-                    burgerShowing ?
-                      <Image width={23} height={23} src={close} alt="close" />
-                      :
-                      <Image width={30} height={30} src={burger} alt="burger" />
+                    burgerShowing
+                      ? <Image width={23} height={23} src={close} alt="close" />
+                      : <Image width={30} height={30} src={burger} alt="burger" />
                   }
                 </IconButton>
               </div>
@@ -147,7 +174,7 @@ const Header: FC<Props> = ({ }) => {
       {
         burgerShowing &&
         <div className={s.burger_container + (burgerShowing ? '' : ' ' + s.hidden)}>
-          <Burger handleLoginClick={handleLoginClick} />
+          <Burger handleLoginClick={handleLoginClick} handleLogoutClick={handleLogoutClick} />
         </div>
       }
       {

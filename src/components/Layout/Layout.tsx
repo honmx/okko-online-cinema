@@ -34,44 +34,27 @@ const Layout: FC<Props> = ({ children }) => {
     }
   }, []);
 
-  // adding roles to user with user id
-  // useEffect(() => {
-    
-  //   if (!user.id) return;
-
-  //   const a = async () => {
-  //     const response = await $commentsAPI.post(`/user/addrole/${user.id}`);
-  //     console.log(response);
-
-  // //     const response = await $commentsAPI.post("/role", {
-  // //       value: "ADMIN",
-  // //       description: "Администратор"
-  // //     })
-
-  // //     const response2 = await $commentsAPI.post("/role", {
-  // //       value: "USER",
-  // //       description: "Пользователь"
-  // //     })
-  // //     console.log(response.data);
-  //   }
-
-  //   a();
-  // }, [user]);
-  
   // creating roles
   useEffect(() => {
     const a = async () => {
-      const response = await $commentsAPI.post("role", {
+      const adminResponse = await $commentsAPI.post("/role", {
+        value: "ADMIN",
+        description: "Администратор"
+      });
+      const response = await $commentsAPI.post("/role", {
         value: "USER",
         description: "Пользователь"
       });
 
+      console.log(adminResponse.data);
       console.log(response.data);
     }
 
-    // a();
+    // try {
+    //   a();
+    // } catch (error: any) {}
   }, []);
-  
+
   const notifications = useAppSelector(state => state.notifications.notifications);
 
   return (

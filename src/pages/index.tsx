@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import Carousel from '@/components/UI/Carousel/Carousel';
-import { GetStaticProps, NextPage } from 'next';
+import { GetStaticProps, GetStaticPropsResult, NextPage } from 'next';
 import { IMovie } from "@/types/IMovie";
 import Card from "@/components/UI/Card/Card";
 import Subscription from "@/components/Subscription/Subscription";
@@ -22,6 +22,7 @@ import top10 from "@/assets/top10.png";
 import Top10Card from "@/components/Top10Card/Top10Card";
 import Loading from "@/components/UI/Loading/Loading";
 import TrailerCarousel from "@/components/UI/TrailerCarousel/TrailerCarousel";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface Props {
   movies: IMovie[];
@@ -117,7 +118,7 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async ({ locale }: { locale: string }): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
   // const movies = await entitiesService.getMovies();
   const genres = await entitiesService.getGenres();
 
@@ -132,6 +133,10 @@ export const getStaticProps: GetStaticProps = async () => {
       top10Movies,
       USSRMovies,
       cartoons,
+      ...(await serverSideTranslations(locale, [
+        "common",
+        "header",
+      ])),
     },
   };
 };

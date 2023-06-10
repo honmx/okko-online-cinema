@@ -4,18 +4,13 @@ import { NextPageWithLayout } from '@/types/NextPageWithLayout';
 import "../styles/nullable.scss";
 import { Provider } from 'react-redux';
 import { store } from '@/store/store';
-import axios from 'axios';
-import { useEffect } from 'react';
-import { useAppDispatch } from '@/store/hooks';
-import { checkAuth } from '@/store/thunks/checkAuth';
-
-// axios.defaults.baseURL = process.env.NEXT_PUBLIC_ENTITIES_API_URL;
+import { appWithTranslation } from "next-i18next";
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   const getLayout = Component.getLayout ?? ((page) => page);
 
@@ -27,3 +22,5 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     </Provider>
   )
 }
+
+export default appWithTranslation(App);

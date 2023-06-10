@@ -1,17 +1,24 @@
-import {FC, useEffect} from "react";
+import { FC, useEffect } from "react";
 import s from "./Burger.module.scss";
-import {headerLinks} from "@/helpers/data/headerLinks";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import IconButton from "../UI/IconButton/IconButton";
+import { capitalize } from "@/helpers/capitalize";
+import { useTranslation } from "next-i18next";
+import { useAppSelector } from "@/store/hooks";
 
 interface IProps {
   handleLoginClick: () => void;
+  handleLogoutClick: () => void;
 }
 
-const Burger: FC<IProps> = ({ handleLoginClick }) => {
+const Burger: FC<IProps> = ({ handleLoginClick, handleLogoutClick }) => {
 
   const router = useRouter();
+
+  const isAuth = useAppSelector(state => state.auth.isAuth);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -20,6 +27,29 @@ const Burger: FC<IProps> = ({ handleLoginClick }) => {
       document.body.style.overflow = 'unset';
     };
   }, []);
+
+  const headerLinks = [
+    {
+      href: "/",
+      text: t("header:links.main"),
+    },
+    {
+      href: "/movies",
+      text: t("header:links.movies"),
+    },
+    {
+      href: "https://okko.tv/store",
+      text: t("header:links.store"),
+    },
+    {
+      href: "https://okko.sport/sport",
+      text: t("header:links.sport"),
+    },
+    {
+      href: "https://okko.tv/tv_channels/tvchannels_all",
+      text: t("header:links.tvChannels"),
+    },
+  ];
 
   return (
     <div className={s.burger}>
@@ -30,7 +60,7 @@ const Burger: FC<IProps> = ({ handleLoginClick }) => {
               key={link.href}
               className={
                 (link.href === router.pathname
-                || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : "")
+                  || link.href.startsWith(router.pathname) && router.pathname !== "/" ? s.active : "")
                 + " " + s.item
               }
             >
@@ -39,13 +69,16 @@ const Burger: FC<IProps> = ({ handleLoginClick }) => {
           ))
         }
         <li className={s.item}>
-          <IconButton className={s.loginBtn}>ВВЕСТИ ПРОМОКОД</IconButton>
+          <IconButton className={s.loginBtn}>{capitalize(t("header:enterPromocode"))}</IconButton>
         </li>
         <li className={s.item}>
-          <IconButton onClick={handleLoginClick} className={s.loginBtn}>ВОЙТИ</IconButton>
+          {
+            isAuth
+              ? <IconButton onClick={handleLogoutClick} className={s.loginBtn}>{capitalize(t("header:logout"))}</IconButton>
+              : <IconButton onClick={handleLoginClick} className={s.loginBtn}>{capitalize(t("header:login"))}</IconButton>
+          }
         </li>
       </ul>
-
     </div>
   );
 };

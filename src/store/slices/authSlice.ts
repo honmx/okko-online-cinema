@@ -4,6 +4,7 @@ import { login } from "../thunks/login";
 import { logout } from "../thunks/logout";
 import { checkAuth } from "../thunks/checkAuth";
 import { register } from "../thunks/register";
+import { registerAdmin } from "../thunks/registerAdmin";
 import { vkLogin } from "../thunks/vkLogin";
 
 interface IInitialState {
@@ -34,8 +35,19 @@ export const authSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(register.rejected, (state, action) => {
-      // todo...
-      // iserror ...
+      state.isLoading = false;
+    });
+
+    builder.addCase(registerAdmin.fulfilled, (state, action) => {
+      localStorage.setItem("token", action.payload?.accessToken as string);
+      state.user = action.payload.user;
+      state.isAuth = true;
+      state.isLoading = false;
+    });
+    builder.addCase(registerAdmin.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(registerAdmin.rejected, (state, action) => {
       state.isLoading = false;
     });
 

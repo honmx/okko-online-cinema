@@ -7,6 +7,8 @@ import authService from "@/services/authService";
 import { useAppDispatch } from "@/store/hooks";
 import { register } from "@/store/thunks/register";
 import Toggle from "../UI/Toggle/Toggle";
+import { registerAdmin } from "@/store/thunks/registerAdmin";
+import { useTranslation } from 'next-i18next';
 
 interface Props {
   email: string;
@@ -16,13 +18,15 @@ interface Props {
 
 const RegisterForm: FC<Props> = ({ email, handleEmailChange, className }) => {
 
-  const roles = ["Пользователь", "Админ"] as ["Пользователь", "Админ"];
+  const roles = ["user", "admin"] as ["user", "admin"];
 
   const dispatch = useAppDispatch();
 
+  const { t } = useTranslation("header");
+
   const [password, setPassword] = useState<string>("");
   const [passwordRepeat, setPasswordRepeat] = useState<string>("");
-  const [role, setRole] = useState<"Пользователь" | "Админ">("Пользователь");
+  const [role, setRole] = useState<"user" | "admin">("user");
 
   const [isDisabled, setIsDisabled] = useDisabledButton([email, password, passwordRepeat]);
 
@@ -34,9 +38,9 @@ const RegisterForm: FC<Props> = ({ email, handleEmailChange, className }) => {
     e.preventDefault();
 
     setIsDisabled(true);
-    role === "Пользователь"
+    role === "user"
       ? dispatch(register({ email, password }))
-      : dispatch(register({ email, password }));
+      : dispatch(registerAdmin({ email, password }));
     setIsDisabled(false);
   }
 
@@ -49,30 +53,31 @@ const RegisterForm: FC<Props> = ({ email, handleEmailChange, className }) => {
       <form onSubmit={handleSubmit} className={`${s.form} ${className}`}>
         <InputField
           type="text"
-          placeholder="Электронная почта"
+          placeholder={t("header:loginWindow.emailInputPlaceholder")}
           value={email}
           onChange={handleEmailChange}
         />
         <InputField
-          type="text"
-          placeholder="Пароль"
+          type="password"
+          placeholder={t("header:loginWindow.passwordInputPlaceholder")}
           value={password}
           onChange={handlePasswordChange}
         />
         <InputField
-          type="text"
-          placeholder="Повторите пароль"
+          type="password"
+          placeholder={t("header:loginWindow.passwordAgainInputPlaceholder")}
           value={passwordRepeat}
           onChange={handlePasswordRepeatChange}
         />
         <Button
           bgColor="accent"
           className={`${isDisabled && s.disabledBtn}`}
-          value="Продолжить"
           disabled={isDisabled}
-        />
+        >
+          {t("header:loginWindow.continue")}
+        </Button>
       </form>
-      <Toggle values={roles} activeValue={role} onClick={handleToggleRoleClick} textPosition="right" className={s.toggle} />
+      <Toggle values={roles} activeValue={t(role)} onClick={handleToggleRoleClick} textPosition="right" className={s.toggle} />
     </>
   )
 };

@@ -1,0 +1,36 @@
+{
+  "links": {
+    "main": "Главная",
+    "movies": "Фильмы",
+    "store": "Магазин",
+    "sport": "Спорт",
+    "tvChannels": "ТВ-каналы"
+  },
+  "subscribeButton": "Месяц за 1 ₽",
+  "enterPromocode": "Ввести промокод",
+  "login": "Войти",
+  "logout": "Выйти",
+  "loginWindow": {
+    "loginOrRegisterHeader": "ВХОД ИЛИ РЕГИСТРАЦИЯ",
+    "registerHeader": "РЕГИСТРАЦИЯ",
+    "loginHeader": "ВХОД",
+    "loginOrRegisterTitle": "Войдите или зарегистрируйтесь",
+    "registerTitle": "Зарегиструйтесь",
+    "loginTitle": "Войдите",
+    "subtitle": "Чтобы начать пользоваться сервисом Okko",
+    "emailInputPlaceholder": "Электронная почта",
+    "passwordInputPlaceholder": "Пароль",
+    "passwordAgainInputPlaceholder": "Повторите пароль",
+    "continue": "Продолжить",
+    "user": "Пользователь",
+    "admin": "Админ",
+    "loginWithVK": "Войти через VK",
+    "loginWithGoogle": "Войти через Google",
+    "agreement": {
+      "iAgreeWith": "Продолжая, я соглашаюсь с",
+      "userAgreement": "Пользовательским соглашением",
+      "and": "и",
+      "privacyPolicy": "Политикой конфиденциальности"
+    }
+  }
+}

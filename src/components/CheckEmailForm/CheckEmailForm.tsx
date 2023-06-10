@@ -4,6 +4,7 @@ import Button from "../UI/Button/Button";
 import authService from "@/services/authService";
 import s from "./CheckEmailForm.module.scss";
 import { useDisabledButton } from "@/hooks/useDisabledButton";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   email: string;
@@ -13,6 +14,8 @@ interface Props {
 }
 
 const CheckEmailForm: FC<Props> = ({ email, handleEmailChange, setEmailExists, className }) => {
+
+  const { t } = useTranslation("header");
 
   const [isDisabled, setIsDisabled] = useDisabledButton(email);
 
@@ -33,16 +36,17 @@ const CheckEmailForm: FC<Props> = ({ email, handleEmailChange, setEmailExists, c
     <form onSubmit={handleSubmit} className={`${s.form} ${className}`}>
       <InputField
         type="text"
-        placeholder="Электронная почта"
+        placeholder={t("header:loginWindow.emailInputPlaceholder")}
         value={email}
         onChange={handleEmailChange}
       />
       <Button
         bgColor="accent"
         className={`${isDisabled && s.disabledBtn}`}
-        value="Продолжить"
         disabled={isDisabled}
-      />
+      >
+        {t("header:loginWindow.continue")}
+      </Button>
     </form>
   )
 };

@@ -122,6 +122,10 @@
 
 .subscription {
 
+  button {
+    font-size: 14px;
+  }
+
   span {
     color: white;
     font-size: 18px;
@@ -134,6 +138,10 @@
   }
   @media (max-width: 1320px) {
     line-height: 20px;
+  }
+
+  @media screen and (max-width: 1099px) {
+    display: none;
   }
 }
 

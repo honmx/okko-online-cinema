@@ -32,6 +32,15 @@ const register = async (email: string, password: string): Promise<AxiosResponse<
   return response;
 }
 
+const registerAdmin = async (email: string, password: string): Promise<AxiosResponse<IAuthResponse>> => {
+  const response = await $authAPI.post<IAuthResponse>("/registrationAdmin", {
+    email,
+    password
+  });
+
+  return response;
+}
+
 const logout = async (): Promise<void> => {
   await $authAPI.post<void>("/logout");
 }
@@ -53,6 +62,7 @@ export default {
   checkEmail,
   login,
   register,
+  registerAdmin,
   logout,
   checkAuth,
   loginWithVk

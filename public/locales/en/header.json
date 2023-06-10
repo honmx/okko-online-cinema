@@ -1,0 +1,36 @@
+{
+  "links": {
+    "main": "Main",
+    "movies": "Movies",
+    "store": "Store",
+    "sport": "Sport",
+    "tvChannels": "TV channels"
+  },
+  "subscribeButton": "1 ₽ per month",
+  "enterPromocode": "Enter promocode",
+  "login": "Login",
+  "logout": "Logout",
+  "loginWindow": {
+    "loginOrRegisterHeader": "LOGIN OR REGISTER",
+    "registerHeader": "REGISTER",
+    "loginHeader": "LOGIN",
+    "loginOrRegisterTitle": "Log in or register",
+    "registerTitle": "Register",
+    "loginTitle": "Log in",
+    "subtitle": "to start using Okko",
+    "emailInputPlaceholder": "Email",
+    "passwordInputPlaceholder": "Password",
+    "passwordAgainInputPlaceholder": "Repeat the password",
+    "continue": "Continue",
+    "user": "User",
+    "admin": "Admin",
+    "loginWithVK": "Log in with VK",
+    "loginWithGoogle": "Log in with Google",
+    "agreement": {
+      "iAgreeWith": "By continuing i agree with",
+      "userAgreement": "User Agreement",
+      "and": "and",
+      "privacyPolicy": "Privacy Policy"
+    }
+  }
+}
