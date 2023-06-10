@@ -7,12 +7,12 @@ import logo from "@/assets/logo.svg";
 import Button from "../UI/Button/Button";
 import Link from "next/link";
 import Title from "../UI/Title/Title";
-import { footerNavbar } from "@/helpers/data/footerNavbar";
 import CustomLink from "../UI/CustomLink/CustomLink";
 import s from "./Footer.module.scss";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import Accordion from "../UI/Accordion/Accordion";
 import { footerSocialNetworks } from "@/helpers/data/footerSocialNetworks";
+import { useTranslation } from 'next-i18next';
 
 interface Props {
 
@@ -20,7 +20,67 @@ interface Props {
 
 const Footer: FC<Props> = ({ }) => {
 
+  const { t } = useTranslation("footer");
+
   const isSmaller = useSmallerDevice(767);
+
+  const footerNavbar = [
+    {
+      title: "Okko",
+      links: [
+        {
+          name: t("footer:okko.about"),
+          to: "https://okko.tv/about",
+        },
+        {
+          name: t("footer:okko.blog"),
+          to: "https://okko.tv/blog",
+        },
+        {
+          name: t("footer:okko.career"),
+          to: "https://okko.tv/careers",
+        },
+        {
+          name: t("footer:okko.agents"),
+          to: "https://agents.okko.tv",
+        },
+      ]
+    },
+    {
+      title: t("footer:help.title"),
+      links: [
+        {
+          name: t("footer:help.faq"),
+          to: "https://help.okko.tv",
+        },
+        {
+          name: t("footer:help.devices"),
+          to: "https://okko.tv/devices",
+        },
+        {
+          name: t("footer:help.distributors"),
+          to: "https://promo.okko.tv/partner",
+        },
+        {
+          name: t("footer:help.contacts"),
+          to: "https://okko.tv/contact",
+        },
+      ]
+    },
+    {
+      title: t("footer:other.title"),
+      links: [
+        {
+          name: t("footer:other.promotions"),
+          to: "https://okko.tv/promos",
+        },
+        {
+          name: t("footer:other.certificates"),
+          to: "https://promo.okko.tv/sertificates",
+        },
+      ]
+    },
+  ];
 
   return (
     <Container maxWidth={maxWidth}>
@@ -35,9 +95,9 @@ const Footer: FC<Props> = ({ }) => {
               ))
             }
           </div>
-          <Button value="Нужна помощь?" bgColor="accent" img={chat} />
+          <Button bgColor="accent" img={chat}>{t("footer:helpButton")}</Button>
         </div>
-        <CustomLink href="/admin" className={s.adminLink}>Админ</CustomLink>
+        <CustomLink href="/admin" className={s.adminLink}>{t("footer:admin")}</CustomLink>
         <div className={s.navbar}>
           {
             footerNavbar.map(block => (
@@ -47,7 +107,7 @@ const Footer: FC<Props> = ({ }) => {
                   <>
                     <Title>{block.title}</Title>
                     {
-                      block.links.map(link => <CustomLink key={link.name} href={link.to}>{link.name}</CustomLink>)
+                      block.links.map(link => <CustomLink key={link.name} href={link.to} target="_blank">{link.name}</CustomLink>)
                     }
                   </>
                 }
@@ -55,7 +115,7 @@ const Footer: FC<Props> = ({ }) => {
                   isSmaller &&
                   <Accordion title={block.title}>
                     {
-                      block.links.map(link => <CustomLink key={link.name} href={link.to}>{link.name}</CustomLink>)
+                      block.links.map(link => <CustomLink key={link.name} href={link.to} target="_blank">{link.name}</CustomLink>)
                     }
                   </Accordion>
                 }
@@ -70,11 +130,11 @@ const Footer: FC<Props> = ({ }) => {
             </Link>
           </div>
           <div className={s.rights}>
-            <p className={s.right}>© 2012-2023 ООО «Окко» 18+</p>
-            <p className={s.right}>Общероссийские каналы доступны для бесплатного просмотра круглосуточно</p>
+            <p className={s.right}>{t("footer:rights.period")}</p>
+            <p className={s.right}>{t("footer:rights.channels")}</p>
             <div className={s.links}>
-              <CustomLink href="/">Пользовательские соглашения</CustomLink>
-              <CustomLink href="/">Политика конфиденциальности</CustomLink>
+              <CustomLink href="/">{t("footer:rights.userAgreement")}</CustomLink>
+              <CustomLink href="/">{t("footer:rights.privacyPolicy")}</CustomLink>
             </div>
           </div>
         </div>

@@ -1,0 +1,28 @@
+{
+  "helpButton": "Need any help?",
+  "admin": "Admin",
+  "okko": {
+    "about": "About us",
+    "blog": "Blog",
+    "career": "Career in Okko",
+    "agents": "Okko agents"
+  },
+  "help": {
+    "title": "Help",
+    "faq": "FAQ",
+    "devices": "Devices",
+    "distributors": "Distributors",
+    "contacts": "Contacts"
+  },
+  "other": {
+    "title": "Other",
+    "promotions": "Promotions and offers",
+    "certificates": "Сертификаты"
+  },
+  "rights": {
+    "period": "© 2012-2023 «Okko» 18+",
+    "channels": "All-Russian channels are available for free viewing around the clock",
+    "userAgreement": "User agreements",
+    "privacyPolicy": "Privacy policy"
+  }
+}

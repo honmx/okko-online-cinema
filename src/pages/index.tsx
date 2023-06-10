@@ -136,6 +136,7 @@ export const getStaticProps = async ({ locale }: { locale: string }): Promise<Ge
       ...(await serverSideTranslations(locale, [
         "common",
         "header",
+        "footer",
       ])),
     },
   };

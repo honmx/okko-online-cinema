@@ -4,7 +4,6 @@ import Button from "@/components/UI/Button/Button";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import IconButton from "@/components/UI/IconButton/IconButton";
 import { useRouter } from 'next/router';
-import { headerLinks } from '@/helpers/data/headerLinks';
 import Link from 'next/link';
 import burger from "@/assets/burger_menu.svg";
 import gift from "@/assets/gift-box.svg";
