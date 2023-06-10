@@ -18,13 +18,13 @@ import Tabs from "@/components/UI/Tabs/Tabs";
 import Rate from "@/components/Rate/Rate";
 import Carousel from "@/components/UI/Carousel/Carousel";
 import SubscribeCard from "@/components/SubscribeCard/SubscribeCard";
-import { subscribtions } from "@/helpers/data/subscribtions";
 import s from "./MovieBannerText.module.scss";
 import { capitalize } from "@/helpers/capitalize";
 import IconButton from "../UI/IconButton/IconButton";
 import Modal from "../UI/Modal/Modal";
 import PersonCard from "../PersonCard/PersonCard";
 import MoviePeopleModal from "../MoviePeopleModal/MoviePeopleModal";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   movie: IMovie;
@@ -33,7 +33,8 @@ interface Props {
 
 const MovieBannerText: FC<Props> = ({ movie, className }) => {
 
-  // if (!movie.people) return null;
+  const { t, i18n } = useTranslation("moviePage");
+  const lang = i18n.language;
 
   const producers = movie.people.filter(person => person.profession === "Режиссёр");
   const actors = movie.people.filter(person => person.profession === "Актёр");
@@ -60,25 +61,25 @@ const MovieBannerText: FC<Props> = ({ movie, className }) => {
             <p className={`${s.rating} ${movie.rate > 7 ? s.greenRate : s.usualRate}`}>{movie.rate}</p>
           </div>
           <p className={s.year}>{movie.yearTill}</p>
-          <p className={s.genre}>{capitalize(movie.genres[0].title)}</p>
+          <p className={s.genre}>{capitalize(movie.genres[0].originalTitle ? movie.genres[0].originalTitle : movie.genres[0].title)}</p>
           <p className={s.minAge}>{movie.ageRate}+</p>
         </div>
         <p className={s.description}>{getFirstSentence(movie.description)}</p>
-        <PeopleList people={producers.slice(0, 1)} title="Режиссёр" pluralTitle="Режиссёры" className={`${s.producers} ${s.peopleList}`} />
-        <PeopleList people={actors.slice(0, 3)} title="Актёр" pluralTitle="Актёры" className={`${s.actors} ${s.peopleList}`} />
+        <PeopleList people={producers.slice(0, 1)} title={t("moviePage:people.producer")} pluralTitle={t("moviePage:people.producers")} className={`${s.producers} ${s.peopleList}`} />
+        <PeopleList people={actors.slice(0, 3)} title={t("moviePage:people.actor")} pluralTitle={t("moviePage:people.actors")} className={`${s.actors} ${s.peopleList}`} />
         <IconButton onClick={handleMoreClick} className={s.moreBtn}>
-          <p>{showMore ? "Скрыть" : "Ещё"}</p>
+          <p>{showMore ? t("moviePage:hide") : t("moviePage:showMore")}</p>
         </IconButton>
         <div className={s.titleContainer}>
-          <Title color="gold" fs={isSmaller ? "16px" : "26px"}>Месяц за 1 ₽, затем месяц за 199 ₽</Title>
-          <Title fw={400} fs={isSmaller ? "12px" : "20px"}>дальше — 399 ₽⁠/⁠месяц в подписке Оптимум</Title>
+          <Title color="gold" fs={isSmaller ? "16px" : "26px"}>{t("moviePage:subscriptions.optimum.accentText")}</Title>
+          <Title fw={400} fs={isSmaller ? "12px" : "20px"}>{t("moviePage:subscriptions.optimum.usualText")}</Title>
         </div>
         <div className={s.buttonsContainer}>
-          <Button bgColor="accent" value="Оформить подписку" p="15px 10px" className={s.subscriptionButton} />
+          <Button bgColor="accent" p="15px 10px" className={s.subscriptionButton}>{t("moviePage:subscribe")}</Button>
           {
             isSmaller
               ? <Button img={soundtrack} p="15px" className={s.trailerButton} />
-              : <Button value="Трейлер" p="15px 10px" className={s.trailerButton} />
+              : <Button p="15px 10px" className={s.trailerButton}>{t("moviePage:trailer")}</Button>
           }
           <Button img={favourites} p="15px" className={s.favouritesButton} />
           {

@@ -18,6 +18,7 @@ import { areFiltersClear } from "@/helpers/areFiltersClear";
 import AutoSuggestModal from "@/components/AutoSuggestModal/AutoSuggestModal";
 import { useFilteredMovies } from "@/hooks/useFilteredMovies";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next';
 
 interface Props {
   movies: IMovie[];
@@ -26,6 +27,8 @@ interface Props {
 const ClientMovieList = dynamic(() => import("../../components/MovieList/MovieList"));
 
 const MoviesFilter: NextPageWithLayout<Props> = ({ movies }) => {
+
+  const { t } = useTranslation("moviesPage");
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -58,10 +61,10 @@ const MoviesFilter: NextPageWithLayout<Props> = ({ movies }) => {
   return (
     <>
       <Head>
-        <title>Фильмы</title>
+        <title>{t("moviesPage:headTitle")}</title>
         <meta
           name="description"
-          content="Смотреть фильмы онлайн в хорошем качестве"
+          content={t("moviesPage:headDescription") as string}
         />
       </Head>
       <div className={s.moviesFilterContainer}>
@@ -106,6 +109,7 @@ export const getStaticProps: GetStaticProps = async (context): Promise<GetStatic
         "common",
         "header",
         "footer",
+        "moviesPage"
       ])),
     }
   }

@@ -19,6 +19,7 @@ import { useGenresAndCountries } from "@/hooks/useGenresAndCountries";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { useFilteredMovies } from "@/hooks/useFilteredMovies";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   person: IPerson;
@@ -26,6 +27,9 @@ interface Props {
 }
 
 const Person: NextPageWithLayout<Props> = ({ person, movies }) => {
+
+  const { t, i18n } = useTranslation("personPage");
+  const lang = i18n.language;
 
   const isSmaller = useSmallerDevice(959);
 
@@ -58,7 +62,7 @@ const Person: NextPageWithLayout<Props> = ({ person, movies }) => {
       <div className={s.filtersContainer}>
         <Filters genres={genres} countries={countries} showActorFilter={false} showProducerFilter={false} />
       </div>
-      <Title variant="h2">Фильмы</Title>
+      <Title variant="h2">{t("personPage:movies")}</Title>
       <MovieList movies={filteredMovies} className={s.movies} />
     </div>
   )
@@ -97,6 +101,8 @@ export const getStaticProps: GetStaticProps = async (context): Promise<GetStatic
         "common",
         "header",
         "footer",
+        "moviesPage",
+        "personPage"
       ])),
     }
   }

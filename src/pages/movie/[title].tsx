@@ -8,7 +8,6 @@ import Tabs from "@/components/UI/Tabs/Tabs";
 import Rate from "@/components/Rate/Rate";
 import Carousel from "@/components/UI/Carousel/Carousel";
 import SubscribeCard from "@/components/SubscribeCard/SubscribeCard";
-import { subscribtions } from "@/helpers/data/subscribtions";
 import MovieBannerText from "@/components/MovieBannerText/MovieBannerText";
 import Head from "next/head";
 import Image from "next/image";
@@ -30,6 +29,7 @@ import check from "@/assets/check.svg";
 import TextArea from "@/components/UI/TextArea/TextArea";
 import commentsService from "@/services/commentsService";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   movie: IMovie;
@@ -37,6 +37,9 @@ interface Props {
 }
 
 const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
+
+  const { t, i18n } = useTranslation("moviePage");
+  const lang = i18n.language;
 
   const ref = useRef<HTMLVideoElement>(null);
 
@@ -94,46 +97,46 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
 
   const subscribtions = [
     {
-      title: "Оптимум",
-      subtitle: "90 000 фильмов и сериалов",
-      accentText: "Месяц за 1 ₽, затем месяц за 199 ₽,",
-      usualText: "дальше — 399 ₽⁠/⁠месяц"
+      title: t("moviePage:subscriptions.optimum.title"),
+      subtitle: t("moviePage:subscriptions.optimum.subtitle"),
+      accentText: t("moviePage:subscriptions.optimum.accentText"),
+      usualText: t("moviePage:subscriptions.optimum.usualText")
     },
     {
-      title: "Оптимум + Спорт",
-      subtitle: "90 000 фильмов и сериалов + спорт",
-      accentText: "Месяц за 299 ₽, затем 2 месяца по 299 ₽/месяц,",
-      usualText: "дальше — 499 ₽⁠/⁠месяц"
+      title: t("moviePage:subscriptions.optimumSport.title"),
+      subtitle: t("moviePage:subscriptions.optimumSport.subtitle"),
+      accentText: t("moviePage:subscriptions.optimumSport.accentText"),
+      usualText: t("moviePage:subscriptions.optimumSport.usualText")
     },
     {
-      title: "Оптимум + START",
-      subtitle: "90 000 фильмов и сериалов + контент START",
-      accentText: "7 дней за 1 ₽,",
-      usualText: "дальше — 599 ₽⁠/⁠месяц"
+      title: t("moviePage:subscriptions.optimumSTART.title"),
+      subtitle: t("moviePage:subscriptions.optimumSTART.subtitle"),
+      accentText: t("moviePage:subscriptions.optimumSTART.accentText"),
+      usualText: t("moviePage:subscriptions.optimumSTART.usualText")
     },
     {
-      title: "Оптимум + AMEDIATEKA",
-      subtitle: "90 000 фильмов и сериалов + контент Amediateka",
-      accentText: "7 дней за 1 ₽,",
-      usualText: "дальше — 649 ₽⁠/⁠месяц"
+      title: t("moviePage:subscriptions.optimumAMEDIATEKA.title"),
+      subtitle: t("moviePage:subscriptions.optimumAMEDIATEKA.subtitle"),
+      accentText: t("moviePage:subscriptions.optimumAMEDIATEKA.accentText"),
+      usualText: t("moviePage:subscriptions.optimumAMEDIATEKA.usualText")
     },
     {
-      title: "Премиум",
-      subtitle: "100 000 фильмов и сериалов + спорт",
-      accentText: "7 дней за 1 ₽,",
-      usualText: "дальше — 799 ₽⁠/⁠месяц"
+      title: t("moviePage:subscriptions.premium.title"),
+      subtitle: t("moviePage:subscriptions.premium.subtitle"),
+      accentText: t("moviePage:subscriptions.premium.accentText"),
+      usualText: t("moviePage:subscriptions.premium.usualText")
     },
     {
-      title: "Лайт",
-      subtitle: "85 000 фильмов и сериалов",
-      usualText: "199 ₽⁠/⁠месяц"
+      title: t("moviePage:subscriptions.lite.title"),
+      subtitle: t("moviePage:subscriptions.lite.subtitle"),
+      usualText: t("moviePage:subscriptions.lite.usualText")
     },
   ]
 
   return (
     <>
       <Head>
-        <title>{movie.title}</title>
+        <title>{lang === "en" && movie.originalTitle ? movie.originalTitle : movie.title}</title>
         <meta
           name="description"
           content={movie.description}
@@ -169,7 +172,7 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
           <MovieBannerText movie={movie} className={s.textContainer} />
         </div>
         <div className={s.tabsContainer}>
-          <Tabs tabs={["Описание", "Варианты просмотра"]} tabIndex={tabIndex} onChange={handleTabIndexChange}>
+          <Tabs tabs={[t("moviePage:tabs.description"), t("moviePage:tabs.options")]} tabIndex={tabIndex} onChange={handleTabIndexChange}>
             <div className={s.fullDescriptionContainer}>
               <p className={s.fullDescription}>{movie.description}</p>
               <Rate />
@@ -192,19 +195,19 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
             </div>
           </Tabs>
         </div>
-        <Carousel title="Похожие" className={s.recommendations}>
+        <Carousel title={t("moviePage:similar") as string} className={s.recommendations}>
           {
             recommendations.map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} />)
           }
         </Carousel>
         <div className={s.commentsBlock}>
-          <Title className={s.commentsTitle}>Комментарии</Title>
+          <Title className={s.commentsTitle}>{t("moviePage:comments")}</Title>
           <div className={s.commentsContainer}>
             <CommentList comments={comments.filter(comment => comment.commentId === null)} allComments={comments} movieId={movie.id} />
             {
               user &&
               <form onSubmit={handleFormSubmit} className={s.form}>
-                <TextArea value={value} onChange={handleTextAreaChange} placeholder="Оставьте комментарий" className={s.input} />
+                <TextArea value={value} onChange={handleTextAreaChange} placeholder={t("moviePage:leaveComment") as string} className={s.input} />
                 <div className={s.buttonsContainer}>
                   <button className={s.submitBtn}>
                     <Image src={check} alt="check" />
@@ -214,7 +217,6 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
             }
           </div>
         </div>
-        {/* <Button value="make comment" onClick={handleMakeCommentClick} /> */}
       </div>
     </>
   )
@@ -256,6 +258,7 @@ export const getStaticProps: GetStaticProps = async (context): Promise<GetStatic
         "common",
         "header",
         "footer",
+        "moviePage"
       ])),
     }
   }

@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import s from "./SubscribeCard.module.scss";
 import Title from "../UI/Title/Title";
 import Button from "../UI/Button/Button";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   title: string;
@@ -12,6 +13,9 @@ interface Props {
 }
 
 const SubscribeCard: FC<Props> = ({ title, subtitle, accentText, usualText, className }) => {
+  
+  const { t } = useTranslation("moviePage");
+  
   return (
     <div className={`${s.subscribeCardContainer} ${className}`}>
       <div className={s.topItems}>
@@ -26,7 +30,7 @@ const SubscribeCard: FC<Props> = ({ title, subtitle, accentText, usualText, clas
           }
           <p className={s.usualText}>{usualText}</p>
         </div>
-        <Button value="Оформить" className={s.buyButton} />
+        <Button className={s.buyButton}>{t("moviePage:subscribeShort")}</Button>
       </div>
     </div>
   )

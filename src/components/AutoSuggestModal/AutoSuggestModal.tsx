@@ -14,6 +14,7 @@ import { useScrollStart } from "@/hooks/useScrollStart";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import { useDebounce } from "@/hooks/useDebounce";
 import Modal from "../UI/Modal/Modal";
+import { useTranslation } from 'next-i18next';
 
 interface Props {
   entitiyType: "Актёр" | "Режиссёр";
@@ -25,6 +26,8 @@ interface Props {
 const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, className }) => {
 
   const dispatch = useAppDispatch();
+  
+  const { t } = useTranslation("moviesPage");
 
   const isSmaller = useSmallerDevice(519);
 
@@ -46,7 +49,7 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, clas
   useEffect(() => {
     setFilteredPersons(persons.filter(person => person.profession === entitiyType &&
       (person.fullName.toLowerCase().includes(value.toLowerCase())
-        || person.fullNameOrig.toLowerCase().includes(value.toLowerCase()))))
+        || person.fullNameOrig?.toLowerCase().includes(value.toLowerCase()))))
   }, [debouncedValue]);
 
   const handleChange = (value: string) => {
@@ -65,7 +68,7 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, clas
     <Modal onClose={onClose}>
       <InputField
         type="text"
-        placeholder="Введите имя"
+        placeholder={t("autoSuggestPlaceholder")}
         appearanceType="transparent"
         value={value}
         onChange={handleChange}
@@ -80,7 +83,7 @@ const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, clas
             ))
         }
       </div>
-      <TextButton fs={isSmaller ? "12px" : "16px"} onClick={handleClearClick} className={s.clearBtn}>Очистить</TextButton>
+      <TextButton fs={isSmaller ? "12px" : "16px"} onClick={handleClearClick} className={s.clearBtn}>{t("clearAutoSuggest")}</TextButton>
     </Modal>
   )
 };

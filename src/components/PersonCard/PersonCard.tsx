@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import { IPerson } from "@/types/IPerson";
 import Image from "next/image";
-import personIcon from "@/assets/person.svg"; 
+import personIcon from "@/assets/person.svg";
 import s from "./PersonCard.module.scss";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   person: IPerson;
@@ -11,6 +12,9 @@ interface Props {
 }
 
 const PersonAutoSuggestCard: FC<Props> = ({ person, className, onClick }) => {
+
+  const { t, i18n } = useTranslation("moviePage");
+  const lang = i18n.language;
 
   const handlePersonClick = () => {
     onClick(person);
@@ -22,8 +26,8 @@ const PersonAutoSuggestCard: FC<Props> = ({ person, className, onClick }) => {
         <Image src={person.photo ? person.photo : personIcon} alt="person" width={30} height={45} className={s.photo} />
       </div>
       <div className={s.textContainer}>
-        <p className={s.name}>{person.fullName}</p>
-        <p className={s.profession}>{person.profession}</p>
+        <p className={s.name}>{lang === "en" && person.fullNameOrig ? person.fullNameOrig : person.fullName}</p>
+        <p className={s.profession}>{person.profession === "Актёр" ? t("moviePage:people.actor") : t("moviePage:people.producer")}</p>
       </div>
     </div>
   )

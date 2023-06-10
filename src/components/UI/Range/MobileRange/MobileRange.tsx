@@ -6,6 +6,7 @@ import Slider from "../../Slider/Slider";
 import Image from "next/image";
 import close from "../../../../assets/close.svg";
 import IconButton from "../../IconButton/IconButton";
+import { useTranslation } from "next-i18next";
 import s from "./MobileRange.module.scss";
 
 interface Props extends CommonProps {
@@ -14,9 +15,11 @@ interface Props extends CommonProps {
 
 const MobileRange: FC<Props> = ({ value, setValue, min, max, step, title, className }) => {
 
-  const [active, setActive] = useState<boolean>(false);
+  const { t } = useTranslation("moviesPage");
 
   const ref = useRef<HTMLDivElement>(null);
+
+  const [active, setActive] = useState<boolean>(false);
 
   useOutsideClick(ref, () => setActive(false));
 
@@ -29,12 +32,12 @@ const MobileRange: FC<Props> = ({ value, setValue, min, max, step, title, classN
     <div ref={ref} className={`${s.rangeContainer} ${className}`}>
       <div className={s.rangeSelect} onClick={handleSelectClick}>
         <Title fs="16px">{title}</Title>
-        <p className={s.value}>От {value}</p>
+        <p className={s.value}>{t("moviesPage:from")} {value}</p>
       </div>
       {
         active &&
         <div className={s.range}>
-          <Title className={s.text}>От {value}</Title>
+          <Title className={s.text}>{t("moviesPage:from")} {value}</Title>
           <Slider
             value={value}
             setValue={setValue}

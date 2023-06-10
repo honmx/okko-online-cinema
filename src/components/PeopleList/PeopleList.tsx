@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import s from "./PeopleList.module.scss";
 import { IPerson } from "@/types/IPerson";
 import CustomLink from "../UI/CustomLink/CustomLink";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   people: IPerson[];
@@ -12,17 +13,18 @@ interface Props {
 
 const PeopleList: FC<Props> = ({ people, title, pluralTitle, className }) => {
 
+  const { t, i18n } = useTranslation("moviePage");
+  const lang = i18n.language;
+
   if (people.length === 0) return null;
 
   return (
     <div className={`${s.peopleList} ${className}`}>
-      {
-        <span className={s.title}>{people.length > 1 ? pluralTitle : title}:</span>
-      }
+      <span className={s.title}>{people.length > 1 ? pluralTitle : title}:</span>
       {
         people.map((person, i) => (
           <div key={person.id} className={s.linkContainer}>
-            <CustomLink href={`/person/${person.fullName}`}>{person.fullName}</CustomLink>
+            <CustomLink href={`/person/${person.fullName}`}>{lang === "en" && person.fullNameOrig ? person.fullNameOrig : person.fullName}</CustomLink>
             {
               i !== people.length - 1 &&
               <span>,</span>

@@ -4,6 +4,7 @@ import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import Title from "../../Title/Title";
 import OptionsList from "../../OptionsList/OptionsList";
 import s from "./MobileSelect.module.scss";
+import { useTranslation } from "next-i18next";
 
 interface Props extends Omit<CommonProps, "img"> {
   title: string;
@@ -11,9 +12,13 @@ interface Props extends Omit<CommonProps, "img"> {
 
 const MobileSelect: FC<Props> = ({ values, selectedValue, setSelectedValue, title, className }) => {
 
-  const [active, setActive] = useState<boolean>(false);
+  const { t, i18n } = useTranslation("moviesPage");
+
+  const lang = i18n.language;
 
   const ref = useRef<HTMLDivElement>(null);
+  
+  const [active, setActive] = useState<boolean>(false);
 
   useOutsideClick(ref, () => setActive(false));
 
@@ -30,7 +35,7 @@ const MobileSelect: FC<Props> = ({ values, selectedValue, setSelectedValue, titl
   return (
     <div ref={ref} className={`${s.selectContainer} ${className}`} onClick={handleSelectClick}>
       <Title fs="16px">{title}</Title>
-      <p className={s.selectedValue}>{selectedValue}</p>
+      <p className={s.selectedValue}>{selectedValue === "Все" && lang === "en" ? "All" : selectedValue}</p>
       {
         active &&
         <div className={s.optionsListContainer}>

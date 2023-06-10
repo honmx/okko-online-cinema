@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import DesktopSelect from "@/components/UI/Select/DesktopSelect/DesktopSelect";
 import DesktopRange from "@/components/UI/Range/DesktopRange/DesktopRange";
-import { sortByValues } from "@/helpers/data/sortByValues";
 import sort from "@/assets/sort.svg";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { useAppDispatch } from "@/store/hooks";
@@ -26,6 +25,7 @@ import MobileRange from "@/components/UI/Range/MobileRange/MobileRange";
 import { IGenre } from "@/types/IGenre";
 import Select from "../UI/Select";
 import Range from "../UI/Range";
+import { useTranslation } from 'next-i18next';
 
 interface Props {
   showProducerFilter?: boolean;
@@ -38,6 +38,8 @@ const Filters: FC<Props> = ({ genres, countries, showProducerFilter = true, show
 
   const dispatch = useAppDispatch();
   const router = useRouter();
+
+  const { t } = useTranslation("moviesPage");
 
   const isSmaller = useSmallerDevice(959);
 
@@ -87,6 +89,13 @@ const Filters: FC<Props> = ({ genres, countries, showProducerFilter = true, show
 
   const handleResetFiltersClick = () => dispatch(clearFilters());
 
+  const sortByValues = [
+    t("sortByCountOfRating"),
+    t("sortByRating"),
+    t("sortByDate"),
+    t("sortByAlphabet"),
+  ]
+
   return (
     <div className={s.filtersWrapper}>
       {
@@ -95,28 +104,28 @@ const Filters: FC<Props> = ({ genres, countries, showProducerFilter = true, show
             {
               activeParameters &&
               <div className={s.header}>
-                <Title className={s.title}>Фильтры</Title>
+                <Title className={s.title}>{t("moviesPage:filters")}</Title>
                 {
                   !areFiltersClear({
                     selectedGenre, selectedCountry, selectedMinRating,
                     selectedMinCountOfRating, selectedProducer, selectedActor, selectedSortBy
                   }) &&
-                  <TextButton fs="14px" onClick={handleResetFiltersClick} className={s.textButton}>Сбросить фильтры</TextButton>
+                  <TextButton fs="14px" onClick={handleResetFiltersClick} className={s.textButton}>{t("moviesPage:reset")}</TextButton>
                 }
                 <Button shape="circle" img={close} p="10px" className={s.closeButton} onClick={handleParametersClick} />
               </div>
             }
             <div className={s.filtersWithTextButton}>
               <div className={s.filters}>
-                <Select values={genres} selectedValue={selectedGenre} setSelectedValue={handleSelectGenreClick} title="Жанры" className={s.select} />
-                <Select values={countries} selectedValue={selectedCountry} setSelectedValue={handleSelectCountryClick} title="Страны" className={s.select} />
-                <Range title="Рейтинг" value={selectedMinRating} setValue={handleSelectMinRatingClick} min={0} max={10} step={0.1} className={s.select} />
-                <Range title="Кол-во оценок" value={selectedMinCountOfRating} setValue={handleSelectMinCountOfRatingClick} min={0} max={1000000} step={50000} className={s.select} />
+                <Select title={t("moviesPage:genresTitle")} values={genres} selectedValue={selectedGenre} setSelectedValue={handleSelectGenreClick} className={s.select} />
+                <Select title={t("moviesPage:countriesTitle")} values={countries} selectedValue={selectedCountry} setSelectedValue={handleSelectCountryClick} className={s.select} />
+                <Range title={t("moviesPage:minRatingTitle")} value={selectedMinRating} setValue={handleSelectMinRatingClick} min={0} max={10} step={0.1} className={s.select} />
+                <Range title={t("moviesPage:minCountOfRatingTitle")} value={selectedMinCountOfRating} setValue={handleSelectMinCountOfRatingClick} min={0} max={1000000} step={50000} className={s.select} />
                 {
                   showProducerFilter &&
                   <AutoSuggestSelect
                     value={selectedProducer}
-                    placeholder="Режиссёр"
+                    placeholder={t("moviesPage:producer")}
                     onClick={handleProducerFilterClick}
                     className={s.select}
                   />
@@ -125,7 +134,7 @@ const Filters: FC<Props> = ({ genres, countries, showProducerFilter = true, show
                   showActorFilter &&
                   <AutoSuggestSelect
                     value={selectedActor}
-                    placeholder="Актёр"
+                    placeholder={t("moviesPage:actor")}
                     onClick={handleActorFilterClick}
                     className={s.select}
                   />
@@ -146,7 +155,7 @@ const Filters: FC<Props> = ({ genres, countries, showProducerFilter = true, show
                   onClick={() => dispatch(clearFilters())}
                   className={s.textButton}
                 >
-                  Сбросить фильтры
+                  {t("moviesPage:reset")}
                 </TextButton>
               }
             </div>
@@ -155,7 +164,7 @@ const Filters: FC<Props> = ({ genres, countries, showProducerFilter = true, show
             </div>
             {
               activeParameters &&
-              <Button value="Применить фильтры" bgColor="accent" className={s.applyButton} onClick={handleParametersClick} />
+              <Button bgColor="accent" className={s.applyButton} onClick={handleParametersClick}>{t("moviesPage:apply")}</Button>
             }
           </div>
         </>

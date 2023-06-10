@@ -17,6 +17,7 @@ import dynamic from "next/dynamic";
 import { areFiltersClear } from "@/helpers/areFiltersClear";
 import entitiesService from "@/services/entitiesService";;
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next';
 
 interface Props {
   movies: IMovie[];
@@ -33,6 +34,8 @@ const Movies: NextPageWithLayout<Props> = ({ movies, bestMovies, russianMovies }
 
   const dispatch = useAppDispatch();
   const router = useRouter();
+
+  const { t } = useTranslation("moviesPage");
 
   const {
     selectedGenre,
@@ -62,16 +65,16 @@ const Movies: NextPageWithLayout<Props> = ({ movies, bestMovies, russianMovies }
   return (
     <>
       <Head>
-        <title>Фильмы</title>
+        <title>{t("moviesPage:headTitle")}</title>
         <meta
           name="description"
-          content="Смотреть фильмы онлайн в хорошем качестве"
+          content={t("moviesPage:headDescription") as string}
         />
       </Head>
       <div className={s.moviesContainer}>
         <div className={s.block}>
           <ClientCarousel
-            title="Лучшее"
+            title={t("moviesPage:bestMovies") as string}
             linkHref="/movies/filters"
             onTitleClick={() => dispatch(setSelectedMinRating(8.8))}
             className={s.carousel}
@@ -82,7 +85,7 @@ const Movies: NextPageWithLayout<Props> = ({ movies, bestMovies, russianMovies }
             }
           </ClientCarousel>
           <ClientCarousel
-            title="Российские Фильмы"
+            title={t("moviesPage:russianMovies") as string}
             linkHref="/movies/filters"
             onTitleClick={() => dispatch(setSelectedCountry("Россия"))}
             className={s.carousel}

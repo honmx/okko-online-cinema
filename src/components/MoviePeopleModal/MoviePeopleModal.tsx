@@ -6,6 +6,7 @@ import Title from "../UI/Title/Title";
 import PersonCard from "../PersonCard/PersonCard";
 import PersonAutoSuggestCard from "../PersonCard/PersonCard";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   producers: IPerson[];
@@ -16,6 +17,8 @@ interface Props {
 
 const MoviePeopleModal: FC<Props> = ({ producers, actors, onClose, className }) => {
 
+  const { t, i18n } = useTranslation("moviePage");
+
   const router = useRouter();
 
   const handlePersonClick = (person: IPerson) => {
@@ -24,13 +27,13 @@ const MoviePeopleModal: FC<Props> = ({ producers, actors, onClose, className }) 
 
   return (
     <Modal onClose={onClose}>
-      <Title className={s.title}>Режиссёры</Title>
+      <Title className={s.title}>{t("moviePage:people.producers")}</Title>
       <div className={s.peopleList}>
         {
           producers.map(producer => <PersonAutoSuggestCard person={producer} onClick={handlePersonClick} />)
         }
       </div>
-      <Title className={s.title}>Актёры</Title>
+      <Title className={s.title}>{t("moviePage:people.actors")}</Title>
       <div className={s.peopleList}>
         {
           actors.map(actor => <PersonAutoSuggestCard person={actor} onClick={handlePersonClick} />)

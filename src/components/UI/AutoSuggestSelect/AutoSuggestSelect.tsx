@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import s from "./AutoSuggestSelect.module.scss";
 import { useSmallerDevice } from "../../../hooks/useSmallerDevice";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   value: string;
@@ -11,6 +12,9 @@ interface Props {
 
 const AutoSuggestSelect: FC<Props> = ({ value, placeholder, onClick, className }) => {
 
+  const { t, i18n } = useTranslation("moviesPage");
+  const lang = i18n.language;
+
   const isSmaller = useSmallerDevice(959);
 
   return (
@@ -18,7 +22,7 @@ const AutoSuggestSelect: FC<Props> = ({ value, placeholder, onClick, className }
       {
         isSmaller ? <>
           <p className={s.mobilePlaceholder}>{placeholder}</p>
-          <p className={s.mobileValue}>{value ? value : "Все"}</p>
+          <p className={s.mobileValue}>{!value && lang === "en" ? "All" : value}</p>
         </> : <>
           <p className={s.desktopValue}>{value ? value : placeholder}</p>
         </>

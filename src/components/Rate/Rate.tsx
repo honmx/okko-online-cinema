@@ -8,12 +8,15 @@ import check from "@/assets/check.svg";
 import filledStar from "@/assets/filledStar.svg";
 import s from "./Rate.module.scss";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   className?: string;
 }
 
 const Rate: FC<Props> = ({ className }) => {
+
+  const { t } = useTranslation("moviePage");
 
   const dispatch = useAppDispatch();
 
@@ -29,7 +32,7 @@ const Rate: FC<Props> = ({ className }) => {
   const handleActiveIndexChange = (index: number) => {
     setActiveIndex(index);
     dispatch(addNotification({
-      text: "Спасибо! Учтём эту оценку в рекомендациях для вас",
+      text: t("moviePage:notifications.settingRate"),
       image: filledStar
     }))
   }
@@ -37,7 +40,7 @@ const Rate: FC<Props> = ({ className }) => {
   const handleDeleteRateClick = () => {
     setActiveIndex(null);
     dispatch(addNotification({
-      text: "Мы удалили вашу оценку",
+      text: t("moviePage:notifications.deletingRate"),
       image: check
     }));
   }
@@ -47,10 +50,10 @@ const Rate: FC<Props> = ({ className }) => {
       <div className={s.rateContainer}>
         {
           activeIndex === null
-            ? <Title className={s.title} fs={isSmaller ? "20px" : "26px"}>Поставьте оценку</Title>
-            : <Title className={s.title} fs={isSmaller ? "20px" : "26px"}>Ваша оценка {activeIndex + 1}</Title>
+            ? <Title className={s.title} fs={isSmaller ? "20px" : "26px"}>{t("moviePage:rate")}</Title>
+            : <Title className={s.title} fs={isSmaller ? "20px" : "26px"}>{t("moviePage:yourRate")} {activeIndex + 1}</Title>
         }
-        <p className={s.subtitle}>Оценки улучшают ваши рекомендации</p>
+        <p className={s.subtitle}>{t("moviePage:rateAndRecs")}</p>
         <div className={s.rate}>
           {
             Array(10).fill("").map((value, i) => (
@@ -67,7 +70,7 @@ const Rate: FC<Props> = ({ className }) => {
         </div>
         {
           activeIndex !== null &&
-          <Button value="Удалить" className={s.deleteButton} p="10px" onClick={handleDeleteRateClick} />
+          <Button className={s.deleteButton} p="10px" onClick={handleDeleteRateClick}>{t("moviePage:delete")}</Button>
         }
       </div>
     </div>
