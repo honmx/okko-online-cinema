@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import { ParsedUrlQuery } from "querystring";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from "next";
 import { IMovie } from "@/types/IMovie";
 import axios from "axios";
 import Tabs from "@/components/UI/Tabs/Tabs";
@@ -29,6 +29,7 @@ import { IComment } from "@/types/IComment";
 import check from "@/assets/check.svg";
 import TextArea from "@/components/UI/TextArea/TextArea";
 import commentsService from "@/services/commentsService";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface Props {
   movie: IMovie;
@@ -91,42 +92,43 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
     setActiveSound(ref.current.muted);
   }
 
-  const handleMakeCommentClick = async () => {
-    try {
-      const comment = await $commentsAPI.post("/movie-comment", {
-        userId: user.id,
-        comment: "aaaaa",
-        movieId: movie.id,
-        commentId: 14
-      });
-
-      console.log(comment.data);
-
-    } catch (error) {
-      console.log(error);
-    }
-
-    // try {
-    //   // const reviewComment = await $commentsAPI.post("/review-comment", {
-    //   //   userId: user.id,
-    //   //   comment: "dfgdfgdf",
-    //   //   reviewId: 22
-    //   // });
-
-    //   // console.log(reviewComment);
-
-    //   const review = await $commentsAPI.post("/review", {
-    //     userId: user.id,
-    //     movieId: movie.id,
-    //     review: "sdfsdf",
-    //   });
-
-    //   console.log(review.data);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
-  }
+  const subscribtions = [
+    {
+      title: "Оптимум",
+      subtitle: "90 000 фильмов и сериалов",
+      accentText: "Месяц за 1 ₽, затем месяц за 199 ₽,",
+      usualText: "дальше — 399 ₽⁠/⁠месяц"
+    },
+    {
+      title: "Оптимум + Спорт",
+      subtitle: "90 000 фильмов и сериалов + спорт",
+      accentText: "Месяц за 299 ₽, затем 2 месяца по 299 ₽/месяц,",
+      usualText: "дальше — 499 ₽⁠/⁠месяц"
+    },
+    {
+      title: "Оптимум + START",
+      subtitle: "90 000 фильмов и сериалов + контент START",
+      accentText: "7 дней за 1 ₽,",
+      usualText: "дальше — 599 ₽⁠/⁠месяц"
+    },
+    {
+      title: "Оптимум + AMEDIATEKA",
+      subtitle: "90 000 фильмов и сериалов + контент Amediateka",
+      accentText: "7 дней за 1 ₽,",
+      usualText: "дальше — 649 ₽⁠/⁠месяц"
+    },
+    {
+      title: "Премиум",
+      subtitle: "100 000 фильмов и сериалов + спорт",
+      accentText: "7 дней за 1 ₽,",
+      usualText: "дальше — 799 ₽⁠/⁠месяц"
+    },
+    {
+      title: "Лайт",
+      subtitle: "85 000 фильмов и сериалов",
+      usualText: "199 ₽⁠/⁠месяц"
+    },
+  ]
 
   return (
     <>
@@ -238,7 +240,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
 
   const title = context.params?.title as string;
   const movie = await entitiesService.getMovieByTitle(title);
@@ -250,6 +252,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
       recommendations: recommendations.filter(recMovie =>
         recMovie.title !== movie.title
         && recMovie.horizontalPhoto),
+      ...(await serverSideTranslations(context.locale as string, [
+        "common",
+        "header",
+        "footer",
+      ])),
     }
   }
 }

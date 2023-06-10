@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import s from "./AdminMovies.module.scss";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import entitiesService from "@/services/entitiesService";
 import { IMovie } from "@/types/IMovie";
 import Image from "next/image";
@@ -11,6 +11,7 @@ import Card from "@/components/UI/Card/Card";
 import { IGenre } from "@/types/IGenre";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import arrow from "@/assets/arrow.svg";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface Props {
   movies: IMovie[];
@@ -65,13 +66,18 @@ const AdminMovies: NextPage<Props> = ({ movies }) => {
   )
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
 
   const movies = await entitiesService.getAdminMovies();
 
   return {
     props: {
-      movies: movies.filter(movie => movie.horizontalPhoto)
+      movies: movies.filter(movie => movie.horizontalPhoto),
+      ...(await serverSideTranslations(context.locale as string, [
+        "common",
+        "header",
+        "footer",
+      ])),
     }
   }
 }

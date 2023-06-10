@@ -28,9 +28,9 @@ const AdminMovieCard: FC<Props> = ({ item, makeUpdateRequest, children }) => {
 
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [inputTitle, setInputTitle] = useState<string>(capitalize(item.title));
-  const [inputOriginalTitle, setInputOriginalTitle] = useState<string>(capitalize(item?.originalTitle) || "");
+  const [inputOriginalTitle, setInputOriginalTitle] = useState<string>(capitalize(item?.originalTitle || "") || "");
   const [title, setTitle] = useState<string>(capitalize(item.title));
-  const [originalTitle, setOriginalTitle] = useState<string>(capitalize(item?.originalTitle) || "");
+  const [originalTitle, setOriginalTitle] = useState<string>(capitalize(item?.originalTitle || "") || "");
 
   useEffect(() => {
     if (!isEdit) return;
@@ -57,7 +57,7 @@ const AdminMovieCard: FC<Props> = ({ item, makeUpdateRequest, children }) => {
     setIsEdit(false);
 
     if (inputTitle === title && inputOriginalTitle === originalTitle) return;
-    
+
     makeUpdateRequest(item, inputTitle, inputOriginalTitle);
 
     setTitle(inputTitle);
@@ -79,7 +79,7 @@ const AdminMovieCard: FC<Props> = ({ item, makeUpdateRequest, children }) => {
             <form className={s.form} onSubmit={handleSubmit} ref={formRef}>
               <InputField type="text" placeholder="Название" value={inputTitle} onChange={handleTitleChange} />
               <InputField type="text" placeholder="Title" value={inputOriginalTitle} onChange={handleOriginalTitleChange} />
-              <Button value="Подтвердить" className={s.confirmBtn} />
+              <Button className={s.confirmBtn}>Подтвердить</Button>
             </form>
           </>
         }

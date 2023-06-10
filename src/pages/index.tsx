@@ -23,6 +23,7 @@ import Top10Card from "@/components/Top10Card/Top10Card";
 import Loading from "@/components/UI/Loading/Loading";
 import TrailerCarousel from "@/components/UI/TrailerCarousel/TrailerCarousel";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next';
 
 interface Props {
   movies: IMovie[];
@@ -41,6 +42,8 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
 
   const router = useRouter();
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation("homepage");
 
   useEffect(() => {
     dispatch(clearFilters());
@@ -69,10 +72,10 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
   return (
     <>
       <Head>
-        <title>Главная</title>
+        <title>{t("homepage:title")}</title>
         <meta
           name="description"
-          content="Смотреть фильмы онлайн в хорошем качестве"
+          content={t("homepage:description") as string}
         />
       </Head>
       <TrailerCarousel movies={
@@ -81,7 +84,7 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
           .filter(movie => movie.horizontalPhoto)} className={s.carousel}
       />
       <Subscription />
-      <ClientCarousel title="Жанры" className={s.carousel}>
+      <ClientCarousel title={t("homepage:genresTitle") as string} className={s.carousel}>
         {
           genres.map(genre => (
             <Card
@@ -94,20 +97,20 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
           )
         }
       </ClientCarousel>
-      <ClientCarousel image={top10} title="недели" className={s.carousel}>
+      <ClientCarousel image={top10} title={t("homepage:ofAWeek") as string} className={s.carousel}>
         {
           top10Movies
             .map((movie, i) => <Top10Card key={movie.id} movie={movie} number={i} />)
         }
       </ClientCarousel>
-      <ClientCarousel title="Советские фильмы" linkHref="/movies/filters" onTitleClick={handleUSSRMoviesClick} className={s.carousel}>
+      <ClientCarousel title={t("homepage:USSRMovies") as string} linkHref="/movies/filters" onTitleClick={handleUSSRMoviesClick} className={s.carousel}>
         {
           USSRMovies
             .filter(movie => movie.horizontalPhoto)
             .map(movie => <Card key={movie.id} item={movie} linkHref={`/movie/${movie.title}`} />)
         }
       </ClientCarousel>
-      <ClientCarousel title="Мультфильмы" linkHref="/movies/filters" onTitleClick={handleCartoonsClick} className={s.carousel}>
+      <ClientCarousel title={t("homepage:cartoons") as string} linkHref="/movies/filters" onTitleClick={handleCartoonsClick} className={s.carousel}>
         {
           cartoons
             .filter(movie => movie.horizontalPhoto)
@@ -118,7 +121,7 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
   );
 }
 
-export const getStaticProps = async ({ locale }: { locale: string }): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
+export const getStaticProps: GetStaticProps = async (context): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
   // const movies = await entitiesService.getMovies();
   const genres = await entitiesService.getGenres();
 
@@ -133,10 +136,11 @@ export const getStaticProps = async ({ locale }: { locale: string }): Promise<Ge
       top10Movies,
       USSRMovies,
       cartoons,
-      ...(await serverSideTranslations(locale, [
+      ...(await serverSideTranslations(context.locale as string, [
         "common",
         "header",
         "footer",
+        "homepage"
       ])),
     },
   };

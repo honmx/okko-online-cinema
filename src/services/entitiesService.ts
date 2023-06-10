@@ -166,7 +166,8 @@ const updateGenre = async (id: number, title: string, originalTitle: string) => 
   try {
     const { data: genre } = await $entitiesAPI.put("/admin/genre", {
       id,
-      genre: title,
+      title,
+      originalTitle
     });
 
     return genre;

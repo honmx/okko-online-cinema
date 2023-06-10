@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useEffect, useState } from "react";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import axios from "axios";
 import { IMovie } from "@/types/IMovie";
 import { ParsedUrlQuery } from "querystring";
@@ -18,6 +18,7 @@ import MoviesPageLayout from "@/components/MoviesPageLayout/MoviesPageLayout";
 import { useGenresAndCountries } from "@/hooks/useGenresAndCountries";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { useFilteredMovies } from "@/hooks/useFilteredMovies";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface Props {
   person: IPerson;
@@ -81,7 +82,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
 
   const personName = context.params?.personName as string;
   const persons = await entitiesService.getPersonByName(personName);
@@ -91,7 +92,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       person,
-      movies
+      movies,
+      ...(await serverSideTranslations(context.locale as string, [
+        "common",
+        "header",
+        "footer",
+      ])),
     }
   }
 }

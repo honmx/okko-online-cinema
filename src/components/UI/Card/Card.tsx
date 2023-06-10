@@ -13,6 +13,7 @@ import { isMovieType } from "../../../helpers/isMovieType";
 import Title from "../Title/Title";
 import { capitalize } from "../../../helpers/capitalize";
 import { IGenre } from "../../../types/IGenre";
+import { useTranslation } from 'next-i18next';
 
 interface Props {
   item: IGenre | IMovie;
@@ -23,6 +24,9 @@ interface Props {
 
 
 const Card: FC<Props> = ({ item, linkHref, ar = 1.77, onClick }) => {
+
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -63,7 +67,7 @@ const Card: FC<Props> = ({ item, linkHref, ar = 1.77, onClick }) => {
             }
             {
               !isMovieType(item) &&
-              <p className={s.genreTitle}>{item.title}</p>
+              <p className={s.genreTitle}>{lang === "en" && item.originalTitle ? item.originalTitle : item.title}</p>
             }
           </div>
         </Link>
@@ -75,10 +79,10 @@ const Card: FC<Props> = ({ item, linkHref, ar = 1.77, onClick }) => {
               <div className={s.ratingContainer}>
                 <p className={`${s.rating} ${item.rate > 7 ? s.greenRate : s.usualRate}`}>{item.rate}</p>
               </div>
-              <Title fs="14px" fw={400}>{item.title}</Title>
+              <Title fs="14px" fw={400}>{lang === "en" && item.originalTitle ? item.originalTitle : item.title}</Title>
             </div>
             <div className={s.lowerLine}>
-              <p className={s.genre}>{capitalize(item.genres[0].title)}</p>
+              <p className={s.genre}>{capitalize(lang === "en" && item.genres[0].originalTitle ? item.genres[0].originalTitle : item.genres[0].title)}</p>
               <p className={s.year}>{item.yearTill}</p>
               <p className={s.country}>{item.country.split(", ")[0]}</p>
             </div>

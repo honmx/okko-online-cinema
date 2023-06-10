@@ -5,7 +5,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useAppDispatch } from "@/store/hooks";
 import { clearFilters } from "@/store/slices/moviesFilterSlice";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from "next";
 import { IMovie } from "@/types/IMovie";
 import axios from "axios";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
@@ -17,6 +17,7 @@ import entitiesService from "@/services/entitiesService";
 import { areFiltersClear } from "@/helpers/areFiltersClear";
 import AutoSuggestModal from "@/components/AutoSuggestModal/AutoSuggestModal";
 import { useFilteredMovies } from "@/hooks/useFilteredMovies";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface Props {
   movies: IMovie[];
@@ -94,13 +95,18 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
 
   const movies = await entitiesService.getMovies();
 
   return {
     props: {
       movies,
+      ...(await serverSideTranslations(context.locale as string, [
+        "common",
+        "header",
+        "footer",
+      ])),
     }
   }
 }

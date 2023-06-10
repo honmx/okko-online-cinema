@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import s from "./Admin.module.scss";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import axios from "axios";
 import $entitiesAPI from "@/http/entities";
 import Title from "@/components/UI/Title/Title";
@@ -11,6 +11,7 @@ import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import { decline } from "@/helpers/decline";
 import entitiesService from "@/services/entitiesService";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 interface Props {
   movies: IMovie[],
@@ -35,7 +36,7 @@ const Admin: NextPage<Props> = ({ movies, genres }) => {
   )
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
 
   const movies = await entitiesService.getAdminMovies();
   const genres = await entitiesService.getGenres();
@@ -43,7 +44,12 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       movies,
-      genres
+      genres,
+      ...(await serverSideTranslations(context.locale as string, [
+        "common",
+        "header",
+        "footer",
+      ])),
     }
   }
 }
