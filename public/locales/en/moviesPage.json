@@ -25,5 +25,9 @@
   "sortByAlphabet": "By alphabet",
   "from": "From",
   "autoSuggestPlaceholder": "Enter the name",
-  "clearAutoSuggest": "Clear"
+  "clearAutoSuggest": "Clear",
+  "people": {
+    "actor": "Actor",
+    "producer": "Producer"
+  }
 }

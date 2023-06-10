@@ -1,0 +1,11 @@
+{
+  "indexPageTitle": "Админ-панель",
+  "moviesPageTitle": "Админ-панель: Фильмы",
+  "genresPageTitle": "Админ-панель: Жанры",
+  "title": "Админ-панель",
+  "movie": "фильм",
+  "genre": "жанр",
+  "genresLink": "Жанры",
+  "moviesLink": "Фильмы",
+  "placeholder": "Название фильма"
+}

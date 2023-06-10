@@ -25,5 +25,9 @@
   "sortByAlphabet": "По алфавиту",
   "from": "От",
   "autoSuggestPlaceholder": "Введите имя",
-  "clearAutoSuggest": "Очистить"
+  "clearAutoSuggest": "Очистить",
+  "people": {
+    "actor": "Актёр",
+    "producer": "Режиссёр"
+  }
 }

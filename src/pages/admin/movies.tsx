@@ -12,12 +12,15 @@ import { IGenre } from "@/types/IGenre";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import arrow from "@/assets/arrow.svg";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   movies: IMovie[];
 }
 
 const AdminMovies: NextPage<Props> = ({ movies }) => {
+
+  const { t } = useTranslation("adminPage");
 
   const [filteredMovies, setFilteredMovies] = useState<IMovie[]>(movies);
   const [value, setValue] = useState<string>("");
@@ -44,7 +47,7 @@ const AdminMovies: NextPage<Props> = ({ movies }) => {
 
   return (
     <div className={s.adminMoviesPageContainer}>
-      <InputField type="text" value={value} placeholder="Название фильма" onChange={handleChange} appearanceType="transparent" className={s.input} />
+      <InputField type="text" value={value} placeholder={t("adminPage:placeholder")} onChange={handleChange} appearanceType="transparent" className={s.input} />
       <div className={s.moviesContainer}>
         {
           filteredMovies.map(movie => (
@@ -59,7 +62,7 @@ const AdminMovies: NextPage<Props> = ({ movies }) => {
         }
       </div>
       <CustomLink href="/admin/genres" className={s.moviesLink}>
-        <p className={s.linkTitle}>Жанры</p>
+        <p className={s.linkTitle}>{t("adminPage:genresLink")}</p>
         <Image src={arrow} alt="arrow" className={s.arrow} />
       </CustomLink>
     </div>
@@ -77,6 +80,7 @@ export const getStaticProps: GetStaticProps = async (context): Promise<GetStatic
         "common",
         "header",
         "footer",
+        "adminPage"
       ])),
     }
   }

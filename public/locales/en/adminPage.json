@@ -1,0 +1,11 @@
+{
+  "indexPageTitle": "Admin panel",
+  "moviesPageTitle": "Admin panel: Movies",
+  "genresPageTitle": "Admin panel: Genres",
+  "title": "Admin panel",
+  "movie": "movie",
+  "genre": "genre",
+  "genresLink": "Genres",
+  "moviesLink": "Movies",
+  "placeholder": "Movie title"
+}

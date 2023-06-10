@@ -13,7 +13,7 @@ interface Props {
 
 const PersonAutoSuggestCard: FC<Props> = ({ person, className, onClick }) => {
 
-  const { t, i18n } = useTranslation("moviePage");
+  const { t, i18n } = useTranslation("moviesPage");
   const lang = i18n.language;
 
   const handlePersonClick = () => {
@@ -27,7 +27,7 @@ const PersonAutoSuggestCard: FC<Props> = ({ person, className, onClick }) => {
       </div>
       <div className={s.textContainer}>
         <p className={s.name}>{lang === "en" && person.fullNameOrig ? person.fullNameOrig : person.fullName}</p>
-        <p className={s.profession}>{person.profession === "Актёр" ? t("moviePage:people.actor") : t("moviePage:people.producer")}</p>
+        <p className={s.profession}>{person.profession === "Актёр" ? t("moviesPage:people.actor") : t("moviesPage:people.producer")}</p>
       </div>
     </div>
   )

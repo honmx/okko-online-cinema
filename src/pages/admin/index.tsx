@@ -12,6 +12,8 @@ import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import { decline } from "@/helpers/decline";
 import entitiesService from "@/services/entitiesService";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+import Head from "next/head";
 
 interface Props {
   movies: IMovie[],
@@ -20,19 +22,24 @@ interface Props {
 
 const Admin: NextPage<Props> = ({ movies, genres }) => {
 
-  console.log(movies);
-  console.log(genres);
+  const { t, i18n } = useTranslation("adminPage");
+  const lang = i18n.language as "ru" | "en";
 
   const isSmaller = useSmallerDevice(767);
 
   return (
+    <>
+    <Head>
+      <title></title>
+    </Head>
     <div className={s.adminPageContainer}>
-      <Title fs={isSmaller ? "30px" : "50px"} className={s.title}>Админ-панель</Title>
+      <Title fs={isSmaller ? "30px" : "50px"} className={s.title}>{t("adminPage:title")}</Title>
       <div className={s.linksContainer}>
-        <CustomLink href="/admin/movies" className={s.link}>{`${movies.length} ${decline("фильм", movies.length, "masculine")}`}</CustomLink>
-        <CustomLink href="/admin/genres" className={s.link}>{`${genres.length} ${decline("жанр", genres.length, "masculine")}`}</CustomLink>
+        <CustomLink href="/admin/movies" className={s.link}>{`${movies.length} ${decline(t("adminPage:movie"), movies.length, "masculine", lang)}`}</CustomLink>
+        <CustomLink href="/admin/genres" className={s.link}>{`${genres.length} ${decline(t("adminPage:genre"), genres.length, "masculine", lang)}`}</CustomLink>
       </div>
     </div>
+    </>
   )
 };
 
@@ -49,6 +56,7 @@ export const getStaticProps: GetStaticProps = async (context): Promise<GetStatic
         "common",
         "header",
         "footer",
+        "adminPage"
       ])),
     }
   }

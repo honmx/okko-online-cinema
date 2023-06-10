@@ -20,6 +20,7 @@ import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { useFilteredMovies } from "@/hooks/useFilteredMovies";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import Head from "next/head";
 
 interface Props {
   person: IPerson;
@@ -46,25 +47,30 @@ const Person: NextPageWithLayout<Props> = ({ person, movies }) => {
   const filteredMovies = useFilteredMovies(movies);
 
   return (
-    <div className={s.personContainer}>
-      <div className={s.personCard}>
-        {
-          person.photo &&
-          <div className={s.imgWrapper}>
-            {<Image src={person.photo} alt={person.fullName} width={1080} height={1920} />}
+    <>
+      <Head>
+        <title>{lang === "en" && person.fullNameOrig ? person.fullNameOrig : person.fullName}</title>
+      </Head>
+      <div className={s.personContainer}>
+        <div className={s.personCard}>
+          {
+            person.photo &&
+            <div className={s.imgWrapper}>
+              {<Image src={person.photo} alt={person.fullName} width={1080} height={1920} />}
+            </div>
+          }
+          <div className={s.personDescription}>
+            <Title variant="h1" className={s.name}>{lang === "en" && person.fullNameOrig ? person.fullNameOrig : person.fullName}</Title>
+            <p className={s.profession}>{person.profession === "Актёр" ? t("personPage:actor") : t("personPage:producer")}</p>
           </div>
-        }
-        <div className={s.personDescription}>
-          <Title variant="h1" className={s.name}>{person.fullName}</Title>
-          <p className={s.profession}>{person.profession}</p>
         </div>
+        <div className={s.filtersContainer}>
+          <Filters genres={genres} countries={countries} showActorFilter={false} showProducerFilter={false} />
+        </div>
+        <Title variant="h2">{t("personPage:movies")}</Title>
+        <MovieList movies={filteredMovies} className={s.movies} />
       </div>
-      <div className={s.filtersContainer}>
-        <Filters genres={genres} countries={countries} showActorFilter={false} showProducerFilter={false} />
-      </div>
-      <Title variant="h2">{t("personPage:movies")}</Title>
-      <MovieList movies={filteredMovies} className={s.movies} />
-    </div>
+    </>
   )
 };
 

@@ -9,6 +9,7 @@ import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import arrow from "@/assets/arrow.svg";
 import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   genres: IGenre[];
@@ -16,14 +17,14 @@ interface Props {
 
 const AdminGenres: FC<Props> = ({ genres }) => {
 
+  const { t } = useTranslation("adminPage");
+
   const makeUpdateRequest = async (item: IMovie | IGenre, title: string, originalTitle: string) => {
     const response = await entitiesService.updateGenre(
       item.id,
       title,
       originalTitle
     );
-
-    console.log(response);
   }
 
   return (
@@ -34,7 +35,7 @@ const AdminGenres: FC<Props> = ({ genres }) => {
         }
       </div>
       <CustomLink href="/admin/movies" className={s.moviesLink}>
-        <p className={s.linkTitle}>Фильмы</p>
+        <p className={s.linkTitle}>{t("adminPage:moviesLink")}</p>
         <Image src={arrow} alt="arrow" className={s.arrow} />
       </CustomLink>
     </div>
@@ -52,6 +53,7 @@ export const getStaticProps: GetStaticProps = async (context): Promise<GetStatic
         "common",
         "header",
         "footer",
+        "adminPage"
       ])),
     }
   }
