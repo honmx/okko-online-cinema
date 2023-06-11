@@ -13,6 +13,7 @@ import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import Accordion from "../UI/Accordion/Accordion";
 import { footerSocialNetworks } from "@/helpers/data/footerSocialNetworks";
 import { useTranslation } from 'next-i18next';
+import { useAppSelector } from "@/store/hooks";
 
 interface Props {
 
@@ -21,6 +22,8 @@ interface Props {
 const Footer: FC<Props> = ({ }) => {
 
   const { t } = useTranslation("footer");
+
+  const { isAuth, user } = useAppSelector(state => state.auth);
 
   const isSmaller = useSmallerDevice(767);
 
@@ -97,7 +100,10 @@ const Footer: FC<Props> = ({ }) => {
           </div>
           <Button bgColor="accent" img={chat}>{t("footer:helpButton")}</Button>
         </div>
-        <CustomLink href="/admin" className={s.adminLink}>{t("footer:admin")}</CustomLink>
+        {
+          isAuth && user.roles.some(role => role.value === "ADMIN") &&
+          <CustomLink href="/admin" className={s.adminLink}>{t("footer:admin")}</CustomLink>
+        }
         <div className={s.navbar}>
           {
             footerNavbar.map(block => (

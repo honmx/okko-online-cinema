@@ -14,6 +14,7 @@ import entitiesService from "@/services/entitiesService";
 import { IGenre } from "@/types/IGenre";
 import { isGenreType } from "@/helpers/isGenreType";
 import { capitalize } from "@/helpers/capitalize";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   item: IMovie | IGenre;
@@ -22,6 +23,8 @@ interface Props {
 }
 
 const AdminMovieCard: FC<Props> = ({ item, makeUpdateRequest, children }) => {
+
+  const { t } = useTranslation("adminPage");
 
   const ref = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -79,7 +82,7 @@ const AdminMovieCard: FC<Props> = ({ item, makeUpdateRequest, children }) => {
             <form className={s.form} onSubmit={handleSubmit} ref={formRef}>
               <InputField type="text" placeholder="Название" value={inputTitle} onChange={handleTitleChange} />
               <InputField type="text" placeholder="Title" value={inputOriginalTitle} onChange={handleOriginalTitleChange} />
-              <Button className={s.confirmBtn}>Подтвердить</Button>
+              <Button className={s.confirmBtn}>{t("adminPage:apply")}</Button>
             </form>
           </>
         }

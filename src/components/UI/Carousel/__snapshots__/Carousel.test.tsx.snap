@@ -1,0 +1,632 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` carousel matches snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="carouselContainer undefined"
+      >
+        <div
+          class="titleContainer"
+        />
+        <div
+          class="listContainer"
+        >
+          <div
+            class="childrenContainer"
+          >
+            <div
+              class="cardWrapper "
+            >
+              <a
+                class="link"
+                href="1+1"
+              >
+                <div
+                  class="card"
+                >
+                  <img
+                    alt="1+1"
+                    class="img"
+                    data-nimg="1"
+                    decoding="async"
+                    fetchpriority="high"
+                    height="1080"
+                    src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1920"
+                  />
+                </div>
+              </a>
+            </div>
+            <div
+              class="cardWrapper "
+            >
+              <a
+                class="link"
+                href="Джентльмены"
+              >
+                <div
+                  class="card"
+                >
+                  <img
+                    alt="Джентльмены"
+                    class="img"
+                    data-nimg="1"
+                    decoding="async"
+                    fetchpriority="high"
+                    height="1080"
+                    src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Fd5cc31da-ec0c-4e4f-9282-614da6a5dbf2%2Forig&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Fd5cc31da-ec0c-4e4f-9282-614da6a5dbf2%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Fd5cc31da-ec0c-4e4f-9282-614da6a5dbf2%2Forig&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1920"
+                  />
+                </div>
+              </a>
+            </div>
+            <div
+              class="cardWrapper "
+            >
+              <a
+                class="link"
+                href="Волк с Уолл-стрит"
+              >
+                <div
+                  class="card"
+                >
+                  <img
+                    alt="Волк с Уолл-стрит"
+                    class="img"
+                    data-nimg="1"
+                    decoding="async"
+                    fetchpriority="high"
+                    height="1080"
+                    src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F40edbec8-9611-4a27-bd97-702c49f24df1%2Forig&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F40edbec8-9611-4a27-bd97-702c49f24df1%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F40edbec8-9611-4a27-bd97-702c49f24df1%2Forig&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1920"
+                  />
+                </div>
+              </a>
+            </div>
+            <div
+              class="cardWrapper "
+            >
+              <a
+                class="link"
+                href="Гнев человеческий"
+              >
+                <div
+                  class="card"
+                >
+                  <img
+                    alt="Гнев человеческий"
+                    class="img"
+                    data-nimg="1"
+                    decoding="async"
+                    fetchpriority="high"
+                    height="1080"
+                    src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F4303601%2F34b3860e-9074-43a3-8ce6-e9ca50ee4e6d%2Forig&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F4303601%2F34b3860e-9074-43a3-8ce6-e9ca50ee4e6d%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F4303601%2F34b3860e-9074-43a3-8ce6-e9ca50ee4e6d%2Forig&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1920"
+                  />
+                </div>
+              </a>
+            </div>
+            <div
+              class="cardWrapper "
+            >
+              <a
+                class="link"
+                href="Брат"
+              >
+                <div
+                  class="card"
+                >
+                  <img
+                    alt="Брат"
+                    class="img"
+                    data-nimg="1"
+                    decoding="async"
+                    fetchpriority="high"
+                    height="1080"
+                    src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2F471b833c-95b9-4095-866c-1d05c7769eb2%2Forig&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2F471b833c-95b9-4095-866c-1d05c7769eb2%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2F471b833c-95b9-4095-866c-1d05c7769eb2%2Forig&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1920"
+                  />
+                </div>
+              </a>
+            </div>
+            <div
+              class="cardWrapper "
+            >
+              <a
+                class="link"
+                href="Один дома"
+              >
+                <div
+                  class="card"
+                >
+                  <img
+                    alt="Один дома"
+                    class="img"
+                    data-nimg="1"
+                    decoding="async"
+                    fetchpriority="high"
+                    height="1080"
+                    src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F3f944968-628f-4030-9f74-5c77cd7d96c5%2Forig&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F3f944968-628f-4030-9f74-5c77cd7d96c5%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F3f944968-628f-4030-9f74-5c77cd7d96c5%2Forig&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1920"
+                  />
+                </div>
+              </a>
+            </div>
+            <div
+              class="cardWrapper "
+            >
+              <a
+                class="link"
+                href="Аватар"
+              >
+                <div
+                  class="card"
+                >
+                  <img
+                    alt="Аватар"
+                    class="img"
+                    data-nimg="1"
+                    decoding="async"
+                    fetchpriority="high"
+                    height="1080"
+                    src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F9c8a584d-05aa-4359-8aff-7d3c66671156%2Forig&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F9c8a584d-05aa-4359-8aff-7d3c66671156%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F9c8a584d-05aa-4359-8aff-7d3c66671156%2Forig&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1920"
+                  />
+                </div>
+              </a>
+            </div>
+            <div
+              class="cardWrapper "
+            >
+              <a
+                class="link"
+                href="Побег из Шоушенка"
+              >
+                <div
+                  class="card"
+                >
+                  <img
+                    alt="Побег из Шоушенка"
+                    class="img"
+                    data-nimg="1"
+                    decoding="async"
+                    fetchpriority="high"
+                    height="1080"
+                    src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fdfb73f87-b283-4150-9eba-fbbf3debaf04%2Forig&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fdfb73f87-b283-4150-9eba-fbbf3debaf04%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fdfb73f87-b283-4150-9eba-fbbf3debaf04%2Forig&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1920"
+                  />
+                </div>
+              </a>
+            </div>
+            <div
+              class="cardWrapper "
+            >
+              <a
+                class="link"
+                href="Начало"
+              >
+                <div
+                  class="card"
+                >
+                  <img
+                    alt="Начало"
+                    class="img"
+                    data-nimg="1"
+                    decoding="async"
+                    fetchpriority="high"
+                    height="1080"
+                    src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Ffde39e07-d0c4-4d24-8e66-7a5b9e184b85%2Forig&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Ffde39e07-d0c4-4d24-8e66-7a5b9e184b85%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Ffde39e07-d0c4-4d24-8e66-7a5b9e184b85%2Forig&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1920"
+                  />
+                </div>
+              </a>
+            </div>
+            <div
+              class="cardWrapper "
+            >
+              <a
+                class="link"
+                href="Зеленая миля"
+              >
+                <div
+                  class="card"
+                >
+                  <img
+                    alt="Зеленая миля"
+                    class="img"
+                    data-nimg="1"
+                    decoding="async"
+                    fetchpriority="high"
+                    height="1080"
+                    src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fbc0fc6e3-fdbd-4f3e-bee4-9c6d3a1b5b62%2Forig&w=3840&q=75"
+                    srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fbc0fc6e3-fdbd-4f3e-bee4-9c6d3a1b5b62%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fbc0fc6e3-fdbd-4f3e-bee4-9c6d3a1b5b62%2Forig&w=3840&q=75 2x"
+                    style="color: transparent;"
+                    width="1920"
+                  />
+                </div>
+              </a>
+            </div>
+          </div>
+          <div
+            class="carouselButtonWrapper"
+          >
+            <button
+              class="carouselButton rightButton"
+            >
+              <img
+                alt="arrow"
+                data-nimg="1"
+                decoding="async"
+                height="40"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent;"
+                width="40"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="carouselContainer undefined"
+    >
+      <div
+        class="titleContainer"
+      />
+      <div
+        class="listContainer"
+      >
+        <div
+          class="childrenContainer"
+        >
+          <div
+            class="cardWrapper "
+          >
+            <a
+              class="link"
+              href="1+1"
+            >
+              <div
+                class="card"
+              >
+                <img
+                  alt="1+1"
+                  class="img"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="1080"
+                  src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75 2x"
+                  style="color: transparent;"
+                  width="1920"
+                />
+              </div>
+            </a>
+          </div>
+          <div
+            class="cardWrapper "
+          >
+            <a
+              class="link"
+              href="Джентльмены"
+            >
+              <div
+                class="card"
+              >
+                <img
+                  alt="Джентльмены"
+                  class="img"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="1080"
+                  src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Fd5cc31da-ec0c-4e4f-9282-614da6a5dbf2%2Forig&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Fd5cc31da-ec0c-4e4f-9282-614da6a5dbf2%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Fd5cc31da-ec0c-4e4f-9282-614da6a5dbf2%2Forig&w=3840&q=75 2x"
+                  style="color: transparent;"
+                  width="1920"
+                />
+              </div>
+            </a>
+          </div>
+          <div
+            class="cardWrapper "
+          >
+            <a
+              class="link"
+              href="Волк с Уолл-стрит"
+            >
+              <div
+                class="card"
+              >
+                <img
+                  alt="Волк с Уолл-стрит"
+                  class="img"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="1080"
+                  src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F40edbec8-9611-4a27-bd97-702c49f24df1%2Forig&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F40edbec8-9611-4a27-bd97-702c49f24df1%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F40edbec8-9611-4a27-bd97-702c49f24df1%2Forig&w=3840&q=75 2x"
+                  style="color: transparent;"
+                  width="1920"
+                />
+              </div>
+            </a>
+          </div>
+          <div
+            class="cardWrapper "
+          >
+            <a
+              class="link"
+              href="Гнев человеческий"
+            >
+              <div
+                class="card"
+              >
+                <img
+                  alt="Гнев человеческий"
+                  class="img"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="1080"
+                  src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F4303601%2F34b3860e-9074-43a3-8ce6-e9ca50ee4e6d%2Forig&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F4303601%2F34b3860e-9074-43a3-8ce6-e9ca50ee4e6d%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F4303601%2F34b3860e-9074-43a3-8ce6-e9ca50ee4e6d%2Forig&w=3840&q=75 2x"
+                  style="color: transparent;"
+                  width="1920"
+                />
+              </div>
+            </a>
+          </div>
+          <div
+            class="cardWrapper "
+          >
+            <a
+              class="link"
+              href="Брат"
+            >
+              <div
+                class="card"
+              >
+                <img
+                  alt="Брат"
+                  class="img"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="1080"
+                  src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2F471b833c-95b9-4095-866c-1d05c7769eb2%2Forig&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2F471b833c-95b9-4095-866c-1d05c7769eb2%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2F471b833c-95b9-4095-866c-1d05c7769eb2%2Forig&w=3840&q=75 2x"
+                  style="color: transparent;"
+                  width="1920"
+                />
+              </div>
+            </a>
+          </div>
+          <div
+            class="cardWrapper "
+          >
+            <a
+              class="link"
+              href="Один дома"
+            >
+              <div
+                class="card"
+              >
+                <img
+                  alt="Один дома"
+                  class="img"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="1080"
+                  src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F3f944968-628f-4030-9f74-5c77cd7d96c5%2Forig&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F3f944968-628f-4030-9f74-5c77cd7d96c5%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F3f944968-628f-4030-9f74-5c77cd7d96c5%2Forig&w=3840&q=75 2x"
+                  style="color: transparent;"
+                  width="1920"
+                />
+              </div>
+            </a>
+          </div>
+          <div
+            class="cardWrapper "
+          >
+            <a
+              class="link"
+              href="Аватар"
+            >
+              <div
+                class="card"
+              >
+                <img
+                  alt="Аватар"
+                  class="img"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="1080"
+                  src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F9c8a584d-05aa-4359-8aff-7d3c66671156%2Forig&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F9c8a584d-05aa-4359-8aff-7d3c66671156%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2F9c8a584d-05aa-4359-8aff-7d3c66671156%2Forig&w=3840&q=75 2x"
+                  style="color: transparent;"
+                  width="1920"
+                />
+              </div>
+            </a>
+          </div>
+          <div
+            class="cardWrapper "
+          >
+            <a
+              class="link"
+              href="Побег из Шоушенка"
+            >
+              <div
+                class="card"
+              >
+                <img
+                  alt="Побег из Шоушенка"
+                  class="img"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="1080"
+                  src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fdfb73f87-b283-4150-9eba-fbbf3debaf04%2Forig&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fdfb73f87-b283-4150-9eba-fbbf3debaf04%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fdfb73f87-b283-4150-9eba-fbbf3debaf04%2Forig&w=3840&q=75 2x"
+                  style="color: transparent;"
+                  width="1920"
+                />
+              </div>
+            </a>
+          </div>
+          <div
+            class="cardWrapper "
+          >
+            <a
+              class="link"
+              href="Начало"
+            >
+              <div
+                class="card"
+              >
+                <img
+                  alt="Начало"
+                  class="img"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="1080"
+                  src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Ffde39e07-d0c4-4d24-8e66-7a5b9e184b85%2Forig&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Ffde39e07-d0c4-4d24-8e66-7a5b9e184b85%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1773646%2Ffde39e07-d0c4-4d24-8e66-7a5b9e184b85%2Forig&w=3840&q=75 2x"
+                  style="color: transparent;"
+                  width="1920"
+                />
+              </div>
+            </a>
+          </div>
+          <div
+            class="cardWrapper "
+          >
+            <a
+              class="link"
+              href="Зеленая миля"
+            >
+              <div
+                class="card"
+              >
+                <img
+                  alt="Зеленая миля"
+                  class="img"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="1080"
+                  src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fbc0fc6e3-fdbd-4f3e-bee4-9c6d3a1b5b62%2Forig&w=3840&q=75"
+                  srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fbc0fc6e3-fdbd-4f3e-bee4-9c6d3a1b5b62%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2Fbc0fc6e3-fdbd-4f3e-bee4-9c6d3a1b5b62%2Forig&w=3840&q=75 2x"
+                  style="color: transparent;"
+                  width="1920"
+                />
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          class="carouselButtonWrapper"
+        >
+          <button
+            class="carouselButton rightButton"
+          >
+            <img
+              alt="arrow"
+              data-nimg="1"
+              decoding="async"
+              height="40"
+              loading="lazy"
+              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+              srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+              style="color: transparent;"
+              width="40"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

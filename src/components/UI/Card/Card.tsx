@@ -52,7 +52,7 @@ const Card: FC<Props> = ({ item, linkHref, ar = 1.77, onClick }) => {
           <div className={s.card} style={{ aspectRatio: ar }}>
             {
               isHover && isActive && isMovieType(item) &&
-              <video src="/trailer.mp4" autoPlay width="100%" height="100%" muted={activeSound} loop />
+              <video src="/trailer.mp4" autoPlay width="100%" height="100%" muted={activeSound} loop className={s.video} />
             }
             {
               (!isHover || !isActive) && isMovieType(item) &&

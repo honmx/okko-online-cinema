@@ -12,6 +12,8 @@ export const registerAdmin = createAsyncThunk(
     try {
       const response = await authService.registerAdmin(email, password);
 
+      console.log(response);
+
       return response.data;
     } catch (error: any) {
       console.log(error);

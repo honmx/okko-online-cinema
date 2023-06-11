@@ -1,5 +1,7 @@
 export const decline = (word: string, count: number, type: "masculine" | "feminine", lang: "ru" | "en") => {
 
+  if (!word) return word;
+
   if (lang === "en") {
     if (count === 1) return word;
     else return word + "s";

@@ -1,0 +1,340 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` card with ar = 0.66 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="cardWrapper "
+      >
+        <a
+          class="link"
+          href="1+1"
+        >
+          <div
+            class="card"
+          >
+            <img
+              alt="1+1"
+              class="img"
+              data-nimg="1"
+              decoding="async"
+              fetchpriority="high"
+              height="1080"
+              src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2Fbf93b465-1189-4155-9dd1-cb9fb5cb1bb5%2Forig&w=3840&q=75"
+              srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2Fbf93b465-1189-4155-9dd1-cb9fb5cb1bb5%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2Fbf93b465-1189-4155-9dd1-cb9fb5cb1bb5%2Forig&w=3840&q=75 2x"
+              style="color: transparent;"
+              width="1920"
+            />
+          </div>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="cardWrapper "
+    >
+      <a
+        class="link"
+        href="1+1"
+      >
+        <div
+          class="card"
+        >
+          <img
+            alt="1+1"
+            class="img"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="1080"
+            src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2Fbf93b465-1189-4155-9dd1-cb9fb5cb1bb5%2Forig&w=3840&q=75"
+            srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2Fbf93b465-1189-4155-9dd1-cb9fb5cb1bb5%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1946459%2Fbf93b465-1189-4155-9dd1-cb9fb5cb1bb5%2Forig&w=3840&q=75 2x"
+            style="color: transparent;"
+            width="1920"
+          />
+        </div>
+      </a>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[` card with ar = 1 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="cardWrapper "
+      >
+        <a
+          class="link"
+          href="1+1"
+        >
+          <div
+            class="card"
+          >
+            <img
+              alt="1+1"
+              class="img"
+              data-nimg="1"
+              decoding="async"
+              fetchpriority="high"
+              height="1080"
+              src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75"
+              srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75 2x"
+              style="color: transparent;"
+              width="1920"
+            />
+          </div>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="cardWrapper "
+    >
+      <a
+        class="link"
+        href="1+1"
+      >
+        <div
+          class="card"
+        >
+          <img
+            alt="1+1"
+            class="img"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="1080"
+            src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75"
+            srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75 2x"
+            style="color: transparent;"
+            width="1920"
+          />
+        </div>
+      </a>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[` card with default ar 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="cardWrapper "
+      >
+        <a
+          class="link"
+          href="1+1"
+        >
+          <div
+            class="card"
+          >
+            <img
+              alt="1+1"
+              class="img"
+              data-nimg="1"
+              decoding="async"
+              fetchpriority="high"
+              height="1080"
+              src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75"
+              srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75 2x"
+              style="color: transparent;"
+              width="1920"
+            />
+          </div>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="cardWrapper "
+    >
+      <a
+        class="link"
+        href="1+1"
+      >
+        <div
+          class="card"
+        >
+          <img
+            alt="1+1"
+            class="img"
+            data-nimg="1"
+            decoding="async"
+            fetchpriority="high"
+            height="1080"
+            src="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75"
+            srcset="/_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=1920&q=75 1x, /_next/image?url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-kinopoisk-image%2F1900788%2F56bf76fb-58e9-42b6-94d8-9e3bd4c58e85%2Forig&w=3840&q=75 2x"
+            style="color: transparent;"
+            width="1920"
+          />
+        </div>
+      </a>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

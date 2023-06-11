@@ -1,6 +1,10 @@
 export interface IUser {
   id: number;
   email: string;
-  roles: any[];
+  roles: {
+    id: number;
+    value: string;
+    description: string;
+  }[];
   isActivated: boolean;
 }

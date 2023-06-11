@@ -7,5 +7,6 @@
   "genre": "жанр",
   "genresLink": "Жанры",
   "moviesLink": "Фильмы",
-  "placeholder": "Название фильма"
+  "placeholder": "Название фильма",
+  "apply": "Подтвердить"
 }

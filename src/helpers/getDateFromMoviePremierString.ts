@@ -1,11 +1,11 @@
-import { getMonthIndexByString } from "./getMonthIndexByString";
+// import { getMonthIndexByString } from "./getMonthIndexByString";
 
-export const getDateFromMoviePremierString = (stringDate: string) => {
-  if (!stringDate) return 100000000000000;
+// export const getDateFromMoviePremierString = (stringDate: string) => {
+//   if (!stringDate) return 100000000000000;
 
-  const [day, stringMonth, year] = stringDate.split(" ");
+//   const [day, stringMonth, year] = stringDate.split(" ");
 
-  const month = getMonthIndexByString(stringMonth);
+//   const month = getMonthIndexByString(stringMonth);
 
-  return new Date(+year, month, +day).getTime();
-}
+//   return new Date(+year, month, +day).getTime();
+// }

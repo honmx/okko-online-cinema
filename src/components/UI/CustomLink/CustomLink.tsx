@@ -13,7 +13,7 @@ interface Props {
 const CustomLink: FC<Props> = ({ href, target, isDisabled, className, children }) => {
   return (
     <div className={`${s.linkContainer} ${className} ${isDisabled ? s.disabled : ""}`}>
-      <Link href={href} target={target && target}>{children}</Link>
+      <Link href={href} target={target && target} className={s.link}>{children}</Link>
     </div>
   )
 };

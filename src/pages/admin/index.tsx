@@ -14,13 +14,14 @@ import entitiesService from "@/services/entitiesService";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
+import { NextAdminPage } from "@/types/AdminPageType";
 
 interface Props {
   movies: IMovie[],
   genres: IGenre[],
 }
 
-const Admin: NextPage<Props> = ({ movies, genres }) => {
+const Admin: NextAdminPage<Props> = ({ movies, genres }) => {
 
   const { t, i18n } = useTranslation("adminPage");
   const lang = i18n.language as "ru" | "en";
@@ -42,6 +43,8 @@ const Admin: NextPage<Props> = ({ movies, genres }) => {
     </>
   )
 };
+
+Admin.isOnlyAdmin = true;
 
 export const getStaticProps: GetStaticProps = async (context): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
 

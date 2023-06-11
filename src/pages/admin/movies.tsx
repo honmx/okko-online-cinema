@@ -13,12 +13,13 @@ import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import arrow from "@/assets/arrow.svg";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { NextAdminPage } from "@/types/AdminPageType";
 
 interface Props {
   movies: IMovie[];
 }
 
-const AdminMovies: NextPage<Props> = ({ movies }) => {
+const AdminMovies: NextAdminPage<Props> = ({ movies }) => {
 
   const { t } = useTranslation("adminPage");
 
@@ -68,6 +69,8 @@ const AdminMovies: NextPage<Props> = ({ movies }) => {
     </div>
   )
 };
+
+AdminMovies.isOnlyAdmin = true;
 
 export const getStaticProps: GetStaticProps = async (context): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
 

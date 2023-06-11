@@ -6,7 +6,7 @@ interface IInitialState {
   notifications: INotification[];
 }
 
-const initialState: IInitialState = {
+export const initialState: IInitialState = {
   notifications: [],
 }
 

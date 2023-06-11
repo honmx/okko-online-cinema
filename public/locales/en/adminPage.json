@@ -7,5 +7,6 @@
   "genre": "genre",
   "genresLink": "Genres",
   "moviesLink": "Movies",
-  "placeholder": "Movie title"
+  "placeholder": "Movie title",
+  "apply": "Apply"
 }

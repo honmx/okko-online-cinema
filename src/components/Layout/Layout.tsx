@@ -14,6 +14,7 @@ import $commentsAPI from "@/http/comments";
 
 interface Props {
   children: ReactNode;
+  isOnlyAdmin: boolean | undefined;
 }
 
 const roboto = Roboto({
@@ -22,11 +23,12 @@ const roboto = Roboto({
   subsets: ["latin"],
 })
 
-const Layout: FC<Props> = ({ children }) => {
+const Layout: FC<Props> = ({ children, isOnlyAdmin }) => {
 
   const dispatch = useAppDispatch();
 
-  const user = useAppSelector(state => state.auth.user);
+  const { isAuth, user } = useAppSelector(state => state.auth);
+  const notifications = useAppSelector(state => state.notifications.notifications);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -52,10 +54,12 @@ const Layout: FC<Props> = ({ children }) => {
 
     // try {
     //   a();
-    // } catch (error: any) {}
+    // } catch (error: any) {
+    //   console.log(error);
+    // }
   }, []);
 
-  const notifications = useAppSelector(state => state.notifications.notifications);
+  if (isOnlyAdmin && (isAuth && !user.roles.some(role => role.value === "ADMIN") || !isAuth)) return <>meow</>
 
   return (
     <div className={`${s.container} ${roboto.className}`}>

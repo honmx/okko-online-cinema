@@ -11,7 +11,7 @@ interface IInitialState {
   selectedSortBy: string;
 }
 
-const initialState: IInitialState = {
+export const initialState: IInitialState = {
   selectedGenre: "Все",
   selectedCountry: "Все",
   selectedMinRating: 0,
