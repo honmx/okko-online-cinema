@@ -11,10 +11,11 @@ import { checkAuth } from "@/store/thunks/checkAuth";
 import $authAPI from "@/http/auth";
 import axios from "axios";
 import $commentsAPI from "@/http/comments";
+import NotFound from "@/pages/404";
 
 interface Props {
   children: ReactNode;
-  isOnlyAdmin: boolean | undefined;
+  isOnlyAdmin?: boolean | undefined;
 }
 
 const roboto = Roboto({
@@ -59,24 +60,28 @@ const Layout: FC<Props> = ({ children, isOnlyAdmin }) => {
     // }
   }, []);
 
-  if (isOnlyAdmin && (isAuth && !user.roles.some(role => role.value === "ADMIN") || !isAuth)) return <>meow</>
-
   return (
     <div className={`${s.container} ${roboto.className}`}>
       <Container maxWidth={maxWidth}>
         <Header />
       </Container>
       <main className={s.main}>
-        <div className={s.notifications}>
-          {
-            notifications &&
-            notifications
-              .slice(0)
-              .reverse()
-              .map(value => <Notification key={value.id} notification={value} />)
-          }
-        </div>
-        <Container maxWidth={maxWidth}>{children}</Container>
+        {
+          isOnlyAdmin && (isAuth && !user.roles.some(role => role.value === "ADMIN") || !isAuth)
+            ? <NotFound />
+            : <>
+              <div className={s.notifications}>
+                {
+                  notifications &&
+                  notifications
+                    .slice(0)
+                    .reverse()
+                    .map(value => <Notification key={value.id} notification={value} />)
+                }
+              </div>
+              <Container maxWidth={maxWidth}>{children}</Container>
+            </>
+        }
       </main>
       <Footer />
     </div>
