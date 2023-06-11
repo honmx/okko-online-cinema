@@ -1,24 +1,20 @@
-import React, { FC, ReactElement, useEffect } from "react";
-import { NextPageWithLayout } from "@/types/NextPageWithLayout";
-import MoviesPageLayout from "@/components/MoviesPageLayout/MoviesPageLayout";
+import React, { ReactElement, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useAppDispatch } from "@/store/hooks";
-import { clearFilters } from "@/store/slices/moviesFilterSlice";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from "next";
-import { IMovie } from "@/types/IMovie";
-import axios from "axios";
-import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { ParsedUrlQuery } from "querystring";
-import s from "./MoviesFilter.module.scss";
-import MovieList from "@/components/MovieList/MovieList";
 import dynamic from "next/dynamic";
-import entitiesService from "@/services/entitiesService";
-import { areFiltersClear } from "@/helpers/areFiltersClear";
-import AutoSuggestModal from "@/components/AutoSuggestModal/AutoSuggestModal";
-import { useFilteredMovies } from "@/hooks/useFilteredMovies";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from 'next-i18next';
+import MoviesPageLayout from "@/components/MoviesPageLayout/MoviesPageLayout";
+import { NextPageWithLayout } from "@/types/NextPageWithLayout";
+import { useAppDispatch } from "@/store/hooks";
+import { IMovie } from "@/types/IMovie";
+import { useSelectedFilters } from "@/hooks/useSelectedFilters";
+import entitiesService from "@/services/entitiesService";
+import { areFiltersClear } from "@/helpers/areFiltersClear";
+import { useFilteredMovies } from "@/hooks/useFilteredMovies";
+import s from "./MoviesFilter.module.scss";
 
 interface Props {
   movies: IMovie[];
@@ -30,7 +26,6 @@ const MoviesFilter: NextPageWithLayout<Props> = ({ movies }) => {
 
   const { t } = useTranslation("moviesPage");
 
-  const dispatch = useAppDispatch();
   const router = useRouter();
 
   const {

@@ -1,20 +1,15 @@
-import React, { ChangeEvent, FC, FormEvent, ReactNode, useEffect, useRef, useState } from "react";
-import { IMovie } from "@/types/IMovie";
+import React, { FC, FormEvent, ReactNode, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useHover } from "@/hooks/useHover";
+import { useTranslation } from "next-i18next";
 import IconButton from "../UI/IconButton/IconButton";
-import pen from "@/assets/pen.svg";
-import s from "./AdminCard.module.scss";
 import InputField from "../UI/InputField/InputField";
 import Button from "../UI/Button/Button";
 import Title from "../UI/Title/Title";
-import Link from "next/link";
-import Card from "../UI/Card/Card";
-import entitiesService from "@/services/entitiesService";
 import { IGenre } from "@/types/IGenre";
-import { isGenreType } from "@/helpers/isGenreType";
+import { IMovie } from "@/types/IMovie";
 import { capitalize } from "@/helpers/capitalize";
-import { useTranslation } from "next-i18next";
+import pen from "@/assets/pen.svg";
+import s from "./AdminCard.module.scss";
 
 interface Props {
   item: IMovie | IGenre;
@@ -26,7 +21,6 @@ const AdminMovieCard: FC<Props> = ({ item, makeUpdateRequest, children }) => {
 
   const { t } = useTranslation("adminPage");
 
-  const ref = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const [isEdit, setIsEdit] = useState<boolean>(false);

@@ -1,19 +1,17 @@
 import React, { FC, FormEvent, MouseEvent, useEffect, useRef, useState } from "react";
-import s from "./CommentCard.module.scss";
-import { IComment } from "@/types/IComment";
-import CommentList from "../CommentList/CommentList";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import CommentList from "../CommentList/CommentList";
+import IconButton from "../UI/IconButton/IconButton";
+import TextArea from "../UI/TextArea/TextArea";
+import commentsService from "@/services/commentsService";
+import { IComment } from "@/types/IComment";
+import { useAppSelector } from "@/store/hooks";
 import person from "@/assets/person.svg";
 import like from "@/assets/like.svg";
 import check from "@/assets/check.svg";
 import close from "@/assets/close.svg";
-import IconButton from "../UI/IconButton/IconButton";
-import InputField from "../UI/InputField/InputField";
-import TextArea from "../UI/TextArea/TextArea";
-import Button from "../UI/Button/Button";
-import commentsService from "@/services/commentsService";
-import { useAppSelector } from "@/store/hooks";
-import { useTranslation } from "next-i18next";
+import s from "./CommentCard.module.scss";
 
 interface Props {
   currentComment: IComment;

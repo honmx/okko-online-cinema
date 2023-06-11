@@ -1,14 +1,14 @@
 import React, { FC, useState } from "react";
+import { useTranslation } from "next-i18next";
 import Title from "../UI/Title/Title";
 import Star from "../Star/Star";
 import Button from "../UI/Button/Button";
 import { useAppDispatch } from "@/store/hooks";
 import { addNotification } from "@/store/slices/notificationSlice";
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import check from "@/assets/check.svg";
 import filledStar from "@/assets/filledStar.svg";
 import s from "./Rate.module.scss";
-import { useSmallerDevice } from "@/hooks/useSmallerDevice";
-import { useTranslation } from "next-i18next";
 
 interface Props {
   className?: string;

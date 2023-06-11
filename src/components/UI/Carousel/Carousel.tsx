@@ -1,11 +1,10 @@
 import React, { FC, ReactNode } from "react";
-import Title from "../Title/Title";
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
+import Title from "../Title/Title";
+import { useCarouselScroll } from "../../../hooks/useCarouselScroll";
 import arrow from "../../../assets/arrow.svg";
 import s from "./Carousel.module.scss";
-import { useCarouselScroll } from "../../../hooks/useCarouselScroll";
-import { useRouter } from "next/router";
 
 interface Props {
   title?: string;

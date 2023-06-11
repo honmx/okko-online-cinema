@@ -1,35 +1,33 @@
 import React, { FormEvent, useEffect, useRef, useState } from "react";
-import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import { ParsedUrlQuery } from "querystring";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from "next";
-import { IMovie } from "@/types/IMovie";
-import axios from "axios";
+import Head from "next/head";
+import Image from "next/image";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 import Tabs from "@/components/UI/Tabs/Tabs";
 import Rate from "@/components/Rate/Rate";
 import Carousel from "@/components/UI/Carousel/Carousel";
 import SubscribeCard from "@/components/SubscribeCard/SubscribeCard";
 import MovieBannerText from "@/components/MovieBannerText/MovieBannerText";
-import Head from "next/head";
-import Image from "next/image";
-import { useDelay } from "@/hooks/useDelay";
-import ReactPlayer from "react-player";
 import Button from "@/components/UI/Button/Button";
+import Card from "@/components/UI/Card/Card";
+import Title from "@/components/UI/Title/Title";
+import CommentList from "@/components/CommentList/CommentList";
+import TextArea from "@/components/UI/TextArea/TextArea";
+import { NextPageWithLayout } from "@/types/NextPageWithLayout";
+import { IMovie } from "@/types/IMovie";
+import { useDelay } from "@/hooks/useDelay";
+import entitiesService from "@/services/entitiesService";
+import $commentsAPI from "@/http/comments";
+import { useAppSelector } from "@/store/hooks";
+import { IComment } from "@/types/IComment";
+import commentsService from "@/services/commentsService";
 import sound from "@/assets/sound.svg";
 import soundDisabled from "@/assets/soundDisabled.svg";
 import fullScreen from "@/assets/fullScreen.svg";
-import s from "./Movie.module.scss";
-import entitiesService from "@/services/entitiesService";
-import Card from "@/components/UI/Card/Card";
-import $commentsAPI from "@/http/comments";
-import { useAppSelector } from "@/store/hooks";
-import Title from "@/components/UI/Title/Title";
-import CommentList from "@/components/CommentList/CommentList";
-import { IComment } from "@/types/IComment";
 import check from "@/assets/check.svg";
-import TextArea from "@/components/UI/TextArea/TextArea";
-import commentsService from "@/services/commentsService";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
+import s from "./Movie.module.scss";
 
 interface Props {
   movie: IMovie;
@@ -60,10 +58,6 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
 
     getComments();
   }, []);
-
-  useEffect(() => {
-    console.log(comments);
-  }, [comments]);
 
   const handleTextAreaChange = (value: string) => {
     setValue(value);

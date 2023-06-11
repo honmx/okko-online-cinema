@@ -1,8 +1,8 @@
 import React, { FC, useRef } from "react";
 import Image from "next/image";
+import { useHover } from "@/hooks/useHover";
 import filledStar from "@/assets/filledStar.svg";
 import s from "./Star.module.scss";
-import { useHover } from "@/hooks/useHover";
 
 interface Props {
   index: number;

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import s from "./CommentList.module.scss";
-import { IComment } from "@/types/IComment";
 import CommentCard from "../CommentCard/CommentCard";
+import { IComment } from "@/types/IComment";
+import s from "./CommentList.module.scss";
 
 interface Props {
   comments: IComment[];

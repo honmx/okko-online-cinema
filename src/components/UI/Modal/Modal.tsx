@@ -1,9 +1,9 @@
 import React, { FC, ReactNode } from "react";
-import s from "./Modal.module.scss";
-import IconButton from "../IconButton/IconButton";
 import Image from "next/image";
-import close from "../../../assets/close.svg";
+import IconButton from "../IconButton/IconButton";
 import { useScrollStart } from "../../../hooks/useScrollStart";
+import close from "../../../assets/close.svg";
+import s from "./Modal.module.scss";
 
 interface Props {
   onClose: () => void;

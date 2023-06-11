@@ -1,7 +1,6 @@
 import { IGenre } from "./IGenre";
 import { IPerson } from "./IPerson";
 
-// поменять, как только будем забирать данные с бекенда 
 export interface IMovie {
   id: number;
   title: string;

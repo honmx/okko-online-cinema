@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import s from "./AutoSuggestSelect.module.scss";
-import { useSmallerDevice } from "../../../hooks/useSmallerDevice";
 import { useTranslation } from "next-i18next";
+import { useSmallerDevice } from "../../../hooks/useSmallerDevice";
+import s from "./AutoSuggestSelect.module.scss";
 
 interface Props {
   value: string;
@@ -12,7 +12,7 @@ interface Props {
 
 const AutoSuggestSelect: FC<Props> = ({ value, placeholder, onClick, className }) => {
 
-  const { t, i18n } = useTranslation("moviesPage");
+  const { i18n } = useTranslation("moviesPage");
   const lang = i18n.language;
 
   const isSmaller = useSmallerDevice(959);

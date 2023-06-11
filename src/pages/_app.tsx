@@ -1,11 +1,11 @@
 import type { AppProps } from 'next/app'
-import Layout from '@/components/Layout/Layout';
-import { NextPageWithLayout } from '@/types/NextPageWithLayout';
-import "../styles/nullable.scss";
 import { Provider } from 'react-redux';
-import { store } from '@/store/store';
 import { appWithTranslation } from "next-i18next";
+import Layout from '@/components/Layout/Layout';
+import { store } from '@/store/store';
+import { NextPageWithLayout } from '@/types/NextPageWithLayout';
 import { TypeComponentAuthFields } from '@/types/AdminPageType';
+import "../styles/nullable.scss";
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout

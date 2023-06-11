@@ -1,10 +1,10 @@
-import React, { Dispatch, FC, FormEvent, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, FC, FormEvent, SetStateAction } from "react";
+import { useTranslation } from "next-i18next";
 import InputField from "../UI/InputField/InputField";
 import Button from "../UI/Button/Button";
 import authService from "@/services/authService";
-import s from "./CheckEmailForm.module.scss";
 import { useDisabledButton } from "@/hooks/useDisabledButton";
-import { useTranslation } from "next-i18next";
+import s from "./CheckEmailForm.module.scss";
 
 interface Props {
   email: string;

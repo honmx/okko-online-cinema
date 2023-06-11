@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import s from "./SubscribeCard.module.scss";
+import { useTranslation } from "next-i18next";
 import Title from "../UI/Title/Title";
 import Button from "../UI/Button/Button";
-import { useTranslation } from "next-i18next";
+import s from "./SubscribeCard.module.scss";
 
 interface Props {
   title: string;

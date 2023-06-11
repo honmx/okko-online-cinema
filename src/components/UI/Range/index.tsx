@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import s from "./Range.module.scss";
 import { useSmallerDevice } from "../../../hooks/useSmallerDevice";
 import MobileRange from "./MobileRange/MobileRange";
 import DesktopRange from "./DesktopRange/DesktopRange";

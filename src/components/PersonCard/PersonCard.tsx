@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import { IPerson } from "@/types/IPerson";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import { IPerson } from "@/types/IPerson";
 import personIcon from "@/assets/person.svg";
 import s from "./PersonCard.module.scss";
-import { useTranslation } from "next-i18next";
 
 interface Props {
   person: IPerson;

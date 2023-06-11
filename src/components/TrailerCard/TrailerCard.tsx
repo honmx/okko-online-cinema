@@ -1,12 +1,12 @@
-import React, { FC, useEffect, useRef, useState } from "react";
-import s from "./TrailerCard.module.scss";
-import { IMovie } from "../../types/IMovie";
+import React, { FC, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Button from "../UI/Button/Button";
+import { IMovie } from "../../types/IMovie";
+import { useDelay } from "../../hooks/useDelay";
 import sound from "../../assets/sound.svg";
 import soundDisabled from "../../assets/soundDisabled.svg";
-import Link from "next/link";
-import { useDelay } from "../../hooks/useDelay";
+import s from "./TrailerCard.module.scss";
 
 interface Props {
   movie: IMovie;

@@ -1,20 +1,15 @@
 import React, { FC, useEffect, useState } from "react";
-import IconButton from "../UI/IconButton/IconButton";
-import Image from "next/image";
-import s from "./AutoSuggestModal.module.scss";
+import { useTranslation } from 'next-i18next';
 import InputField from "../UI/InputField/InputField";
-import $entitiesAPI from "@/http/entities";
+import TextButton from "../UI/TextButton/TextButton";
+import Modal from "../UI/Modal/Modal";
+import PersonAutoSuggestCard from "@/components/PersonCard/PersonCard";
 import { IPerson } from "@/types/IPerson";
 import entitiesService from "@/services/entitiesService";
-import PersonAutoSuggestCard from "@/components/PersonCard/PersonCard";
 import { useAppDispatch } from "@/store/hooks";
-import { setSelectedActor, setSelectedProducer } from "@/store/slices/moviesFilterSlice";
-import TextButton from "../UI/TextButton/TextButton";
-import { useScrollStart } from "@/hooks/useScrollStart";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import { useDebounce } from "@/hooks/useDebounce";
-import Modal from "../UI/Modal/Modal";
-import { useTranslation } from 'next-i18next';
+import s from "./AutoSuggestModal.module.scss";
 
 interface Props {
   entitiyType: "Актёр" | "Режиссёр";
@@ -25,9 +20,9 @@ interface Props {
 
 const AutoSuggestModal: FC<Props> = ({ entitiyType, onEntityClick, onClose, className }) => {
 
-  const dispatch = useAppDispatch();
-  
   const { t } = useTranslation("moviesPage");
+  
+  const dispatch = useAppDispatch();
 
   const isSmaller = useSmallerDevice(519);
 

@@ -1,10 +1,10 @@
 import React, { FC, useEffect } from "react";
 import Image from "next/image";
-import s from "./Notification.module.scss";
 import { useDelay } from "../../../hooks/useDelay";
 import { useAppDispatch } from "../../../store/hooks";
 import { deleteNotification } from "../../../store/slices/notificationSlice";
 import { INotification } from "../../../types/INotification";
+import s from "./Notification.module.scss";
 
 interface Props {
   notification: INotification;

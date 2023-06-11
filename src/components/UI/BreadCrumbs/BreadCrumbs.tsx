@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import s from "./BreadCrumbs.module.scss";
 import CustomLink from "../CustomLink/CustomLink";
 import { useAppDispatch } from "../../../store/hooks";
+import s from "./BreadCrumbs.module.scss";
 
 interface Props {
   values: {
@@ -13,8 +13,6 @@ interface Props {
 }
 
 const BreadCrumbs: FC<Props> = ({ values, onClick, className }) => {
-
-  const dispatch = useAppDispatch();
 
   return (
     <div className={`${s.container} ${className}`}>

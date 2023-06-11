@@ -1,4 +1,3 @@
-import { IText } from "@/types/IText";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IInitialState {

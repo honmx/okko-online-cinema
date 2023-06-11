@@ -1,7 +1,6 @@
-import { capitalize } from "@/helpers/capitalize";
+import { useEffect, useState } from "react"
 import entitiesService from "@/services/entitiesService";
 import { IGenre } from "@/types/IGenre";
-import { useEffect, useState } from "react"
 
 export const useGenresAndCountries = () => {
   const [genres, setGenres] = useState<IGenre[]>([]);

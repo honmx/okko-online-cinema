@@ -11,10 +11,8 @@ export const login = createAsyncThunk(
   async ({ email, password }: IParams, { rejectWithValue }) => {
     try {
       const response = await authService.login(email, password);
-
-      console.log(response);
-
       return response.data;
+
     } catch (error: any) {
       return rejectWithValue(error.message);
     }

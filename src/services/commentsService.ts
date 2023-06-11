@@ -24,7 +24,6 @@ const createComment = async (userId: number, comment: string, movieId: number, c
 
   } catch (error) {
     console.log(error);
-    console.log("aaaa");
     return {} as IComment;
   }
 }

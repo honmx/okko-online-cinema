@@ -1,16 +1,12 @@
 import React, { FC, MouseEvent, useState, useRef } from "react";
 import Image from "next/image";
-import arrow from "../../../../assets/arrow.svg";
-import { useOutsideClick } from "../../../../hooks/useOutsideClick";
-import s from "./DesktopSelect.module.scss";
-import { CommonProps } from "../index";
-import OptionsList from "../../OptionsList/OptionsList";
-import { IText } from "../../../../types/IText";
-import { isGenreType } from "../../../../helpers/isGenreType";
-import Title from "../../Title/Title";
-import { IGenre } from "../../../../types/IGenre";
-import { useSmallerDevice } from "../../../../hooks/useSmallerDevice";
 import { useTranslation } from "next-i18next";
+import OptionsList from "../../OptionsList/OptionsList";
+import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import { CommonProps } from "../index";
+import { isGenreType } from "../../../../helpers/isGenreType";
+import arrow from "../../../../assets/arrow.svg";
+import s from "./DesktopSelect.module.scss";
 
 export type SelectOptionType = {
   value: string;
@@ -23,7 +19,7 @@ interface Props extends Omit<CommonProps, "title"> {
 
 const DesktopSelect: FC<Props> = ({ img, values, selectedValue, setSelectedValue, className }) => {
 
-  const { t, i18n } = useTranslation("moviesPage");
+  const { i18n } = useTranslation("moviesPage");
 
   const lang = i18n.language;
 

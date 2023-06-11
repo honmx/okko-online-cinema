@@ -1,12 +1,11 @@
 import React, { FC } from "react";
-import s from "./MoviePeopleModal.module.scss";
-import { IPerson } from "@/types/IPerson";
-import Modal from "../UI/Modal/Modal";
-import Title from "../UI/Title/Title";
-import PersonCard from "../PersonCard/PersonCard";
-import PersonAutoSuggestCard from "../PersonCard/PersonCard";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import Modal from "../UI/Modal/Modal";
+import Title from "../UI/Title/Title";
+import PersonAutoSuggestCard from "../PersonCard/PersonCard";
+import { IPerson } from "@/types/IPerson";
+import s from "./MoviePeopleModal.module.scss";
 
 interface Props {
   producers: IPerson[];
@@ -17,7 +16,7 @@ interface Props {
 
 const MoviePeopleModal: FC<Props> = ({ producers, actors, onClose, className }) => {
 
-  const { t, i18n } = useTranslation("moviePage");
+  const { t } = useTranslation("moviePage");
 
   const router = useRouter();
 

@@ -61,8 +61,6 @@ export const authSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(login.rejected, (state, action) => {
-      // todo...
-      // iserror ...
       state.isLoading = false;
     });
 
@@ -77,7 +75,6 @@ export const authSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(logout.rejected, (state, action) => {
-      // todo...
       state.isLoading = false;
     });
 

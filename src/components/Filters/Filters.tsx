@@ -1,31 +1,26 @@
 import React, { FC, useEffect, useState } from "react";
-import DesktopSelect from "@/components/UI/Select/DesktopSelect/DesktopSelect";
-import DesktopRange from "@/components/UI/Range/DesktopRange/DesktopRange";
-import sort from "@/assets/sort.svg";
-import { useSelectedFilters } from "@/hooks/useSelectedFilters";
-import { useAppDispatch } from "@/store/hooks";
-import { clearFilters, setSelectedMinCountOfRating, setSelectedMinRating, setSelectedCountry, setSelectedGenre, setSelectedSortBy, setSelectedProducer, setSelectedActor } from "@/store/slices/moviesFilterSlice";
-import TextButton from "@/components/UI/TextButton/TextButton";
+import Image from "next/image";
 import { useRouter } from "next/router";
-import s from "./Filters.module.scss";
+import { useTranslation } from 'next-i18next';
+import { useSelectedFilters } from "@/hooks/useSelectedFilters";
+import TextButton from "@/components/UI/TextButton/TextButton";
 import AutoSuggestSelect from "@/components/UI/AutoSuggestSelect/AutoSuggestSelect";
 import AutoSuggestModal from "@/components/AutoSuggestModal/AutoSuggestModal";
-import { areFiltersClear } from "@/helpers/areFiltersClear";
-import { IPerson } from "@/types/IPerson";
-import { useScrollStart } from "@/hooks/useScrollStart";
-import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import IconButton from "@/components/UI/IconButton/IconButton";
-import Image from "next/image";
-import parameters from "@/assets/parameters.svg";
 import Title from "@/components/UI/Title/Title";
 import Button from "@/components/UI/Button/Button";
-import close from "@/assets/close.svg";
-import MobileSelect from "@/components/UI/Select/MobileSelect/MobileSelect";
-import MobileRange from "@/components/UI/Range/MobileRange/MobileRange";
-import { IGenre } from "@/types/IGenre";
 import Select from "../UI/Select";
 import Range from "../UI/Range";
-import { useTranslation } from 'next-i18next';
+import { useAppDispatch } from "@/store/hooks";
+import { clearFilters, setSelectedMinCountOfRating, setSelectedMinRating, setSelectedCountry, setSelectedGenre, setSelectedSortBy, setSelectedProducer, setSelectedActor } from "@/store/slices/moviesFilterSlice";
+import { areFiltersClear } from "@/helpers/areFiltersClear";
+import { useScrollStart } from "@/hooks/useScrollStart";
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import { IGenre } from "@/types/IGenre";
+import parameters from "@/assets/parameters.svg";
+import sort from "@/assets/sort.svg";
+import close from "@/assets/close.svg";
+import s from "./Filters.module.scss";
 
 interface Props {
   showProducerFilter?: boolean;
@@ -36,10 +31,9 @@ interface Props {
 
 const Filters: FC<Props> = ({ genres, countries, showProducerFilter = true, showActorFilter = true }) => {
 
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-
   const { t } = useTranslation("moviesPage");
+  
+  const dispatch = useAppDispatch();
 
   const isSmaller = useSmallerDevice(959);
 

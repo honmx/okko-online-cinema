@@ -1,8 +1,7 @@
 import React, { FC } from "react";
-import s from "./Top10Card.module.scss";
-import { IMovie } from "@/types/IMovie";
 import Image, { StaticImageData } from "next/image";
 import Card from "../UI/Card/Card";
+import { IMovie } from "@/types/IMovie";
 import number1 from "@/assets/top10numbers/1.svg";
 import number2 from "@/assets/top10numbers/2.svg";
 import number3 from "@/assets/top10numbers/3.svg";
@@ -13,6 +12,7 @@ import number7 from "@/assets/top10numbers/7.svg";
 import number8 from "@/assets/top10numbers/8.svg";
 import number9 from "@/assets/top10numbers/9.svg";
 import number10 from "@/assets/top10numbers/10.svg";
+import s from "./Top10Card.module.scss";
 
 const numbers = [
   number1, number2, number3, number4, number5,

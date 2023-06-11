@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, FC, SetStateAction } from "react";
+import React, { ChangeEvent, FC } from "react";
 import s from "./Slider.module.scss";
 
 interface Props {

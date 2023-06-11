@@ -1,22 +1,20 @@
-import React, { ChangeEvent, FC, FormEvent, useEffect, useState, useTransition } from 'react';
-import CustomLink from "@/components/UI/CustomLink/CustomLink";
-import close from '@/assets/close.svg';
-import s from "./Login.module.scss";
+import React, { FC, useEffect, useState } from 'react';
 import Image from "next/image";
-import vkontakte from '@/assets/vk.svg';
-import google from '@/assets/google.svg';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
+import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import Title from "@/components/UI/Title/Title";
 import Button from '../UI/Button/Button';
-import InputField from '../UI/InputField/InputField';
-import authService from '@/services/authService';
 import CheckEmailForm from '../CheckEmailForm/CheckEmailForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import LoginForm from '../LoginForm/LoginForm';
-import { useAppSelector } from '@/store/hooks';
-import { useRouter } from 'next/router';
 import IconButton from '../UI/IconButton/IconButton';
-import { useTranslation } from 'next-i18next';
+import { useAppSelector } from '@/store/hooks';
 import { useSmallerDevice } from '@/hooks/useSmallerDevice';
+import close from '@/assets/close.svg';
+import vkontakte from '@/assets/vk.svg';
+import google from '@/assets/google.svg';
+import s from "./Login.module.scss";
 
 interface Props {
   onClose: () => void;
@@ -24,9 +22,9 @@ interface Props {
 
 const Login: FC<Props> = ({ onClose }) => {
 
-  const router = useRouter();
-
   const { t } = useTranslation("header");
+  
+  const router = useRouter();
 
   const isSmaller = useSmallerDevice(599);
 

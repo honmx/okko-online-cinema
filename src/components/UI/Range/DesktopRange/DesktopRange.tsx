@@ -1,11 +1,11 @@
-import React, { ChangeEvent, Dispatch, FC, SetStateAction, useRef, useState } from "react";
-import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import React, { FC, useRef, useState } from "react";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
+import Slider from "../../Slider/Slider";
+import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import { CommonProps } from "../index";
 import arrow from "../../../../assets/arrow.svg";
 import s from "./DesktopRange.module.scss";
-import { CommonProps } from "../index";
-import Slider from "../../Slider/Slider";
-import { useTranslation } from "next-i18next";
 
 interface Props extends CommonProps {
 

@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import s from "./PeopleList.module.scss";
-import { IPerson } from "@/types/IPerson";
-import CustomLink from "../UI/CustomLink/CustomLink";
 import { useTranslation } from "next-i18next";
+import CustomLink from "../UI/CustomLink/CustomLink";
+import { IPerson } from "@/types/IPerson";
+import s from "./PeopleList.module.scss";
 
 interface Props {
   people: IPerson[];
@@ -13,7 +13,7 @@ interface Props {
 
 const PeopleList: FC<Props> = ({ people, title, pluralTitle, className }) => {
 
-  const { t, i18n } = useTranslation("moviePage");
+  const { i18n } = useTranslation("moviePage");
   const lang = i18n.language;
 
   if (people.length === 0) return null;

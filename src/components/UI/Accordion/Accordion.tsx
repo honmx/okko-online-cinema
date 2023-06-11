@@ -1,8 +1,8 @@
 import React, { FC, ReactNode, useState } from "react";
+import Image from "next/image";
+import Title from "../Title/Title";
 import arrow from "../../../assets/arrow.svg";
 import s from "./Accordion.module.scss";
-import Title from "../Title/Title";
-import Image from "next/image";
 
 interface Props {
   title: string;

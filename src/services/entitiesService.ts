@@ -1,8 +1,8 @@
+import axios from "axios";
 import $entitiesAPI from "@/http/entities";
 import { IGenre } from "@/types/IGenre";
 import { IMovie } from "@/types/IMovie";
 import { IPerson } from "@/types/IPerson";
-import axios, { AxiosResponse } from "axios";
 
 const getMovies = async (): Promise<IMovie[]> => {
   try {
@@ -84,7 +84,6 @@ const getPersonByName = async (name: string): Promise<IPerson[]> => {
 const getReviewsByMovieId = async (id: number) => {
   try {
     const { data: reviews } = await axios.get(`http://localhost:5000/review/movie/${id}`);
-
     return reviews;
 
   } catch (error) {
@@ -156,7 +155,6 @@ const updateMovie = async (id: number, title: string, originalTitle: string) => 
     });
 
     return movie;
-
   } catch (error) {
     console.log(error);
   }
@@ -171,7 +169,6 @@ const updateGenre = async (id: number, title: string, originalTitle: string) => 
     });
 
     return genre;
-
   } catch (error) {
     console.log(error);
   }

@@ -1,5 +1,5 @@
-import { IMovie } from "@/types/IMovie";
 import { useEffect, useState } from "react";
+import { IMovie } from "@/types/IMovie";
 import { useSelectedFilters } from "./useSelectedFilters";
 import { getDateFromMoviePremierString } from "@/helpers/getDateFromMoviePremierString";
 

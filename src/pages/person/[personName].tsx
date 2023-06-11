@@ -1,26 +1,22 @@
-import React, { FC, ReactNode, useEffect, useState } from "react";
-import { GetStaticPaths, GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import axios from "axios";
-import { IMovie } from "@/types/IMovie";
+import React from "react";
 import { ParsedUrlQuery } from "querystring";
-import { IPerson } from "@/types/IPerson";
-import Title from "@/components/UI/Title/Title";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from "next";
 import Image from "next/image";
-import s from "./Person.module.scss";
-import { useSmallerDevice } from "@/hooks/useSmallerDevice";
-import Range from "@/components/UI/Range/DesktopRange/DesktopRange";
-import Filters from "@/components/Filters/Filters";
-import MobileFilters from "@/components/Filters/Filters";
-import MovieList from "@/components/MovieList/MovieList";
-import entitiesService from "@/services/entitiesService";
-import { NextPageWithLayout } from "@/types/NextPageWithLayout";
-import MoviesPageLayout from "@/components/MoviesPageLayout/MoviesPageLayout";
-import { useGenresAndCountries } from "@/hooks/useGenresAndCountries";
-import { useSelectedFilters } from "@/hooks/useSelectedFilters";
-import { useFilteredMovies } from "@/hooks/useFilteredMovies";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
+import Title from "@/components/UI/Title/Title";
+import Filters from "@/components/Filters/Filters";
+import MovieList from "@/components/MovieList/MovieList";
+import { IMovie } from "@/types/IMovie";
+import { IPerson } from "@/types/IPerson";
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import entitiesService from "@/services/entitiesService";
+import { NextPageWithLayout } from "@/types/NextPageWithLayout";
+import { useGenresAndCountries } from "@/hooks/useGenresAndCountries";
+import { useSelectedFilters } from "@/hooks/useSelectedFilters";
+import { useFilteredMovies } from "@/hooks/useFilteredMovies";
+import s from "./Person.module.scss";
 
 interface Props {
   person: IPerson;
@@ -32,17 +28,7 @@ const Person: NextPageWithLayout<Props> = ({ person, movies }) => {
   const { t, i18n } = useTranslation("personPage");
   const lang = i18n.language;
 
-  const isSmaller = useSmallerDevice(959);
-
   const { genres, countries } = useGenresAndCountries();
-
-  const {
-    selectedGenre,
-    selectedCountry,
-    selectedMinRating,
-    selectedMinCountOfRating,
-    selectedSortBy
-  } = useSelectedFilters();
 
   const filteredMovies = useFilteredMovies(movies);
 

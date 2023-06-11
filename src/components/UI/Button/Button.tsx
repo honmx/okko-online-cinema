@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
-import s from "./Button.module.scss";
 import Image from "next/image";
+import s from "./Button.module.scss";
 
 interface Props {
   bgColor?: "accent" | "primary";

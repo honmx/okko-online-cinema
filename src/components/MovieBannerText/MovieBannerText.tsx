@@ -1,30 +1,18 @@
 import React, { FC, useState } from "react";
-import { NextPageWithLayout } from "@/types/NextPageWithLayout";
-import { ParsedUrlQuery } from "querystring";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { IMovie } from "@/types/IMovie";
-import axios from "axios";
-import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import Title from "@/components/UI/Title/Title";
-import { getFirstSentence } from "@/helpers/getFirstSentence";
-import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import PeopleList from "@/components/PeopleList/PeopleList";
 import Button from "@/components/UI/Button/Button";
-import favourites from "@/assets/favourites.svg";
+import IconButton from "../UI/IconButton/IconButton";
+import MoviePeopleModal from "../MoviePeopleModal/MoviePeopleModal";
+import { IMovie } from "@/types/IMovie";
+import { getFirstSentence } from "@/helpers/getFirstSentence";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import { capitalize } from "@/helpers/capitalize";
+import favourites from "@/assets/favourites.svg";
 import star from "@/assets/star.svg";
 import soundtrack from "@/assets/soundtrack.svg";
-import Tabs from "@/components/UI/Tabs/Tabs";
-import Rate from "@/components/Rate/Rate";
-import Carousel from "@/components/UI/Carousel/Carousel";
-import SubscribeCard from "@/components/SubscribeCard/SubscribeCard";
 import s from "./MovieBannerText.module.scss";
-import { capitalize } from "@/helpers/capitalize";
-import IconButton from "../UI/IconButton/IconButton";
-import Modal from "../UI/Modal/Modal";
-import PersonCard from "../PersonCard/PersonCard";
-import MoviePeopleModal from "../MoviePeopleModal/MoviePeopleModal";
-import { useTranslation } from "next-i18next";
 
 interface Props {
   movie: IMovie;

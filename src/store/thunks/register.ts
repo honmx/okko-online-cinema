@@ -11,10 +11,8 @@ export const register = createAsyncThunk(
   async ({ email, password }: IParams, { rejectWithValue }) => {
     try {
       const response = await authService.register(email, password);
-
-      console.log(response);
-
       return response.data;
+
     } catch (error: any) {
       return rejectWithValue(error.message);
     }

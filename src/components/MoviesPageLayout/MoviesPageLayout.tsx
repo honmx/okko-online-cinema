@@ -1,24 +1,21 @@
-import React, { FC, ReactNode, useEffect, useState } from "react";
+import React, { FC, ReactNode, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useTranslation } from 'next-i18next';
 import Title from "@/components/UI/Title/Title";
 import TextButton from "@/components/UI/TextButton/TextButton";
 import IconButton from "@/components/UI/IconButton/IconButton";
-import vk from "@/assets/vk-icon.png";
-import odnoklassniki from "@/assets/odnoklassniki-icon.png";
-import viber from "@/assets/viber-icon.png";
-import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import Filters from "../Filters/Filters";
-import s from "./MoviesPageLayout.module.scss";
-import $entitiesAPI from "@/http/entities";
-import { useGenresAndCountries } from "@/hooks/useGenresAndCountries";
 import BreadCrumbs from "../UI/BreadCrumbs/BreadCrumbs";
-import { useRouter } from "next/router";
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import { useGenresAndCountries } from "@/hooks/useGenresAndCountries";
 import { useSelectedFilters } from "@/hooks/useSelectedFilters";
 import { useAppDispatch } from "@/store/hooks";
 import { clearFilters } from "@/store/slices/moviesFilterSlice";
-import { capitalize } from "@/helpers/capitalize";
-import $commentsAPI from "@/http/comments";
-import { useTranslation } from 'next-i18next';
+import vk from "@/assets/vk-icon.png";
+import odnoklassniki from "@/assets/odnoklassniki-icon.png";
+import viber from "@/assets/viber-icon.png";
+import s from "./MoviesPageLayout.module.scss";
 
 interface Props {
   children: ReactNode;
@@ -30,8 +27,6 @@ const MoviesPageLayout: FC<Props> = ({ children }) => {
   const dispatch = useAppDispatch();
 
   const { t } = useTranslation("moviesPage");
-
-  const isSmaller = useSmallerDevice(959);
 
   const { genres, countries } = useGenresAndCountries();
   const { selectedGenre, selectedCountry, selectedProducer, selectedActor } = useSelectedFilters();

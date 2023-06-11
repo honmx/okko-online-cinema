@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
-import s from "./CustomLink.module.scss";
 import Link from "next/link";
+import s from "./CustomLink.module.scss";
 
 interface Props {
   href: string;

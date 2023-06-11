@@ -1,14 +1,14 @@
+import axios, { AxiosResponse } from "axios";
 import $authAPI from "../http/auth";
 import bearerAxios from "../http/bearer";
 import { IAuthResponse } from "../types/IAuthResponse";
 import { IUser } from "../types/IUser";
-import axios, { AxiosResponse } from "axios";
 
 const checkEmail = async (email: string): Promise<AxiosResponse<IUser | "" | undefined>> => {
   try {
     const response = await $authAPI.get<IUser>(`/check/${email}`);
-
     return response;
+
   } catch (error) {
     throw error;
   }
@@ -19,7 +19,7 @@ const login = async (email: string, password: string): Promise<AxiosResponse<IAu
     email,
     password
   });
-
+  
   return response;
 }
 

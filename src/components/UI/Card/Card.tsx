@@ -1,19 +1,18 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslation } from 'next-i18next';
+import Button from "../Button/Button";
+import Title from "../Title/Title";
 import { IMovie } from "../../../types/IMovie";
-import { CardType } from "../../../types/CardType";
 import { useHover } from "../../../hooks/useHover";
 import { useDelay } from "../../../hooks/useDelay";
-import Button from "../Button/Button";
-import sound from "../../../assets/sound.svg";
-import soundDisabled from "../../../assets/soundDisabled.svg";
-import s from "./Card.module.scss";
 import { isMovieType } from "../../../helpers/isMovieType";
-import Title from "../Title/Title";
 import { capitalize } from "../../../helpers/capitalize";
 import { IGenre } from "../../../types/IGenre";
-import { useTranslation } from 'next-i18next';
+import soundDisabled from "../../../assets/soundDisabled.svg";
+import sound from "../../../assets/sound.svg";
+import s from "./Card.module.scss";
 
 interface Props {
   item: IGenre | IMovie;

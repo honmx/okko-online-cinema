@@ -1,10 +1,10 @@
 import React, { FC, MouseEvent, useRef, useState } from "react";
-import { CommonProps } from "../index";
-import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import { useTranslation } from "next-i18next";
 import Title from "../../Title/Title";
 import OptionsList from "../../OptionsList/OptionsList";
+import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import { CommonProps } from "../index";
 import s from "./MobileSelect.module.scss";
-import { useTranslation } from "next-i18next";
 
 interface Props extends Omit<CommonProps, "img"> {
   title: string;
@@ -12,7 +12,7 @@ interface Props extends Omit<CommonProps, "img"> {
 
 const MobileSelect: FC<Props> = ({ values, selectedValue, setSelectedValue, title, className }) => {
 
-  const { t, i18n } = useTranslation("moviesPage");
+  const { i18n } = useTranslation("moviesPage");
 
   const lang = i18n.language;
 

@@ -1,20 +1,17 @@
-import React, { FC } from "react";
-import s from "./Admin.module.scss";
-import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import axios from "axios";
-import $entitiesAPI from "@/http/entities";
-import Title from "@/components/UI/Title/Title";
-import Card from "@/components/UI/Card/Card";
-import { IMovie } from "@/types/IMovie";
-import { IGenre } from "@/types/IGenre";
-import { useSmallerDevice } from "@/hooks/useSmallerDevice";
-import CustomLink from "@/components/UI/CustomLink/CustomLink";
-import { decline } from "@/helpers/decline";
-import entitiesService from "@/services/entitiesService";
+import React from "react";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
+import Title from "@/components/UI/Title/Title";
+import CustomLink from "@/components/UI/CustomLink/CustomLink";
+import { IMovie } from "@/types/IMovie";
+import { IGenre } from "@/types/IGenre";
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import { decline } from "@/helpers/decline";
+import entitiesService from "@/services/entitiesService";
 import { NextAdminPage } from "@/types/AdminPageType";
+import s from "./Admin.module.scss";
 
 interface Props {
   movies: IMovie[],

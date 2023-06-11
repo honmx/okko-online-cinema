@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { useSmallerDevice } from "../../../hooks/useSmallerDevice";
 import MobileSelect from "./MobileSelect/MobileSelect";
 import DesktopSelect from "./DesktopSelect/DesktopSelect";
+import { useSmallerDevice } from "../../../hooks/useSmallerDevice";
 import { IGenre } from "../../../types/IGenre";
 
 export interface CommonProps {

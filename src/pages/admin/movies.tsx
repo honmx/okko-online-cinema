@@ -1,19 +1,19 @@
-import React, { FC, useEffect, useState } from "react";
-import s from "./AdminMovies.module.scss";
-import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import entitiesService from "@/services/entitiesService";
-import { IMovie } from "@/types/IMovie";
+import React, { useEffect, useState } from "react";
+import { GetStaticProps, GetStaticPropsResult } from "next";
 import Image from "next/image";
-import AdminMovieCard from "@/components/AdminCard/AdminCard";
-import InputField from "@/components/UI/InputField/InputField";
-import { useDebounce } from "@/hooks/useDebounce";
-import Card from "@/components/UI/Card/Card";
-import { IGenre } from "@/types/IGenre";
-import CustomLink from "@/components/UI/CustomLink/CustomLink";
-import arrow from "@/assets/arrow.svg";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import AdminMovieCard from "@/components/AdminCard/AdminCard";
+import InputField from "@/components/UI/InputField/InputField";
+import Card from "@/components/UI/Card/Card";
+import CustomLink from "@/components/UI/CustomLink/CustomLink";
+import entitiesService from "@/services/entitiesService";
+import { IMovie } from "@/types/IMovie";
+import { useDebounce } from "@/hooks/useDebounce";
+import { IGenre } from "@/types/IGenre";
 import { NextAdminPage } from "@/types/AdminPageType";
+import arrow from "@/assets/arrow.svg";
+import s from "./AdminMovies.module.scss";
 
 interface Props {
   movies: IMovie[];
@@ -39,7 +39,7 @@ const AdminMovies: NextAdminPage<Props> = ({ movies }) => {
   }
 
   const makeUpdateRequest = async (item: IMovie | IGenre, title: string, originalTitle: string) => {
-    const response = await entitiesService.updateMovie(
+    await entitiesService.updateMovie(
       item.id,
       title,
       originalTitle

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, RefObject } from "react";
+import React, { ChangeEvent, FC } from "react";
 import s from "./TextArea.module.scss";
 
 interface Props {

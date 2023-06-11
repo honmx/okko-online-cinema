@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import s from './Subscription.module.scss';
-import Button from '../UI/Button/Button';
 import { useTranslation } from 'next-i18next';
+import Button from '../UI/Button/Button';
+import s from './Subscription.module.scss';
 
 interface Props {
 

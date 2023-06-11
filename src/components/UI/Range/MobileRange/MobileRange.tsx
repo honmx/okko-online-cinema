@@ -1,12 +1,12 @@
 import React, { FC, MouseEvent, useRef, useState } from "react";
-import { CommonProps } from "../index";
-import Title from "../../Title/Title";
-import { useOutsideClick } from "../../../../hooks/useOutsideClick";
-import Slider from "../../Slider/Slider";
-import Image from "next/image";
-import close from "../../../../assets/close.svg";
-import IconButton from "../../IconButton/IconButton";
 import { useTranslation } from "next-i18next";
+import Image from "next/image";
+import Title from "../../Title/Title";
+import Slider from "../../Slider/Slider";
+import IconButton from "../../IconButton/IconButton";
+import { useOutsideClick } from "../../../../hooks/useOutsideClick";
+import { CommonProps } from "../index";
+import close from "../../../../assets/close.svg";
 import s from "./MobileRange.module.scss";
 
 interface Props extends CommonProps {

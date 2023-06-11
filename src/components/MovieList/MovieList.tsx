@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import s from "./MovieList.module.scss";
-import { IMovie } from "@/types/IMovie";
 import Card from "../UI/Card/Card";
+import { IMovie } from "@/types/IMovie";
+import s from "./MovieList.module.scss";
 
 interface Props {
   movies: IMovie[];

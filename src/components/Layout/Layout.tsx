@@ -1,17 +1,15 @@
 import React, { FC, ReactNode, useEffect } from "react";
-import s from "./Layout.module.scss";
+import { Roboto } from "next/font/google";
+import NotFound from "@/pages/404";
 import Footer from "../Footer/Footer";
 import Container from "../Container/Container";
-import { maxWidth } from "@/helpers/constants";
-import { Roboto } from "next/font/google";
 import Header from "../Header/Header";
 import Notification from "../UI/Notification/Notification";
+import { maxWidth } from "@/helpers/constants";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { checkAuth } from "@/store/thunks/checkAuth";
-import $authAPI from "@/http/auth";
-import axios from "axios";
 import $commentsAPI from "@/http/comments";
-import NotFound from "@/pages/404";
+import s from "./Layout.module.scss";
 
 interface Props {
   children: ReactNode;
@@ -37,7 +35,6 @@ const Layout: FC<Props> = ({ children, isOnlyAdmin }) => {
     }
   }, []);
 
-  // creating roles
   useEffect(() => {
     const a = async () => {
       const adminResponse = await $commentsAPI.post("/role", {

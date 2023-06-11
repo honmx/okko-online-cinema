@@ -1,19 +1,19 @@
 import React, { FC } from "react";
-import Container from "../Container/Container";
-import { maxWidth } from "@/helpers/constants";
 import Image from "next/image";
-import chat from "@/assets/chat.svg";
-import logo from "@/assets/logo.svg";
-import Button from "../UI/Button/Button";
 import Link from "next/link";
+import { useTranslation } from 'next-i18next';
+import Container from "../Container/Container";
+import Button from "../UI/Button/Button";
 import Title from "../UI/Title/Title";
 import CustomLink from "../UI/CustomLink/CustomLink";
-import s from "./Footer.module.scss";
-import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import Accordion from "../UI/Accordion/Accordion";
+import { maxWidth } from "@/helpers/constants";
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import { footerSocialNetworks } from "@/helpers/data/footerSocialNetworks";
-import { useTranslation } from 'next-i18next';
 import { useAppSelector } from "@/store/hooks";
+import chat from "@/assets/chat.svg";
+import logo from "@/assets/logo.svg";
+import s from "./Footer.module.scss";
 
 interface Props {
 

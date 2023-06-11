@@ -1,12 +1,11 @@
 import React, { FC, FormEvent, useState } from "react";
-import s from "./LoginForm.module.scss";
-import { useDisabledButton } from "@/hooks/useDisabledButton";
+import { useTranslation } from "next-i18next";
 import InputField from "../UI/InputField/InputField";
 import Button from "../UI/Button/Button";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useDisabledButton } from "@/hooks/useDisabledButton";
+import { useAppDispatch } from "@/store/hooks";
 import { login } from "@/store/thunks/login";
-import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
+import s from "./LoginForm.module.scss";
 
 interface Props {
   email: string;
@@ -16,10 +15,9 @@ interface Props {
 
 const LoginForm: FC<Props> = ({ email, handleEmailChange, className }) => {
 
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-
   const { t } = useTranslation("header");
+  
+  const dispatch = useAppDispatch();
 
   const [password, setPassword] = useState<string>("");
 

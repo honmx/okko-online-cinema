@@ -1,14 +1,13 @@
 import React, { FC, ReactNode } from "react";
-import s from "./NotFound.module.scss";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 import Title from "@/components/UI/Title/Title";
-import IconButton from "@/components/UI/IconButton/IconButton";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
-import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import Layout from "@/components/Layout/Layout";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
-import { useTranslation } from "next-i18next";
+import { NextPageWithLayout } from "@/types/NextPageWithLayout";
+import s from "./NotFound.module.scss";
 
 interface Props {
 

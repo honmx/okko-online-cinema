@@ -1,10 +1,18 @@
 import React, { FC, useState } from 'react';
 import Image from "next/image";
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 import Button from "@/components/UI/Button/Button";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import IconButton from "@/components/UI/IconButton/IconButton";
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import Burger from "@/components/Burger/Burger";
+import Login from "@/components/Login/Login";
+import Toggle from '../UI/Toggle/Toggle';
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { useScrollStart } from '@/hooks/useScrollStart';
+import { logout } from '@/store/thunks/logout';
 import burger from "@/assets/burger_menu.svg";
 import gift from "@/assets/gift-box.svg";
 import login from "@/assets/login_icon.svg";
@@ -13,14 +21,6 @@ import search from "@/assets/search_icon.svg";
 import close from "@/assets/close.svg";
 import logoutIcon from "@/assets/logout.svg";
 import s from "./Header.module.scss";
-import Burger from "@/components/Burger/Burger";
-import Login from "@/components/Login/Login";
-import { useSmallerDevice } from "@/hooks/useSmallerDevice";
-import Toggle from '../UI/Toggle/Toggle';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { useScrollStart } from '@/hooks/useScrollStart';
-import { logout } from '@/store/thunks/logout';
-import { useTranslation } from 'next-i18next';
 
 interface Props {
 

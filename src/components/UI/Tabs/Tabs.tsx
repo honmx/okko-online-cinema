@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import s from "./Tabs.module.scss";
 
 interface Props {

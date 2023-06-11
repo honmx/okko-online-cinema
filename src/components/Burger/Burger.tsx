@@ -1,12 +1,12 @@
 import { FC, useEffect } from "react";
-import s from "./Burger.module.scss";
-import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import { useRouter } from "next/router";
-import IconButton from "../UI/IconButton/IconButton";
-import { capitalize } from "@/helpers/capitalize";
 import { useTranslation } from "next-i18next";
-import { useAppSelector } from "@/store/hooks";
+import CustomLink from "@/components/UI/CustomLink/CustomLink";
+import IconButton from "../UI/IconButton/IconButton";
 import Toggle from "../UI/Toggle/Toggle";
+import { capitalize } from "@/helpers/capitalize";
+import { useAppSelector } from "@/store/hooks";
+import s from "./Burger.module.scss";
 
 interface IProps {
   handleLoginClick: () => void;
@@ -16,12 +16,12 @@ interface IProps {
 
 const Burger: FC<IProps> = ({ handleLoginClick, handleLogoutClick, handleToggleLanguageClick }) => {
 
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+  
   const router = useRouter();
 
   const isAuth = useAppSelector(state => state.auth.isAuth);
-
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language;
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';

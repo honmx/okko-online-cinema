@@ -1,14 +1,13 @@
-import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
-import s from "./RegisterForm.module.scss";
+import React, { FC, FormEvent, useState } from "react";
+import { useTranslation } from 'next-i18next';
 import InputField from "../UI/InputField/InputField";
 import Button from "../UI/Button/Button";
+import Toggle from "../UI/Toggle/Toggle";
 import { useDisabledButton } from "@/hooks/useDisabledButton";
-import authService from "@/services/authService";
 import { useAppDispatch } from "@/store/hooks";
 import { register } from "@/store/thunks/register";
-import Toggle from "../UI/Toggle/Toggle";
 import { registerAdmin } from "@/store/thunks/registerAdmin";
-import { useTranslation } from 'next-i18next';
+import s from "./RegisterForm.module.scss";
 
 interface Props {
   email: string;
