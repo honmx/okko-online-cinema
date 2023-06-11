@@ -1,6 +1,6 @@
 import React, { FC, useRef, useState } from "react";
 import Image from "next/image";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 import Slider from "../../Slider/Slider";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import { CommonProps } from "../index";

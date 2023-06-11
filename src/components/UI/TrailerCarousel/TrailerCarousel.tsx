@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import TrailerCard from "../../../components/TrailerCard/TrailerCard";
 import { useCarouselScroll } from "../../../hooks/useCarouselScroll";

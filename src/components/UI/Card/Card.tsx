@@ -1,7 +1,7 @@
 import React, { FC, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import Button from "../Button/Button";
 import Title from "../Title/Title";
 import { IMovie } from "../../../types/IMovie";

@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent, useRef, useState } from "react";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 import Title from "../../Title/Title";
 import OptionsList from "../../OptionsList/OptionsList";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";

@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import CustomLink from "../CustomLink/CustomLink";
-import { useAppDispatch } from "../../../store/hooks";
 import s from "./BreadCrumbs.module.scss";
 
 interface Props {

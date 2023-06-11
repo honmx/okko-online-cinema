@@ -18,13 +18,13 @@ type Story = StoryObj<typeof Button>;
 export const AccentButton: Story = {
   args: {
     bgColor: "accent",
-    value: "Click me"
+    children: "Click me"
   }
 }
 
 export const PrimaryButton: Story = {
   args: {
-    value: "Click me"
+    children: "Click me"
   }
 }
 

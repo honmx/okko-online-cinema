@@ -18,6 +18,6 @@ type Story = StoryObj<typeof AccordionComponent>;
 export const Accordion: Story = {
   args: {
     title: "My accordion",
-    children: footerNavbar.map(item => <p key={item.title}>{item.title}</p>)
+    children: footerNavbar.map((item: any) => <p key={item.title}>{item.title}</p>)
   }
 }

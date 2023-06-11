@@ -14,5 +14,13 @@ module.exports = {
         }
       ]
     }],
+    webpackFinal: async (config, { configType }) => {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false, // <------
+        path: false // <-----
+      };
+      return config;
+    }
   },
 };

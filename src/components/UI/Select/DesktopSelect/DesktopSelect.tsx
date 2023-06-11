@@ -1,6 +1,6 @@
 import React, { FC, MouseEvent, useState, useRef } from "react";
 import Image from "next/image";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 import OptionsList from "../../OptionsList/OptionsList";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
 import { CommonProps } from "../index";
