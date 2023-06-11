@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { checkAuth } from "@/store/thunks/checkAuth";
 import $commentsAPI from "@/http/comments";
 import s from "./Layout.module.scss";
+import axios from "axios";
 
 interface Props {
   children: ReactNode;
@@ -36,25 +37,38 @@ const Layout: FC<Props> = ({ children, isOnlyAdmin }) => {
   }, []);
 
   useEffect(() => {
-    const a = async () => {
-      const adminResponse = await $commentsAPI.post("/role", {
-        value: "ADMIN",
-        description: "Администратор"
-      });
-      const response = await $commentsAPI.post("/role", {
-        value: "USER",
-        description: "Пользователь"
-      });
-
-      console.log(adminResponse.data);
-      console.log(response.data);
+    const createRoles = async () => {
+      try {
+        const adminResponse = await axios.post(
+          "http://localhost:5000/role",
+          {
+            value: "ADMIN",
+            description: "Администратор"
+          },
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+          });
+        const response = await axios.post(
+          "http://localhost:5000/role",
+          {
+            value: "USER",
+            description: "Пользователь"
+          },
+          {
+            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+          });
+      } catch (error) {
+        console.log(error);
+      }
     }
 
-    // try {
-    //   a();
-    // } catch (error: any) {
-    //   console.log(error);
-    // }
+    createRoles();
   }, []);
 
   return (

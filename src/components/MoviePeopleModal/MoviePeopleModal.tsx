@@ -29,13 +29,13 @@ const MoviePeopleModal: FC<Props> = ({ producers, actors, onClose, className }) 
       <Title className={s.title}>{t("moviePage:people.producers")}</Title>
       <div className={s.peopleList}>
         {
-          producers.map(producer => <PersonAutoSuggestCard person={producer} onClick={handlePersonClick} />)
+          producers.map(producer => <PersonAutoSuggestCard key={producer.id} person={producer} onClick={handlePersonClick} />)
         }
       </div>
       <Title className={s.title}>{t("moviePage:people.actors")}</Title>
       <div className={s.peopleList}>
         {
-          actors.map(actor => <PersonAutoSuggestCard person={actor} onClick={handlePersonClick} />)
+          actors.map(actor => <PersonAutoSuggestCard key={actor.id} person={actor} onClick={handlePersonClick} />)
         }
       </div>
     </Modal>
