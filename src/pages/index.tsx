@@ -26,7 +26,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from 'next-i18next';
 
 interface Props {
-  movies: IMovie[];
   genres: IGenre[];
   top10Movies: IMovie[];
   USSRMovies: IMovie[];
@@ -38,7 +37,7 @@ const ClientCarousel = dynamic(() => import("../components/UI/Carousel/Carousel"
   loading: () => <Loading />
 });
 
-const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoons }) => {
+const Home: NextPage<Props> = ({ genres, top10Movies, USSRMovies, cartoons }) => {
 
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -122,7 +121,6 @@ const Home: NextPage<Props> = ({ movies, genres, top10Movies, USSRMovies, cartoo
 }
 
 export const getStaticProps: GetStaticProps = async (context): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
-  // const movies = await entitiesService.getMovies();
   const genres = await entitiesService.getGenres();
 
   const top10Movies = await entitiesService.getTop10Movies();
@@ -131,7 +129,6 @@ export const getStaticProps: GetStaticProps = async (context): Promise<GetStatic
 
   return {
     props: {
-      // movies,
       genres,
       top10Movies,
       USSRMovies,

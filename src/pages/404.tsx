@@ -7,17 +7,24 @@ import IconButton from "@/components/UI/IconButton/IconButton";
 import CustomLink from "@/components/UI/CustomLink/CustomLink";
 import { NextPageWithLayout } from "@/types/NextPageWithLayout";
 import Layout from "@/components/Layout/Layout";
+import { useSmallerDevice } from "@/hooks/useSmallerDevice";
+import { useTranslation } from "next-i18next";
 
 interface Props {
 
 }
 
 const NotFound: NextPageWithLayout<Props> = ({ }) => {
+
+  const { t } = useTranslation("notFoundPage");
+
+  const isSmaller = useSmallerDevice(959);
+
   return (
     <div className={s.pageWrapper}>
       <div className={s.textContainer}>
-        <Title fs="50px">Страница не найдена</Title>
-        <CustomLink href="/" className={s.link}>На главную</CustomLink>
+        <Title fs={isSmaller ? "35px" : "50px"} className={s.title}>{t("notFoundPage:title")}</Title>
+        <CustomLink href="/" className={s.link}>{t("notFoundPage:link")}</CustomLink>
       </div>
     </div>
   )

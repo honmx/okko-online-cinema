@@ -45,7 +45,14 @@
 }
 
 .filtersContainer {
-  
+  margin-inline: 15px;
+
+  &>div {
+    &>div {
+      top: -90px;
+    }
+  }
 }
+
 
 .movies {}

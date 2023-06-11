@@ -33,10 +33,10 @@ const Header: FC<Props> = ({ }) => {
   const dispatch = useAppDispatch();
 
   const { t, i18n } = useTranslation("header");
+  const lang = i18n.language;
 
   const isSmaller = useSmallerDevice(959);
 
-  const lang = i18n.language;
   const isAuth = useAppSelector(state => state.auth.isAuth);
   const isLoading = useAppSelector(state => state.auth.isLoading);
 
@@ -46,11 +46,11 @@ const Header: FC<Props> = ({ }) => {
   useScrollStart(loginShowing);
 
   const handleBurgerClick = () => {
-    setBurgerShowing(prevState => !prevState);
+    setBurgerShowing(prev => !prev);
   };
 
   const handleLoginClick = () => {
-    setLoginShowing(prevState => !prevState);
+    setLoginShowing(prev => !prev);
     setBurgerShowing(false);
   }
 

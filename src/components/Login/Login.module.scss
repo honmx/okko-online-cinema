@@ -6,6 +6,12 @@
   justify-content: flex-end;
   height: 100%;
   z-index: 1000000;
+
+  @media screen and (max-width: 599px) {
+    * {
+      font-size: 12px;
+    }
+  }
 }
 
 .loginContainer {
@@ -50,6 +56,10 @@
   margin: 35px 50px auto;
   background-color: rgba($color: $primaryGreyColor, $alpha: 0.5);
   border-radius: 15px;
+
+  @media screen and (max-width: 599px) {
+    margin: 35px 15px auto;
+  }
 }
 
 .authorizeCard {

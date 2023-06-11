@@ -16,6 +16,7 @@ import { useAppSelector } from '@/store/hooks';
 import { useRouter } from 'next/router';
 import IconButton from '../UI/IconButton/IconButton';
 import { useTranslation } from 'next-i18next';
+import { useSmallerDevice } from '@/hooks/useSmallerDevice';
 
 interface Props {
   onClose: () => void;
@@ -26,6 +27,8 @@ const Login: FC<Props> = ({ onClose }) => {
   const router = useRouter();
 
   const { t } = useTranslation("header");
+
+  const isSmaller = useSmallerDevice(599);
 
   const authState = useAppSelector(state => state.auth);
 
@@ -59,7 +62,7 @@ const Login: FC<Props> = ({ onClose }) => {
           <Button shape="circle" p="13px" img={close} onClick={handleCloseClick} />
         </div>
         <div className={s.loginTitleContainer}>
-          <Title fw={400} fs="20px">
+          <Title fw={400} fs={isSmaller ? "14px" :"20px"}>
             {emailExists === null && t("header:loginWindow.loginOrRegisterHeader")}
             {emailExists === false && t("header:loginWindow.registerHeader")}
             {emailExists && t("header:loginWindow.loginHeader")}
@@ -67,7 +70,7 @@ const Login: FC<Props> = ({ onClose }) => {
         </div>
         <div className={s.authorizeContainer}>
           <div className={s.authorizeCard}>
-            <Title fs="24px" className={s.loginOrRegisterTitle}>
+            <Title fs={isSmaller ? "16px" :"24px"} className={s.loginOrRegisterTitle}>
               {emailExists === null && t("header:loginWindow.loginOrRegisterTitle")}
               {emailExists === false && t("header:loginWindow.registerTitle")}
               {emailExists && t("header:loginWindow.loginTitle")}

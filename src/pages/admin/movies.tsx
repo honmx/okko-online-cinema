@@ -83,7 +83,8 @@ export const getStaticProps: GetStaticProps = async (context): Promise<GetStatic
         "common",
         "header",
         "footer",
-        "adminPage"
+        "adminPage",
+        "notFoundPage"
       ])),
     }
   }
