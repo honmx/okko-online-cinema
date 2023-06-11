@@ -13,6 +13,7 @@ import TextArea from "../UI/TextArea/TextArea";
 import Button from "../UI/Button/Button";
 import commentsService from "@/services/commentsService";
 import { useAppSelector } from "@/store/hooks";
+import { useTranslation } from "next-i18next";
 
 interface Props {
   currentComment: IComment;
@@ -22,6 +23,8 @@ interface Props {
 }
 
 const CommentCard: FC<Props> = ({ currentComment, allComments, movieId, className }) => {
+
+  const { t } = useTranslation("moviePage");
 
   const ref = useRef<HTMLFormElement>(null);
 
@@ -35,7 +38,7 @@ const CommentCard: FC<Props> = ({ currentComment, allComments, movieId, classNam
   useEffect(() => {
     if (!ref.current) return;
 
-    const textarea = ref.current.children[0].children[0] as HTMLTextAreaElement;    
+    const textarea = ref.current.children[0].children[0] as HTMLTextAreaElement;
     textarea.focus();
   }, [ref.current]);
 
@@ -71,7 +74,7 @@ const CommentCard: FC<Props> = ({ currentComment, allComments, movieId, classNam
         </div>
         <p className={s.commentText}>{currentComment.comment}</p>
         <IconButton className={s.replyBtn} onClick={handleReplyClick}>
-          <p>Ответить</p>
+          <p>{t("moviePage:reply")}</p>
         </IconButton>
         <IconButton className={s.likeBtn}>
           <p>{currentComment.rate}</p>

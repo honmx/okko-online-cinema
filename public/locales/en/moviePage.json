@@ -12,6 +12,7 @@
   "showMore": "More",
   "hide": "Hide",
   "subscribe": "Subscribe",
+  "subscribeShort": "Subscribe",
   "trailer": "Trailer",
   "subscriptions": {
     "optimum": {
@@ -60,5 +61,6 @@
   "delete": "Delete",
   "similar": "Similar",
   "comments": "Comments",
-  "leaveComment": "Leave a comment"
+  "leaveComment": "Leave a comment",
+  "reply": "Reply"
 }

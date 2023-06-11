@@ -60,7 +60,7 @@ const MovieBannerText: FC<Props> = ({ movie, className }) => {
           <div className={s.ratingContainer}>
             <p className={`${s.rating} ${movie.rate > 7 ? s.greenRate : s.usualRate}`}>{movie.rate}</p>
           </div>
-          <p className={s.year}>{movie.yearTill}</p>
+          <p className={s.year}>{movie.yearSince} {movie.yearTill && movie.yearTill !== movie.yearSince && ` - ${movie.yearTill}`}</p>
           <p className={s.genre}>{capitalize(movie.genres[0].originalTitle ? movie.genres[0].originalTitle : movie.genres[0].title)}</p>
           <p className={s.minAge}>{movie.ageRate}+</p>
         </div>
