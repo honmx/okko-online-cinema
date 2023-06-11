@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import Image from "next/image";
+import Head from "next/head";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import AdminMovieCard from "@/components/AdminCard/AdminCard";
@@ -47,26 +48,31 @@ const AdminMovies: NextAdminPage<Props> = ({ movies }) => {
   }
 
   return (
-    <div className={s.adminMoviesPageContainer}>
-      <InputField type="text" value={value} placeholder={t("adminPage:placeholder")} onChange={handleChange} appearanceType="transparent" className={s.input} />
-      <div className={s.moviesContainer}>
-        {
-          filteredMovies.map(movie => (
-            <AdminMovieCard
-              key={movie.id}
-              item={movie}
-              makeUpdateRequest={makeUpdateRequest}
-            >
-              <Card item={movie} linkHref={`/movie/${movie.title}`} />
-            </AdminMovieCard>)
-          )
-        }
+    <>
+      <Head>
+        <title>{t("adminPage:title")}</title>
+      </Head>
+      <div className={s.adminMoviesPageContainer}>
+        <InputField type="text" value={value} placeholder={t("adminPage:placeholder")} onChange={handleChange} appearanceType="transparent" className={s.input} />
+        <div className={s.moviesContainer}>
+          {
+            filteredMovies.map(movie => (
+              <AdminMovieCard
+                key={movie.id}
+                item={movie}
+                makeUpdateRequest={makeUpdateRequest}
+              >
+                <Card item={movie} linkHref={`/movie/${movie.title}`} />
+              </AdminMovieCard>)
+            )
+          }
+        </div>
+        <CustomLink href="/admin/genres" className={s.moviesLink}>
+          <p className={s.linkTitle}>{t("adminPage:genresLink")}</p>
+          <Image src={arrow} alt="arrow" className={s.arrow} />
+        </CustomLink>
       </div>
-      <CustomLink href="/admin/genres" className={s.moviesLink}>
-        <p className={s.linkTitle}>{t("adminPage:genresLink")}</p>
-        <Image src={arrow} alt="arrow" className={s.arrow} />
-      </CustomLink>
-    </div>
+    </>
   )
 };
 

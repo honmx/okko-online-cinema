@@ -63,9 +63,7 @@ const Layout: FC<Props> = ({ children, isOnlyAdmin }) => {
               Authorization: `Bearer ${localStorage.getItem("token")}`
             }
           });
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     }
 
     createRoles();

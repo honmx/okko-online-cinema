@@ -28,7 +28,7 @@ const Admin: NextAdminPage<Props> = ({ movies, genres }) => {
   return (
     <>
     <Head>
-      <title></title>
+      <title>{t("adminPage:title")}</title>
     </Head>
     <div className={s.adminPageContainer}>
       <Title fs={isSmaller ? "30px" : "50px"} className={s.title}>{t("adminPage:title")}</Title>

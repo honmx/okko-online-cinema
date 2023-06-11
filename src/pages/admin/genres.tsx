@@ -1,6 +1,7 @@
 import React from "react";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import Image from "next/image";
+import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import AdminMovieCard from "@/components/AdminCard/AdminCard";
@@ -29,17 +30,22 @@ const AdminGenres: NextAdminPage<Props> = ({ genres }) => {
   }
 
   return (
-    <div className={s.adminGenresContainer}>
-      <div className={s.genres}>
-        {
-          genres.map(genre => <AdminMovieCard key={genre.id} item={genre} makeUpdateRequest={makeUpdateRequest} />)
-        }
+    <>
+      <Head>
+        <title>{t("adminPage:title")}</title>
+      </Head>
+      <div className={s.adminGenresContainer}>
+        <div className={s.genres}>
+          {
+            genres.map(genre => <AdminMovieCard key={genre.id} item={genre} makeUpdateRequest={makeUpdateRequest} />)
+          }
+        </div>
+        <CustomLink href="/admin/movies" className={s.moviesLink}>
+          <p className={s.linkTitle}>{t("adminPage:moviesLink")}</p>
+          <Image src={arrow} alt="arrow" className={s.arrow} />
+        </CustomLink>
       </div>
-      <CustomLink href="/admin/movies" className={s.moviesLink}>
-        <p className={s.linkTitle}>{t("adminPage:moviesLink")}</p>
-        <Image src={arrow} alt="arrow" className={s.arrow} />
-      </CustomLink>
-    </div>
+    </>
   )
 };
 
