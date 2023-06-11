@@ -55,7 +55,7 @@ const MovieBannerText: FC<Props> = ({ movie, className }) => {
   return (
     <>
       <div className={`${s.textContainer} ${className}`}>
-        <Title variant="h2" fs={isSmaller ? "30px" : "50px"} className={s.title}>{movie.title}</Title>
+        <Title variant="h2" fs={isSmaller ? "30px" : "50px"} className={s.title}>{lang === "en" && movie.originalTitle ? movie.originalTitle : movie.title}</Title>
         <div className={s.commonInfoContainer}>
           <div className={s.ratingContainer}>
             <p className={`${s.rating} ${movie.rate > 7 ? s.greenRate : s.usualRate}`}>{movie.rate}</p>

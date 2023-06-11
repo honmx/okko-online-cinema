@@ -18,7 +18,6 @@ import Login from "@/components/Login/Login";
 import { useSmallerDevice } from "@/hooks/useSmallerDevice";
 import Toggle from '../UI/Toggle/Toggle';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { toggleLanguage } from '@/store/slices/languageSlice';
 import { useScrollStart } from '@/hooks/useScrollStart';
 import { logout } from '@/store/thunks/logout';
 import { useTranslation } from 'next-i18next';
@@ -173,7 +172,7 @@ const Header: FC<Props> = ({ }) => {
       {
         burgerShowing &&
         <div className={s.burger_container + (burgerShowing ? '' : ' ' + s.hidden)}>
-          <Burger handleLoginClick={handleLoginClick} handleLogoutClick={handleLogoutClick} />
+          <Burger handleLoginClick={handleLoginClick} handleLogoutClick={handleLogoutClick} handleToggleLanguageClick={handleToggleLanguageClick} />
         </div>
       }
       {

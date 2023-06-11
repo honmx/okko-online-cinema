@@ -6,19 +6,22 @@ import IconButton from "../UI/IconButton/IconButton";
 import { capitalize } from "@/helpers/capitalize";
 import { useTranslation } from "next-i18next";
 import { useAppSelector } from "@/store/hooks";
+import Toggle from "../UI/Toggle/Toggle";
 
 interface IProps {
   handleLoginClick: () => void;
   handleLogoutClick: () => void;
+  handleToggleLanguageClick: (value: string) => void;
 }
 
-const Burger: FC<IProps> = ({ handleLoginClick, handleLogoutClick }) => {
+const Burger: FC<IProps> = ({ handleLoginClick, handleLogoutClick, handleToggleLanguageClick }) => {
 
   const router = useRouter();
 
   const isAuth = useAppSelector(state => state.auth.isAuth);
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -78,6 +81,11 @@ const Burger: FC<IProps> = ({ handleLoginClick, handleLogoutClick }) => {
               : <IconButton onClick={handleLoginClick} className={s.loginBtn}>{capitalize(t("header:login"))}</IconButton>
           }
         </li>
+        <Toggle
+          values={["ru", "en"]}
+          activeValue={lang}
+          onClick={() => handleToggleLanguageClick(lang === "ru" ? "en" : "ru")}
+        />
       </ul>
     </div>
   );
