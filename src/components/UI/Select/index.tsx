@@ -1,8 +1,7 @@
 import React, { FC } from "react";
-import MobileSelect from "./MobileSelect/MobileSelect";
-import DesktopSelect from "./DesktopSelect/DesktopSelect";
 import { useSmallerDevice } from "../../../hooks/useSmallerDevice";
 import { IGenre } from "../../../types/IGenre";
+import dynamic from "next/dynamic";
 
 export interface CommonProps {
   values: string[] | IGenre[];
@@ -12,6 +11,15 @@ export interface CommonProps {
   img?: string;
   className?: string;
 }
+
+
+const DesktopSelect = dynamic(() => import("./DesktopSelect/DesktopSelect"), {
+  ssr: false,
+});
+
+const MobileSelect = dynamic(() => import("./MobileSelect/MobileSelect"), {
+  ssr: false,
+});
 
 const Select: FC<CommonProps> = ({ values, selectedValue, setSelectedValue, title, img, className }) => {
 
