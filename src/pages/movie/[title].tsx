@@ -43,7 +43,7 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
 
   const isActive = useDelay(4000);
 
-  const user = useAppSelector(state => state.auth.user);
+  const { user, isAuth } = useAppSelector(state => state.auth);
 
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [activeSound, setActiveSound] = useState<boolean>(true);
@@ -199,7 +199,7 @@ const Movie: NextPageWithLayout<Props> = ({ movie, recommendations }) => {
           <div className={s.commentsContainer}>
             <CommentList comments={comments.filter(comment => comment.commentId === null)} allComments={comments} movieId={movie.id} />
             {
-              user &&
+              isAuth &&
               <form onSubmit={handleFormSubmit} className={s.form}>
                 <TextArea value={value} onChange={handleTextAreaChange} placeholder={t("moviePage:leaveComment") as string} className={s.input} />
                 <div className={s.buttonsContainer}>
