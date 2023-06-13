@@ -76,7 +76,7 @@ const Layout: FC<Props> = ({ children, isOnlyAdmin }) => {
       </Container>
       <main className={s.main}>
         {
-          isOnlyAdmin && (isAuth && !user.roles.some(role => role.value === "ADMIN") || !isAuth)
+          isOnlyAdmin && (isAuth && user.roles.length > 0 && !user.roles.some(role => role.value === "ADMIN") || !isAuth)
             ? <NotFound />
             : <>
               <div className={s.notifications}>

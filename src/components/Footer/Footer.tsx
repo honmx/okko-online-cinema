@@ -101,7 +101,7 @@ const Footer: FC<Props> = ({ }) => {
           <Button bgColor="accent" img={chat}>{t("footer:helpButton")}</Button>
         </div>
         {
-          isAuth && user.roles.some(role => role.value === "ADMIN") &&
+          isAuth && user.roles.length > 0 && user.roles.some(role => role.value === "ADMIN") &&
           <CustomLink href="/admin" className={s.adminLink}>{t("footer:admin")}</CustomLink>
         }
         <div className={s.navbar}>
